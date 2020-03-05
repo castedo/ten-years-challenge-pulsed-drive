@@ -9,7 +9,7 @@
 
 ### files to ignore: ###
 #--- pdf files
-.pdf
+*.pdf
 
 #--- backup files
 *~
