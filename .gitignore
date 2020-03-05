@@ -1,11 +1,25 @@
-*.aux
-*.idx
-*.log
-*.toc
-*.ist
-*.bbl
-*.blg
-*.bcf
-*.run.xml
-*.out
+#-----------------------------------------------------#
+# .gitignore file for the paper                       #
+# Ten Years Reproducibility Challenge: Pulsed drive   #
+#-----------------------------------------------------#
+# Author:        Sabino Maggi                         #
+# File Created:  10-02-2020                           #
+# Last revision: 05-03-2020                           #
+#-----------------------------------------------------#
 
+### files to ignore: ###
+#--- pdf files
+.pdf
+
+#--- backup files
+*~
+*.bak
+
+#--- macOS junk
+.DS_Store
+
+#--- Python stuff
+__pycache__/
+
+
+#--- end of .gitignore file

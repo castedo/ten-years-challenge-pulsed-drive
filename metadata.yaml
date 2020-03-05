@@ -5,59 +5,59 @@
 #  - For a successful replication, it shoudl be prefixed with "[Re]"
 #  - For a failed replication, it should be prefixed with "[¬Re]"
 #  - For other article types, no instruction (but please, not too long)
-title: "ReScience (R)evolution"
+title: "[Re] Reproduction of Step width enhancement in a pulse-driven Josephson junction"
 
 # List of authors with name, orcid number, email and affiliation
 # Affiliation "*" means contact author
 authors:
-  - name: Konrad Hinsen
-    orcid: 0000-0003-0330-9428
-    email: konrad.hinsen@cnrs.fr
-    affiliations: 1,2
+  - name: Sabino Maggi
+    orcid: 0000-0002-1523-6484
+    email: sabino.maggi@cnr.it
+    affiliations: 1
     
-  - name: Nicolas P. Rougier
-    orcid: 0000-0002-6972-589X
-    email: Nicolas.Rougier@inria.fr
-    affiliations: 3,4,5,*      # * is for contact author
+  # - name: Nicolas P. Rougier
+  #   orcid: 0000-0002-6972-589X
+  #   email: Nicolas.Rougier@inria.fr
+  #   affiliations: 3,4,5,*      # * is for contact author
 
 # List of affiliations with code (corresponding to author affiliations), name
 # and address. You can also use these affiliations to add text such as "Equal
 # contributions" as name (with no address).
 affiliations:
   - code:    1
-    name:    Centre de Biophysique Moléculaire, CNRS UPR4301
-    address: Orléans, France
+    name:    National Research Council, Institute of Atmospheric Pollution Research, CNR-IIA
+    address: Bari, Italy
     
-  - code:    2
-    name:    Synchrotron SOLEIL, Division Expériences
-    address: Gif sur Yvette, France
+  # - code:    2
+  #   name:    National Institute of Metrological research, INRiM
+  #   address: Torino, Italy
     
-  - code:    3
-    name:    INRIA Bordeaux Sud-Ouest
-    address: Bordeaux, France
-    
-  - code:    4
-    name:    LaBRI, Université de Bordeaux, Institut Polytechnique de Bordeaux,
-             Centre National de la Recherche Scientifique, UMR 5800
-    address: Talence, France
-    
-  - code:    5
-    name:    Institut des Maladies Neurodégénératives, Université  de Bordeaux,
-             Centre National de la Recherche Scientifique, UMR 5293
-    address: Bordeaux, France
+  # - code:    3
+  #   name:    INRIA Bordeaux Sud-Ouest
+  #   address: Bordeaux, France
+  #
+  # - code:    4
+  #   name:    LaBRI, Université de Bordeaux, Institut Polytechnique de Bordeaux,
+  #            Centre National de la Recherche Scientifique, UMR 5800
+  #   address: Talence, France
+  #
+  # - code:    5
+  #   name:    Institut des Maladies Neurodégénératives, Université  de Bordeaux,
+  #            Centre National de la Recherche Scientifique, UMR 5293
+  #   address: Bordeaux, France
 
 
 # List of keywords (adding the programming language might be a good idea)
-keywords: rescience c, rescience x
+keywords: rescience c, fortran, visual basic, josephson junction, voltage standard
 
 # Code URL and DOI/SWH (url is mandatory for replication, doi after acceptance)
 # You can get a DOI for your code from Zenodo, or an SWH identifier from
 # Software Heritage.
 #   see https://guides.github.com/activities/citable-code/
 code:
-  - url: https://github.com/rescience-c/template
-  - doi: 
-  - swh: 
+  - url: https://github.com/sabinomaggi/ten-years-challenge-pulsed-drive
+  - doi: https://doi.org/10.1063/1.362395
+  - swh: https://archive.softwareheritage.org/swh:1:cnt:94a9ed024d3859793618152ea559a178aadbb6f2
 
 # Data URL and DOI (optional if no data)
 data:
@@ -72,16 +72,7 @@ replication:
  - doi:  # Regular digital object identifier
 
 # Don't forget to surround abstract with double quotes
-abstract: "Three years have passed since ReScience published its first article
-           and since September 2015, things have been going steadily. We're
-           still alive, independent and without a budget. In the meantime, we
-           have published around 20 articles (mostly in computational
-           neuroscience & computational ecology) and the initial has grown
-           from around 10 to roughly 100 members (editors and reviewers), we
-           have advertised ReScience at several conferences worldwide, gave
-           some interviews and we published an article introducing ReScience in
-           PeerJ. Based on our experience at managing the journal during these
-           three years, we think the time is ripe for proposing some changes."
+abstract: "When I read about the Ten Years Challenge, it was a matter of seconds to decide to take the plunge and partecipate to the contest with the replication of a work of a quarter of century ago. At first, I was fairly dubious to be able to replicate the results of that work, but in the end the effort resulted much easier than I initially thought. The paper describes the tools and trick used for the replication and the lessons learned from this effort. Among them, good documentation is paramount. Likewise, equally important is the use of tools and languages that do not fall into oblivion after one or two iterations."
 
 # Bibliography file (yours)
 bibliography: bibliography.bib
@@ -91,14 +82,14 @@ bibliography: bibliography.bib
 #  * Editorial
 #  * Letter
 #  * Replication
-type: Editorial
+type: Replication
 
 # Scientific domain of the article (e.g. Computational Neuroscience)
 #  (one domain only & try to be not overly specific)
-domain: 
+domain: Physics
 
 # Coding language (main one only if several)
-language:
+language: Fortran
 
   
 # To be filled by the author(s) after acceptance
@@ -121,7 +112,7 @@ contributors:
 
 # This information will be provided by the editor
 dates:
-  - received:  November 1, 2018
+  - received:  March 1, 2020
   - accepted:
   - published: 
 
