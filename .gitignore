@@ -7,19 +7,30 @@
 # Last revision: 05-03-2020                           #
 #-----------------------------------------------------#
 
-### files to ignore: ###
-#--- pdf files
-*.pdf
 
-#--- backup files
-*~
+### files to ignore: ###
+
+#--- pdf and backup files
+*.pdf
 *.bak
+*~
+
+#--- LaTeX junk
+*.aux
+*.bbl
+*.log
+*.out
+
+*.bcf
+*.blg
+*.fls
+*.fdb_latexmk
+*.run.xml
 
 #--- macOS junk
 .DS_Store
 
 #--- Python stuff
 __pycache__/
-
 
 #--- end of .gitignore file
