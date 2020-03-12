@@ -3,17 +3,14 @@
 
 [++ Simulate the junction behaviour... ++]
 
-[++ mcphase calculates both the IV curve and tha phase path (?) of the junction (outside the scope of the present paper) but only for a single value of alpha_rf ++]
+[++ mcphase calculates both the IV curve and the phase path (?) of the junction (outside the scope of the present paper) but only for a single value of $alpha_rf$   ++]
 
 A Josephson junction is a quantum mechanical device composed of two superconducting electrodes separated by a weak link \cite{Barone:1982}.
-For currents lower than a critical value $I_C$, the device behaves as an uninterrupted superconductor and coupled electrons (Cooper pairs) can cross the weak link without any voltage drop.
-[ALT+++ Coupled electrons (Cooper pairs) can cross the weak link without any voltage drop, at least until the current reaches a critical value $I_C$ (dc Josephson effect)..+++]
-When the current is further increased, single electrons originated by the breaking up of Cooper pairs begin to traverse the weak link. The potential difference $V$ between the two superconducting films becomes $\neq 0$ and a state is reached where the junction behaves as a resistance.
+For currents lower than a critical value $I_C$, coupled electrons (Cooper pairs) can cross the weak link without any potential difference (dc Josephson effect).
+%the device behaves as an uninterrupted superconductor and coupled electrons (Cooper pairs) can cross the weak link without any voltage drop.
+When the current is increased above $I_C$, single electrons originated by the breakup of Cooper pairs begin to traverse the weak link. The potential difference $V$ between the two superconducting films becomes $\neq 0$ and a state is reached where the junction behaves as a resistance.
 
-Besides its current practical applications, the Josephson junction is important from a physical point of view because it has been the first device showing quantum mechanical effects on a macroscopic scale.
-
-In modern Josephson junctions the weak link usually has the form of a thin insulating tunnel barrier (SIS junction) \cite{Gurvitch:1983}, a normal metal film (SNS junction) \cite{Benz:1995} or a physical nanoconstriction (ScS junction) \cite{Cybart:2015, DeLeo:2016}. Josephson junctions have found wide usage in several research fields, for example as building blocks for RSFQ digital electronics  or quantum computers \cite{Likharev:1991}, or as very sensitive magnetometers (SQUIDs) and radiation detectors \cite{Maggi:2006b, Granata:2015}.
-
+In modern Josephson junctions the weak link usually has the form of a thin insulating tunnel barrier (SIS junction) \cite{Gurvitch:1983}, a normal metal film (SNS junction) \cite{Benz:1995} or a physical nanoconstriction (ScS junction) \cite{Cybart:2015, DeLeo:2016}. Josephson junctions have found wide usage in several research fields, for example as building blocks for RSFQ digital electronics  or quantum computers \cite{Likharev:1991}, or as radiation detectors and very sensitive magnetometers (SQUIDs) \cite{Maggi:2006b, Granata:2015}.
 But the most successful application of Josephson junctions is surely in voltage metrology.
 A microwave radiation of frequency $f$ can phase lock the junction current, producing the so-called Shapiro-steps, i.e., current steps at the quantized voltages $V_n$, 
 
@@ -22,21 +19,26 @@ A microwave radiation of frequency $f$ can phase lock the junction current, prod
 \label{eq:voltage_steps}
 \end{equation}
 
-where $h$ and $e$ are the Plank constant and electron charge, respectively. This ac Josephson effect is at the basis of the quantum voltage standard that since 1987 replaced the previous voltage standard based on Weston cells.
+where $h$ and $e$ are the Plank constant and electron charge, respectively. This ac Josephson effect is at the basis of the quantum voltage standard that from 1987 replaced the previous voltage standard based on Weston cells.
+
+Besides its practical applications, the Josephson junction is important from a physical point of view because it has been the first device showing quantum mechanical effects on a macroscopic scale.
 
 %% However, only in the second half of the 80’s, the development of the reliable Nb/Al-AlO,/Nb fabrication process made it possible to reach quantized voltages of $1$ and $10$~V, suitable for direct dc voltage calibration. These devices were based on large series arrays of thousands of SIS Josephson junctions (here SIS stands for superconductor-insulator-superconductor, where Nb is the superconducting film and the Al0, layer is the insulating tunneling barrier of the junction).
 
 %% The Josephson voltage standard at the $1$ and $10$~V levels that were the state-of-the-art implementation at the time and were deployed only in very few labs wordwide, required a very careful engineering of the microwave distribution lines within the many arms in which the Josephson arrays were divided. 
 
-An important research topic at the beginning of the '90s was related to finding ways to increase the amplitude of the current steps induced by the microwave radiation. In fact, the stability of the lock between the junction phase and the applied microwave bias, and therefore its insensitivity to noise events which might switch the junction from one quantized level to another, which is a crucial problem for voltage standard applications, is strongly dependent on the step amplitude \cite{Kautz:1987}.
+An important research topic at the beginning of the '90s was related to finding ways to increase the amplitude of the current steps induced by the microwave radiation. In fact, the stability of the lock between the phase of the junction and the applied microwave bias -- and therefore its insensitivity to noise events which might switch the junction from one quantized level to another, which is a crucial problem for voltage standard applications -- is strongly dependent on the step amplitude \cite{Kautz:1987}.
 
-To increase the step amplitude, a non-sinusoidal microwave signal may be used.
-In 1990 Monaco showed that, in the limit of a voltage-biased junction, when two phased microwaves of frequencies $f$ and $2 f$ are added together, the rf-induced current steps have normalized amplitudes larger than those predicted for a standard sinusoidal radiation \cite{Monaco:1990}. 
-Experiments on the so-called ``biharmonic drive'' readily confirmed, at least in part, these conclusions, probably because the samples could not be properly considered as voltage biased \cite{Andreone:1991, Andreone:1992}.
+To increase the amplitude of the current steps, a non-sinusoidal microwave radiation may be used.
+%when two phased microwaves of frequencies $f$ and $2 f$ are added together, the rf-induced current steps can have normalized amplitudes larger than those predicted for a standard sinusoidal radiation 
+In 1990 Monaco showed that, in the limit of a voltage-biased junction, adding together two phased microwaves of frequencies $f$ and $2 f$ produces rf-induced current steps whose  normalized amplitudes are larger than those observed with a standard sinusoidal radiation \cite{Monaco:1990}. 
+Experiments on the so-called ``biharmonic drive'' readily confirmed these conclusions, albeit with some limitations due to the fact that the junctions could not be properly considered as being voltage biased \cite{Andreone:1991, Andreone:1992}.
+Extending further the idea, Monaco showed that for a microwave radiation composed of a train of periodic delta functions the rf-induced current steps of a voltage-biased junction could be as large as the critical current $I_C$.
 
-Extending further the idea, Monaco showed that the rf-induced current steps of a voltage-biased junction could become as large as the junction critical current for a microwave radiation composed of a train of periodic delta functions.
-However, in practice a voltage bias configuration does not properly model a real junction, which usually should be considered as current biased.
-Further, a delta function wave shape is only theoretical and cannot be reproduced in experiments. This led to the idea to investigate what happened to a current-biased Josephson junction irradiated by a more realistic pulsed microwave signal \cite{Maggi:1996, Maggi:1997}. And this investigation is the object of the present work.
+However, in practice a voltage bias configuration does not properly model a real Josephson junction, which usually should be considered as current biased.
+Further, pulse train composed of delta functions is only theoretical and cannot be reproduced in actual experiments. 
+This led to the idea to investigate what happened to a current-biased Josephson junction irradiated by a more realistic pulsed microwave signal \cite{Maggi:1996, Maggi:1997}. 
+The reproduction of this investigation is the object of the present work.
 
 
 \section{Computational context}
