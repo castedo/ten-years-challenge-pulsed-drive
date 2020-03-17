@@ -3,7 +3,7 @@
 
 [++ Simulate the junction behaviour... ++]
 
-[++ mcphase calculates both the IV curve and the phase path (?) of the junction (outside the scope of the present paper) but only for a single value of $alpha_rf$   ++]
+[++ mcphase calculates both the IV curve and the phase path (?) of the junction (outside the scope of the present paper) but only for a single value of $\alpha_{rf}$   ++]
 
 A Josephson junction is a quantum mechanical device composed of two superconducting electrodes separated by a weak link \cite{Barone:1982}.
 For currents lower than a critical value $I_C$, coupled electrons (Cooper pairs) can cross the weak link without any potential difference (dc Josephson effect).
@@ -44,57 +44,92 @@ The reproduction of this investigation is the object of the present work.
 \section{Computational context}
 \label{computational-context}
 
-A first attempt to solve this problem was made by using an electronic analog simulator \cite {Henry:1981}, that could compute the $I-V$ characteristic of a current-biased junction in the framework of the Stewart-McCumber RSJ junction model \cite{McCumber:1968, Stewart:1974}.
-The analog simulator was very fast and simple to use, and pairing it to a \href{http://www.hpmuseum.net/display_item.php?hw=7}{Hewlett Packard 7475A pen plotter} it could produce in just a few seconds beautiful plots of the $I-V$ characteristics of the junction as a function of the simulated microwave signal.\footnote{Unfortunately, after 25 years and two relocations, I could not manage to find pictures of the simulator nor the original HP 7475A plots.} The real problem with this approach was that, even if the electronic simulation was very fast, it took ages to measure by hand from the paper plots the amplitude of the rf-induced steps visible on each $I-V$ curve.
+A first attempt to solve this problem was made by using an electronic analog simulator of a Josephson junction \cite {Henry:1981}, that could compute the relation between the applied current and the voltage ($I-V$ characteristic) of a current-biased junction, in the framework of the Stewart-McCumber RSJ junction model \cite{McCumber:1968, Stewart:1974}.
+The analog simulator was very fast and simple to use, and could produce in mere seconds beautiful plots of the $I-V$ characteristics of the junction as a function of the simulated microwave signal on a \href{http://www.hpmuseum.net/display_item.php?hw=74}{Hewlett Packard 7475A}2 pen plotter.
+%\footnote{A brief description of the \href{http://www.hpmuseum.net/display_item.php?hw=74}{HP 7475A pen plotter} can be found on the HP Computer Museum.}
+\footnote{Unfortunately, after 25 years and two relocations, I could not manage to find pictures of the simulator nor the original HP 7475A plots.} 
 
-A different approach was necessary and I decided to write a FORTRAN program to solve numerically the nonlinear second-order differential equation that models the junction behaviour \cite{McCumber:1968, Stewart:1974}. The idea was to calculate the $I-V$ curves of the junction as a function of the pulse amplitude $\alpha_\mathrm{rf}$ for a given set of junction parameters $\beta$, $\Omega$ and $\rho$. To ease comparison of the results for different sets of parameters, normalized units have been used throughout the calculations \cite{McCumber:1968, Stewart:1974}. Usually, around $100$ different $I-V$ characteristics for increasing values of $\alpha_\mathrm{rf}$ were calculated for a for a given set of junction parameters.
+%The real problem with this approach was that, 
+However, even if the electronic simulation was extremely fast, analysis of the results required to measure by hand the amplitude of the rf-induced steps visible on each $I-V$ curve of the paper plots, a long and error-prone work.
 
-The first versions of the FORTRAN program were compiled under DOS 6.22 with \href{https://winworldpc.com/product/microsoft-fortran/5x}{Microsoft Fortran 5.1} and run on what was then a state-of-the-art PC, probably a Compaq Deskpro 486 with a math coprocessor, that was shared among several users of the lab. 
-However, after a few attempts the limitations of a standard PC for such a task soon become evident. A new simulation started automatically on late evenings and took the entire night to be completed. Unfortunately, people still using the PC late in the evening, often inadvertently stopped the background process (it was DOS and Windows 3.11 after all, multitasking was still barely usable) or simply shut the machine down without checking if there was some other running job. At the end, I was able to to complete a single simulation run only every two or three days! 
+I thus decided to write a FORTRAN program to solve numerically the nonlinear second-order differential equation that models the Josephson junction \cite{McCumber:1968, Stewart:1974}. 
+The idea was to simulate the junction behavior by calculating the $I-V$ characteristics of the junction as a function of the pulse amplitude $\alpha_\mathrm{rf}$ for a given set of parameters characterizing the junction and the applied microwave signal, considering the three cases of standard sinusoidal drive, biharmonic drive and realistic pulsed drive. 
+To ease comparison of the results, normalized units have been used throughout the calculations \cite{McCumber:1968, Stewart:1974}.
+The main parameters of the simulation were: the hysteresis parameter $\beta$, the frequency $\Omega$ and the width of the pulsed signal $\rho$. 
+For a for a given set of junction parameters, around $100$ different $I-V$ characteristics for increasing or decreasing values of $\alpha_\mathrm{rf}$ were calculated.
 
-Luckily, after a few weeks of these mostly unsuccessful attempts, a colleague [that was also the sysadmin of his research group,] proposed me to use four Digital workstations running Digital UNIX, or more probably ULTRIX, for my own simulations. The machines were heavily used by his research group during working hours but sat mostly idle overnight. If I could manage to finish my runs before the start of the new work day, I was free to use this idle time for my simulations. My colleague gave me a quick crash course on UNIX and I was ready to go.\footnote{I should still have my notes somewhere.} Porting my FORTRAN program from DOS/Microsoft Fortran 5.1 to UNIX Fortran was a snap, and I also quickly managed to learn how to use FTP to transfer the configuration files needed by the simulations and the output files containing the results of the simulation back and forth from the DEC machines to my desktop machine (at that time, I was one of the \emph{happy few} to have a personal computer sitting on my own desk).
+The first versions of the FORTRAN program were compiled under DOS 6.22 with \href{https://winworldpc.com/product/microsoft-fortran/5x}{Microsoft Fortran 5.1} and run on what was then a state-of-the-art PC, probably a Compaq Deskpro 486 with a math coprocessor, shared among several users of the lab. 
+However, after a few attempts, the limitations of a PC for such a task soon become evident.
+A new simulation started automatically each evening and took the entire night to be completed. Unfortunately, people still using the PC late in the evening often inadvertently stopped the background process or simply shut the machine down without checking if a job was already running. 
+At the end, I could run a full simulation only every two or three days.
 
-The real problem now was how to analyse all this data. A manual analysis like that needed by the electronic simulator was impractical, so I decided to try the recently released Microsoft Visual Basic 1.0 to write a program that took the nightly output files and calculated automatically the size of the rf-induced steps visible on the calculated $I-V$ characteristics as a function amplitude of the rf drive, $\alpha_\mathrm{rf}$.
-Everything worked flawlessly.
+After a few weeks of these mostly unsuccessful attempts, the sysadmin of another research group proposed me to use four DEC workstations running ULTRIX (or possibly Digital UNIX), for my own simulations.\footnote{The now defunct \href{https://en.wikipedia.org/wiki/Digital_Equipment_Corporation}{Digital Equipment Corporation} was one of the leading computer companies of the time.}
+The machines were heavily used by his group during working hours, but sat mostly idle overnight. If I could manage to finish my runs before the start of the new work day, I was allowed to use this idle time for my simulations.
+My colleague gave me a quick crash course on UNIX and I was ready to go.
+%\footnote{I should still have my notes somewhere.}
+Porting my FORTRAN program from Microsoft Fortran 5.1 to UNIX Fortran was a snap, and I also quickly learnt how to use FTP to transfer the configuration files and the results of the simulation back and forth from the DEC machines to my Compaq 386 notebook, that was also my desktop computer.
+%\footnote{I was one of the \emph{happy few} to have a personal computer sitting on my own desk.}
 
-So at the beginning of each day I had 4 different sets of files coming from the four DEC machines, three of them were made by keeping $\beta$ and $\Omega$ constant and changing the value of $\rho$, i.e., the (normalized) width of the pulse signal [++ CHIARIRE CHE OGNI NOTTE VENIVANO CAMBIATI I VALORI DI BETA E OMEGA ++]. The fourth simulation was made with exactly the same parameters but using a standard sinusoidal drive and was used to compare the results obtained with a standard sinusoidal microwave signal with those obtained with progressively shorter pulses.
-I FTPed these files from the DEC workstation to my desktop computer and I run the Visual Basic program on each data set to quickly get a summary file containing the size of the quantized current steps for reference sinusoidal drive and for the three simulated junctions subjected to progressively shorter current pulses. The results of months of calculations were summarized in a paper published on the Journal of Applied Physics \cite{Maggi:1996}.
+Now at the beginning of each day I had four different sets of files coming from the four available DEC machines. Three of them were made by irradiating the junction with a pulsed drive with decreasing values of $\rho$ (i.e., the normalized width of the pulse train), while keeping constant $\beta$ and $\Omega$.
+The fourth simulation was made by irradiating the junction with a standard sinusoidal signal and keeping everything else equal. This last simulation was used as a reference, to compare the results obtained with a standard sinusoidal microwave signal with those obtained with progressively shorter pulses.
+Each night I changed the values of $\beta$ or $\Omega$ to study the effect of these parameters on the junction behavior.
+
+The real problem was again how to analyze all this data. A manual analysis like that needed by the electronic simulator was out of consideration, and I decided to to write another program, using the recently released Microsoft Visual Basic 1.0 for Windows, that calculated from the nightly simulation results the size of all the rf-induced steps visible on the $I-V$ characteristics, as a function amplitude of the rf drive, $\alpha_\mathrm{rf}$.
+%Everything worked flawlessly.
+
+Now I could transfer by FTP the files containing the nightly results from the DEC workstations to my desktop computer and run the Visual Basic program on each data set to quickly get a summary file containing the size of the quantized current steps for the reference sinusoidal drive and for the three simulated junctions subjected to progressively shorter current pulses.
+The results of months of calculations were summarized in a paper published in the Journal of Applied Physics \cite{Maggi:1996}.
 
 
 \section{Digging into code}
 
-Finding the original sources of this project was easy and complex at the same time. I am the type of person that likes organisation, and I try keep all my past projects on my main work computer. So finding the original sources was only a question of finding the right directory where the project was stored.
-Problems arise when I started to look at the different files. There were several directories, with many files with widely different names and dates, trying to find and order in that chaos seemed at first impossible. Normally I would have found many notebooks full of detailed handwritten notes for that project. Unfortunately, a couple of years ago most of my work notebooks were damaged by a water leak in my basement, and could not be recovered. So the only option was to look at the files one by one. Luckily modern operating system have many often little known tools that can greatly ease the work with files, macOS in particular offers QuickLook which allows to quickly browse through tens and hundreds of files at the touch of the spacebar.
+%Finding the original sources of this project was easy and complex at the same time.
+I am the type of person who likes organisation, and I try keep all my past projects on my main workstation. 
+Thus, finding the original source files of this project was only a question of locating the directory where the project was stored.
+Problems started to arise when I looked at the different files. The whole project was scattered into several directories, each containing many files with widely different names and dates. At first, trying to find an order in that chaos seemed impossible.
+Normally I would have found many notebooks full of detailed handwritten notes.
+% Normally it would have been only a question of recovering all needed information from my handwritten notebooks for this project
+Regrettably, a couple of years ago most of my work notebooks were damaged by a water leak in the basement, and could not be recovered. 
+So the only option was to check the files one by one. Luckily modern operating system greatly ease the burden of dealing with data files; in particular, Quick Look for macOS is an exceptional tool to quickly browse through hundreds of files at the touch of the spacebar.
 
 %%some with  misleading names such as \textsf{old} or \textsf{obsolete}, which one was older? (turns out that \textsf{obsolete} is \emph{older} that \textsf{old}).
 
-After a thorough inspection of the directories of the project I leaned that: (1) my first attempts with the numerical simulations used the more accurate McDonald-Johnson model \cite{McDonald:1976}, and that I switched to the simplified Stewart-McCumber RSJ junction model \cite{McCumber:1968, Stewart:1974} because it allowed much faster and efficient calculations; (2) file names reflected what the programs actually did, and in the same directory I could have a file ending with a "t" that provided a textual output and the same files ending with a "g" that gave a graphical output. Having many files differing only for a couple of \textsf{DEFINES}s might seem crazy today, when graphical interfaces and ultra-fast and ultra-confortable text editors with access to regular expressions allow to change a file in just a few seconds, but probably at that time it was the fastest, albeit inefficient, way of working with source code; (3) all source files had an header containing detailed notes about the type of program, the compiler, the type of output, and what probably mattered more, the dates of first and last revision of the source file (Fig.~\ref{fig:source-header}), and that eased much the analysis of the different versions of the FORTRAN source files; (4) the initial versions of the FORTRAN programs were monolithic, there was only one source file containing the whole code (around 1.000 lines of FORTRAN), only at a later moment good computing practice led me to divide the monolithic code into several source files that were compiled and linked together using a \textsf{Makefile} (but I will not delve into it here).
+After a thorough inspection of the whole project I recalled that: 
+(1) my first attempts with the numerical simulations used the more accurate McDonald-Johnson junction model \cite{McDonald:1976}, and that I later switched to the simplified Stewart-McCumber RSJ model because it was much faster and efficient in calculating the junction behaviour \cite{McCumber:1968, Stewart:1974}; 
+(2) file names tried to reflect what the programs actually did:\footnote{at least within the limits of DOS 8+3 naming scheme, only 8 characters for the file name and 3 characters for the extension.} 
+I could have in the same directory a file ending with a "t" that provided a textual output and the same files ending with a "g" that gave a graphical output. Having many files differing only for a couple of \textsf{DEFINES}s might seem senseless today, when comfortable graphical interfaces and ultra-fast text editors with support of regular expressions allow to change a file in just a few seconds, but at that time it was probably the fastest, albeit very inefficient, way of working with source code;
+(3) luckily, all source files had an header containing detailed notes about the type of program, the compiler, the type of output, and what probably mattered more, the dates of first and last revision of the source file (Fig.~\ref{fig:source-header}), and that eased much the analysis of the different versions of the FORTRAN source files; 
+(4) the initial versions of the FORTRAN programs were monolithic, a single source file contained the whole code, that consisted of around 1.000 lines of FORTRAN. Only at a later time, better computing practices led me to divide the monolithic code into multiple source files that were compiled and linked together using a \textsf{Makefile}.
+%(I will not delve into it here, as it a different paper).
 
 %===============================================================================
 \begin{figure}[tb]
 	\centering
 	\includegraphics[width=0.75\textwidth]{source-header.png}
-	\caption{Header of one of the FORTRAN source files.}
+	\caption{Header of one of the FORTRAN source files. The left sidebar shows the directory structure of the project.}
 	\label{fig:source-header}
 \end{figure}
 %===============================================================================
 
 
-A great tool that I used heavily was \href{http://meldmerge.org/}{Meld}, an open source tool for all current operating systems that can perform a two- and even a three-way comparison of files and directories. At the beginning it might seem confusing and hard to use, but when one gets the handle of it it becomes and invaluable tool to analyse computer code. Using \href{http://meldmerge.org/}{Meld} I quickly realized that the two main source files were \textsf{mcphase.for} and \textsf{mcp-work.for} (Fig.~\ref{fig:meld-comparison}), both located in the \textsf{mccumber} directory.
+An invaluable tool to analyze the different versions of the source files was \href{http://meldmerge.org/}{Meld}, an open source tool for all major operating systems that can perform a two- and even a three-way comparison of files and directories.
+Using Meld I quickly realized that the two main source files were \textsf{mcphase.for} and \textsf{mcp-work.for}, both located in the \textsf{mccumber/} directory  (Fig.~\ref{fig:meld-comparison}).
 
 %===============================================================================
 \begin{figure}[bt]
 	\centering
 	\includegraphics[width=0.75\textwidth]{meld-comparison.png}
-	\caption{Meld...}
+	\caption{Comparison of the main loop of \textsf{mcphase.for} and \textsf{mcp-work.for} with Meld.}
 	\label{fig:meld-comparison}
 \end{figure}
 %===============================================================================
 
 
-The former performed a simulation for a single value of $\alpha_\mathrm{rf}$, so it used a DOS batch file to perform simulations for several values of $\alpha_\mathrm{rf}$, renaming the output file containing the results of each simulation, \textsf{iv.out}, using a consistent naming scheme.
+The first program, \textsf{mcphase}, simulated the behavior of the junction for a single value of $\alpha_\mathrm{rf}$ read from the input configuration file \textsf{iv.dat}, saving the $I - V$ characteristic of the junction and its phase plot (the phase of a Josephson junction is related to the voltage $V$ by its time derivative) in the output file \textsf{iv.out}.
+
+Multiple calculations with several different value of $\alpha_\mathrm{rf}$ could be performed by using a simple DOS batch file that basically choose one by one the configuration files containing the desired values of $\alpha_\mathrm{rf}$, renamed them to \textsf{iv.dat}, run \textsf{mcphase} and at the end renamed \textsf{iv.out} using a consistent naming scheme.
 %for each value of $\alpha_\mathrm{rf}$, copied a \textsf{.dat} input file containing the proper set of simulation parameters into a file with a standard name, \textsf{iv.dat}, run the simulation and at the end renamed the output file containing the results of the simulation, \textsf{iv.out} so that it has the same basename of the original \textsf{.dat} input file.
-This approach was typical of DOS and was also very inefficient and error prone, since each day it required to write a long series of \textsf{.dat} input files that differed only by the value of $\alpha_\mathrm{rf}$, updating correspondingly the long DOS batch file that controlled the night calculation (Fig.~\ref{fig:batch-file}.
+I don't recall why I choose this approach, but it was clearly very inefficient and error prone, as it required to prepare each day a long series of configuration files that differed only by the value of $\alpha_\mathrm{rf}$, and to update accordingly the DOS batch file that controlled the night calculations (Fig.~\ref{fig:batch-file}.
 
 %===============================================================================
 \begin{figure}[tbh]
@@ -106,11 +141,13 @@ This approach was typical of DOS and was also very inefficient and error prone, 
 %===============================================================================
 
 
-On the other hand, \textsf{mcp-work.for} automatically cycled across a predefined set of values of $\alpha_\mathrm{rf}$, producing a different output file for each value of $\alpha_\mathrm{rf}$. It was clear that this was the source code ported to the DEC workstations. 
-Unfortunately, I could not find the source file used o these machine, probably I ported my DOS/Microsoft FORTRAN 5.1 to Digital UNIX working directly on the workstations, and I never thought to copy back these sources since they could not work on my PCs.
-Luckily, FORTRAN is very stable an it was very easy to port again both \textsf{mcphase.for} and \textsf{mcp-work.for} so that it worked on a modern machine.
+The second program, \textsf{mcp-work.for} was an improved version that could automatically cycle across a  set of values of $\alpha_\mathrm{rf}$, producing a different output file for each value of $\alpha_\mathrm{rf}$. However, to simplify further automatic analysis, it left out the phase plot [++ MIGLIORARE/TOGLIERE ++]
 
-As for the Microsoft Visual Basic 1.0 code, there were only two versions of the Visual Basic analysis programs and the differences between them seem minimal, so I decided to stick with the initial version.
+It was clear that this was the program ported to the DEC workstations. 
+Unfortunately, I could not find the actual source file used on these machine, probably because while performing the porting from DOS/Microsoft FORTRAN 5.1 to UNIX Fortran I worked directly on the workstations and never thought to copy back these source files since they could not work on my PCs.
+Luckily, FORTRAN is a very stable language and porting again both \textsf{mcphase.for} and \textsf{mcp-work.for} so that they could work on a modern machine was a snap.
+
+As for the Microsoft Visual Basic 1.0 code, there were only two versions of the Visual Basic analysis programs and the differences between them were minimal. Since both programs gave exactly the same results, I decided to stick with the initial version that had a working (precompiled) binary.
 
 
 \section{Porting Microsoft FORTRAN to UNIX}
