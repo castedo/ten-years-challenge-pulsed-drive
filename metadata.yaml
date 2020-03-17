@@ -13,7 +13,7 @@ authors:
   - name: Sabino Maggi
     orcid: 0000-0002-1523-6484
     email: sabino.maggi@cnr.it
-    affiliations: 1
+    affiliations: 1,*
     
   # - name: Nicolas P. Rougier
   #   orcid: 0000-0002-6972-589X
@@ -72,7 +72,10 @@ replication:
  - doi:  # Regular digital object identifier
 
 # Don't forget to surround abstract with double quotes
-abstract: "When I read about the Ten Years Challenge, it was a matter of seconds to decide to take the plunge and partecipate to the contest with the replication of a work of a quarter of century ago. At first, I was fairly dubious to be able to replicate the results of that work, but in the end the effort resulted much easier than I initially thought. The paper describes the tools and trick used for the replication and the lessons learned from this effort. Among them, good documentation is paramount. Likewise, equally important is the use of tools and languages that do not fall into oblivion after one or two iterations."
+abstract: "When I read about the Ten Years Challenge, it was a matter of seconds to take the plunge and decide to partecipate with the replication of a work of a quarter of century ago about the numerical simulation of a Josephson junction driven by a train of microwave pulses. 
+I was fairly dubious to be able to replicate the results of that work, but in the end the effort resulted much easier than I initially thought. 
+The paper describes the tools and tricks used for the replication and the lessons learned from this work.
+Among them, keeping good and updated documentation is paramount. Likewise, the use of tools and languages that do not fall into oblivion after one or two iterations."
 
 # Bibliography file (yours)
 bibliography: bibliography.bib
