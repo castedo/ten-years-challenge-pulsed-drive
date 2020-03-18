@@ -1748,11 +1748,6 @@
 				<key>CF$UID</key>
 				<integer>0</integer>
 			</dict>
-			<key>NSNibTouchBar</key>
-			<dict>
-				<key>CF$UID</key>
-				<integer>0</integer>
-			</dict>
 			<key>NSvFlags</key>
 			<integer>256</integer>
 		</dict>
@@ -2017,11 +2012,6 @@
 				<key>CF$UID</key>
 				<integer>0</integer>
 			</dict>
-			<key>NSNibTouchBar</key>
-			<dict>
-				<key>CF$UID</key>
-				<integer>0</integer>
-			</dict>
 			<key>NSvFlags</key>
 			<integer>256</integer>
 		</dict>
@@ -2067,11 +2057,6 @@
 			<key>NSIsBordered</key>
 			<true/>
 			<key>NSNextResponder</key>
-			<dict>
-				<key>CF$UID</key>
-				<integer>0</integer>
-			</dict>
-			<key>NSNibTouchBar</key>
 			<dict>
 				<key>CF$UID</key>
 				<integer>0</integer>
@@ -2125,11 +2110,6 @@
 				<key>CF$UID</key>
 				<integer>0</integer>
 			</dict>
-			<key>NSNibTouchBar</key>
-			<dict>
-				<key>CF$UID</key>
-				<integer>0</integer>
-			</dict>
 			<key>NSvFlags</key>
 			<integer>256</integer>
 		</dict>
@@ -2175,11 +2155,6 @@
 			<key>NSIsBordered</key>
 			<true/>
 			<key>NSNextResponder</key>
-			<dict>
-				<key>CF$UID</key>
-				<integer>0</integer>
-			</dict>
-			<key>NSNibTouchBar</key>
 			<dict>
 				<key>CF$UID</key>
 				<integer>0</integer>
@@ -2233,11 +2208,6 @@
 				<key>CF$UID</key>
 				<integer>0</integer>
 			</dict>
-			<key>NSNibTouchBar</key>
-			<dict>
-				<key>CF$UID</key>
-				<integer>0</integer>
-			</dict>
 			<key>NSvFlags</key>
 			<integer>256</integer>
 		</dict>
@@ -2287,11 +2257,6 @@
 				<key>CF$UID</key>
 				<integer>0</integer>
 			</dict>
-			<key>NSNibTouchBar</key>
-			<dict>
-				<key>CF$UID</key>
-				<integer>0</integer>
-			</dict>
 			<key>NSvFlags</key>
 			<integer>256</integer>
 		</dict>
@@ -2337,11 +2302,6 @@
 			<key>NSIsBordered</key>
 			<true/>
 			<key>NSNextResponder</key>
-			<dict>
-				<key>CF$UID</key>
-				<integer>0</integer>
-			</dict>
-			<key>NSNibTouchBar</key>
 			<dict>
 				<key>CF$UID</key>
 				<integer>0</integer>
@@ -2417,11 +2377,6 @@
 				<key>CF$UID</key>
 				<integer>0</integer>
 			</dict>
-			<key>NSNibTouchBar</key>
-			<dict>
-				<key>CF$UID</key>
-				<integer>0</integer>
-			</dict>
 			<key>NSvFlags</key>
 			<integer>256</integer>
 		</dict>
@@ -2471,11 +2426,6 @@
 				<key>CF$UID</key>
 				<integer>0</integer>
 			</dict>
-			<key>NSNibTouchBar</key>
-			<dict>
-				<key>CF$UID</key>
-				<integer>0</integer>
-			</dict>
 			<key>NSvFlags</key>
 			<integer>256</integer>
 		</dict>
@@ -2521,11 +2471,6 @@
 			<key>NSIsBordered</key>
 			<true/>
 			<key>NSNextResponder</key>
-			<dict>
-				<key>CF$UID</key>
-				<integer>0</integer>
-			</dict>
-			<key>NSNibTouchBar</key>
 			<dict>
 				<key>CF$UID</key>
 				<integer>0</integer>
@@ -2890,11 +2835,6 @@
 				<key>CF$UID</key>
 				<integer>0</integer>
 			</dict>
-			<key>NSNibTouchBar</key>
-			<dict>
-				<key>CF$UID</key>
-				<integer>0</integer>
-			</dict>
 			<key>NSvFlags</key>
 			<integer>256</integer>
 		</dict>
@@ -2966,11 +2906,6 @@
 				<key>CF$UID</key>
 				<integer>0</integer>
 			</dict>
-			<key>NSNibTouchBar</key>
-			<dict>
-				<key>CF$UID</key>
-				<integer>0</integer>
-			</dict>
 			<key>NSvFlags</key>
 			<integer>256</integer>
 		</dict>
@@ -3016,11 +2951,6 @@
 			<key>NSIsBordered</key>
 			<true/>
 			<key>NSNextResponder</key>
-			<dict>
-				<key>CF$UID</key>
-				<integer>0</integer>
-			</dict>
-			<key>NSNibTouchBar</key>
 			<dict>
 				<key>CF$UID</key>
 				<integer>0</integer>
@@ -3074,11 +3004,6 @@
 				<key>CF$UID</key>
 				<integer>0</integer>
 			</dict>
-			<key>NSNibTouchBar</key>
-			<dict>
-				<key>CF$UID</key>
-				<integer>0</integer>
-			</dict>
 			<key>NSvFlags</key>
 			<integer>256</integer>
 		</dict>
@@ -3124,11 +3049,6 @@
 			<key>NSIsBordered</key>
 			<true/>
 			<key>NSNextResponder</key>
-			<dict>
-				<key>CF$UID</key>
-				<integer>0</integer>
-			</dict>
-			<key>NSNibTouchBar</key>
 			<dict>
 				<key>CF$UID</key>
 				<integer>0</integer>
@@ -3182,11 +3102,6 @@
 				<key>CF$UID</key>
 				<integer>0</integer>
 			</dict>
-			<key>NSNibTouchBar</key>
-			<dict>
-				<key>CF$UID</key>
-				<integer>0</integer>
-			</dict>
 			<key>NSvFlags</key>
 			<integer>256</integer>
 		</dict>
@@ -3232,11 +3147,6 @@
 			<key>NSIsBordered</key>
 			<true/>
 			<key>NSNextResponder</key>
-			<dict>
-				<key>CF$UID</key>
-				<integer>0</integer>
-			</dict>
-			<key>NSNibTouchBar</key>
 			<dict>
 				<key>CF$UID</key>
 				<integer>0</integer>
@@ -3417,11 +3327,6 @@
 				<key>CF$UID</key>
 				<integer>0</integer>
 			</dict>
-			<key>NSNibTouchBar</key>
-			<dict>
-				<key>CF$UID</key>
-				<integer>0</integer>
-			</dict>
 			<key>NSvFlags</key>
 			<integer>256</integer>
 		</dict>
@@ -3493,11 +3398,6 @@
 				<key>CF$UID</key>
 				<integer>0</integer>
 			</dict>
-			<key>NSNibTouchBar</key>
-			<dict>
-				<key>CF$UID</key>
-				<integer>0</integer>
-			</dict>
 			<key>NSvFlags</key>
 			<integer>256</integer>
 		</dict>
@@ -3547,11 +3447,6 @@
 				<key>CF$UID</key>
 				<integer>0</integer>
 			</dict>
-			<key>NSNibTouchBar</key>
-			<dict>
-				<key>CF$UID</key>
-				<integer>0</integer>
-			</dict>
 			<key>NSvFlags</key>
 			<integer>256</integer>
 		</dict>
@@ -3597,11 +3492,6 @@
 			<key>NSIsBordered</key>
 			<true/>
 			<key>NSNextResponder</key>
-			<dict>
-				<key>CF$UID</key>
-				<integer>0</integer>
-			</dict>
-			<key>NSNibTouchBar</key>
 			<dict>
 				<key>CF$UID</key>
 				<integer>0</integer>
@@ -3957,11 +3847,6 @@
 				<key>CF$UID</key>
 				<integer>0</integer>
 			</dict>
-			<key>NSNibTouchBar</key>
-			<dict>
-				<key>CF$UID</key>
-				<integer>0</integer>
-			</dict>
 			<key>NSvFlags</key>
 			<integer>256</integer>
 		</dict>
@@ -4007,11 +3892,6 @@
 			<key>NSIsBordered</key>
 			<true/>
 			<key>NSNextResponder</key>
-			<dict>
-				<key>CF$UID</key>
-				<integer>0</integer>
-			</dict>
-			<key>NSNibTouchBar</key>
 			<dict>
 				<key>CF$UID</key>
 				<integer>0</integer>
@@ -4065,11 +3945,6 @@
 				<key>CF$UID</key>
 				<integer>0</integer>
 			</dict>
-			<key>NSNibTouchBar</key>
-			<dict>
-				<key>CF$UID</key>
-				<integer>0</integer>
-			</dict>
 			<key>NSvFlags</key>
 			<integer>256</integer>
 		</dict>
@@ -4115,11 +3990,6 @@
 			<key>NSIsBordered</key>
 			<true/>
 			<key>NSNextResponder</key>
-			<dict>
-				<key>CF$UID</key>
-				<integer>0</integer>
-			</dict>
-			<key>NSNibTouchBar</key>
 			<dict>
 				<key>CF$UID</key>
 				<integer>0</integer>
@@ -4173,11 +4043,6 @@
 				<key>CF$UID</key>
 				<integer>0</integer>
 			</dict>
-			<key>NSNibTouchBar</key>
-			<dict>
-				<key>CF$UID</key>
-				<integer>0</integer>
-			</dict>
 			<key>NSvFlags</key>
 			<integer>256</integer>
 		</dict>
@@ -4223,11 +4088,6 @@
 			<key>NSIsBordered</key>
 			<true/>
 			<key>NSNextResponder</key>
-			<dict>
-				<key>CF$UID</key>
-				<integer>0</integer>
-			</dict>
-			<key>NSNibTouchBar</key>
 			<dict>
 				<key>CF$UID</key>
 				<integer>0</integer>
@@ -4281,11 +4141,6 @@
 				<key>CF$UID</key>
 				<integer>0</integer>
 			</dict>
-			<key>NSNibTouchBar</key>
-			<dict>
-				<key>CF$UID</key>
-				<integer>0</integer>
-			</dict>
 			<key>NSvFlags</key>
 			<integer>256</integer>
 		</dict>
@@ -4331,11 +4186,6 @@
 			<key>NSIsBordered</key>
 			<true/>
 			<key>NSNextResponder</key>
-			<dict>
-				<key>CF$UID</key>
-				<integer>0</integer>
-			</dict>
-			<key>NSNibTouchBar</key>
 			<dict>
 				<key>CF$UID</key>
 				<integer>0</integer>
@@ -4389,11 +4239,6 @@
 				<key>CF$UID</key>
 				<integer>0</integer>
 			</dict>
-			<key>NSNibTouchBar</key>
-			<dict>
-				<key>CF$UID</key>
-				<integer>0</integer>
-			</dict>
 			<key>NSvFlags</key>
 			<integer>256</integer>
 		</dict>
@@ -4443,11 +4288,6 @@
 				<key>CF$UID</key>
 				<integer>0</integer>
 			</dict>
-			<key>NSNibTouchBar</key>
-			<dict>
-				<key>CF$UID</key>
-				<integer>0</integer>
-			</dict>
 			<key>NSvFlags</key>
 			<integer>256</integer>
 		</dict>
@@ -4493,11 +4333,6 @@
 			<key>NSIsBordered</key>
 			<true/>
 			<key>NSNextResponder</key>
-			<dict>
-				<key>CF$UID</key>
-				<integer>0</integer>
-			</dict>
-			<key>NSNibTouchBar</key>
 			<dict>
 				<key>CF$UID</key>
 				<integer>0</integer>
@@ -4853,11 +4688,6 @@
 				<key>CF$UID</key>
 				<integer>0</integer>
 			</dict>
-			<key>NSNibTouchBar</key>
-			<dict>
-				<key>CF$UID</key>
-				<integer>0</integer>
-			</dict>
 			<key>NSvFlags</key>
 			<integer>256</integer>
 		</dict>
@@ -4929,11 +4759,6 @@
 				<key>CF$UID</key>
 				<integer>0</integer>
 			</dict>
-			<key>NSNibTouchBar</key>
-			<dict>
-				<key>CF$UID</key>
-				<integer>0</integer>
-			</dict>
 			<key>NSvFlags</key>
 			<integer>256</integer>
 		</dict>
@@ -4979,11 +4804,6 @@
 			<key>NSIsBordered</key>
 			<true/>
 			<key>NSNextResponder</key>
-			<dict>
-				<key>CF$UID</key>
-				<integer>0</integer>
-			</dict>
-			<key>NSNibTouchBar</key>
 			<dict>
 				<key>CF$UID</key>
 				<integer>0</integer>
@@ -5037,11 +4857,6 @@
 				<key>CF$UID</key>
 				<integer>0</integer>
 			</dict>
-			<key>NSNibTouchBar</key>
-			<dict>
-				<key>CF$UID</key>
-				<integer>0</integer>
-			</dict>
 			<key>NSvFlags</key>
 			<integer>256</integer>
 		</dict>
@@ -5087,11 +4902,6 @@
 			<key>NSIsBordered</key>
 			<true/>
 			<key>NSNextResponder</key>
-			<dict>
-				<key>CF$UID</key>
-				<integer>0</integer>
-			</dict>
-			<key>NSNibTouchBar</key>
 			<dict>
 				<key>CF$UID</key>
 				<integer>0</integer>
@@ -5145,11 +4955,6 @@
 				<key>CF$UID</key>
 				<integer>0</integer>
 			</dict>
-			<key>NSNibTouchBar</key>
-			<dict>
-				<key>CF$UID</key>
-				<integer>0</integer>
-			</dict>
 			<key>NSvFlags</key>
 			<integer>256</integer>
 		</dict>
@@ -5199,11 +5004,6 @@
 				<key>CF$UID</key>
 				<integer>0</integer>
 			</dict>
-			<key>NSNibTouchBar</key>
-			<dict>
-				<key>CF$UID</key>
-				<integer>0</integer>
-			</dict>
 			<key>NSvFlags</key>
 			<integer>256</integer>
 		</dict>
@@ -5249,11 +5049,6 @@
 			<key>NSIsBordered</key>
 			<true/>
 			<key>NSNextResponder</key>
-			<dict>
-				<key>CF$UID</key>
-				<integer>0</integer>
-			</dict>
-			<key>NSNibTouchBar</key>
 			<dict>
 				<key>CF$UID</key>
 				<integer>0</integer>
@@ -5329,11 +5124,6 @@
 				<key>CF$UID</key>
 				<integer>0</integer>
 			</dict>
-			<key>NSNibTouchBar</key>
-			<dict>
-				<key>CF$UID</key>
-				<integer>0</integer>
-			</dict>
 			<key>NSvFlags</key>
 			<integer>256</integer>
 		</dict>
@@ -5383,11 +5173,6 @@
 				<key>CF$UID</key>
 				<integer>0</integer>
 			</dict>
-			<key>NSNibTouchBar</key>
-			<dict>
-				<key>CF$UID</key>
-				<integer>0</integer>
-			</dict>
 			<key>NSvFlags</key>
 			<integer>256</integer>
 		</dict>
@@ -5433,11 +5218,6 @@
 			<key>NSIsBordered</key>
 			<true/>
 			<key>NSNextResponder</key>
-			<dict>
-				<key>CF$UID</key>
-				<integer>0</integer>
-			</dict>
-			<key>NSNibTouchBar</key>
 			<dict>
 				<key>CF$UID</key>
 				<integer>0</integer>
@@ -5793,11 +5573,6 @@
 				<key>CF$UID</key>
 				<integer>0</integer>
 			</dict>
-			<key>NSNibTouchBar</key>
-			<dict>
-				<key>CF$UID</key>
-				<integer>0</integer>
-			</dict>
 			<key>NSvFlags</key>
 			<integer>256</integer>
 		</dict>
@@ -5843,11 +5618,6 @@
 			<key>NSIsBordered</key>
 			<true/>
 			<key>NSNextResponder</key>
-			<dict>
-				<key>CF$UID</key>
-				<integer>0</integer>
-			</dict>
-			<key>NSNibTouchBar</key>
 			<dict>
 				<key>CF$UID</key>
 				<integer>0</integer>
@@ -5901,11 +5671,6 @@
 				<key>CF$UID</key>
 				<integer>0</integer>
 			</dict>
-			<key>NSNibTouchBar</key>
-			<dict>
-				<key>CF$UID</key>
-				<integer>0</integer>
-			</dict>
 			<key>NSvFlags</key>
 			<integer>256</integer>
 		</dict>
@@ -5951,11 +5716,6 @@
 			<key>NSIsBordered</key>
 			<true/>
 			<key>NSNextResponder</key>
-			<dict>
-				<key>CF$UID</key>
-				<integer>0</integer>
-			</dict>
-			<key>NSNibTouchBar</key>
 			<dict>
 				<key>CF$UID</key>
 				<integer>0</integer>
@@ -6009,11 +5769,6 @@
 				<key>CF$UID</key>
 				<integer>0</integer>
 			</dict>
-			<key>NSNibTouchBar</key>
-			<dict>
-				<key>CF$UID</key>
-				<integer>0</integer>
-			</dict>
 			<key>NSvFlags</key>
 			<integer>256</integer>
 		</dict>
@@ -6059,11 +5814,6 @@
 			<key>NSIsBordered</key>
 			<true/>
 			<key>NSNextResponder</key>
-			<dict>
-				<key>CF$UID</key>
-				<integer>0</integer>
-			</dict>
-			<key>NSNibTouchBar</key>
 			<dict>
 				<key>CF$UID</key>
 				<integer>0</integer>
@@ -6117,11 +5867,6 @@
 				<key>CF$UID</key>
 				<integer>0</integer>
 			</dict>
-			<key>NSNibTouchBar</key>
-			<dict>
-				<key>CF$UID</key>
-				<integer>0</integer>
-			</dict>
 			<key>NSvFlags</key>
 			<integer>256</integer>
 		</dict>
@@ -6167,11 +5912,6 @@
 			<key>NSIsBordered</key>
 			<true/>
 			<key>NSNextResponder</key>
-			<dict>
-				<key>CF$UID</key>
-				<integer>0</integer>
-			</dict>
-			<key>NSNibTouchBar</key>
 			<dict>
 				<key>CF$UID</key>
 				<integer>0</integer>
@@ -6225,11 +5965,6 @@
 				<key>CF$UID</key>
 				<integer>0</integer>
 			</dict>
-			<key>NSNibTouchBar</key>
-			<dict>
-				<key>CF$UID</key>
-				<integer>0</integer>
-			</dict>
 			<key>NSvFlags</key>
 			<integer>256</integer>
 		</dict>
@@ -6279,11 +6014,6 @@
 				<key>CF$UID</key>
 				<integer>0</integer>
 			</dict>
-			<key>NSNibTouchBar</key>
-			<dict>
-				<key>CF$UID</key>
-				<integer>0</integer>
-			</dict>
 			<key>NSvFlags</key>
 			<integer>256</integer>
 		</dict>
@@ -6329,11 +6059,6 @@
 			<key>NSIsBordered</key>
 			<true/>
 			<key>NSNextResponder</key>
-			<dict>
-				<key>CF$UID</key>
-				<integer>0</integer>
-			</dict>
-			<key>NSNibTouchBar</key>
 			<dict>
 				<key>CF$UID</key>
 				<integer>0</integer>
@@ -6689,11 +6414,6 @@
 				<key>CF$UID</key>
 				<integer>0</integer>
 			</dict>
-			<key>NSNibTouchBar</key>
-			<dict>
-				<key>CF$UID</key>
-				<integer>0</integer>
-			</dict>
 			<key>NSvFlags</key>
 			<integer>256</integer>
 		</dict>
@@ -6739,11 +6459,6 @@
 			<key>NSIsBordered</key>
 			<true/>
 			<key>NSNextResponder</key>
-			<dict>
-				<key>CF$UID</key>
-				<integer>0</integer>
-			</dict>
-			<key>NSNibTouchBar</key>
 			<dict>
 				<key>CF$UID</key>
 				<integer>0</integer>
@@ -6797,11 +6512,6 @@
 				<key>CF$UID</key>
 				<integer>0</integer>
 			</dict>
-			<key>NSNibTouchBar</key>
-			<dict>
-				<key>CF$UID</key>
-				<integer>0</integer>
-			</dict>
 			<key>NSvFlags</key>
 			<integer>256</integer>
 		</dict>
@@ -6847,11 +6557,6 @@
 			<key>NSIsBordered</key>
 			<true/>
 			<key>NSNextResponder</key>
-			<dict>
-				<key>CF$UID</key>
-				<integer>0</integer>
-			</dict>
-			<key>NSNibTouchBar</key>
 			<dict>
 				<key>CF$UID</key>
 				<integer>0</integer>
@@ -6905,11 +6610,6 @@
 				<key>CF$UID</key>
 				<integer>0</integer>
 			</dict>
-			<key>NSNibTouchBar</key>
-			<dict>
-				<key>CF$UID</key>
-				<integer>0</integer>
-			</dict>
 			<key>NSvFlags</key>
 			<integer>256</integer>
 		</dict>
@@ -6955,11 +6655,6 @@
 			<key>NSIsBordered</key>
 			<true/>
 			<key>NSNextResponder</key>
-			<dict>
-				<key>CF$UID</key>
-				<integer>0</integer>
-			</dict>
-			<key>NSNibTouchBar</key>
 			<dict>
 				<key>CF$UID</key>
 				<integer>0</integer>
@@ -7013,11 +6708,6 @@
 				<key>CF$UID</key>
 				<integer>0</integer>
 			</dict>
-			<key>NSNibTouchBar</key>
-			<dict>
-				<key>CF$UID</key>
-				<integer>0</integer>
-			</dict>
 			<key>NSvFlags</key>
 			<integer>256</integer>
 		</dict>
@@ -7063,11 +6753,6 @@
 			<key>NSIsBordered</key>
 			<true/>
 			<key>NSNextResponder</key>
-			<dict>
-				<key>CF$UID</key>
-				<integer>0</integer>
-			</dict>
-			<key>NSNibTouchBar</key>
 			<dict>
 				<key>CF$UID</key>
 				<integer>0</integer>
@@ -7121,11 +6806,6 @@
 				<key>CF$UID</key>
 				<integer>0</integer>
 			</dict>
-			<key>NSNibTouchBar</key>
-			<dict>
-				<key>CF$UID</key>
-				<integer>0</integer>
-			</dict>
 			<key>NSvFlags</key>
 			<integer>256</integer>
 		</dict>
@@ -7175,11 +6855,6 @@
 				<key>CF$UID</key>
 				<integer>0</integer>
 			</dict>
-			<key>NSNibTouchBar</key>
-			<dict>
-				<key>CF$UID</key>
-				<integer>0</integer>
-			</dict>
 			<key>NSvFlags</key>
 			<integer>256</integer>
 		</dict>
@@ -7225,11 +6900,6 @@
 			<key>NSIsBordered</key>
 			<true/>
 			<key>NSNextResponder</key>
-			<dict>
-				<key>CF$UID</key>
-				<integer>0</integer>
-			</dict>
-			<key>NSNibTouchBar</key>
 			<dict>
 				<key>CF$UID</key>
 				<integer>0</integer>
@@ -7306,11 +6976,6 @@
 				<key>CF$UID</key>
 				<integer>230</integer>
 			</dict>
-			<key>NSNibTouchBar</key>
-			<dict>
-				<key>CF$UID</key>
-				<integer>0</integer>
-			</dict>
 			<key>NSSharedData</key>
 			<dict>
 				<key>CF$UID</key>
@@ -7334,7 +6999,7 @@
 				<integer>252</integer>
 			</dict>
 			<key>NSvFlags</key>
-			<integer>1280</integer>
+			<integer>3328</integer>
 			<key>angle</key>
 			<real>0.0</real>
 			<key>autopos</key>
@@ -7346,9 +7011,9 @@
 			<key>autoposoffset</key>
 			<real>0.0</real>
 			<key>dloc.x</key>
-			<real>221.73359375000001</real>
+			<real>229.23750000000001</real>
 			<key>dloc.y</key>
-			<real>4.125</real>
+			<real>6.046875</real>
 			<key>posmode</key>
 			<integer>1</integer>
 			<key>tag</key>
@@ -7358,7 +7023,7 @@
 			<key>tloc.x</key>
 			<real>101.19999999999999</real>
 			<key>tloc.y</key>
-			<real>403</real>
+			<real>538</real>
 			<key>x</key>
 			<real>-4.4000000000000004</real>
 			<key>y</key>
@@ -7476,7 +7141,7 @@
 		<string>NeXT RTFD pasteboard type</string>
 		<string>public.url</string>
 		<string>Apple PICT pasteboard type</string>
-		<string>{{101.19999999999999, 379.5}, {276.888671875, 47}}</string>
+		<string>{{101.19999999999999, 514.5}, {276.888671875, 47}}</string>
 		<string>$null</string>
 		<dict>
 			<key>$class</key>
@@ -7770,8 +7435,6 @@
 				<key>CF$UID</key>
 				<integer>301</integer>
 			</dict>
-			<key>NSAutomaticTextCompletionDisabled</key>
-			<false/>
 			<key>NSBackgroundColor</key>
 			<dict>
 				<key>CF$UID</key>
@@ -7783,7 +7446,7 @@
 				<integer>299</integer>
 			</dict>
 			<key>NSFlags</key>
-			<integer>117575527</integer>
+			<integer>100667239</integer>
 			<key>NSInsertionColor</key>
 			<dict>
 				<key>CF$UID</key>
@@ -7894,18 +7557,9 @@
 			</dict>
 			<key>NSColorSpace</key>
 			<integer>3</integer>
-			<key>NSComponents</key>
-			<data>
-			MC42NjY2NjY2NjY3IDE=
-			</data>
-			<key>NSCustomColorSpace</key>
-			<dict>
-				<key>CF$UID</key>
-				<integer>48</integer>
-			</dict>
 			<key>NSWhite</key>
 			<data>
-			MC42MDI3MTUzNzMA
+			MC42NjY2NjY2NjY3AA==
 			</data>
 		</dict>
 		<dict>
@@ -7941,15 +7595,6 @@
 			</dict>
 			<key>NSColorSpace</key>
 			<integer>3</integer>
-			<key>NSComponents</key>
-			<data>
-			MCAx
-			</data>
-			<key>NSCustomColorSpace</key>
-			<dict>
-				<key>CF$UID</key>
-				<integer>48</integer>
-			</dict>
 			<key>NSWhite</key>
 			<data>
 			MAA=
@@ -8052,18 +7697,9 @@
 			</dict>
 			<key>NSColorSpace</key>
 			<integer>1</integer>
-			<key>NSComponents</key>
-			<data>
-			MCAwIDEgMQ==
-			</data>
-			<key>NSCustomColorSpace</key>
-			<dict>
-				<key>CF$UID</key>
-				<integer>99</integer>
-			</dict>
 			<key>NSRGB</key>
 			<data>
-			MCAwIDAuOTk4MTg4OTcyNQA=
+			MCAwIDEA
 			</data>
 		</dict>
 		<dict>
@@ -8182,11 +7818,6 @@
 				<key>CF$UID</key>
 				<integer>0</integer>
 			</dict>
-			<key>NSNibTouchBar</key>
-			<dict>
-				<key>CF$UID</key>
-				<integer>0</integer>
-			</dict>
 			<key>NSvFlags</key>
 			<integer>256</integer>
 		</dict>
@@ -8232,11 +7863,6 @@
 			<key>NSIsBordered</key>
 			<true/>
 			<key>NSNextResponder</key>
-			<dict>
-				<key>CF$UID</key>
-				<integer>0</integer>
-			</dict>
-			<key>NSNibTouchBar</key>
 			<dict>
 				<key>CF$UID</key>
 				<integer>0</integer>
@@ -8312,11 +7938,6 @@
 				<key>CF$UID</key>
 				<integer>0</integer>
 			</dict>
-			<key>NSNibTouchBar</key>
-			<dict>
-				<key>CF$UID</key>
-				<integer>0</integer>
-			</dict>
 			<key>NSvFlags</key>
 			<integer>256</integer>
 		</dict>
@@ -8382,11 +8003,6 @@
 				<key>CF$UID</key>
 				<integer>0</integer>
 			</dict>
-			<key>NSNibTouchBar</key>
-			<dict>
-				<key>CF$UID</key>
-				<integer>0</integer>
-			</dict>
 			<key>NSvFlags</key>
 			<integer>256</integer>
 		</dict>
@@ -8432,11 +8048,6 @@
 			<key>NSIsBordered</key>
 			<true/>
 			<key>NSNextResponder</key>
-			<dict>
-				<key>CF$UID</key>
-				<integer>0</integer>
-			</dict>
-			<key>NSNibTouchBar</key>
 			<dict>
 				<key>CF$UID</key>
 				<integer>0</integer>
@@ -8495,11 +8106,6 @@
 			<key>NSIsBordered</key>
 			<true/>
 			<key>NSNextResponder</key>
-			<dict>
-				<key>CF$UID</key>
-				<integer>0</integer>
-			</dict>
-			<key>NSNibTouchBar</key>
 			<dict>
 				<key>CF$UID</key>
 				<integer>0</integer>
@@ -8605,11 +8211,6 @@
 				<key>CF$UID</key>
 				<integer>0</integer>
 			</dict>
-			<key>NSNibTouchBar</key>
-			<dict>
-				<key>CF$UID</key>
-				<integer>0</integer>
-			</dict>
 			<key>NSvFlags</key>
 			<integer>256</integer>
 		</dict>
@@ -8655,11 +8256,6 @@
 			<key>NSIsBordered</key>
 			<true/>
 			<key>NSNextResponder</key>
-			<dict>
-				<key>CF$UID</key>
-				<integer>0</integer>
-			</dict>
-			<key>NSNibTouchBar</key>
 			<dict>
 				<key>CF$UID</key>
 				<integer>0</integer>
@@ -8735,11 +8331,6 @@
 				<key>CF$UID</key>
 				<integer>0</integer>
 			</dict>
-			<key>NSNibTouchBar</key>
-			<dict>
-				<key>CF$UID</key>
-				<integer>0</integer>
-			</dict>
 			<key>NSvFlags</key>
 			<integer>256</integer>
 		</dict>
@@ -8789,11 +8380,6 @@
 				<key>CF$UID</key>
 				<integer>0</integer>
 			</dict>
-			<key>NSNibTouchBar</key>
-			<dict>
-				<key>CF$UID</key>
-				<integer>0</integer>
-			</dict>
 			<key>NSvFlags</key>
 			<integer>256</integer>
 		</dict>
@@ -8839,11 +8425,6 @@
 			<key>NSIsBordered</key>
 			<true/>
 			<key>NSNextResponder</key>
-			<dict>
-				<key>CF$UID</key>
-				<integer>0</integer>
-			</dict>
-			<key>NSNibTouchBar</key>
 			<dict>
 				<key>CF$UID</key>
 				<integer>0</integer>
@@ -8953,11 +8534,6 @@
 				<key>CF$UID</key>
 				<integer>0</integer>
 			</dict>
-			<key>NSNibTouchBar</key>
-			<dict>
-				<key>CF$UID</key>
-				<integer>0</integer>
-			</dict>
 			<key>NSvFlags</key>
 			<integer>256</integer>
 		</dict>
@@ -9043,11 +8619,6 @@
 				<key>CF$UID</key>
 				<integer>0</integer>
 			</dict>
-			<key>NSNibTouchBar</key>
-			<dict>
-				<key>CF$UID</key>
-				<integer>0</integer>
-			</dict>
 			<key>NSvFlags</key>
 			<integer>256</integer>
 		</dict>
@@ -9093,11 +8664,6 @@
 			<key>NSIsBordered</key>
 			<true/>
 			<key>NSNextResponder</key>
-			<dict>
-				<key>CF$UID</key>
-				<integer>0</integer>
-			</dict>
-			<key>NSNibTouchBar</key>
 			<dict>
 				<key>CF$UID</key>
 				<integer>0</integer>
@@ -9151,11 +8717,6 @@
 				<key>CF$UID</key>
 				<integer>0</integer>
 			</dict>
-			<key>NSNibTouchBar</key>
-			<dict>
-				<key>CF$UID</key>
-				<integer>0</integer>
-			</dict>
 			<key>NSvFlags</key>
 			<integer>256</integer>
 		</dict>
@@ -9205,11 +8766,6 @@
 				<key>CF$UID</key>
 				<integer>0</integer>
 			</dict>
-			<key>NSNibTouchBar</key>
-			<dict>
-				<key>CF$UID</key>
-				<integer>0</integer>
-			</dict>
 			<key>NSvFlags</key>
 			<integer>256</integer>
 		</dict>
@@ -9255,11 +8811,6 @@
 			<key>NSIsBordered</key>
 			<true/>
 			<key>NSNextResponder</key>
-			<dict>
-				<key>CF$UID</key>
-				<integer>0</integer>
-			</dict>
-			<key>NSNibTouchBar</key>
 			<dict>
 				<key>CF$UID</key>
 				<integer>0</integer>
@@ -9365,11 +8916,6 @@
 			<key>NSIsBordered</key>
 			<true/>
 			<key>NSNextResponder</key>
-			<dict>
-				<key>CF$UID</key>
-				<integer>0</integer>
-			</dict>
-			<key>NSNibTouchBar</key>
 			<dict>
 				<key>CF$UID</key>
 				<integer>0</integer>
@@ -9491,11 +9037,6 @@
 				<key>CF$UID</key>
 				<integer>0</integer>
 			</dict>
-			<key>NSNibTouchBar</key>
-			<dict>
-				<key>CF$UID</key>
-				<integer>0</integer>
-			</dict>
 			<key>NSvFlags</key>
 			<integer>256</integer>
 		</dict>
@@ -9541,11 +9082,6 @@
 			<key>NSIsBordered</key>
 			<true/>
 			<key>NSNextResponder</key>
-			<dict>
-				<key>CF$UID</key>
-				<integer>0</integer>
-			</dict>
-			<key>NSNibTouchBar</key>
 			<dict>
 				<key>CF$UID</key>
 				<integer>0</integer>
@@ -9599,11 +9135,6 @@
 				<key>CF$UID</key>
 				<integer>0</integer>
 			</dict>
-			<key>NSNibTouchBar</key>
-			<dict>
-				<key>CF$UID</key>
-				<integer>0</integer>
-			</dict>
 			<key>NSvFlags</key>
 			<integer>256</integer>
 		</dict>
@@ -9653,11 +9184,6 @@
 				<key>CF$UID</key>
 				<integer>0</integer>
 			</dict>
-			<key>NSNibTouchBar</key>
-			<dict>
-				<key>CF$UID</key>
-				<integer>0</integer>
-			</dict>
 			<key>NSvFlags</key>
 			<integer>256</integer>
 		</dict>
@@ -9703,11 +9229,6 @@
 			<key>NSIsBordered</key>
 			<true/>
 			<key>NSNextResponder</key>
-			<dict>
-				<key>CF$UID</key>
-				<integer>0</integer>
-			</dict>
-			<key>NSNibTouchBar</key>
 			<dict>
 				<key>CF$UID</key>
 				<integer>0</integer>
@@ -9813,11 +9334,6 @@
 			<key>NSIsBordered</key>
 			<true/>
 			<key>NSNextResponder</key>
-			<dict>
-				<key>CF$UID</key>
-				<integer>0</integer>
-			</dict>
-			<key>NSNibTouchBar</key>
 			<dict>
 				<key>CF$UID</key>
 				<integer>0</integer>
@@ -9939,11 +9455,6 @@
 				<key>CF$UID</key>
 				<integer>0</integer>
 			</dict>
-			<key>NSNibTouchBar</key>
-			<dict>
-				<key>CF$UID</key>
-				<integer>0</integer>
-			</dict>
 			<key>NSvFlags</key>
 			<integer>256</integer>
 		</dict>
@@ -9989,11 +9500,6 @@
 			<key>NSIsBordered</key>
 			<true/>
 			<key>NSNextResponder</key>
-			<dict>
-				<key>CF$UID</key>
-				<integer>0</integer>
-			</dict>
-			<key>NSNibTouchBar</key>
 			<dict>
 				<key>CF$UID</key>
 				<integer>0</integer>
@@ -10047,11 +9553,6 @@
 				<key>CF$UID</key>
 				<integer>0</integer>
 			</dict>
-			<key>NSNibTouchBar</key>
-			<dict>
-				<key>CF$UID</key>
-				<integer>0</integer>
-			</dict>
 			<key>NSvFlags</key>
 			<integer>256</integer>
 		</dict>
@@ -10101,11 +9602,6 @@
 				<key>CF$UID</key>
 				<integer>0</integer>
 			</dict>
-			<key>NSNibTouchBar</key>
-			<dict>
-				<key>CF$UID</key>
-				<integer>0</integer>
-			</dict>
 			<key>NSvFlags</key>
 			<integer>256</integer>
 		</dict>
@@ -10151,11 +9647,6 @@
 			<key>NSIsBordered</key>
 			<true/>
 			<key>NSNextResponder</key>
-			<dict>
-				<key>CF$UID</key>
-				<integer>0</integer>
-			</dict>
-			<key>NSNibTouchBar</key>
 			<dict>
 				<key>CF$UID</key>
 				<integer>0</integer>
@@ -10968,13 +10459,13 @@
 		<key>verno</key>
 		<integer>31</integer>
 		<key>winh</key>
-		<integer>450</integer>
+		<integer>600</integer>
 		<key>winw</key>
 		<integer>600</integer>
 		<key>winx</key>
-		<integer>121</integer>
+		<integer>957</integer>
 		<key>winy</key>
-		<integer>112</integer>
+		<integer>405</integer>
 		<key>xmax1</key>
 		<real>5</real>
 		<key>xmax2</key>
