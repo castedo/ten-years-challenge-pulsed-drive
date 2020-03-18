@@ -41,6 +41,7 @@ This led to the idea to investigate what happened to a current-biased Josephson 
 The reproduction of this investigation is the object of the present work.
 
 
+
 \section{Computational context}
 \label{computational-context}
 
@@ -79,6 +80,7 @@ The real problem was again how to analyze all this data. A manual analysis like 
 
 Now I could transfer by FTP the files containing the nightly results from the DEC workstations to my desktop computer and run the Visual Basic program on each data set to quickly get a summary file containing the size of the quantized current steps for the reference sinusoidal drive and for the three simulated junctions subjected to progressively shorter current pulses.
 The results of months of calculations were summarized in a paper published in the Journal of Applied Physics \cite{Maggi:1996}.
+
 
 
 \section{Digging into code}
@@ -135,7 +137,7 @@ I don't recall why I choose this approach, but it was clearly very inefficient a
 \begin{figure}[tbh]
 	\centering
 	\includegraphics[width=0.75\textwidth]{batch-file.png}
-	\caption{Batch file...}
+	\caption{DOS batch file used by \textsf{mcphase.for} to perform multiple simulations with different values of $\alpha_\mathrm{rf}$.}
 	\label{fig:batch-file}
 \end{figure}
 %===============================================================================
@@ -150,14 +152,19 @@ Luckily, FORTRAN is a very stable language and porting again both \textsf{mcphas
 As for the Microsoft Visual Basic 1.0 code, there were only two versions of the Visual Basic analysis programs and the differences between them were minimal. Since both programs gave exactly the same results, I decided to stick with the initial version that had a working (precompiled) binary.
 
 
-\section{Porting Microsoft FORTRAN to UNIX}
 
-Porting \textsf{mcphase.for} and \textsf{mcp-work.for} to the XXI century so that they could be compiled with a modern \textsf{gfortran} compiler was very easy, thanks to the stability of the language across different versions and platforms. Essentialy only a few tweaks to the source code were needed.
+\section{Porting Microsoft FORTRAN to modern UNIX}
+
+Porting \textsf{mcphase.for} and \textsf{mcp-work.for} to the XXI century so that they could be compiled with the modern open source and multiplatform Fortran \textsf{gfortran} compiler was very easy, thanks to the stability of the language across different versions and platforms. Essentialy only a few tweaks to the source code were needed.
+
+All work has been done on macOS, which is essentially BSD Unix with a more appealing graphical interface, but could be easily repeated on any modern Unix-like operating system such as Linux, or even on Windows, with the support of either the Windows Subsystem for Linux (for Windows 10) or of Cygwin (for earlier versions of the operating system).
+
 
 
 \subsection{Preprocessor directives}
 
-For reasons that go beyond my understanding Microsoft Fortran 5.1 did not use standard \textsf{cpp} or \textsf{fpp} preprocessors directives (the latter is the de facto standard Fortran preprocessor) \cite{Boyanski:1992}, but used a a slightly different syntax (Fig.~\ref{fig:preprocessor}). Luckily, all was needed was to comment out all the \textsf{\$DEFINE} lines in the header section and to replace throughout the code Microsoft Fortran 5.1 \textsf{DEFINE} blocks with standard \textsf{cpp} blocks (Fig.~\ref{fig:preprocessor}). 
+For reasons that go beyond my understanding Microsoft Fortran 5.1 did not use standard preprocessor directives, such as those supported by \textsf{cpp} or \textsf{fpp}, \cite{Boyanski:1992} but used a a slightly different proprietary syntax (Fig.~\ref{fig:preprocessor}). 
+Luckily, it was very easy to comment out all the \textsf{\$DEFINE} directives in the header section which specified which sections of the code to compile, and to replace \textsf{DEFINE} blocks with standard \textsf{cpp} blocks throughout the code Microsoft Fortran 5.1 (Fig.~\ref{fig:preprocessor}) [++ SUPPLEMENTARY? ++]. 
 
 
 %===============================================================================
@@ -235,7 +242,7 @@ CC $DEFINE pulsed		! DEFINED for pulsed drive
 %===============================================================================
 
 
-Now the right directives are chosen at compile-time, by running for example the following command,
+The right directives are chosen now at compile-time. For example, the following command
 
 %===============================================================================
 \lstset{
@@ -251,17 +258,17 @@ Now the right directives are chosen at compile-time, by running for example the 
 }
 %===============================================================================
 \begin{lstlisting}
-$ gfortran -cpp -Dtextout -Dsingle -o mcp-work mcp-work.for
+gfortran -cpp -Dtextout -Dsingle -o mcp-work mcp-work.for
 \end{lstlisting}
 %===============================================================================
 
-to run the \textsf{cpp} preprocessor before compilation of \textsf{mcp-work.for} with \textsf{gfortran}, selecting code that produced textual output (\textsf{-Dtextout}) and performed calculations with the the single (sinusoidal) rf drive (\textsf{-Dsingle}).
+runs the \textsf{cpp} preprocessor before compilation of \textsf{mcp-work.for} with gfortran, selecting the sections of the code that produce a textual output (\textsf{-Dtextout}) and performing the calculations with the the single (sinusoidal) rf drive (\textsf{-Dsingle}).
 
 
 
 \subsection{Filenames}
 
-Fortran 77 did not support dynamic memory allocation and required programmers to use fixed-length arrays and strings. Strings were used rather sparingly in FORTRAN, so that was not a big deal. The exception in my my code was for the name of the files containing the simulation parameters and the results of the calculations, which was defined as a 50-byte long string.
+Ancient Fortran compilers such as Microsoft Fortran 5.1 did not support dynamic memory allocation at runtime and required programmers to use fixed-length arrays and strings. Strings were used rather sparingly in FORTRAN code, so that was not a big deal. With an exception. My code defined the basename of all files as a 50-byte long string,
 
 %===============================================================================
 \lstset{
@@ -279,8 +286,10 @@ Fortran 77 did not support dynamic memory allocation and required programmers to
 %===============================================================================
 
 
-Under DOS that was not a real problem, since DOS truncates file names to 8 characters (plus three characters for the extension) and excess characters were ignored, but under UNIX file names have no real limitations,\footnote{255 characters for the name of the file and 4096 characters for the path} and having these 50 characters long filenames, mostly composed by spaces, was ugly and, what matters most, complicated file management, in particular when using a command line interface.
-The solution is simple, FORTRAN now has the \textsf{TRIM} function that removes all trailing blank characters from a string, so whenever a file is opened for reading or writing, it is sufficient to apply \textsf{TRIM()} to the \textsf{filename} variable, as shown here
+attaching a proper extension to differentiate between the input files containing the simulation parameters and the output file with the results of the calculations.
+
+Under DOS that was not a problem, as DOS truncates file names to only 8 characters, plus 3 characters for the extension, and all excess characters were simply ignored. But under UNIX file names have no real limitations,\footnote{To be precise, UNIX allows 255 characters for the filename and 4096 characters for the path.} and having these 50 character-long filenames, mostly composed by blank characters, was ugly and complicated file management, in particular when using the command line interface.
+The solution is simple, as FORTRAN now has the \textsf{TRIM} function that removes all trailing blanks from a string. Whenever a file is opened for reading or for writing, it is sufficient to apply on-the-fly \textsf{TRIM()} to the \textsf{filename} variable, as shown here,
 
 %===============================================================================
 \begin{lstlisting}
@@ -288,44 +297,26 @@ The solution is simple, FORTRAN now has the \textsf{TRIM} function that removes 
 \end{lstlisting}
 %===============================================================================
 
+to remove all extra blanks from the name of the file.
+
+
 
 \subsection{Edit descriptors}
 
-Microsoft Fortran 5.1 used the backslash \textbackslash{} edit descriptor to prevent the addition of a line break at the end of a \textsf{WRITE} instruction.\footnote{http://userweb.eng.gla.ac.uk/peter.smart/com/981124.htm}
-Modern Fortran compilers do not support this peculiar edit descriptor, and return an error,  \textsf{unexpected element '\' in format string}. To avoid this error, it is sufficient to remove the backslash edit descriptor from all \textsf{WRITE} instructions that include it.
+Microsoft Fortran 5.1 used the backslash \textbackslash{} edit descriptor to prevent the addition of a line break at the end of a \textsf{WRITE} instruction.
+%\footnote{http://userweb.eng.gla.ac.uk/peter.smart/com/981124.htm}
+Modern Fortran compilers do not support this non-standard edit descriptor and return an error. To avoid this problem, it is sufficient to remove the backslash edit descriptor from all \textsf{WRITE} instructions that include it.
 
 
 \subsection{Date and time}
 
-Microsoft Fortran 5.1 has two separate intrinsic subroutines to return the current date and time.
-In particular,
+Microsoft Fortran 5.1 had two separate intrinsic subroutines to return the current date and time.
+In particular, \lstinline[columns=fixed]{CALL GETDAT(iyr, imon, iday)}, saved the date in the two-byte integer variables \textsf{iyr}, \textsf{imon} and \textsf{iday}, while \lstinline[columns=fixed]{CALL GETTIM(ihr, imin, imin, i100th)} did the same for the current time, saving the return values in the integer variables \textsf{ihr}, \textsf{imin}, \textsf{imin} and \textsf{i100th}. The meaning of each returned variable should be self-explanatory.
 
-%===============================================================================
-\begin{lstlisting}
-	CALL GETDAT(iyr, imon, iday)
-\end{lstlisting}
-%===============================================================================
+Modern Fortran supports the single subroutine \lstinline[columns=fixed]{CALL DATE_AND_TIME([DATE], [TIME], [ZONE], [VALUES]])}, where all arguments are optional and can be specified by their dummy names (i.e., how Fortran calls the keyword arguments of a function call). 
+In particular, \textsf{DATE}, \textsf{TIME} and \textsf{ZONE} are character variables, while \textsf{VALUES} is a one-dimensional array of 8 integers, where \textsf{VALUES(1:3)} corresponds to the year, month and day of the month, \textsf{VALUES(4)} is the time difference (in minutes) with UTC, and \textsf{VALUES(5:8)} are the hour, minute, second and milliseconds, respectively.
 
-saved the date in the two-byte integer variables textsf{iyr}, textsf{imon} and textsf{iday}, while 
-
-%===============================================================================
-\begin{lstlisting}
-	CALL GETTIM(ihr, imin, imin, i100th)
-\end{lstlisting}
-%===============================================================================
-
-did the same for the current time, saving the return values in the integer variables textsf{ihr}, textsf{imin}, textsf{imin} and textsf{i100th}. The meaning of each returned variable should be self-explanatory.
-Modern Fortran 77 supports the single subroutine \textsf{DATE\_AND\_TIME}
-
-%===============================================================================
-\begin{lstlisting}
-	CALL DATE_AND_TIME([DATE, TIME, ZONE, VALUES])
-\end{lstlisting}
-%===============================================================================
-
-where all arguments are optional and can be specified by their dummy name (i.e., how Fortran calls the keyword arguments of a function call). In particular, \textsf{DATE}, \textsf{TIME} and \textsf{ZONE} are character variables, while \textsf{VALUES} is a one-dimensional array of integers containing 8 elements, where \textsf{VALUES(1:3)} corresponds to the year, month and day of the month, \textsf{VALUES(4)} is the time difference (in minutes) with UTC, and \textsf{VALUES(5:8)} are the hour, minute, second and milliseconds, respectively.
-
-To minimize changes to the original source code, the original subroutine calls
+To minimize changes to the original source code, the original calls to the \lstinline[columns=fixed]{GETDAT} and \lstinline[columns=fixed]{GETTIM} subroutines,
 
 %===============================================================================
 \begin{lstlisting}
@@ -337,7 +328,7 @@ To minimize changes to the original source code, the original subroutine calls
 \end{lstlisting}
 %===============================================================================
 
-is translated to
+were translated to a single call to \lstinline[columns=fixed]{DATE_AND_TIME}, assigning the elements of the returned array of \textsf{VALUES} to the integer variables of the original code,
 
 %===============================================================================
 \begin{lstlisting}
@@ -359,14 +350,13 @@ is translated to
 
 
 
-
 \subsection{Compilation with gfortran}
 \label{compilation-with-gfortran}
 
-All these fixes were enough to compile \textsf{mcphase.for} correctly with textsf{gfortran}.
+All these fixes were enough to compile correctly \textsf{mcphase.for} with gfortran.
+As for \textsf{mcp-work.for}, basically it required the same corrections, with one rather strange addition.
 
-As for the other source file, \textsf{mcp-work.for}, it basically required the same corrections, with one rather strange addition.
-As noted above, \textsf{mcp-work.for} calculates the $I - V$ characteristic of the simulated junction for several different values of $\alpha_rf$, producing a different output file for each $I - V$ curve. The code to define the output file names was very convoluted,
+As noted above, \textsf{mcp-work.for} calculates the $I - V$ characteristics of the simulated junction for several different values of $\alpha_\mathrm{rf}$, producing one output file for each $I - V$ curve. The code to define the output file names was very convoluted,
 
 %===============================================================================
 \begin{lstlisting}
@@ -386,33 +376,44 @@ c ------ define output file name(s)
 \end{lstlisting}
 %===============================================================================
 
-where \textsf{il} is a counter of the cycle number and \textsf{il2}, \textsf{il1} and \textsf{il0} are  integers containing the hundreds, tens and units digits of \textsf{il}. These integers are converted to the corresponding \textsf{ASCII} characters with the function \textsf{CHAR} and the name of the output file \textsf{filewrite} is built by concatenating the three \textsf{ASCII} characters (plus a trailing constant string) with the \textsf(//) operator, where textsf{ASCII} code 48 corresponds to the \textsf{0} symbol and textsf{ASCII} code 57 corresponds to \textsf{9}.
+and used the integer variable \textsf{il} to count the cycle number, while the three integers \textsf{il2}, \textsf{il1} and \textsf{il0} contained the hundreds, tens and units digits of \textsf{il}, respectively. 
+These integers are converted to the corresponding \textsf{ASCII} characters with the function \textsf{CHAR}, where \textsf{ASCII} code 48 corresponds to the \textsf{0} symbol and \textsf{ASCII} code 57 corresponds to \textsf{9}.
+The name of the output file \textsf{filewrite} was built by concatenating a trailing constant string to the three \textsf{ASCII} characters, with the \textsf(//) operator.
 
-I have no idea why I decided to use such a complex way to name the output files, but nevertheless it did not work under \textsf{gfortran} and prevented proper compilation of the code. After a little inspection it is clear that the problem lies in the number \textsf{47} added to three integer variables before converting them to \textsf{ASCII} characters, that should be replaced by \textsf{47}, so that the line defining the \textsf{filewrite} variable becomes,
+I have no idea why I decided to build the name the output files in such a complex way, in any case it did not work under gfortran, preventing proper compilation of the code. 
+After some inspection and testing, it was apparent that the source of the problem lied in the number \textsf{47} added to three integer variables before converting them to \textsf{ASCII} characters, that should be replaced by \textsf{48}, so that the line defining the \textsf{filewrite} variable becomes \lstinline[columns=fixed]{filewrite='PU'//CHAR(il2+48)//char(il1+48)//char(il0+48)}.
 
-%===============================================================================
-\begin{lstlisting}
-         filewrite='PU'//CHAR(il2+48)//char(il1+48)//char(il0+48)
-\end{lstlisting}
-%===============================================================================
+%%===============================================================================
+%\begin{lstlisting}
+%         filewrite='PU'//CHAR(il2+48)//char(il1+48)//char(il0+48)
+%\end{lstlisting}
+%%===============================================================================
 
-what is really puzzling is why Microsoft Fortran required instead a \textsf{47} to convert each integer to the correct \textsf{ASCII} character.
+With this change \textsf{mcp-work.for} could compile flawlessly under gfortran.
+What is really puzzling is how the original line could work in Microsoft Fortran 5.1.
+%Microsoft Fortran required to add a \textsf{47} instead of \textsf{48} to convert a integer to the correct \textsf{ASCII} character.
 
 
 
 \section{Visual Basic code}
 \label{visual-basic-code}
 
-No attempt was made to make the original Visual Basic 1.0 code run a modern computer. Visual Basic is a dead language and long since has been replaced by Visual Basic .NET, which shares only the name with its forefather. From the beginning the only viable option was to use emulation. 
+No attempt was made to make the original Visual Basic 1.0 code run a modern computer. Visual Basic is a dead language and long since has been replaced by Visual Basic .NET, which shares only the name with its forefather. The only viable option from the beginning was to use an emulator to rebuild the original development environment.
 
-For this task I preferred to use Parallels Desktop,\footnote{https://www.parallels.com/} which runs only on macOS, but users of Windows or Linux can easily choose the open source VirtualBox package instead.\footnote{https://www.virtualbox.org/}.
+For this task I preferred to use \href{https://www.parallels.com/}{Parallels Desktop}, but the open source multi-platform \href{https://www.virtualbox.org/}{VirtualBox emulator} can be used equally well.
 
-Installing Visual Basic 1.0 in the emulator required several preliminary steps. I had to install in sequence DOS 6.22, Windows 3.11 and lastly Visual Basic 1.0.
-While I was at it, and although I had already solved the Fortran part of the job, I decided to install also Microsoft Fortran 5.1 for DOS, to try to reproduce as much as possible the original development environment.
+I created a new empty virtual machine with minimal \emph{hardware} requirements and installed in sequence DOS 6.22, Windows 3.11 and Visual Basic 1.0 (Fig.~\ref{fig:windows-311}).
+While I was at it, and although I had already solved the Fortran part of the project, I also decided to install Microsoft Fortran 5.1 for DOS, to try to reproduce as much as possible the original work environment.
 
-All the software was downloaded from the WinWorld web site,\footnote{https://winworldpc.com}, which is an invaluable resource for recovering old software packages. The legitimacy of installing proprietary software in an emulator might be questionable, even after so many years, but in any case at the time I had regular licenses for all the above mentioned software so I believe to be at least morally to be authorized to use those packages.
+All software packages were downloaded from the \href{https://winworldpc.com}{WinWorld web site}, an invaluable resource for recovering old software packages. 
+The legitimacy of installing proprietary software in an emulator, even after so many years, might be questionable. But at the time I had regular licenses for all the above mentioned software and I believe to be at least morally authorized to continue to use those packages.
 
-Installing the various software packages is very close to how it was done at the time: one has to insert in sequence the several floppy disks on which the package was distributed, with the only difference that floppy disks now are virtual file images and that swapping floppy disks is not done mechanically but requires to select a menu option in the emulator. [++ resolution 640x480 ++]
+The installation of these aging software packages in an emulator is very close to how it was done back then.
+The packages were originally distributed on several floppy disks, which had to be swapped whenever the installer required a new disk. Today, the floppy disks are replaced by virtual file images and "swapping" disks is not done mechanically but requires to select a menu option in the emulator.
+
+[++ DOPO? ++] The default screen resolution of Windows 3.11 when installed in the emulator was a mere $640  \times 480$ pixels,  woefully meager by today's standards.
+However, as I used the virtual environment almost exclusively to run the Visual Basic program, I didn't bother to install the drivers that could increase the screen resolution to a more comfortable $800 \times 600$ or $1024 \times 768$ pixel resolution (Fig.~\ref{fig:windows-311}). [++ DOPO? ++]
+
 
 %===============================================================================
 \begin{figure}[tbh]
@@ -423,12 +424,6 @@ Installing the various software packages is very close to how it was done at the
 \end{figure}
 %===============================================================================
 
-
-Another problem to be dealt with was how to transfer the source and data files to the emulated DOS/Windows system.
-I soon excluded the possibility of try to make Windows 3.11 communicate with the host OS through the network [++by setting up Windows 3.11 networking in the emulator++].
-I don't even know if it can be done, but it seemed to me too much of a hassle for this simple project.
-Much better is to use again a virtual floppy disk, that should be mounted alternatively (end exclusively) on macOS or on Windows 3.11. 
-To create a virtual floppy disk \textsf{data.img} it is sufficient to issue the command \textsf{dd} in the macOS Terminal,
 
 %===============================================================================
 \lstset{
@@ -444,20 +439,28 @@ To create a virtual floppy disk \textsf{data.img} it is sufficient to issue the 
     deletekeywords = {for}
 }
 %===============================================================================
-\begin{lstlisting}
-$ dd if=/dev/zero of=data.img bs=1440k count=1
-\end{lstlisting}
-%===============================================================================
+
+Using the emulator required to transfer the source and binary Visual Basic files to the emulated DOS/Windows system.
+I excluded the possibility of setting up Windows 3.11 networking in the emulator, in order to make Windows 3.11 communicate with the host OS through the network.
+It probably can be done, but it was much easier to transfer all needed files using again a virtual floppy disk, mounted alternatively (end exclusively) on macOS or on Windows 3.11.
+
+A new virtual floppy disk \textsf{data.img} can be easily created with the command-line utility \textsf{dd} available on macOS or Linux, \lstinline[columns=fixed]{dd if=/dev/zero of=data.img bs=1440k count=1}. After creation, the virtual floppy disk must be mounted in the emulator and formatted under DOS or Windows 3.11 in the original MS-DOS FAT file system.
+
+%%===============================================================================
+%\begin{lstlisting}
+%dd if=/dev/zero of=data.img bs=1440k count=1
+%\end{lstlisting}
+%%===============================================================================
 
 
-and then run Windows 3.11 in the emulator, mount the virtual floppy disk and format it in the MS-DOS FAT format.
-Using this virtual floppy disk I copied the source code of \textsf{mcphase.for} and \textsf{mcp-work.for} and the \textsf{mc-iv.dat} configuration file, transferring them in the same directories used originally.
+The same virtual floppy disk was used to copy the source code of \textsf{mcphase.for} and \textsf{mcp-work.for} and the \textsf{mc-iv.dat} configuration file to the virtual machine.
+[++, transferring them to the Microsoft Fortran 5.1 standard project directories.++]
 
-[++ how did I find where these dirs were located??? ++]
+%[++ how did I find where these dirs were located??? ++]
+%
+%[++ The same was done for the Visual Basic project and the precompiled binary, creating a new directory in the virtual machine to host these files. ++]
 
-[++ sorgente stepampl  ++] [++ già compilato, VB non è strettamente necessario il sorgente basta il binario ++]
-
-This step completed the preparation stage of the development environment, now it was time to test how all this behaved.
+This step completed the preparation of the development environment, now it was time to test how all this behaved.
 
 
 
