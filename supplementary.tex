@@ -1,0 +1,84 @@
+\section{Supplementary Material}
+
+\begin{supplement}
+
+
+\subsection{Preprocessor directives}
+
+%===============================================================================
+\lstset{
+    language = C,
+    basicstyle = \tiny\bfseries\ttfamily,
+    tabsize = 4,
+    frame = lines,
+    framesep = 1em,
+    framexleftmargin = 1em,
+    backgroundcolor = \color{ultralightgray},
+    keywordstyle = \color{darkred}\bfseries,
+    morekeywords = {$DEFINE, $if, $endif, defined},
+    deletekeywords = {for}
+}
+%===============================================================================
+\begin{figure}[h]
+\centering
+
+\begin{minipage}{0.48\textwidth}
+\textbf{(a)}
+\begin{lstlisting}
+$DEFINE textout			! DEFINEd for text output
+c $DEFINE graphout		! DEFINEd for graphical output
+
+c $DEFINE single        ! DEFINED for single rf drive
+c $DEFINE biharmonic    ! DEFINED for biharmonic drive
+$DEFINE pulsed			! DEFINED for pulsed drive
+
+$if defined (graphout)
+	...
+$endif
+...
+...
+$if defined (textout)
+	...
+$endif
+...
+$if defined (pulsed)
+	...
+$endif
+\end{lstlisting}
+\end{minipage}
+%
+\hfill
+%
+\begin{minipage}{0.48\textwidth}
+\textbf{(b)}
+\begin{lstlisting}
+CC $DEFINE textout		! DEFINEd for text output
+c $DEFINE graphout		! DEFINEd for graphical output
+
+c $DEFINE single        ! DEFINED for single rf drive
+c $DEFINE biharmonic    ! DEFINED for biharmonic drive
+CC $DEFINE pulsed		! DEFINED for pulsed drive
+
+#if graphout
+	...
+#endif
+...
+...
+#if textout
+	...
+#endif
+...
+#if pulsed
+	...
+#endif
+\end{lstlisting}
+\end{minipage}
+
+\caption{Preprocessor directives in (a) Microsoft Fortran 5.1, (b) modern \textsf{cpp} preprocessor.}
+\label{fig:preprocessor}
+\end{figure}
+%===============================================================================
+
+
+\end{supplement}
+

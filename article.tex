@@ -13,12 +13,22 @@
 
 \definecolor{ultralightgray}{gray}{0.98}
 
-%\newcommand{\beginsupplement}{%
-%        \setcounter{table}{0}
-%        \renewcommand{\thetable}{S\arabic{table}}%
-%        \setcounter{figure}{0}
-%        \renewcommand{\thefigure}{S\arabic{figure}}%
-%     }
+% \newcommand{\beginsupplement}{
+%     \setcounter{section}{99}
+%     \renewcommand{\thesection}{FF\arabic{section}}
+%     %%\renewcommand{\thesection}{S}
+%     \renewcommand{\thesubsection}{S.\arabic{subsection}}
+%     \setcounter{table}{0}
+%     \renewcommand{\thetable}{S\arabic{table}}
+%     \setcounter{figure}{0}
+%     \renewcommand{\thefigure}{S\arabic{figure}}
+
+\newenvironment{supplement}{
+    \setcounter{table}{0}
+    \renewcommand{\thetable}{S\arabic{table}}
+    \setcounter{figure}{0}
+    \renewcommand{\thefigure}{S\arabic{figure}}
+}
 
 %--- End SM additions ---
  
@@ -33,8 +43,13 @@
 
 
 %--- SM additions ---
-%\clearpage
-%\input{supplementary.tex}
+\clearpage
+
+\setcounter{section}{0}
+\renewcommand{\thesection}{S\arabic{section}}
+\renewcommand{\thesubsection}{S\arabic{section}.\arabic{subsection}} 
+
+\input{supplementary.tex}
 %--- End SM additions ---
 
 
