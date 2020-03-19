@@ -83,7 +83,7 @@ The results of months of calculations were summarized in a paper published in th
 
 
 
-\section{Digging into code}
+\section{Digging into code} \label{sec:digging-into-code}
 
 %Finding the original sources of this project was easy and complex at the same time.
 I am the type of person who likes organisation, and I try keep all my past projects on my main workstation. 
@@ -127,7 +127,7 @@ Using Meld I quickly realized that the two main source files were \textsf{mcphas
 %===============================================================================
 
 
-The first program, \textsf{mcphase}, simulated the behavior of the junction for a single value of $\alpha_\mathrm{rf}$ read from the input configuration file \textsf{iv.dat}, saving the $I - V$ characteristic of the junction and its phase plot (the phase of a Josephson junction is related to the voltage $V$ by its time derivative) in the output file \textsf{iv.out}.
+The first program, \textsf{mcphase}, simulated the behavior of the junction for a single value of $\alpha_\mathrm{rf}$ read from the input configuration file \textsf{iv.dat}, saving the $I - V$ characteristic of the junction and its phase portrait (i.e., the relation between the phase and its time derivative, the latter being proportional to the junction voltage $V$) in the output file \textsf{iv.out}.
 
 Multiple calculations with several different value of $\alpha_\mathrm{rf}$ could be performed by using a simple DOS batch file that basically choose one by one the configuration files containing the desired values of $\alpha_\mathrm{rf}$, renamed them to \textsf{iv.dat}, run \textsf{mcphase} and at the end renamed \textsf{iv.out} using a consistent naming scheme.
 %for each value of $\alpha_\mathrm{rf}$, copied a \textsf{.dat} input file containing the proper set of simulation parameters into a file with a standard name, \textsf{iv.dat}, run the simulation and at the end renamed the output file containing the results of the simulation, \textsf{iv.out} so that it has the same basename of the original \textsf{.dat} input file.
@@ -143,7 +143,7 @@ I don't recall why I choose this approach, but it was clearly very inefficient a
 %===============================================================================
 
 
-The second program, \textsf{mcp-work.for} was an improved version that could automatically cycle across a  set of values of $\alpha_\mathrm{rf}$, producing a different output file for each value of $\alpha_\mathrm{rf}$. However, to simplify further automatic analysis, it left out the phase plot [++ MIGLIORARE/TOGLIERE ++]
+The second program, \textsf{mcp-work.for} was an improved version that could automatically cycle across a  set of values of $\alpha_\mathrm{rf}$, producing a different output file for each value of $\alpha_\mathrm{rf}$. However, to simplify further automatic analysis, it left out the phase portrait [++ MIGLIORARE/TOGLIERE ++]
 
 It was clear that this was the program ported to the DEC workstations. 
 Unfortunately, I could not find the actual source file used on these machine, probably because while performing the porting from DOS/Microsoft FORTRAN 5.1 to UNIX Fortran I worked directly on the workstations and never thought to copy back these source files since they could not work on my PCs.
@@ -243,6 +243,7 @@ CC $DEFINE pulsed		! DEFINED for pulsed drive
 
 
 The right directives are chosen now at compile-time. For example, the following command
+\footnote{The \textsf{$} symbol prepended to this and all following terminal commands represents the prompt of the command interpreter and is not part of the command.}
 
 %===============================================================================
 \lstset{
@@ -254,11 +255,12 @@ The right directives are chosen now at compile-time. For example, the following 
     framexleftmargin = 1em,
     backgroundcolor = \color{ultralightgray},
     keywordstyle = \color{darkred}\bfseries,
+    morekeywords = {gfortran},
     deletekeywords = {for}
 }
 %===============================================================================
 \begin{lstlisting}
-gfortran -cpp -Dtextout -Dsingle -o mcp-work mcp-work.for
+$ gfortran -cpp -Dtextout -Dsingle -o mcp-work mcp-work.for
 \end{lstlisting}
 %===============================================================================
 
@@ -380,7 +382,9 @@ and used the integer variable \textsf{il} to count the cycle number, while the t
 These integers are converted to the corresponding \textsf{ASCII} characters with the function \textsf{CHAR}, where \textsf{ASCII} code 48 corresponds to the \textsf{0} symbol and \textsf{ASCII} code 57 corresponds to \textsf{9}.
 The name of the output file \textsf{filewrite} was built by concatenating a trailing constant string to the three \textsf{ASCII} characters, with the \textsf(//) operator.
 
-I have no idea why I decided to build the name the output files in such a complex way, in any case it did not work under gfortran, preventing proper compilation of the code. 
+I have no idea why I decided to build the name the output files in such a complex way, while it would have been much easier to use the value of $\alpha_\mathrm{rf}$ to name each output file.
+In any case, it did not work under gfortran, preventing proper compilation of the code. 
+
 After some inspection and testing, it was apparent that the source of the problem lied in the number \textsf{47} added to three integer variables before converting them to \textsf{ASCII} characters, that should be replaced by \textsf{48}, so that the line defining the \textsf{filewrite} variable becomes \lstinline[columns=fixed]{filewrite='PU'//CHAR(il2+48)//char(il1+48)//char(il0+48)}.
 
 %%===============================================================================
@@ -435,7 +439,8 @@ However, as I used the virtual environment almost exclusively to run the Visual 
     framexleftmargin = 1em,
     backgroundcolor = \color{ultralightgray},
     keywordstyle = \color{darkred}\bfseries,
-    morekeywords = {dd, if, of, bs, count},
+%    morekeywords = {dd, if, of, bs, count},
+    morekeywords = {dd},
     deletekeywords = {for}
 }
 %===============================================================================
@@ -466,10 +471,9 @@ This step completed the preparation of the development environment, now it was t
 
 \section{Running the programs}
 
-To avoid cluttering the \textsf{mccumber/} directory containing the source files with the output data files produced by the simulations, before trying to run the two Fortran programs I create in the main project folder a new directory, \textsf{2020runs/}, copying there the \textsf{mc-iv.dat} configuration file needed to start the simulation.
-[++ before: show layout of the project directory? ++]
+To prevent cluttering the \textsf{mccumber/} directory containing the Fortran source files (Section~\ref{sec:digging-into-code}) with the output data files produced by the simulations, I created  a new directory, \textsf{2020runs/}, in the main project folder, where I copied the \textsf{mc-iv.dat} configuration file needed to start the simulation (Fig.~\ref{fig:source-header}).
 
-Running \textsf{mcphase.for} is easy. In summary, all I had to do was to compile \textsf{mcphase.for}, move to the \textsf{2020runs/} directory and run the \textsf{mcphase} executable from there, as summarized below
+Running \textsf{mcphase.for} is easy. In summary, all I had to do was to compile \textsf{mcphase.for} with the right directives, switch to the \textsf{2020runs/} directory and run the \textsf{mcphase} executable from there, as summarized below,
 
 %===============================================================================
 \lstset{
@@ -482,7 +486,7 @@ Running \textsf{mcphase.for} is easy. In summary, all I had to do was to compile
     backgroundcolor = \color{ultralightgray},
     keywordstyle = \color{darkred}\bfseries,
     alsoletter=-,
-    morekeywords = {gfortran, -cpp, -o},
+    morekeywords = {gfortran},
     deletekeywords = {for}
 }
 %===============================================================================
@@ -493,10 +497,11 @@ $ ../mccumber/mcphase
 \end{lstlisting}
 %===============================================================================
 
-obtaining at the end of the calculations a file \textsf{mc-iv.out} that contains the $I - V$ characteristic and the phase plot (for that, read below) of the junction for the set of parameters defined in \textsf{mc-iv.dat}. The calculation takes just a couple of seconds on a recent Mac, and for $\alpha_\mathrm{rf} = 0$ produces a standard non-hysteretic $I - V$ curve (Fig.~\ref{fig:mcphase-iv-single}a), while for non-zero values of $\alpha_\mathrm{rf}$ one gets the standard staircase-like $I - V$ curves with the rf-induced current steps (Fig.~\ref{fig:mcphase-iv-single}b and Fig.~\ref{fig:mcphase-iv-single}c).
+obtaining a file \textsf{mc-iv.out} that contains the $I - V$ characteristic and the phase portrait (the relation between the phase and its time derivative, the latter being proportional to the junction voltage $V$) of the junction for the set of parameters defined in \textsf{mc-iv.dat}. 
+The calculation takes only a couple of seconds to complete on a recent computer, and without microwave radiation ($\alpha_\mathrm{rf} = 0$), produces the well-known non-hysteretic $I - V$ characteristic of the RSJ model (Fig.~\ref{fig:mcphase-iv-single}a), while for non-zero values of $\alpha_\mathrm{rf}$ the staircase-like structure of the rf-induced current steps appear on the $I - V$ curves (Fig.~\ref{fig:mcphase-iv-single}b and Fig.~\ref{fig:mcphase-iv-single}c).
 
 %===============================================================================
-\begin{figure}[h]
+\begin{figure}[bh]
 {
 	\fboxsep=0pt
 	\mbox{\includegraphics[width=0.325\textwidth]{mcphase-iv-single-alpharf0.png}}
@@ -511,7 +516,8 @@ obtaining at the end of the calculations a file \textsf{mc-iv.out} that contains
 %===============================================================================
 
 
-To simulate a pulsed rf drive, it is sufficient to compile \textsf{mcphase.for} with the \textsf{-Dpulsed} switch and rerun the simulation (Fig.~\ref{fig:mcphase-iv-pulsed}). The Figure shows clearly that with the pulsed rf drive there are fewer but much larger rf-induced steps and that they can be nearly as wide as the critical current for $\alpha_\mathrm{rf} = 0.0$ (compare Fig.~\ref{fig:mcphase-iv-pulsed}a) and (Fig.~\ref{fig:mcphase-iv-pulsed}c).
+To simulate a pulsed rf drive, it is sufficient to compile \textsf{mcphase.for} with the \textsf{-Dpulsed} directive and rerun the simulation (Fig.~\ref{fig:mcphase-iv-pulsed}). 
+The $I - V$ characteristic without the rf bias is identical to that calculated with the sinusoidal signal (Fig.~\ref{fig:mcphase-iv-pulsed}a), while the current steps induced by the pulsed drive are fewer and nearly as wide as the critical current for $\alpha_\mathrm{rf} = 0.0$ (compare Figs.~\ref{fig:mcphase-iv-pulsed}a and \ref{fig:mcphase-iv-pulsed}c).
 
 %%===============================================================================
 %\begin{lstlisting}
@@ -522,7 +528,7 @@ To simulate a pulsed rf drive, it is sufficient to compile \textsf{mcphase.for} 
 %%===============================================================================
 
 %===============================================================================
-\begin{figure}[h]
+\begin{figure}[bh]
 {
 	\fboxsep=0pt
 	\mbox{\includegraphics[width=0.325\textwidth]{mcphase-iv-pulsed-alpharf0.png}}
@@ -537,10 +543,10 @@ To simulate a pulsed rf drive, it is sufficient to compile \textsf{mcphase.for} 
 %===============================================================================
 
 
-The second Fortran program, \textsf{mcp-work.for}, is much more interesting. While \textsf{mcphase.for} can calculate the $I - V$ characteristic of the junction for a single value of $\alpha_\mathrm{rf}$ and for increasing or decreasing values of the normalized current $\alpha_\mathrm{dc}$, \textsf{mcp-work.for} automatically sweeps the normalized current $\alpha_\mathrm{dc}$ in both directions to help visualize better the possible hysteresis of the junction and calculates the $I - V$ characteristics for a range of values of $\alpha_\mathrm{rf}$, saving each curve in a separate output file. Unfortunately, the lower and upper limits and the step size of $\alpha_\mathrm{rf}$ are hardcoded in the Fortran source code ad every change requires a recompilation of \textsf{mcp-work.for} (a minor hassle, as the compilation takes just a couple of seconds on a modern machine).
+The second Fortran program, \textsf{mcp-work.for}, is much more interesting. While \textsf{mcphase.for} can calculate the $I - V$ characteristic of the junction only for a single value of $\alpha_\mathrm{rf}$ and for increasing or decreasing values of the normalized current $\alpha_\mathrm{dc}$, \textsf{mcp-work.for} sweeps the normalized current $\alpha_\mathrm{dc}$ in both directions to help visualize the possible hysteresis of the junction and calculates the $I - V$ characteristics for a range of values of $\alpha_\mathrm{rf}$, saving each curve in a separate output file. Unfortunately, the lower and upper limits and the step size of $\alpha_\mathrm{rf}$ are hardcoded in the Fortran source code ad every change requires a recompilation of \textsf{mcp-work.for} (a minor hassle, as the compilation takes just a couple of seconds on a modern machine).
 
 
-Running \textsf{mcp-work.for} is very similar to the previous case. First, it is necessary to compile \textsf{mcp-work.for} with the proper compiler switches, then one moves to \textsf{2020runs/} directory and runs the \textsf{mcp-work} executable from there. The whole process is summarized below for the standard sinusoidal drive,
+Running \textsf{mcp-work.for} is very similar to the previous case. First, it is necessary to compile \textsf{mcp-work.for} with the proper compiler directives, switch to the \textsf{2020runs/} directory and run the \textsf{mcp-work} executable from there. The whole process is summarized below for the standard sinusoidal drive,
 
 %===============================================================================
 \lstset{
@@ -564,7 +570,7 @@ $ ../mccumber/mcp-work
 \end{lstlisting}
 %===============================================================================
 
-while the only modification needed to perform calculations using the pulsed drive is to change the \textsf{-Dsingle} switch to \textsf{-Dpulsed}, 
+The only modification needed to perform calculations using the pulsed drive is to change the \textsf{-Dsingle} directive to \textsf{-Dpulsed},
 
 %===============================================================================
 \begin{lstlisting}
@@ -574,11 +580,14 @@ $ ../mccumber/mcp-work
 \end{lstlisting}
 %===============================================================================
 
-Also the names of the output files are hard-coded in the \textsf{mcp-work.for} in the \textsf{filewrite} variable and are conventionally composed by a two-letter prefix ("SI" for the single drive, "BI" for the biharmonic driva and "PU" for the pulsed drive) followed by a tree-digit integer containing the cycle number (see Section~\ref{compilation-with-gfortran}).
 
-On a modern machine the whole calculation with $100$ $\alpha_\mathrm{rf}$ steps takes around $2 - 4$ minutes and most of the time is spent printing the calculated $I - V$ curves for each value of $\alpha_\mathrm{rf}$. Such feedback was necessary at the time of the original calculation, as every new calculated point of the $I - V$ curves appeared on the screen after several minutes, now the results literally flow on the screen at a speed that makes them almost illegible.
+Also the names of the output files are hard-coded in the \textsf{mcp-work.for} in the \textsf{filewrite} variable and are conventionally composed by a two-letter prefix ("SI" for the single drive, "BI" for the biharmonic driva and "PU" for the pulsed drive) followed by a three-digit integer that represents the cycle number (Section~\ref{compilation-with-gfortran}).
 
-The output files should be transferred to the Windows 3.11 virtual machine to be processed by \textsf{stepampl}, the Visual Basic application described in Section~\ref{visual-basic-code}. However Windows 3.11 does not \emph{understand} UNIX line terminators and cannot read the output files without a proper line terminator conversion. This conversion can be easily done in the macOS Terminal with the following command
+On a modern machine the whole simulation with $100 \alpha_\mathrm{rf}$ steps takes around $2 - 4$ minutes and most of the time is spent printing on the terminal the calculated $I - V$ characteristics for each value of $\alpha_\mathrm{rf}$. Such feedback was necessary at the time of the original calculation, as every new calculated point of the $I - V$ curves appeared on the screen after several tens of seconds, now the results sroll on the screen at a speed that makes them almost illegible.
+However, to keep as faithful as possible to the original project, I decided to continue to print data on the computer screen.
+
+At the end of the run, the output files must be transferred to the Windows 3.11 virtual machine to be processed by \textsf{stepampl}, the Visual Basic application described in Section~\ref{visual-basic-code}. However Windows 3.11 does not \emph{understand} UNIX line terminators and cannot read the output files without a preliminary conversion. 
+This conversion can be easily done in the macOS Terminal with the following command
 
 %===============================================================================
 \lstset{
@@ -599,12 +608,15 @@ $ for f in $(ls *.out); do sed -i .bak s/$/$'\r'/ $f ; done
 \end{lstlisting}
 %===============================================================================
 
-that converts the line terminators of all the \textsf{.out} output files from the UNIX format containing only a line-feed (LF) to the carriage return followed by a line-feed (CRLF) format used by all versions of Microsoft Windows (slightly different versions of the command can be usually found on internet; however the format used above is POSIX-compliant and should run on all UNIX flavours). The \textsf{-i} switch allows in-place conversion of each files (the original files are saved with the \textsf{.bak} extension and can be easily removed after the conversion).
+that changes the line terminators of the \textsf{.out} output files from the UNIX format containing only a line-feed (LF) to the carriage return followed by a line-feed (CR-LF) format used by all versions of Microsoft Windows. 
+\footnote{Slightly different versions of the command can be found on the internet; the format used above is POSIX-compliant and should run on any UNIX flavour}.
+The \textsf{-i} switch allows in-place conversion of each file, the original files are kept adding a \textsf{.bak} extension.
 
-Now the output files in the proper Windows format can be transferred onto the virtual floppy disk image. %virtual floppy disk image can be mounted on the Desktop of the host operating system by double-clicking on its icon and the output files in the proper Windows format can be transferred onto the virtual floppy disk. 
-When the transfer is done, the floppy disk image must be unmounted from the Desktop of the host operating system and mounted in the emulator. This allows to open the floppy disk in Windows 3.11 so that the output files can be copied in an (preferably) empty directory of Windows 3.11. 
-Now it is the time to run the Visual Basic application, either by running the precompiled \textsf{stepampl.exe} application or by opening the Visual Basic project and running the program form there (Fig.~\ref{fig:stepampl}). [++ 100 data files max ++] 
-The summary file containing the the size of the quantized current steps for a single simulation are saved in a file with extension \textsf{.STP} (for steps) and can be transferred to the host operating system via the floppy disk image.
+Now the output files in the proper Windows compatible format can be transferred onto the virtual floppy disk image. %virtual floppy disk image can be mounted on the Desktop of the host operating system by double-clicking on its icon and the output files in the proper Windows format can be transferred onto the virtual floppy disk. 
+When the transfer is done, the floppy disk image is unmounted from the host operating system and mounted  in the virtual machine, making it visible to Windows 3.11. 
+The output files are copied to an empty directory of Windows 3.11 and the Visual Basic application is started, either by running the precompiled \textsf{stepampl.exe} application or by opening the Visual Basic project and running the program form there (Fig.~\ref{fig:stepampl}), that calculated the size of the quantized current steps for each value of $\alpha_\mathrm{rf}$ and saved the results in another text file with extension \textsf{.STP} (for steps) that could be transferred back to the host operating system via the virtual floppy disk image.
+
+The original Visual Basic code had a hard coded limit set to a maximum number of $100$ processed files. This limit was probably related to memory problems or simply to the fact that it was impossible to run an overnight simulation with more than $100$ different $\alpha_\mathrm{rf}$ values.
 
 %===============================================================================
 \begin{figure}[tbh]
@@ -615,24 +627,28 @@ The summary file containing the the size of the quantized current steps for a si
 \end{figure}
 %===============================================================================
 
-At the time of writing the original paper \cite{Maggi:1996}, the whole process had to be repeated each night for a different set of input parameters,  or for a different kind of rf drive (single, biharmonic or pulsed). As noted above (Section~\ref{computational-context}), as each night I had four DEC machines  available, I could use three of them to simulate in parallel the junction behaviour with the pulsed drive with three different values of the (normalized) width of the pulse signal, $\rho$, while keeping constant all the other junction parameters, such $\beta$ and $\Omega$.
-The only thing that in different in the three simulation is the range over which to change $\alpha_\mathrm{rf}$, which depends on the value of $\rho$ (shorter pulses require a much larger intensity of the rf-signal to have the same effect on the junction)
 
-The fourth machine was reserved to simulate the junction behaviour with the standard sinusoidal drive, using exactly the same set of junction parameters.
-Each night a different set of junction parameters was used.
+At the time of writing the original paper \cite{Maggi:1996}, the whole process had to be repeated each night for a different set of input parameters  and for a different kind of rf drive (single, biharmonic or pulsed). As noted above (Section~\ref{computational-context}). 
 
-Luckily the original paper  contained all the information needed to reproduce the results shown in the figures, without having to repeat the whole analysis from scratch. The parameters used in all runs were: hysteresis parameter $\beta = 0.01$, frequency of the sinusoidal or pulsed  rf signal $\Omega = 0.45$, normalized current bias ranging between $\alpha_\mathrm{dc} = -5.0$ and $\alpha_\mathrm{dc} = 5.0$, integration time $\tau = 500$, step $\Delta \tau = 0.01$. For the simulation with the sinusoidal drive, 
-the amplitude of the rf signal$\alpha_\mathrm{rf}$ was varied between $0.0$ and $5.0$, with a step $\Delta \alpha_\mathrm{rf} = 0.1$. 
-The three simulations with the pulsed drive were done using: 
-(1) pulse width $\rho = 0.250$ and $\alpha_\mathrm{rf} = 0.0, 0.1, ... 10.0$;
-(2) pulse width $\rho = 0.125$ and $\alpha_\mathrm{rf} = 0.0, 0.2, ... 20.0$;
-(3) pulse width $\rho = 0.050$ and $\alpha_\mathrm{rf} = 0.0, 0.5, ... 50.0$.
+Each night I used $3$ of the available DEC machines to simulate in parallel the junction behaviour with the pulsed drive, using $3$ different values of the (normalized) width of the pulse signal, $\rho$, while keeping constant all the other junction parameters, such $\beta$ and $\Omega$.
+The only other difference in these $3$ simulation was the range of variation of $\alpha_\mathrm{rf}$, which depended on the value of $\rho$ (shorter pulses require a much larger intensity of the rf-signal to have the same effect on the junction).
+The fourth machine was reserved to simulate the reference junction behaviour with the standard sinusoidal drive, using exactly the same set of junction parameters.
+%Each night a different set of junction parameters was used.
 
-The resulting output and summary files are saved in separate folders in the \textsf{2020runs/} directory, named \textsf{SINGLE/}, \textsf{PULS0250}, \textsf{PULS125}, \textsf{PULS0050} after their DOS counterparts.
+The original paper  contained all the information needed to reproduce the results shown in the figures, without having to repeat the whole analysis from scratch. 
+The parameters used in all runs were: hysteresis parameter $\beta = 0.01$, frequency of the sinusoidal or pulsed  rf signal $\Omega = 0.45$, normalized current bias between $\alpha_\mathrm{dc} = -5.0$ and $\alpha_\mathrm{dc} = 5.0$, normalized integration time $\tau = 500$ with step $\Delta \tau = 0.01$. 
 
-To reproduce the first and second figure of \cite{Maggi:1996} I made the only concession to modernity and, instead of trying to recreate them with the original plotting program used originally, probably \textsf{Origin 2.0},\footnote{https://www.originlab.com} I decided to write a couple of small R scripts that could automate the task.
-The results are shown in Fig.~\ref{fig:step-width} and Fig.~\ref{fig:pulsed-ivs} and, as expected, are identical to those reported in the first two figures of \cite{Maggi:1996}. Figure 3 of the original paper coulb be trivially reproduced by plotting the maxima of the curves of Fig.~\ref{fig:step-width} ($\Delta i_n$ vs. $\alpha_\mathrm{rf}$ for the four different cases considered here.
+The simulation with the sinusoidal drive was performed by varying the amplitude of the rf signal $\alpha_\mathrm{rf}$ between $0.0$ and $5.0$, with a step $\Delta \alpha_\mathrm{rf} = 0.1$, while the three simulations with the pulsed drive were done using: 
+(1) pulse width $\rho = 0.250$, $\alpha_\mathrm{rf} = 0.0 - 10.0$, $\Delta \alpha_\mathrm{rf} = 0.1$;
+(2) pulse width $\rho = 0.125$, $\alpha_\mathrm{rf} = 0.0 - 20.0$, $\Delta \alpha_\mathrm{rf} = 0.2$;
+(3) pulse width $\rho = 0.050$, $\alpha_\mathrm{rf} = 0.0 - 50.0$, $\Delta \alpha_\mathrm{rf} = 0.5$.
 
+The resulting output and summary files were saved in separate folders in the \textsf{2020runs/} directory, named \textsf{SINGLE/}, \textsf{PULS0250}, \textsf{PULS125}, \textsf{PULS0050} after their DOS counterparts.
+
+To reproduce the first and second figure of \cite{Maggi:1996} I made the only concession to modernity. instead of trying to recreate them with the plotting program used originally, probably \href{https://www.originlab.com}{Origin 2.0}, I decided to write a couple of small R scripts that could automate the task.
+The results are shown in Fig.~\ref{fig:step-width} and Fig.~\ref{fig:pulsed-ivs} and, as expected, are identical to those reported in the first two figures of \cite{Maggi:1996}. 
+Figure 3 of the original paper could be easily reproduced by plotting the maxima of the curves of Fig.~\ref{fig:step-width}, i.e., $\Delta i_n$ vs. $\alpha_\mathrm{rf}$, for the four different cases considered here.
+Note that the large vertical steps on the rightmost curves of Fig.~\ref{fig:pulsed-ivs} era the first rf-induced steps, that can be nearly as large as the critical current $I_C$ without rf bias visible in the first plot on the left.
 
 %%===============================================================================
 %\begin{figure}[h]
@@ -667,8 +683,8 @@ The results are shown in Fig.~\ref{fig:step-width} and Fig.~\ref{fig:pulsed-ivs}
 %===============================================================================
 \begin{figure}[tbh]
 	\centering
-	\includegraphics[width=0.45\textwidth]{PULS0050-IV.pdf}
-	\caption{$I - V$ curves of a junction with $\beta = 0.01$ for several values of the rf bias. The junction is  irradiated by a train of rf pulses of repetition frequency $\Omega = 0.45$ and pulse duration $\rho = 0.05$. Each curve has been offset by $4 \Omega$. The vertical dotted lines mark the position of the zero-voltage axis for the $I - V$ curve located immediately to the right.}
+	\includegraphics[width=0.75\textwidth]{PULS0050-IV.pdf}
+	\caption{$I - V$ curves of a junction with $\beta = 0.01$ for several values of the rf bias. The junction is  irradiated by a train of rf pulses of repetition frequency $\Omega = 0.45$ and pulse duration $\rho = 0.05$. Each curve has been offset horizontally by $4 \Omega$. The vertical dotted lines mark the position of the zero-voltage axis for the $I - V$ curve located immediately to the right.}
 	\label{fig:pulsed-ivs}
 \end{figure}
 %===============================================================================
@@ -688,20 +704,18 @@ Similar considerations can be made for the reproduction of Figure 4, which consi
 
 
 
-
-
 \section{Discussion}
 
-If I would start the project today from scratch I think I would handle things quite differently:
+If I would start today the project from scratch I would make very different choices about the programming languages to use for the simulation and data analysis steps.
 
-\begin{enumerate}
+Fortran, despite its venerable age, is still an excellent language for scientific programming, but today my language of choice for numerical computations is Python, because of its flexibility, ease of use, and  availability of excellent numerical libraries, such as NumPy and SciPy.
+The main problems with Python are related to the tumultuous development of the language itself and of the thousands of available modules, which can cause incompatibilities even with code developed a few years ago. This problem can be, at least temporarily, be solved by using virtual environments, but a better standardized solution is strongly needed.
+Another problem with Python is related to its nature of interpreted language. However, the presence of well-documented Fortran and C bindings, can enhance performance of time-critical sections of code.
 
-\item Use Python instead of Fortran. Fortran, despite its venerable age, is stil an excellent language for scientific programming, but Python is much more comfortable to use, and the availability of excellent libraries such as NumPy and SciPy and of Fortran and C bindings to enhance performance in time-critical sections of code, make it the best tool today for numerical computations.
+I would eschew using a new language, as was Visual Basic 1.0 at the time, or as is Apple's Swift today, for a scientific project. 
+It is true that it would have been very hard to foresee in 1993-94 the rapid demise of Microsoft's Visual Basic, nevertheless using a language only when it is stable, runs on a wide array of operating systems and is accepted by a wide community of developers is surely a safe bet.
+Data analysis today is usually made with R or Python (or to a much lesser extent, Julia or Scala), both open source tools running on all major operation systems, that predictably will be still available in the next 10 or even 20 years.
 
-\item Do not use Visual Basic. First of all I would avoid the use a new language, as was Visual Basic 1.0 at the time. In 1993-94 it would have been very hard to foresee the rapid demise of Microsoft's Visual Basic, exactly as it would have been impossible to foresee the explosive success of Python, but in any case using a language only when it is stable, runs on a wide array of operating systems and is accepted by a wide community of developers is a safe bet.
-[++ The same can be said today for Apple's Swift, until the language does not support Windows as well as macOS and Linux and it is not used by a large community outside that of Apple developers, I would never use it for a (serious) (research) project].
-
-\end{enumerate}
  
 
 \section{Conclusions}
@@ -712,6 +726,7 @@ Going back to this old paper has been an exceptionally interesting experience an
 However this is not only a nostalgic attitude. The reproducibility or replicability crisis is a serious issue today \cite{Miyakawa:2020}, when many scientific studies are difficult to reproduce or replicate and  true science is challenged daily by cheaters that publish papers with fabricated, falsified, or modified data or results.
 
 Being able to go back and redo what has been done in the past assures that...
+
 
 [++ SUPPLEMENYTARY INFO??? ++]
 
