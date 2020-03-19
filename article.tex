@@ -1,7 +1,9 @@
 \documentclass{rescience}
 
-%% ONLY FOR DRAFT VERSION!
-%%\renewcommand{\baselinestretch}{2.0}
+
+%--- SM additions ---
+%ONLY FOR DRAFT VERSION!
+%\renewcommand{\baselinestretch}{2.0}
 
 \graphicspath{{./figures/}}
 \floatplacement{figure}{tbh}
@@ -11,7 +13,15 @@
 
 \definecolor{ultralightgray}{gray}{0.98}
 
+%\newcommand{\beginsupplement}{%
+%        \setcounter{table}{0}
+%        \renewcommand{\thetable}{S\arabic{table}}%
+%        \setcounter{figure}{0}
+%        \renewcommand{\thefigure}{S\arabic{figure}}%
+%     }
 
+%--- End SM additions ---
+ 
 \begin{document}
 \input{header.tex}
 \input{content.tex}
@@ -20,5 +30,12 @@
 \renewcommand\emph[1]{{\bfseries #1}}
 \setlength\bibitemsep{0pt}
 \printbibliography
+
+
+%--- SM additions ---
+%\clearpage
+%\input{supplementary.tex}
+%--- End SM additions ---
+
 
 \end{document}
