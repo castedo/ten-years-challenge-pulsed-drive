@@ -46,40 +46,46 @@ The reproduction of this investigation is the object of the present work.
 \section{Computational context}
 \label{computational-context}
 
-A first attempt to solve this problem was made by using an electronic analog simulator of a Josephson junction \cite {Henry:1981}, that could compute the relation between the applied current and the voltage ($I-V$ characteristic) of a current-biased junction, in the framework of the Stewart-McCumber RSJ junction model \cite{McCumber:1968, Stewart:1974}.
-The analog simulator was very fast and simple to use, and could produce in mere seconds beautiful plots of the $I-V$ characteristics of the junction as a function of the simulated microwave signal on a \href{http://www.hpmuseum.net/display_item.php?hw=74}{Hewlett Packard 7475A}2 pen plotter.
+A first attempt to solve this problem was made using an electronic analog simulator of a Josephson junction \cite {Henry:1981}, that could compute the relation between the applied current and the voltage ($I-V$ characteristic) of a current-biased junction, in the framework of the Stewart-McCumber RSJ junction model \cite{McCumber:1968, Stewart:1974}.
+The analog simulator was fast and simple to use, and could produce in just a few minutes beautiful plots of the $I-V$ characteristics of the junction as a function of the simulated microwave signal on a \href{http://www.hpmuseum.net/display_item.php?hw=74}{Hewlett Packard 7475A}2 pen plotter.
 %\footnote{A brief description of the \href{http://www.hpmuseum.net/display_item.php?hw=74}{HP 7475A pen plotter} can be found on the HP Computer Museum.}
-\footnote{Unfortunately, after 25 years and two relocations, I could not manage to find pictures of the simulator nor the original HP 7475A plots.} 
+\footnote{Unfortunately, after 25 years and two relocations, I could not manage to find photographs of the simulator nor the original HP 7475A plots.} 
 
 %The real problem with this approach was that, 
-However, even if the electronic simulation was extremely fast, analysis of the results required to measure by hand the amplitude of the rf-induced steps visible on each $I-V$ curve of the paper plots, a long and error-prone work.
+However, even if the electronic simulation was extremely fast, the analysis of the results required to measure by hand the amplitude of the rf-induced steps visible on each $I-V$ characteristic, a long and error-prone work.
 
-I thus decided to write a Fortran program to solve numerically the nonlinear second-order differential equation that models the Josephson junction \cite{McCumber:1968, Stewart:1974}. 
-The idea was to simulate the junction behavior by calculating the $I-V$ characteristics of the junction as a function of the pulse amplitude $\alpha_\mathrm{rf}$ for a given set of parameters characterizing the junction and the applied microwave signal, considering the three cases of standard sinusoidal drive, biharmonic drive and realistic pulsed drive. 
-To ease comparison of the results, normalized units have been used throughout the calculations \cite{McCumber:1968, Stewart:1974}.
-The main parameters of the simulation were: the hysteresis parameter $\beta$, the frequency $\Omega$ and the width of the pulsed signal $\rho$. 
-For a for a given set of junction parameters, around $100$ different $I-V$ characteristics for increasing or decreasing values of $\alpha_\mathrm{rf}$ were calculated.
+Therefore, I decided to write a Fortran program to solve numerically the nonlinear second-order differential equation that models the Josephson junction \cite{McCumber:1968, Stewart:1974}. 
+The idea was to calculate the $I-V$ characteristics of the junction as a function of the amplitude of the microwave signal, $\alpha_\mathrm{rf}$, for a given set of parameters characterizing the junction and the microwave, considering the three different cases of standard sinusoidal drive, biharmonic drive and pulsed drive.
 
-The first versions of the Fortran program were compiled under DOS 6.22 with \href{https://winworldpc.com/product/microsoft-fortran/5x}{Microsoft Fortran 5.1} and run on what was then a state-of-the-art PC, probably a Compaq Deskpro 486 with a math coprocessor, shared among several users of the lab. 
-However, after a few attempts, the limitations of a PC for such a task soon become evident.
-A new simulation started automatically each evening and took the entire night to be completed. Unfortunately, people still using the PC late in the evening often inadvertently stopped the background process or simply shut the machine down without checking if a job was already running. 
+To ease comparison of the results, normalized units were used throughout the calculations. The normalized junction voltage was $\eta$ and the normalized current $\alpha$.
+The main parameters of the simulation were: hysteresis parameter $\beta$, microwave frequency $\Omega$, amplitude of the microwave signal $\alpha_\mathrm{rf}$, width of the pulsed signal $\rho$. 
+For a given set of junction parameters, usually $100$ different $I-V$ characteristics for increasing or decreasing values of $\alpha_\mathrm{rf}$ were calculated.
+
+The first versions of the Fortran program were compiled under DOS 6.22 with \href{https://winworldpc.com/product/microsoft-fortran/5x}{Microsoft Fortran 5.1} and run on what was then a state-of-the-art PC, probably a Compaq Deskpro 486 with a math coprocessor, shared among several users of the lab.
+
+After a few attempts, the limitations of a PC for such a task soon become evident.
+A new simulation started automatically each evening and took the entire night to complete. Regrettably, people still using the PC late in the evening often stopped the background process or simply shut the machine down without checking if there was another job running. 
 At the end, I could run a full simulation only every two or three days.
 
-After a few weeks of these mostly unsuccessful attempts, the sysadmin of another research group proposed me to use four DEC workstations running ULTRIX (or possibly Digital UNIX), for my own simulations.\footnote{The now defunct \href{https://en.wikipedia.org/wiki/Digital_Equipment_Corporation}{Digital Equipment Corporation} was one of the leading computer companies of the time.}
-The machines were heavily used by his group during working hours, but sat mostly idle overnight. If I could manage to finish my runs before the start of the new work day, I was allowed to use this idle time for my simulations.
-My colleague gave me a quick crash course on Unix and I was ready to go.
+After a few weeks of these mostly unsuccessful attempts, a colleague of another research group proposed me to use four DEC workstations running ULTRIX for my own simulations.\footnote{The now defunct \href{https://en.wikipedia.org/wiki/Digital_Equipment_Corporation}{Digital Equipment Corporation} (DEC) was one of the leading computer companies of the time.}
+The machines were heavily used by his group during working hours, but sat mostly idle overnight. 
+If I could manage to finish my runs before the start of the new work day, I was allowed to use this idle time for my own simulations.
+The colleague gave me a quick crash course on Unix and I was ready to go.
 %\footnote{I should still have my notes somewhere.}
-Porting my Fortran program from Microsoft Fortran 5.1 to ULTRIX was a snap, and I also quickly learnt how to use FTP to transfer the configuration files and the results of the simulation back and forth from the DEC machines to my Compaq 386 notebook, that was also my desktop computer.
+
+Porting my Fortran program from Microsoft Fortran 5.1 to ULTRIX was a snap, and I quickly learnt how to use FTP to transfer the input configuration files and the output data files containing the results of the simulation back and forth from the DEC workstations to my Compaq 386 notebook, that was also my desktop computer.
 %\footnote{I was one of the \emph{happy few} to have a personal computer sitting on my own desk.}
 
-Now at the beginning of each day I had four different sets of files coming from the four available DEC machines. Three of them were made by irradiating the junction with a pulsed drive with decreasing values of $\rho$ (i.e., the normalized width of the pulse train), while keeping constant $\beta$ and $\Omega$.
-The fourth simulation was made by irradiating the junction with a standard sinusoidal signal and keeping everything else equal. This last simulation was used as a reference, to compare the results obtained with a standard sinusoidal microwave signal with those obtained with progressively shorter pulses.
-Each night I changed the values of $\beta$ or $\Omega$ to study the effect of these parameters on the junction behavior.
+Now each day I had four different sets of data files coming from the DEC workstations. Three of them were obtained by irradiating the junction with a pulsed drive with decreasing values of $\rho$, while keeping constant $\beta$ and $\Omega$.
+The fourth simulation was made by irradiating the junction with a sinusoidal signal, while keeping everything else equal. This last simulation was used as a reference, to compare the results obtained with a standard sinusoidal radiation with those obtained with progressively shorter pulses.
+Each night I changed the values of $\beta$ or $\Omega$, to study the effect of these parameters on the behavior of the junction.
 
-The real problem was again how to analyze all this data. A manual analysis like that needed by the electronic simulator was out of consideration, and I decided to to write another program, using the recently released Microsoft Visual Basic 1.0 for Windows, that calculated from the nightly simulation results the size of all the rf-induced steps visible on the $I-V$ characteristics, as a function amplitude of the rf bias, $\alpha_\mathrm{rf}$.
+Again, the real problem was how to analyze all this data. A manual analysis like that needed with the electronic simulator was out of consideration. 
+I decided to try the recently released Microsoft Visual Basic 1.0 for Windows, writing another program that calculated the size of all the rf-induced steps visible on the $I-V$ characteristics of the nightly simulations, as a function of $\alpha_\mathrm{rf}$.
 %Everything worked flawlessly.
 
-Now I could transfer by FTP the files containing the nightly results from the DEC workstations to my desktop computer and run the Visual Basic program on each data set to quickly get a summary file containing the size of the quantized current steps for the reference sinusoidal drive and for the three simulated junctions subjected to progressively shorter current pulses.
+%Now I could transfer by FTP the files containing the nightly results from the DEC workstations to my desktop computer and 
+Running the Visual Basic program on each set of data files produced a summary file that contained the size of the calculated current steps.
 The results of months of calculations were summarized in a paper published in the Journal of Applied Physics \cite{Maggi:1996}.
 
 
