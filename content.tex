@@ -165,16 +165,19 @@ As for the Microsoft Visual Basic 1.0 code, I found only two versions of the pro
 
 \section{Porting Microsoft Fortran to modern Unix}
 
-Porting \textsf{mcphase.for} and \textsf{mcp-work.for} to the XXI century so that they could be compiled with the modern open source and multiplatform Fortran \textsf{gfortran} compiler was very easy, thanks to the stability of the language across different versions and platforms. Essentialy only a few tweaks to the source code were needed.
+Porting \textsf{mcp-work.for} to the XXI century so that it could be compiled with the modern open source and multiplatform \textsf{gfortran} Fortran compiler was very easy, thanks to the stability of the language across different versions and platforms. Only a few minor tweaks to the source code were needed.
 
-All work has been done on macOS, which is essentially BSD Unix with a more appealing graphical interface, but could be easily repeated on any modern Unix-like operating system such as Linux, or even on Windows, with the support of either the Windows Subsystem for Linux (for Windows 10) or of Cygwin (for earlier versions of the operating system).
+All work has been done on macOS, which is essentially BSD Unix with a more appealing graphical interface, but could be easily repeated on any modern Unix-like operating system such as Linux, and probably even on Windows, with the support of either the \href{https://docs.microsoft.com/en-us/windows/wsl/}{Windows Subsystem for Linux} (for Windows 10) or of \href{http://www.cygwin.org/}{Cygwin} (for earlier versions of the operating system).
 
 
 
 \subsection{Preprocessor directives}
 
 For reasons that go beyond my understanding Microsoft Fortran 5.1 did not use standard preprocessor directives, such as those supported by \textsf{cpp} or \textsf{fpp}, \cite{Boyanski:1992} but used a a slightly different proprietary syntax (Fig.~\ref{fig:preprocessor}). 
-Luckily, it was very easy to comment out all the \textsf{\$DEFINE} directives in the header section which specified which sections of the code to compile, and to replace \textsf{DEFINE} blocks with standard \textsf{cpp} blocks throughout the code Microsoft Fortran 5.1 (Fig.~\ref{fig:preprocessor}) [++ SUPPLEMENTARY? ++]. 
+To support \textsf{cpp}, all was needed was to comment out all the \textsf{\$DEFINE} directives in the header section and to replace the Microsoft Fortran 5.1 \textsf{DEFINE} blocks with standard \textsf{cpp} blocks throughout the code (Fig.~\ref{fig:preprocessor}). 
+
+The right compilation directives are chosen now at compile-time. For example, the following command
+\footnote{The \textsf{\$} symbol prepended to this and all following terminal commands represents the prompt of the command interpreter and is not part of the command.}
 
 %
 % %===============================================================================
@@ -252,8 +255,6 @@ Luckily, it was very easy to comment out all the \textsf{\$DEFINE} directives in
 % %===============================================================================
 %
 
-The right directives are chosen now at compile-time. For example, the following command
-\footnote{The \textsf{\$} symbol prepended to this and all following terminal commands represents the prompt of the command interpreter and is not part of the command.}
 
 %===============================================================================
 \lstset{
@@ -274,13 +275,103 @@ $ gfortran -cpp -Dtextout -Dsingle -o mcp-work mcp-work.for
 \end{lstlisting}
 %===============================================================================
 
-runs the \textsf{cpp} preprocessor before compilation of \textsf{mcp-work.for} with gfortran, selecting the sections of the code that produce a textual output (\textsf{-Dtextout}) and performing the calculations with the the single (sinusoidal) rf bias (\textsf{-Dsingle}).
+runs the \textsf{cpp} preprocessor before the gfortran compiler, selecting only the sections of the code that produce a textual output (\textsf{-Dtextout}) and perform the calculations with the sinusoidal drive (\textsf{-Dsingle}).
 
 
 
 \subsection{Filenames}
 
-Ancient Fortran compilers such as Microsoft Fortran 5.1 did not support dynamic memory allocation at runtime and required programmers to use fixed-length arrays and strings. Strings were used rather sparingly in Fortran code, so that was not a big deal. With an exception. My code defined the basename of all files as a 50-byte long string,
+Compilers based on Fortran 77, such as Microsoft Fortran 5.1, did not support dynamic memory allocation at runtime and required programmers to use fixed-length arrays and strings. Strings were used rather sparingly in Fortran code, so that was not a big deal. With an exception. 
+My code defined the basename of all files as the 50-byte long character variable \textsf{filename},
+%
+%%===============================================================================
+%\lstset{
+%    language = Fortran,
+%    tabsize = 6,
+%    frame = none,
+%    framesep = 2em,
+%    framexleftmargin = 1em,
+%    backgroundcolor = \color{ultralightgray},
+%}
+%%===============================================================================
+%\begin{lstlisting}
+%	CHARACTER*50   filename
+%\end{lstlisting}
+%%===============================================================================
+%
+attaching a proper extension to the input configuration file containing the simulation parameters and to the output data files with the results of the calculations.
+
+Under DOS that was not a problem, as DOS truncates file names to only 8 characters plus 3 characters for the extension, and excess characters were simply ignored. But under Unix file names have no real limitations,\footnote{To be precise, Unix allows 255 characters for the filename and 4096 characters for the path.} and having all these 50 character-long filenames, mostly composed by blank characters, was ugly and complicated file management, in particular when using the command line interface.
+The solution was simple, as Fortran now has the \textsf{TRIM} function that removes all trailing blanks from a string. 
+Whenever a file is opened for reading or for writing, \textsf{TRIM()} is applied on-the-fly to the \textsf{filename} variable,
+
+%===============================================================================
+\begin{lstlisting}
+	OPEN (UNIT = 10, FILE = TRIM(filename)//'.dat', STATUS = 'OLD')
+\end{lstlisting}
+%===============================================================================
+
+thus removing all extra blanks from the name of the file.
+
+
+
+\subsection{Edit descriptors}
+
+Microsoft Fortran 5.1 used the non-standard backslash (textsf{\textbackslash{}}) edit descriptor to prevent the addition of a line break at the end of a \textsf{WRITE} instruction.
+%\footnote{http://userweb.eng.gla.ac.uk/peter.smart/com/981124.htm}
+Modern Fortran compilers do not support this edit descriptor and return an error. This problem is avoided by removing the backslash edit descriptor from all \textsf{WRITE} instructions that include it.
+
+
+
+\subsection{Date and time}
+
+Microsoft Fortran 5.1 had two separate intrinsic subroutines to return the current date and time.
+In particular, \lstinline[columns=fixed]{CALL GETDAT(iyr, imon, iday)}, saved the date in the two-byte integer variables \textsf{iyr}, \textsf{imon} and \textsf{iday}, while \lstinline[columns=fixed]{CALL GETTIM(ihr, imin, imin, i100th)} did the same for the current time, saving the return values in the integer variables \textsf{ihr}, \textsf{imin}, \textsf{imin} and \textsf{i100th}. The meaning of each returned variable should be self-explanatory.
+
+Modern Fortran supports the single subroutine \lstinline[columns=fixed]{CALL DATE_AND_TIME(DATE, TIME, ZONE, VALUES)}, where all arguments are optional and can be specified by their dummy names (i.e., how Fortran calls the keyword arguments of a function call). 
+In particular, \textsf{DATE}, \textsf{TIME} and \textsf{ZONE} are character variables, while \textsf{VALUES} is a one-dimensional array of 8 integers, where \textsf{VALUES(1:3)} corresponds to the year, month and day of the month, \textsf{VALUES(4)} is the time difference (in minutes) with UTC, and \textsf{VALUES(5:8)} are the hour, minute, second and milliseconds, respectively.
+
+To minimize changes to the original source code, the original calls to the \lstinline[columns=fixed]{GETDAT} and \lstinline[columns=fixed]{GETTIM} subroutines, were translated to a single call to \lstinline[columns=fixed]{DATE_AND_TIME}, assigning the elements of the returned array of \textsf{VALUES} to integer variables named as in the original code (Fig.~\ref{fig:date-time}).
+
+
+%%===============================================================================
+%\begin{lstlisting}
+%	INTEGER*2      iyr, imon, iday
+%	INTEGER*2      ihr, imin, isec, dummy
+%	...
+%	CALL GETDAT(iyr, imon, iday)
+%	CALL GETTIM(ihr, imin, isec, dummy)
+%\end{lstlisting}
+%%===============================================================================
+
+
+%%===============================================================================
+%\begin{lstlisting}
+%	character*8    date
+%	character*10   time
+%	character*5    zone
+%	integer        values(8)
+%	...
+%	call date_and_time(date, time, zone, values)
+%
+%	iyr  = values(1)
+%	imon = values(2)
+%	iday = values(3)
+%	ihr  = values(5)
+%	imin = values(6)
+%	isec = values(7)
+%\end{lstlisting}
+%%===============================================================================
+
+
+
+\subsection{Compilation with gfortran}
+\label{compilation-with-gfortran}
+
+%All these fixes were enough to compile correctly \textsf{mcphase.for} with gfortran.
+%As for \textsf{mcp-work.for}, basically it required the same corrections, with one rather strange addition.
+
+As noted above, \textsf{mcp-work.for} calculates the $I - V$ characteristics of the simulated junction for several different values of $\alpha_\mathrm{rf}$, producing one output file for each $I - V$ curve. The section of the code that defined the names of the output files was quite convoluted,
 
 %===============================================================================
 \lstset{
@@ -290,118 +381,49 @@ Ancient Fortran compilers such as Microsoft Fortran 5.1 did not support dynamic 
     framesep = 2em,
     framexleftmargin = 1em,
     backgroundcolor = \color{ultralightgray},
+	keywordstyle = \color{darkred}\bfseries,
+	morekeywords = {},
+	deletekeywords = {file name}
 }
 %===============================================================================
 \begin{lstlisting}
-	CHARACTER*50   filename
-\end{lstlisting}
-%===============================================================================
-
-
-attaching a proper extension to differentiate between the input files containing the simulation parameters and the output file with the results of the calculations.
-
-Under DOS that was not a problem, as DOS truncates file names to only 8 characters, plus 3 characters for the extension, and all excess characters were simply ignored. But under Unix file names have no real limitations,\footnote{To be precise, Unix allows 255 characters for the filename and 4096 characters for the path.} and having these 50 character-long filenames, mostly composed by blank characters, was ugly and complicated file management, in particular when using the command line interface.
-The solution is simple, as Fortran now has the \textsf{TRIM} function that removes all trailing blanks from a string. Whenever a file is opened for reading or for writing, it is sufficient to apply on-the-fly \textsf{TRIM()} to the \textsf{filename} variable, as shown here,
-
-%===============================================================================
-\begin{lstlisting}
-	OPEN (UNIT = 10, FILE = TRIM(filename)//'.dat', STATUS = 'OLD')
-\end{lstlisting}
-%===============================================================================
-
-to remove all extra blanks from the name of the file.
-
-
-
-\subsection{Edit descriptors}
-
-Microsoft Fortran 5.1 used the backslash \textbackslash{} edit descriptor to prevent the addition of a line break at the end of a \textsf{WRITE} instruction.
-%\footnote{http://userweb.eng.gla.ac.uk/peter.smart/com/981124.htm}
-Modern Fortran compilers do not support this non-standard edit descriptor and return an error. To avoid this problem, it is sufficient to remove the backslash edit descriptor from all \textsf{WRITE} instructions that include it.
-
-
-\subsection{Date and time}
-
-Microsoft Fortran 5.1 had two separate intrinsic subroutines to return the current date and time.
-In particular, \lstinline[columns=fixed]{CALL GETDAT(iyr, imon, iday)}, saved the date in the two-byte integer variables \textsf{iyr}, \textsf{imon} and \textsf{iday}, while \lstinline[columns=fixed]{CALL GETTIM(ihr, imin, imin, i100th)} did the same for the current time, saving the return values in the integer variables \textsf{ihr}, \textsf{imin}, \textsf{imin} and \textsf{i100th}. The meaning of each returned variable should be self-explanatory.
-
-Modern Fortran supports the single subroutine \lstinline[columns=fixed]{CALL DATE_AND_TIME([DATE], [TIME], [ZONE], [VALUES]])}, where all arguments are optional and can be specified by their dummy names (i.e., how Fortran calls the keyword arguments of a function call). 
-In particular, \textsf{DATE}, \textsf{TIME} and \textsf{ZONE} are character variables, while \textsf{VALUES} is a one-dimensional array of 8 integers, where \textsf{VALUES(1:3)} corresponds to the year, month and day of the month, \textsf{VALUES(4)} is the time difference (in minutes) with UTC, and \textsf{VALUES(5:8)} are the hour, minute, second and milliseconds, respectively.
-
-To minimize changes to the original source code, the original calls to the \lstinline[columns=fixed]{GETDAT} and \lstinline[columns=fixed]{GETTIM} subroutines,
-
-%===============================================================================
-\begin{lstlisting}
-	INTEGER*2      iyr, imon, iday
-	INTEGER*2      ihr, imin, isec, dummy
-	...
-	CALL GETDAT(iyr, imon, iday)
-	CALL GETTIM(ihr, imin, isec, dummy)
-\end{lstlisting}
-%===============================================================================
-
-were translated to a single call to \lstinline[columns=fixed]{DATE_AND_TIME}, assigning the elements of the returned array of \textsf{VALUES} to the integer variables of the original code,
-
-%===============================================================================
-\begin{lstlisting}
-	character*8    date
-	character*10   time
-	character*5    zone
-	integer        values(8)
-	...
-	call date_and_time(date, time, zone, values)
-
-	iyr  = values(1)
-	imon = values(2)
-	iday = values(3)
-	ihr  = values(5)
-	imin = values(6)
-	isec = values(7)
-\end{lstlisting}
-%===============================================================================
-
-
-
-\subsection{Compilation with gfortran}
-\label{compilation-with-gfortran}
-
-All these fixes were enough to compile correctly \textsf{mcphase.for} with gfortran.
-As for \textsf{mcp-work.for}, basically it required the same corrections, with one rather strange addition.
-
-As noted above, \textsf{mcp-work.for} calculates the $I - V$ characteristics of the simulated junction for several different values of $\alpha_\mathrm{rf}$, producing one output file for each $I - V$ curve. The code to define the output file names was very convoluted,
-
-%===============================================================================
-\begin{lstlisting}
-c --- do calculations, by varing alpha_rf values
-	il=0
-	DO alpha_rf=0.0, 50.0, 0.5
-	...
+      il=0
+      DO alpha_rf=0.0, 50.0, 0.5
+      ...
 c ------ define output file name(s)
          il=il+1
-         il2=Int(il/100)
-         il1=int(il/10)-il2*10
+         il2=INT(il/100)
+         il1=INT(il/10)-il2*10
          il0=il-il1*10-il2*100
-         filewrite='PU'//CHAR(il2+47)//char(il1+47)//char(il0+47)
-	...
-	END DO        ! repeat alpha_rf DO cycle
+         filewrite='PU'//CHAR(il2+47)//CHAR(il1+47)//CHAR(il0+47)
+      ...
+      END DO        ! repeat alpha_rf DO cycle
 
 \end{lstlisting}
 %===============================================================================
 
 and used the integer variable \textsf{il} to count the cycle number, while the three integers \textsf{il2}, \textsf{il1} and \textsf{il0} contained the hundreds, tens and units digits of \textsf{il}, respectively. 
-These integers are converted to the corresponding \textsf{ASCII} characters with the function \textsf{CHAR}, where \textsf{ASCII} code 48 corresponds to the \textsf{0} symbol and \textsf{ASCII} code 57 corresponds to \textsf{9}.
-The name of the output file \textsf{filewrite} was built by concatenating a trailing constant string to the three \textsf{ASCII} characters, with the \textsf(//) operator.
+The \textsf{CHAR} function converts these integers to the corresponding \textsf{ASCII} characters, where \textsf{ASCII} code 48 corresponds to the \textsf{0} symbol and \textsf{ASCII} code 57 corresponds to \textsf{9}.
+The name of the output file defined in the variable \textsf{filewrite} was built by concatenating with the \textsf(//) operator a trailing constant string to the three \textsf{ASCII} characters (\textsf{'PU'} in the example above).
 
-I have no idea why I decided to build the name the output files in such a complex way, while it would have been much easier to use the value of $\alpha_\mathrm{rf}$ to name each output file.
-In any case, it did not work under gfortran, preventing proper compilation of the code. 
+I have no idea why I decided to build the name the output files in such a complex way, while it would have been much simpler to use the value of $\alpha_\mathrm{rf}$ to name each output file.
+In any case, it did not work under gfortran and prevented proper compilation of the code. 
 
-After some inspection and testing, it was apparent that the source of the problem lied in the number \textsf{47} added to three integer variables before converting them to \textsf{ASCII} characters, that should be replaced by \textsf{48}, so that the line defining the \textsf{filewrite} variable becomes \lstinline[columns=fixed]{filewrite='PU'//CHAR(il2+48)//char(il1+48)//char(il0+48)}.
+After some inspection and testing, it was apparent that the source of the problem lied in the number \textsf{47} added to three integer variables before converting them to \textsf{ASCII} characters, that should be replaced by \textsf{48}. 
+The line defining the \textsf{filewrite} variable thus becomes, %\lstinline[columns=fixed]{filewrite='PU'//CHAR(il2+48)//char(il1+48)//char(il0+48)}.
 
-%%===============================================================================
-%\begin{lstlisting}
-%         filewrite='PU'//CHAR(il2+48)//char(il1+48)//char(il0+48)
-%\end{lstlisting}
-%%===============================================================================
+%===============================================================================
+\begin{lstlisting}
+      ...
+      DO alpha_rf=0.0, 50.0, 0.5
+      ...
+c ------ define output file name(s)
+         ...
+         filewrite='PU'//CHAR(il2+48)//CHAR(il1+48)//CHAR(il0+48)
+      ...
+      END DO        ! repeat alpha_rf DO cycle
+\end{lstlisting}
+%===============================================================================
 
 With this change \textsf{mcp-work.for} could compile flawlessly under gfortran.
 What is really puzzling is how the original line could work in Microsoft Fortran 5.1.
