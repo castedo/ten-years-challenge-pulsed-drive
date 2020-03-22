@@ -3,6 +3,29 @@
 \begin{supplement}
 
 
+
+\subsection{Digging into code}
+
+%===============================================================================
+\begin{figure}[h]
+	\centering
+	\includegraphics[width = 0.75 \textwidth]{meld-comparison.png}
+	\caption{Comparison with Meld of the main calculation loop of (left) \textsf{mcphase.for} and (right) \textsf{mcp-work.for}.}
+	\label{fig:meld-comparison}
+\end{figure}
+%===============================================================================
+
+%===============================================================================
+\begin{figure}[h]
+	\centering
+	\includegraphics[width = 0.75 \textwidth]{batch-file.png}
+	\caption{DOS batch file used by \textsf{mcphase.for} to run multiple simulations with different values of the amplitude of the microwave signal $\alpha_\mathrm{rf}$.}
+	\label{fig:batch-file}
+\end{figure}
+%===============================================================================
+
+
+\clearpage
 \subsection{Preprocessor directives}
 
 %===============================================================================
@@ -22,7 +45,7 @@
 \begin{figure}[h]
 \centering
 
-\begin{minipage}{0.48\textwidth}
+\begin{minipage}{0.75\textwidth}
 \textbf{(a)}
 \begin{lstlisting}
 $DEFINE textout			! DEFINEd for text output
@@ -49,7 +72,7 @@ $endif
 %
 \hfill
 %
-\begin{minipage}{0.48\textwidth}
+\begin{minipage}{0.75\textwidth}
 \textbf{(b)}
 \begin{lstlisting}
 CC $DEFINE textout		! DEFINEd for text output

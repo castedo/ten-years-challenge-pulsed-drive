@@ -83,9 +83,9 @@ Each night I changed the values of $\beta$ or $\Omega$, to study the effect of t
 Again, the real problem was how to analyze all this data. A manual analysis like that needed with the electronic simulator was out of consideration. 
 I decided to try the recently released Microsoft Visual Basic 1.0 for Windows, writing another program that calculated the size of all the rf-induced steps visible on the $I-V$ characteristics of the nightly simulations, as a function of $\alpha_\mathrm{rf}$.
 %Everything worked flawlessly.
-
 %Now I could transfer by FTP the files containing the nightly results from the DEC workstations to my desktop computer and 
 Running the Visual Basic program on each set of data files produced a summary file that contained the size of the calculated current steps.
+
 The results of months of calculations were summarized in a paper published in the Journal of Applied Physics \cite{Maggi:1996}.
 
 
@@ -93,22 +93,25 @@ The results of months of calculations were summarized in a paper published in th
 \section{Digging into code} \label{sec:digging-into-code}
 
 %Finding the original sources of this project was easy and complex at the same time.
-I am the type of person who likes organisation, and I try keep all my past projects on my main workstation. 
-Thus, finding the original source files of this project was only a question of locating the directory where the project was stored.
+I like organisation, and I try keep all my past projects on my main workstation. 
+Thus, finding the original source and data files of this project was only a question of locating the directory where the project was stored.
 Problems started to arise when I looked at the different files. The whole project was scattered into several directories, each containing many files with widely different names and dates. At first, trying to find an order in that chaos seemed impossible.
-Normally I would have found many notebooks full of detailed handwritten notes.
+
+Normally I would have found all information needed in many notebooks full of detailed handwritten notes.
 % Normally it would have been only a question of recovering all needed information from my handwritten notebooks for this project
-Regrettably, a couple of years ago most of my work notebooks were damaged by a water leak in the basement, and could not be recovered. 
-So the only option was to check the files one by one. Luckily modern operating system greatly ease the burden of dealing with data files; in particular, Quick Look for macOS is an exceptional tool to quickly browse through hundreds of files at the touch of the spacebar.
+Unfortunately, a couple of years ago most of my work notebooks were damaged by a water leak in the basement, and could not be recovered. So the only option left was to check the files one by one. 
+It is a great luck that modern operating system greatly ease the burden of dealing with data files; macOS in particular offers Quick Look, an exceptional tool to quickly browse through hundreds of files at the touch of the spacebar.
 
 %%some with  misleading names such as \textsf{old} or \textsf{obsolete}, which one was older? (turns out that \textsf{obsolete} is \emph{older} that \textsf{old}).
 
-After a thorough inspection of the whole project I recalled that: 
-(1) my first attempts with the numerical simulations used the more accurate McDonald-Johnson junction model \cite{McDonald:1976}, and that I later switched to the simplified Stewart-McCumber RSJ model because it was much faster and efficient in calculating the junction behavior \cite{McCumber:1968, Stewart:1974}; 
-(2) file names tried to reflect what the programs actually did:\footnote{at least within the limits of DOS 8+3 naming scheme, only 8 characters for the file name and 3 characters for the extension.} 
-I could have in the same directory a file ending with a "t" that provided a textual output and the same files ending with a "g" that gave a graphical output. Having many files differing only for a couple of \textsf{DEFINES}s might seem senseless today, when comfortable graphical interfaces and ultra-fast text editors with support of regular expressions allow to change a file in just a few seconds, but at that time it was probably the fastest, albeit very inefficient, way of working with source code;
-(3) luckily, all source files had an header containing detailed notes about the type of program, the compiler, the type of output, and what probably mattered more, the dates of first and last revision of the source file (Fig.~\ref{fig:source-header}), and that eased much the analysis of the different versions of the Fortran source files; 
-(4) the initial versions of the Fortran programs were monolithic, a single source file contained the whole code, that consisted of around 1.000 lines of Fortran. Only at a later time, better computing practices led me to divide the monolithic code into multiple source files that were compiled and linked together using a \textsf{Makefile}.
+After a thorough inspection of the whole project I recalled that:
+(1) my first attempts with the numerical simulations tried to use the more accurate McDonald-Johnson junction model \cite{McDonald:1976}, I later switched to the simplified Stewart-McCumber RSJ model because it was much faster and efficient in calculating the junction behavior \cite{McCumber:1968, Stewart:1974};
+(2) file names attempted to reflect what the programs actually did:\footnote{At least within the limits of DOS 8+3 naming scheme, only 8 characters for the file name and 3 characters for the extension.} 
+in the same directory I could have a file ending with a "t" that provided a textual output and another file ending with a "g" that gave a graphical output.
+These files differed only for a couple of \textsf{DEFINES}s, that instructed the compiler to choose the sections of the code that provided the textual or graphical output interface.
+This multiplication of source files might seem senseless today, when comfortable graphical interfaces, ultra-fast text editors with support of regular expressions and version control tools allow to change a file in just a few seconds, but at that time it was probably the fastest, albeit very inefficient, way of working with source code;
+(3) the header of all source files contained detailed notes about the type of program, the compiler, the type of output, and what probably mattered more, the dates of first and last revision of the source file, easying much the analysis of the different versions of the Fortran programs (Fig.~\ref{fig:source-header}); 
+(4) the initial versions of the Fortran programs were monolithic, a single source file contained the whole code, consisting in about 1.000 lines of Fortran. Only at a later time, better computing practices led me to divide the monolithic code into multiple source files, compiled and linked together with a \textsf{Makefile}.
 %(I will not delve into it here, as it a different paper).
 
 %===============================================================================
@@ -121,42 +124,42 @@ I could have in the same directory a file ending with a "t" that provided a text
 %===============================================================================
 
 
-An invaluable tool to analyze the different versions of the source files was \href{http://meldmerge.org/}{Meld}, an open source tool for all major operating systems that can perform a two- and even a three-way comparison of files and directories.
+Another invaluable tool to analyze the different versions of the source files was \href{http://meldmerge.org/}{Meld}, an open source application available for all major operating systems that can perform a two- and even a three-way comparison of files and directories.
 Using Meld I quickly realized that the two main source files were \textsf{mcphase.for} and \textsf{mcp-work.for}, both located in the \textsf{mccumber/} directory  (Fig.~\ref{fig:meld-comparison}).
 
-%===============================================================================
-\begin{figure}[bt]
-	\centering
-	\includegraphics[width=0.75\textwidth]{meld-comparison.png}
-	\caption{Comparison of the main loop of \textsf{mcphase.for} and \textsf{mcp-work.for} with Meld.}
-	\label{fig:meld-comparison}
-\end{figure}
-%===============================================================================
+%%===============================================================================
+%\begin{figure}[bt]
+%	\centering
+%	\includegraphics[width = 0.75 \textwidth]{meld-comparison.png}
+%	\caption{Comparison with Meld of the main calculation loop of \textsf{mcphase.for} and \textsf{mcp-work.for}.}
+%	\label{fig:meld-comparison}
+%\end{figure}
+%%===============================================================================
 
 
-The first program, \textsf{mcphase}, simulated the behavior of the junction for a single value of $\alpha_\mathrm{rf}$ read from the input configuration file \textsf{iv.dat}, saving the $I - V$ characteristic of the junction and its phase portrait (i.e., the relation between the phase and its time derivative, the latter being proportional to the junction voltage $V$) in the output file \textsf{iv.out}.
+The first program, \textsf{mcphase.for}, simulated the behavior of the junction for a single value of $\alpha_\mathrm{rf}$, read from the input configuration file \textsf{iv.dat}, and saved the $I - V$ characteristic of the junction and its phase portrait (i.e., the relation between the phase and its time derivative, the latter being proportional to the junction voltage $V$) in the output file \textsf{iv.out}.
 
-Multiple calculations with several different value of $\alpha_\mathrm{rf}$ could be performed by using a simple DOS batch file that basically choose one by one the configuration files containing the desired values of $\alpha_\mathrm{rf}$, renamed them to \textsf{iv.dat}, run \textsf{mcphase} and at the end renamed \textsf{iv.out} using a consistent naming scheme.
+Multiple calculations with several different value of $\alpha_\mathrm{rf}$ could be performed by using a  DOS batch file that basically choose one by one the configuration files containing the desired values of $\alpha_\mathrm{rf}$, renamed them to \textsf{iv.dat}, run \textsf{mcphase} and at the end renamed the file containing the results, \textsf{iv.out}, using a consistent naming scheme.
 %for each value of $\alpha_\mathrm{rf}$, copied a \textsf{.dat} input file containing the proper set of simulation parameters into a file with a standard name, \textsf{iv.dat}, run the simulation and at the end renamed the output file containing the results of the simulation, \textsf{iv.out} so that it has the same basename of the original \textsf{.dat} input file.
-I don't recall why I choose this approach, but it was clearly very inefficient and error prone, as it required to prepare each day a long series of configuration files that differed only by the value of $\alpha_\mathrm{rf}$, and to update accordingly the DOS batch file that controlled the night calculations (Fig.~\ref{fig:batch-file}.
+I don't recall why I choose this approach, but it was clearly very inefficient, as it required to prepare each day a long series of configuration files that differed only by the value of $\alpha_\mathrm{rf}$, and to update accordingly the DOS batch file that controlled the night calculations (Fig.~\ref{fig:batch-file}).
 
-%===============================================================================
-\begin{figure}[tbh]
-	\centering
-	\includegraphics[width=0.75\textwidth]{batch-file.png}
-	\caption{DOS batch file used by \textsf{mcphase.for} to perform multiple simulations with different values of $\alpha_\mathrm{rf}$.}
-	\label{fig:batch-file}
-\end{figure}
-%===============================================================================
+%%===============================================================================
+%\begin{figure}[tbh]
+%	\centering
+%	\includegraphics[width = 0.75 \textwidth]{batch-file.png}
+%	\caption{DOS batch file used by \textsf{mcphase.for} to perform multiple simulations with different values of $\alpha_\mathrm{rf}$.}
+%	\label{fig:batch-file}
+%\end{figure}
+%%===============================================================================
 
 
-The second program, \textsf{mcp-work.for} was an improved version that could automatically cycle across a  set of values of $\alpha_\mathrm{rf}$, producing a different output file for each value of $\alpha_\mathrm{rf}$. However, to simplify further automatic analysis, it left out the phase portrait [++ MIGLIORARE/TOGLIERE ++]
+The second program, \textsf{mcp-work.for} was an improved version that could cycle across a  set of several values of $\alpha_\mathrm{rf}$, producing a different output file for each value of $\alpha_\mathrm{rf}$. To simplify the later automatic analysis, it left out the phase portrait.
 
-It was clear that this was the program ported to the DEC workstations. 
-Unfortunately, I could not find the actual source file used on these machine, probably because while performing the porting from DOS/Microsoft Fortran 5.1 to ULTRIX I worked directly on the workstations and never thought to copy back these source files since they could not work on my PCs.
-Luckily, Fortran is a very stable language and porting again both \textsf{mcphase.for} and \textsf{mcp-work.for} so that they could work on a modern machine was a snap.
+Clearly this was the program ported to the DEC workstations. 
+Unfortunately, I could not find the actual source file used on these machines, probably because I worked directly on the workstations and never thought to copy back these files to my PCs.
+Luckily, Fortran is a very stable language and making \textsf{mcp-work.for} work on a modern machine was very easy.
 
-As for the Microsoft Visual Basic 1.0 code, there were only two versions of the Visual Basic analysis programs and the differences between them were minimal. Since both programs gave exactly the same results, I decided to stick with the initial version that had a working (precompiled) binary.
+As for the Microsoft Visual Basic 1.0 code, I found only two versions of the programs and the differences between them were minimal. Since both programs gave exactly the same results, I decided to stick with the version that had a still working pre-compiled binary.
 
 
 
