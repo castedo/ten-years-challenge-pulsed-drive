@@ -726,9 +726,19 @@ The three simulations with the pulsed drive were done using:
 The resulting output and summary files were saved in separate folders in the \textsf{2020runs/} directory, named \textsf{SINGLE/}, \textsf{PULS0250}, \textsf{PULS125}, \textsf{PULS0050} after their DOS counterparts.
 
 To reproduce the first and second figure of \cite{Maggi:1996} I made the only concession to modernity. instead of trying to recreate them with the plotting program used originally, probably \href{https://www.originlab.com}{Origin 2.0}, I decided to write a couple of small R scripts that could automate the task.
-The results are shown in Fig.~\ref{fig:step-width} and Fig.~\ref{fig:pulsed-ivs} and, as expected, are identical to those reported in the first two figures of \cite{Maggi:1996}. 
+The results are shown in Fig.~\ref{fig:pulsed-ivs} and Fig.~\ref{fig:step-width} and, as expected, are identical to those reported in the first two figures of \cite{Maggi:1996}. 
 Figure 3 of the original paper could be easily reproduced by plotting the maxima of the curves of Fig.~\ref{fig:step-width}, i.e., $\Delta i_n$ vs. $\alpha_\mathrm{rf}$, for the four different cases considered here.
 Note that the large vertical steps on the rightmost curves of Fig.~\ref{fig:pulsed-ivs} era the first rf-induced steps, that can be nearly as large as the critical current $I_C$ without rf bias visible in the first plot on the left.
+
+%===============================================================================
+\begin{figure}[t]
+	\centering
+	\includegraphics[width = 0.75 \textwidth]{PULS0050-IV.pdf}
+	\caption{$I - V$ curves of a junction with $\beta = 0.01$ for several values of the rf bias. The junction is  irradiated by a train of rf pulses of repetition frequency $\Omega = 0.45$ and pulse duration $\rho = 0.05$. Each curve has been offset horizontally by $4 \Omega$. The vertical dotted lines mark the position of the zero-voltage axis for the $I - V$ curve located immediately to the right.}
+	\label{fig:pulsed-ivs}
+\end{figure}
+%===============================================================================
+
 
 %%===============================================================================
 %\begin{figure}[h]
@@ -749,7 +759,7 @@ Note that the large vertical steps on the rightmost curves of Fig.~\ref{fig:puls
 %\end{figure}
 %%===============================================================================
 %===============================================================================
-\begin{figure}[p]
+\begin{figure}[!p]
 	\centering
 	\includegraphics[width=0.45\textwidth]{SINGLE2.pdf}
 	\includegraphics[width=0.45\textwidth]{PULS0250.pdf}
@@ -761,19 +771,7 @@ Note that the large vertical steps on the rightmost curves of Fig.~\ref{fig:puls
 %===============================================================================
 
 %===============================================================================
-\begin{figure}[tb]
-	\centering
-	\includegraphics[width=0.5\textwidth]{PULS0050-IV.pdf}
-	\caption{$I - V$ curves of a junction with $\beta = 0.01$ for several values of the rf bias. The junction is  irradiated by a train of rf pulses of repetition frequency $\Omega = 0.45$ and pulse duration $\rho = 0.05$. Each curve has been offset horizontally by $4 \Omega$. The vertical dotted lines mark the position of the zero-voltage axis for the $I - V$ curve located immediately to the right.}
-	\label{fig:pulsed-ivs}
-\end{figure}
-%===============================================================================
-
-
-Similar considerations can be made for the reproduction of Figure 4 of the original paper, which considers a slightly hysteretic junction with $\beta = 1.0$. In the spirit of this challenge I have chosen to show instead [++ the $I - V$ curves of the simulated junction with $\beta = 1.0$ and ++] the related $\Delta i_n$ vs. $\alpha_\mathrm{rf}$ curves for the two most significant cases of rf bias, i.e., the sinusoidal drive and the pulsed drive with $\rho = 0.050$ (Fig.~\ref{fig:step-width-beta1}).
-
-%===============================================================================
-\begin{figure}[p]
+\begin{figure}[t]
 	\centering
 	\includegraphics[width=0.45\textwidth]{SINGLE-BETA1.pdf}
 	\includegraphics[width=0.45\textwidth]{PULS0050-BETA1.pdf}
@@ -781,6 +779,8 @@ Similar considerations can be made for the reproduction of Figure 4 of the origi
 	\label{fig:step-width-beta1}
 \end{figure}
 %===============================================================================
+
+Similar considerations can be made for the reproduction of Figure 4 of the original paper, which considers a slightly hysteretic junction with $\beta = 1.0$. In the spirit of this challenge I have chosen to show instead [++ the $I - V$ curves of the simulated junction with $\beta = 1.0$ and ++] the related $\Delta i_n$ vs. $\alpha_\mathrm{rf}$ curves for the two most significant cases of rf bias, i.e., the sinusoidal drive and the pulsed drive with $\rho = 0.050$ (Fig.~\ref{fig:step-width-beta1}).
 
 
 
@@ -810,7 +810,7 @@ But on the other hand, a development environment that changes too much and too o
 
 \section{Conclusions}
 
-Going back to this old paper has been an exceptionally interesting and instructive experience and I thank the organizers of this challenge for the opportunity offered.
+Going back to my old paper has been an exceptionally interesting and instructive experience and I thank the organizers of this challenge for the opportunity offered.
 
 However this is not only a nostalgic attitude. The reproducibility crisis is a serious issue today \cite{Miyakawa:2020}, that undermines scientific credibility and impacts the public's trust in science, paving the way to all sorts of fake and unscientific beliefs.
 Being able to go back and reproduce what has been done in the past could ease the retraction of published papers containing fabricated, falsified, or modified data or results and could contribute to an easier identification of future frauds.

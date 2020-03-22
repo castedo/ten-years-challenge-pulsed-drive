@@ -6,7 +6,7 @@
 %\renewcommand{\baselinestretch}{2.0}
 
 \graphicspath{{./figures/}}
-\floatplacement{figure}{tbh}
+\floatplacement{figure}{h}
 
 %%\usepackage{framed}
 %%\usepackage{multicol}
@@ -24,12 +24,14 @@
 %     \renewcommand{\thefigure}{S\arabic{figure}}
 
 \newenvironment{supplement}{
+    \setcounter{section}{0}
+    \renewcommand{\thesection}{S\arabic{section}}
+    \renewcommand{\thesubsection}{S\arabic{section}.\arabic{subsection}} 
     \setcounter{table}{0}
     \renewcommand{\thetable}{S\arabic{table}}
     \setcounter{figure}{0}
     \renewcommand{\thefigure}{S\arabic{figure}}
 }
-
 %--- End SM additions ---
  
 \begin{document}
@@ -44,11 +46,6 @@
 
 %--- SM additions ---
 \clearpage
-
-\setcounter{section}{0}
-\renewcommand{\thesection}{S\arabic{section}}
-\renewcommand{\thesubsection}{S\arabic{section}.\arabic{subsection}} 
-
 \input{supplementary.tex}
 %--- End SM additions ---
 
