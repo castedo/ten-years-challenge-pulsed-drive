@@ -73,7 +73,7 @@ If I could manage to finish my runs before the start of the new work day, I was 
 The colleague gave me a quick crash course on Unix and I was ready to go.
 %\footnote{I should still have my notes somewhere.}
 
-Porting my Fortran program from Microsoft Fortran 5.1 to ULTRIX was a snap, and I quickly learnt how to use FTP to transfer the input configuration files and the output data files containing the results of the simulation back and forth from the DEC workstations to my Compaq 386 notebook, that was also my desktop computer.
+Porting my Fortran program from Microsoft Fortran 5.1 to ULTRIX was a breeze, and I quickly learnt how to use FTP to transfer the input configuration files and the output data files containing the results of the simulation back and forth from the DEC workstations to my Compaq 386 notebook, that was also my desktop computer.
 %\footnote{I was one of the \emph{happy few} to have a personal computer sitting on my own desk.}
 
 Now each day I had four different sets of data files coming from the DEC workstations. Three of them were obtained by irradiating the junction with a pulsed drive with decreasing values of $\rho$, while keeping constant $\beta$ and $\Omega$.
@@ -434,25 +434,28 @@ What is really puzzling is how the original line could work in Microsoft Fortran
 \section{Visual Basic code}
 \label{visual-basic-code}
 
-No attempt was made to make the original Visual Basic 1.0 code run a modern computer. Visual Basic is a dead language and long since has been replaced by Visual Basic .NET, which shares only the name with its forefather. The only viable option from the beginning was to use an emulator to rebuild the original development environment.
+No attempt was made to make the original Visual Basic 1.0 code run a modern computer. Visual Basic is a dead language and long since has been replaced by Visual Basic .NET, which shares only the name with its forefather. From the beginning, the only viable option to run a Visual Basic 1.0 program today was to rebuild the original development environment in an emulator.
 
-For this task I preferred to use \href{https://www.parallels.com/}{Parallels Desktop}, but the open source multi-platform \href{https://www.virtualbox.org/}{VirtualBox emulator} can be used equally well.
+I preferred to use the \href{https://www.parallels.com/}{Parallels Desktop} emulator for macOS, but the open source multiplatform \href{https://www.virtualbox.org/}{VirtualBox emulator} should work equally well.
 
 I created a new empty virtual machine with minimal \emph{hardware} requirements and installed in sequence DOS 6.22, Windows 3.11 and Visual Basic 1.0 (Fig.~\ref{fig:windows-311}).
-While I was at it, and although I had already solved the Fortran part of the project, I also decided to install Microsoft Fortran 5.1 for DOS, to try to reproduce as much as possible the original work environment.
+[++ While I was at it, and although I had already reproduced the Fortran part of the project, I also decided to install Microsoft Fortran 5.1 for DOS, to try to recreate as much as possible the original work environment. ++]
 
 All software packages were downloaded from the \href{https://winworldpc.com}{WinWorld web site}, an invaluable resource for recovering old software packages. 
-The legitimacy of installing proprietary software in an emulator, even after so many years, might be questionable. But at the time I had regular licenses for all the above mentioned software and I believe to be at least morally authorized to continue to use those packages.
+Even after so many years, the legitimacy of installing proprietary software in an emulator, might be questionable. But at the time I had regular licenses for all the above mentioned software and I guess to be at least morally authorized to continue to use those packages.
 
-The installation of these aging software packages in an emulator is very close to how it was done back then.
-The packages were originally distributed on several floppy disks, which had to be swapped whenever the installer required a new disk. Today, the floppy disks are replaced by virtual file images and "swapping" disks is not done mechanically but requires to select a menu option in the emulator.
+The packages were originally distributed on several floppy disks, which had to be swapped whenever the installer required a new disk. 
+The installation of these software packages in an emulator is close to how it was done back then.
+The only difference is that today the floppy disks are replaced by virtual file images and "swapping" disks is not done mechanically but requires to select a menu option in the emulator.
 
-[++ DOPO? ++] The default screen resolution of Windows 3.11 when installed in the emulator was a mere $640  \times 480$ pixels,  woefully meager by today's standards.
-However, as I used the virtual environment almost exclusively to run the Visual Basic program, I didn't bother to install the drivers that could increase the screen resolution to a more comfortable $800 \times 600$ or $1024 \times 768$ pixel resolution (Fig.~\ref{fig:windows-311}). [++ DOPO? ++]
+At the end of the installation process, the Windows 3.11 appeared as in (Fig.~\ref{fig:windows-311}).
+%, in all its full $640 \times 480$ pixels glory.
+The default $640 \times 480$ pixel screen resolution of Windows 3.11 was woefully meager by today's standards.
+But, as I used the virtual environment almost exclusively to run the Visual Basic program, I didn't bother to install the drivers that could increase the screen resolution to a more comfortable $800 \times 600$ or $1024 \times 768$ pixel resolution.
 
 
 %===============================================================================
-\begin{figure}[tbh]
+\begin{figure}[t]
 	\centering
 	\includegraphics[width=0.75\textwidth]{windows-311.png}
 	\caption{The Windows 3.11 desktop as shown in the Parallels emulator.}
@@ -461,28 +464,28 @@ However, as I used the virtual environment almost exclusively to run the Visual 
 %===============================================================================
 
 
-%===============================================================================
-\lstset{
-    language = bash,
-    basicstyle = \small\bfseries\ttfamily,
-    tabsize = 4,
-    frame = none,
-    framesep = 2em,
-    framexleftmargin = 1em,
-    backgroundcolor = \color{ultralightgray},
-    keywordstyle = \color{darkred}\bfseries,
-%    morekeywords = {dd, if, of, bs, count},
-    morekeywords = {dd},
-    deletekeywords = {for}
-}
-%===============================================================================
 
 Using the emulator required to transfer the source and binary Visual Basic files to the emulated DOS/Windows system.
-I excluded the possibility of setting up Windows 3.11 networking in the emulator, in order to make Windows 3.11 communicate with the host OS through the network.
-It probably can be done, but it was much easier to transfer all needed files using again a virtual floppy disk, mounted alternatively (end exclusively) on macOS or on Windows 3.11.
+It is surely possible to make the emulated Windows 3.11 communicate with the host operating system through the network. But I found much easier to use again a virtual floppy disk to transfer all needed files from macOS to Windows 3.11 (and viceversa).
+%, mounted alternatively (end exclusively) on macOS or on Windows 3.11, 
 
-A new virtual floppy disk \textsf{data.img} can be easily created with the command-line utility \textsf{dd} available on macOS or Linux, \lstinline[columns=fixed]{dd if=/dev/zero of=data.img bs=1440k count=1}. After creation, the virtual floppy disk must be mounted in the emulator and formatted under DOS or Windows 3.11 in the original MS-DOS FAT file system.
+A new empty virtual floppy disk \textsf{data.img} can be easily created with the command-line utility \textsf{dd} available on macOS or Linux, 
+% \lstinline[columns=fixed]{dd if=/dev/zero of=data.img bs=1440k count=1}.
 
+%%===============================================================================
+%\lstset{
+%    language = bash,
+%    basicstyle = \small\bfseries\ttfamily,
+%    tabsize = 4,
+%    frame = none,
+%    framesep = 2em,
+%    framexleftmargin = 1em,
+%    backgroundcolor = \color{ultralightgray},
+%    keywordstyle = \color{darkred}\bfseries,
+%%    morekeywords = {dd, if, of, bs, count},
+%    morekeywords = {dd},
+%    deletekeywords = {for}
+%}
 %%===============================================================================
 %\begin{lstlisting}
 %dd if=/dev/zero of=data.img bs=1440k count=1
@@ -490,8 +493,10 @@ A new virtual floppy disk \textsf{data.img} can be easily created with the comma
 %%===============================================================================
 
 
-The same virtual floppy disk was used to copy the source code of \textsf{mcphase.for} and \textsf{mcp-work.for} and the \textsf{mc-iv.dat} configuration file to the virtual machine.
-[++, transferring them to the Microsoft Fortran 5.1 standard project directories.++]
+After creation, the virtual floppy disk must be mounted in the emulator and formatted under DOS or Windows 3.11 in the original MS-DOS FAT file system.
+
+[++ The same virtual floppy disk was used to copy the source code of \textsf{mcphase.for} and \textsf{mcp-work.for} and the \textsf{mc-iv.dat} configuration file to the virtual machine. ++]
+%[++, transferring them to the Microsoft Fortran 5.1 standard project directories.++]
 
 %[++ how did I find where these dirs were located??? ++]
 %
