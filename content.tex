@@ -24,7 +24,7 @@ Besides its practical applications, the Josephson junction is important from a p
 
 %% The Josephson voltage standard at the $1$ and $10$~V levels that were the state-of-the-art implementation at the time and were deployed only in very few labs wordwide, required a very careful engineering of the microwave distribution lines within the many arms in which the Josephson arrays were divided. 
 
-An important research topic at the beginning of the '90s was related to finding ways to increase the amplitude of the current steps induced by the microwave radiation (rf-induced steps). In fact, the stability of the lock between the phase of the junction and the applied microwave radiation -- and therefore its insensitivity to noise events which might switch the junction from one quantized voltage to another, a crucial problem for voltage standard applications -- is strongly dependent on the amplitude of the steps \cite{Kautz:1987}.
+An important research topic at the beginning of the '90s was related to finding ways to increase the amplitude of the current steps induced by the microwave radiation (rf-induced current steps). In fact, the stability of the lock between the phase of the junction and the applied microwave radiation -- and therefore its insensitivity to noise events which might switch the junction from one quantized voltage to another, a crucial problem for voltage standard applications -- is strongly dependent on the amplitude of the steps \cite{Kautz:1987}.
 
 To increase the amplitude of the current steps, a non-sinusoidal microwave radiation may be used.
 %when two phased microwaves of frequencies $f$ and $2 f$ are added together, the rf-induced current steps can have normalized amplitudes larger than those predicted for a standard sinusoidal radiation 
@@ -52,7 +52,7 @@ The analog simulator was fast and simple to use, and could produce in just a few
 \footnote{Unfortunately, after 25 years and two relocations, I could not manage to find photographs of the simulator nor the original HP 7475A plots.} 
 
 %The real problem with this approach was that, 
-However, even if the electronic simulation was extremely fast, the analysis of the results required to measure by hand the amplitude of the rf-induced steps visible on each $I-V$ characteristic, a tedious and error-prone task.
+However, even if the electronic simulation was extremely fast, the analysis of the results required to measure by hand the amplitude of the rf-induced current steps visible on each $I-V$ characteristic, a tedious and error-prone task.
 
 I then decided to develop a Fortran program to solve numerically the nonlinear second-order differential equation that models the Josephson junction \cite{McCumber:1968, Stewart:1974}. 
 The idea was to calculate the $I-V$ characteristics of the junction as a function of the amplitude of the microwave signal, $\alpha_\mathrm{rf}$, for a given set of parameters characterizing the junction and the microwave, considering the three different cases of standard sinusoidal drive, biharmonic drive and pulsed drive.
@@ -107,7 +107,7 @@ Unfortunately, a couple of years ago most of my work notebooks were damaged by a
 
 After a thorough inspection of the whole project I recalled that:
 (1) my first attempts with the numerical simulations tried to use the more accurate McDonald-Johnson junction model \cite{McDonald:1976}, I later switched to the simplified Stewart-McCumber RSJ model because it was much faster and efficient in calculating the junction behavior \cite{McCumber:1968, Stewart:1974};
-(2) file names attempted to reflect what the programs actually did, at least within the limits of DOS 8+3 naming scheme: in the same directory I could have a file ending with a "t" that provided a textual output and another file ending with a "g" that gave a graphical output, and they differed only for a couple of \texttt{DEFINES}s that controlled the conditional compilation of the proper sections of the source code.
+(2) file names attempted to reflect what the programs actually did, at least within the limits of DOS 8+3 naming scheme: in the same directory I could have a file ending with a ``'' that provided a textual output and another file ending with a ``g'' that gave a graphical output, and they differed only for a couple of \texttt{DEFINES}s that controlled the conditional compilation of the proper sections of the source code.
 %instructed the compiler to select the proper sections of code.
 
 This multiplication of files might seem senseless today, when comfortable graphical interfaces, ultra-fast text editors with support of regular expressions and version control tools allow to change a large set of files in just a few seconds, but at that time it was probably the fastest, albeit very inefficient, way of working with source code;
@@ -140,7 +140,7 @@ Using Meld I quickly realized that the two most interesting source files were \t
 
 The first program, \texttt{mcphase.for}, simulated the behavior of the junction for a single value of $\alpha_\mathrm{rf}$ read from the input configuration file \texttt{mc-iv.dat}, and saved the $I - V$ characteristic of the junction and its phase portrait (i.e., the relation between the phase and its time derivative, the latter being proportional to the junction voltage $V$) in the output file \texttt{mc-iv.out}.
 
-Multiple calculations with several different value of $\alpha_\mathrm{rf}$ were performed by using a  DOS batch file that basically choose one by one the configuration files containing the desired values of $\alpha_\mathrm{rf}$, renamed them to \texttt{iv.dat}, run the compiled binary \texttt{mcphase.exe} and at the end renamed the file containing the results, \texttt{mc-iv.out}, using a consistent naming scheme.
+Multiple calculations with several different value of $\alpha_\mathrm{rf}$ were performed by using a  DOS batch file that basically choose one by one the configuration files containing the desired values of $\alpha_\mathrm{rf}$, renamed them to \texttt{iv.dat}, run the compiled executable \texttt{mcphase.exe} and at the end renamed the file containing the results, \texttt{mc-iv.out}, using a consistent naming scheme.
 %for each value of $\alpha_\mathrm{rf}$, copied a \texttt{.dat} input file containing the proper set of simulation parameters into a file with a standard name, \texttt{iv.dat}, run the simulation and at the end renamed the output file containing the results of the simulation, \texttt{mc-iv.out} so that it has the same basename of the original \texttt{.dat} input file.
 I don't recall why I choose this approach, but it was clearly very inefficient, as it required to prepare each day a long series of configuration files that differed only by the value of $\alpha_\mathrm{rf}$, and to update accordingly the DOS batch file that controlled the night calculations (Fig.~\ref{fig:batch-file}).
 
@@ -438,21 +438,20 @@ No attempt was made to make the original Visual Basic 1.0 code run a modern comp
 
 I preferred to use the \href{https://www.parallels.com/}{Parallels Desktop} emulator for macOS, but the open source multiplatform \href{https://www.virtualbox.org/}{VirtualBox emulator} should work equally well.
 
-I created a new empty virtual machine with minimal \emph{hardware} requirements and installed in sequence DOS 6.22, Windows 3.11 and Visual Basic 1.0 (Fig.~\ref{fig:windows-311}).
-[++ While I was at it, and although I had already reproduced the Fortran part of the project, I also decided to install Microsoft Fortran 5.1 for DOS, to try to recreate as much as possible the original work environment. ++]
+I created a new empty virtual machine with minimal hardware requirements and installed in sequence DOS 6.22, Windows 3.11 and Visual Basic 1.0 (Fig.~\ref{fig:windows-311}).
+While I was at it, and although I had already reproduced the Fortran part of the project, I also decided to install Microsoft Fortran 5.1 for DOS, to try to recreate as much as possible the original work environment.
 
 All software packages were downloaded from the \href{https://winworldpc.com}{WinWorld web site}, an invaluable resource for recovering old software packages. 
 Even after so many years, the legitimacy of installing proprietary software in an emulator, might be questionable. But at the time I had regular licenses for all the above mentioned software and I guess to be at least morally authorized to continue to use those packages.
 
 The packages were originally distributed on several floppy disks, which had to be swapped whenever the installer required a new disk. 
 The installation of these software packages in an emulator is close to how it was done back then.
-The only difference is that today the floppy disks are replaced by virtual file images and "swapping" disks is not done mechanically but requires to select a menu option in the emulator.
+The only difference is that today the floppy disks are replaced by virtual file images and \emph{swapping} disks is not done mechanically but requires to select a menu option in the emulator.
 
-At the end of the installation process, the Windows 3.11 appeared as in (Fig.~\ref{fig:windows-311}).
+At the end of the installation process, the Windows 3.11 appeared as in Fig.~\ref{fig:windows-311}.
 %, in all its full $640 \times 480$ pixels glory.
 The default $640 \times 480$ pixel screen resolution of Windows 3.11 was woefully meager by today's standards.
 But, as I used the virtual environment almost exclusively to run the Visual Basic program, I didn't bother to install the drivers that could increase the screen resolution to a more comfortable $800 \times 600$ or $1024 \times 768$ pixel resolution.
-
 
 %===============================================================================
 \begin{figure}[t]
@@ -464,38 +463,36 @@ But, as I used the virtual environment almost exclusively to run the Visual Basi
 %===============================================================================
 
 
-
 Using the emulator required to transfer the source and binary Visual Basic files to the emulated DOS/Windows system.
 It is surely possible to make the emulated Windows 3.11 communicate with the host operating system through the network. But I found much easier to use again a virtual floppy disk to transfer all needed files from macOS to Windows 3.11 (and viceversa).
 %, mounted alternatively (end exclusively) on macOS or on Windows 3.11, 
 
-A new empty virtual floppy disk \texttt{data.img} can be easily created with the command-line utility \texttt{dd} available on macOS or Linux, 
-% \lstinline[columns=fixed]{dd if=/dev/zero of=data.img bs=1440k count=1}.
+A new empty virtual floppy disk \texttt{data.img} can be easily created with the command-line utility \texttt{dd} available on macOS or Linux
 
-%%===============================================================================
-%\lstset{
-%    language = bash,
-%    basicstyle = \small\bfseries\ttfamily,
-%    tabsize = 4,
-%    frame = none,
-%    framesep = 2em,
-%    framexleftmargin = 1em,
-%    backgroundcolor = \color{ultralightgray},
-%    keywordstyle = \color{darkred}\bfseries,
-%%    morekeywords = {dd, if, of, bs, count},
-%    morekeywords = {dd},
-%    deletekeywords = {for}
-%}
-%%===============================================================================
-%\begin{lstlisting}
-%dd if=/dev/zero of=data.img bs=1440k count=1
-%\end{lstlisting}
-%%===============================================================================
+%===============================================================================
+\lstset{
+    language = bash,
+    basicstyle = \small\bfseries\ttfamily,
+    tabsize = 4,
+    frame = none,
+    framesep = 2em,
+    framexleftmargin = 1em,
+    backgroundcolor = \color{ultralightgray},
+    keywordstyle = \color{darkred}\bfseries,
+%    morekeywords = {dd, if, of, bs, count},
+    morekeywords = {dd},
+    deletekeywords = {for}
+}
+%===============================================================================
+\begin{lstlisting}
+dd if=/dev/zero of=data.img bs=1440k count=1
+\end{lstlisting}
+%===============================================================================
 
 
 After creation, the virtual floppy disk must be mounted in the emulator and formatted under DOS or Windows 3.11 in the original MS-DOS FAT file system.
 
-[++ The same virtual floppy disk was used to copy the source code of \texttt{mcphase.for} and \texttt{mcp-work.for} and the \texttt{mc-iv.dat} configuration file to the virtual machine. ++]
+%[++ The same virtual floppy disk was used to copy the source code of \texttt{mcphase.for} and \texttt{mcp-work.for} and the \texttt{mc-iv.dat} configuration file to the virtual machine. ++]
 %[++, transferring them to the Microsoft Fortran 5.1 standard project directories.++]
 
 %[++ how did I find where these dirs were located??? ++]
@@ -579,14 +576,14 @@ This step completed the preparation of the development environment, now it was t
 
 
 %The second Fortran program, \texttt{mcp-work.for}, is much more interesting. While \texttt{mcphase.for} can calculate the $I - V$ characteristic of the junction only for a single value of $\alpha_\mathrm{rf}$ and for increasing or decreasing values of the normalized current $\alpha_\mathrm{dc}$, 
-As already noted, \texttt{mcp-work.for} sweeps the normalized current $\alpha_\mathrm{dc}$ in both directions to help visualize the possible hysteresis of the junction and calculates the $I - V$ characteristics for a range of values of $\alpha_\mathrm{rf}$, saving each curve in a separate output file. 
+As already noted, \texttt{mcp-work.for} calculates the $I - V$ characteristics for a range of values of $\alpha_\mathrm{rf}$, saving each curve in a separate output file. 
 The lower and upper limits and the step size of $\alpha_\mathrm{rf}$ are hardcoded in the Fortran source code ad every change requires a recompilation of \texttt{mcp-work.for} (a minor hassle, as the compilation takes just a couple of seconds on a modern machine).
 
-Also the names of the output data files are hard-coded in the \texttt{mcp-work.for} in the \texttt{filewrite} variable and are conventionally composed by a two-letter prefix ("SI" for the single drive, "BI" for the biharmonic driva and "PU" for the pulsed drive) followed by a three-digit integer that represents the cycle number (Section~\ref{compilation-with-gfortran}).
+Also the names of the output data files are hard-coded in \texttt{mcp-work.for} in the \texttt{filewrite} variable and are conventionally composed by a two-letter prefix (``SI'' for the single drive, ``BI'' for the biharmonic drive and ``PU'' for the pulsed drive) followed by a three-digit integer that represents the cycle number (Section~\ref{compilation-with-gfortran}).
 
-To avoid cluttering the \texttt{mccumber/} directory containing the Fortran source files (Section~\ref{sec:digging-into-code}) with the output data files produced by the simulations, I created  a new directory, \texttt{2020runs/}, in the main project folder, where I copied the \texttt{mc-iv.dat} configuration file needed to start the simulation (Fig.~\ref{fig:source-header}).
+To avoid cluttering the \texttt{mccumber/} directory that contains the Fortran source files with the output data files produced by the simulations, I created  a new directory in the main project folder, \texttt{2020runs/}, where I copied the \texttt{mc-iv.dat} configuration file needed to start the simulation (Fig.~\ref{fig:source-header}).
 
-Running \texttt{mcp-work.for} requires only three steps: compile \texttt{mcp-work.for} with the proper directives, switch to the \texttt{2020runs/} directory and run the \texttt{mcp-work} executable from there. The whole process is summarized below for the sinusoidal drive,
+Running \texttt{mcp-work.for} requires three steps: compile \texttt{mcp-work.for} with the proper directives, switch to the \texttt{2020runs/} directory and run the \texttt{mcp-work} executable from there. The whole process is summarized below for the sinusoidal drive
 
 %===============================================================================
 \lstset{
@@ -611,7 +608,7 @@ $ ../mccumber/mcp-work
 %===============================================================================
 
 
-The only modification needed to perform calculations using the pulsed drive is to change the \texttt{-Dsingle} directive to \texttt{-Dpulsed},
+The only modification needed to perform calculations using the pulsed drive is to change the \texttt{-Dsingle} directive to \texttt{-Dpulsed}
 
 %===============================================================================
 \begin{lstlisting}
@@ -622,14 +619,11 @@ $ ../mccumber/mcp-work
 %===============================================================================
 
 
-On a modern (but not state-of-the art) machine the whole simulation with $100 \alpha_\mathrm{rf}$ steps takes around $5 - 8$ minutes for the single drive and $7 -11$ minutes for the pulsed drive, and most of the time is spent printing on the terminal the calculated $I - V$ characteristics for each value of $\alpha_\mathrm{rf}$. Such feedback was useful at the time of the original calculation, as every new calculated point of the $I - V$ characteristics appeared on the screen after several tens of seconds, now the results scroll on the screen at a speed that makes them almost illegible.
+On a recent (but not state-of-the art) machine the whole simulation with $100~\alpha_\mathrm{rf}$ steps takes around $5$ minutes for the single drive and $7$ minutes for the pulsed drive, and most of the time is spent printing on the terminal the calculated $I - V$ characteristics for each value of $\alpha_\mathrm{rf}$. Such feedback was useful at the time of the original calculation, as every new calculated point of the $I - V$ characteristics appeared on the screen after several tens of seconds, now the results scroll on the screen at a speed that makes them almost illegible.
 However, to keep as faithful as possible to the original project, I decided to continue to print the data points on the computer screen.
 
-I also briefly tried to compile the original Fortran code with the Microsoft Fortran 5.1 installed in the emulator. Compilation was fine but the resulting DOS program was extremely slow, taking about $55$ seconds for each $\alpha_\mathrm{rf}$ cycle and about $90$ minutes in total for the sinusoidal drive, more than a tenfold increase with respect to the native macOS version compiled with gfortran.
-Even considering the overhead of the emulator, the difference is too large not to be attributed to the low quality of the binary code generated by the Microsoft Fortran 5.1 compiler.
-
 The $I - V$ characteristics calculated with the sinusoidal drive are shown in Fig.~\ref{fig:iv-single} for different values of $\alpha_\mathrm{rf}$.
-Without microwave radiation ($\alpha_\mathrm{rf} = 0$), the simulation produces well-known non-hysteretic $I - V$ characteristic of the RSJ model (Fig.~\ref{fig:iv-single}a), while for non-zero values of $\alpha_\mathrm{rf}$ the staircase-like structure of the rf-induced current steps appear on the $I - V$ curves (Fig.~\ref{fig:iv-single}b and Fig.~\ref{fig:iv-single}c).
+Without microwave radiation ($\alpha_\mathrm{rf} = 0$), the simulation produces the well-known $I - V$ characteristic of an overdamped Josephson junction (Fig.~\ref{fig:iv-single}a), while for non-zero values of $\alpha_\mathrm{rf}$ the staircase-like structure of the rf-induced current steps appears on the $I - V$ curves (Fig.~\ref{fig:iv-single}b and Fig.~\ref{fig:iv-single}c).
 
 %===============================================================================
 \begin{figure}[tb]
@@ -641,13 +635,13 @@ Without microwave radiation ($\alpha_\mathrm{rf} = 0$), the simulation produces 
 	\hfill
 	\mbox{\includegraphics[width=0.325\textwidth]{iv-single-alpharf2.png}}
 }
-	\caption{$I - V$ characteristics of a junction with $\beta_c = 0.01$, driven by a sinusoidal rf bias of frequency $\Omega = 0.45$ and (a) $\alpha_\mathrm{rf} = 0.0$, (b) $\alpha_\mathrm{rf} = 1.0$ and (c) $\alpha_\mathrm{rf} = 2.0$. The rf-induced current steps are clearly visible when $\alpha_\mathrm{rf} > 0$. Here $\eta$ and $\alpha$ are the junction normalized voltage and current, respectively.}
+	\caption{$I - V$ characteristics of a junction with $\beta_c = 0.01$, driven by a sinusoidal microwave signal of frequency $\Omega = 0.45$ and (a) $\alpha_\mathrm{rf} = 0.0$, (b) $\alpha_\mathrm{rf} = 1.0$ and (c) $\alpha_\mathrm{rf} = 2.0$. The rf-induced current steps are clearly visible when $\alpha_\mathrm{rf} > 0$. Here \texttt{eta} and \texttt{alpha} are the normalized voltage $\eta$ and normalized current $\alpha$, respectively.}
 	\label{fig:iv-single}
 \end{figure}
 %===============================================================================
 
 
-For a pulsed drive, the $I - V$ characteristic without microwave radiation is identical to that calculated with the sinusoidal signal (Fig.~\ref{fig:iv-pulsed}a), while the current steps induced by the pulsed drive are fewer and nearly as wide as the critical current for $\alpha_\mathrm{rf} = 0.0$ (compare Figs.~\ref{fig:iv-pulsed}a and \ref{fig:iv-pulsed}c).
+For a pulsed drive, the $I - V$ characteristic without microwave radiation is identical to that calculated with the sinusoidal signal (Fig.~\ref{fig:iv-pulsed}a), while for $\alpha_\mathrm{rf} > 0.0$ the current steps induced by the pulsed drive are fewer than with the sinusoidal drive and can be nearly as wide as the critical current (compare Figs.~\ref{fig:iv-pulsed}a and \ref{fig:iv-pulsed}c).
 
 %===============================================================================
 \begin{figure}[tb]
@@ -659,14 +653,14 @@ For a pulsed drive, the $I - V$ characteristic without microwave radiation is id
 	\hfill
 	\mbox{\includegraphics[width=0.325\textwidth]{iv-pulsed-alpharf10.png}}
 }
-	\caption{$I - V$ characteristics of a junction with $\beta_c = 0.01$, driven by a pulsed rf bias of frequency $\Omega = 0.45$ for: (a) $\alpha_\mathrm{rf} = 0.0$, (b) $\alpha_\mathrm{rf} = 5.0$ and (c) $\alpha_\mathrm{rf} = 10.0$. For $\alpha_\mathrm{rf} > 0$ the rf-induced steps are much larger than with the standard sinusoidal rf-drive. Here $\eta$ and $\alpha$ are the junction normalized voltage and current, respectively.}
+	\caption{$I - V$ characteristics of a junction with $\beta_c = 0.01$, driven by a pulsed microwave signal of frequency $\Omega = 0.45$ for: (a) $\alpha_\mathrm{rf} = 0.0$, (b) $\alpha_\mathrm{rf} = 5.0$ and (c) $\alpha_\mathrm{rf} = 10.0$. For $\alpha_\mathrm{rf} > 0$ the rf-induced current steps are much larger than with the standard sinusoidal drive. Here \texttt{eta} and \texttt{alpha} are the normalized voltage $\eta$ and normalized current $\alpha$, respectively.}
 	\label{fig:iv-pulsed}
 \end{figure}
 %===============================================================================
 
 
-At the end of each run, the output files must be transferred to the Windows 3.11 virtual machine to be processed by \texttt{stepampl}, the Visual Basic application described in Section~\ref{visual-basic-code}. However Windows 3.11 does not \emph{understand} Unix line terminators and cannot read the output files without a preliminary conversion. 
-This conversion can be easily done in the macOS Terminal with the following command
+At the end of each run, the output files should be transferred to the Windows 3.11 virtual machine to be processed by \texttt{stepampl}, the Visual Basic application described in Section~\ref{visual-basic-code}. However Windows 3.11 does not \emph{understand} Unix line terminators and cannot read the output files without a preliminary conversion. 
+The conversion can be easily done in the macOS Terminal by issuing the following command,
 
 %===============================================================================
 \lstset{
@@ -687,15 +681,21 @@ $ for f in $(ls *.out); do sed -i .bak s/$/$'\r'/ $f ; done
 \end{lstlisting}
 %===============================================================================
 
-that changes the line terminators of the \texttt{.out} output files from the Unix format containing only a line-feed (LF) to the carriage return followed by a line-feed (CR-LF) format used by all versions of Microsoft Windows. 
-\footnote{Slightly different versions of the command can be found on the internet; the format used above is POSIX-compliant and should run on any Unix flavour}.
-The \texttt{-i} switch allows in-place conversion of each file, the original files are kept with a \texttt{.bak} extension.
+that changes the line terminators of the \texttt{.out} output files from the Unix format containing only a line-feed (LF) to the carriage return followed by a line-feed (CR-LF) format used by all versions of Microsoft Windows.\footnote{Slightly different versions of the command can be found on the internet; the format used above is POSIX-compliant and should run on any Unix flavour}.
+The \texttt{-i} switch allows in-place conversion of each file. The original files are kept adding a \texttt{.bak} extension.
 
-After conversion the output files in the proper Windows compatible format can be transferred onto the virtual floppy disk image. %virtual floppy disk image can be mounted on the Desktop of the host operating system by double-clicking on its icon and the output files in the proper Windows format can be transferred onto the virtual floppy disk. 
+The output files in the proper Windows compatible format can now be transferred onto the virtual floppy disk image. %virtual floppy disk image can be mounted on the Desktop of the host operating system by double-clicking on its icon and the output files in the proper Windows format can be transferred onto the virtual floppy disk. 
 When the transfer is done, the floppy disk image is unmounted from the host operating system and mounted  in the virtual machine, making it visible to Windows 3.11. 
-The output files are copied to an empty directory of Windows 3.11 and the Visual Basic application is started, either by running the precompiled \texttt{stepampl.exe} application or by opening the Visual Basic project and running the program from there (Fig.~\ref{fig:stepampl}), that calculates the size of the quantized current steps for each value of $\alpha_\mathrm{rf}$ and saves the results in another text file with extension \texttt{.STP} (for steps) that could be transferred back to the host operating system via the virtual floppy disk image.
+The output files are copied to an empty directory of Windows 3.11 and the Visual Basic application is started, either by running the precompiled \texttt{stepampl.exe} executable or by opening the Visual Basic project and running the program from there (Fig.~\ref{fig:stepampl}), saving the results in another text file with extension \texttt{.STP} (for steps) that could be transferred back to the host operating system via the virtual floppy disk image.
 
-[++ TOGLIERE? The original Visual Basic code had a hard coded limit set to a maximum number of $100$ processed files. This limit was probably related to memory problems or simply to the fact that it was impossible to run an overnight simulation with more than $100$ different $\alpha_\mathrm{rf}$ values. ++]
+%[++ TOGLIERE? The original Visual Basic code had a hard coded limit set to a maximum number of $100$ processed files. This limit was probably related to memory problems or simply to the fact that it was impossible to run an overnight simulation with more than $100$ different $\alpha_\mathrm{rf}$ values. ++]
+
+I also briefly tried to run the original Fortran code using the Microsoft Fortran 5.1 installed in the emulator. Compilation was fine but the resulting DOS program was extremely slow, taking about $30 - 35$ seconds for each $\alpha_\mathrm{rf}$ cycle and about $60$ minutes in total for the sinusoidal drive, more than a tenfold increase with respect to the native macOS version compiled with gfortran.
+Even considering the overhead of the emulator, the difference is too large not to be attributed to the low quality of the binary code generated by the Microsoft Fortran 5.1 compiler.
+
+
+
+\section{Results}
 
 %%===============================================================================
 %\begin{figure}[tbh]
@@ -707,34 +707,35 @@ The output files are copied to an empty directory of Windows 3.11 and the Visual
 %%===============================================================================
 
 
-At the time of writing the original paper \cite{Maggi:1996}, the whole process had to be repeated each night for a different set of input parameters  and for a different kind of microwave signal (single, biharmonic or pulsed).
+At the time of writing the original paper the whole process had to be repeated each night for a different set of input parameters  and for a different kind of microwave signal (single, biharmonic or pulsed).
 
-Each night I used three of the available DEC workstations to simulate in parallel the junction behavior with the pulsed drive, with three different values of the (normalized) width of the pulse signal, $\rho$, while keeping constant all the other parameters, such $\beta$ and $\Omega$.
+Each night I used three of the available DEC workstations to simulate the junction behavior with the pulsed drive, using three different values of the (normalized) width of the pulse signal, $\rho$, while keeping constant all the other parameters, such $\beta$ and $\Omega$.
 The only other difference in these simulation was the range of variation of $\alpha_\mathrm{rf}$, which depended on the value of $\rho$ (shorter pulses require a much larger intensity of the rf-signal to have the same effect on the junction).
-The fourth machine simulated the junction behavior with the standard sinusoidal drive, using exactly the same set of junction parameters.
+The fourth workstation simulated the junction behavior with the standard sinusoidal drive, using exactly the same set of junction parameters.
 %Each night a different set of junction parameters was used.
 
 The original paper  contained all the information needed to reproduce the results shown in the figures, without having to repeat the whole analysis from scratch. 
-The parameters used in all runs were: hysteresis parameter $\beta = 0.01$, frequency of the sinusoidal or pulsed  rf signal $\Omega = 0.45$, normalized current bias between $\alpha_\mathrm{dc} = -5.0$ and $\alpha_\mathrm{dc} = 5.0$, normalized integration time $\tau = 500$ with step $\Delta \tau = 0.01$. 
+The parameters used in all runs were: hysteresis parameter $\beta = 0.01$, frequency of the sinusoidal or pulsed  rf signal $\Omega = 0.45$, current bias between $\alpha_\mathrm{dc} = -5.0$ and $\alpha_\mathrm{dc} = 5.0$, integration time $\tau = 500$, time step $\Delta \tau = 0.01$. 
 
-The simulation with the sinusoidal drive was performed by varying the amplitude of the rf signal $\alpha_\mathrm{rf}$ between $0.0$ and $5.0$, with a step $\Delta \alpha_\mathrm{rf} = 0.05$.
+The simulation with the sinusoidal drive was performed by varying the amplitude of the microwave signal $\alpha_\mathrm{rf}$ between $0.0$ and $5.0$, with a step $\Delta \alpha_\mathrm{rf} = 0.05$.
 The three simulations with the pulsed drive were done using: 
 (1) pulse width $\rho = 0.250$, $\alpha_\mathrm{rf} = 0.0 - 10.0$, $\Delta \alpha_\mathrm{rf} = 0.1$;
 (2) pulse width $\rho = 0.125$, $\alpha_\mathrm{rf} = 0.0 - 20.0$, $\Delta \alpha_\mathrm{rf} = 0.2$;
 (3) pulse width $\rho = 0.050$, $\alpha_\mathrm{rf} = 0.0 - 50.0$, $\Delta \alpha_\mathrm{rf} = 0.5$.
 
-The resulting output and summary files were saved in separate folders in the \texttt{2020runs/} directory, named \texttt{SINGLE/}, \texttt{PULS0250}, \texttt{PULS125}, \texttt{PULS0050} after their DOS counterparts.
+The resulting output and summary files were saved in separate folders in the \texttt{2020runs/} directory, named \texttt{SINGLE/}, \texttt{PULS0250/}, \texttt{PULS125/}, \texttt{PULS0050/} after their DOS counterparts.
 
-To reproduce the first and second figure of \cite{Maggi:1996} I made the only concession to modernity. instead of trying to recreate them with the plotting program used originally, probably \href{https://www.originlab.com}{Origin 2.0}, I decided to write a couple of small R scripts that could automate the task.
-The results are shown in Fig.~\ref{fig:pulsed-ivs} and Fig.~\ref{fig:step-width} and, as expected, are identical to those reported in the first two figures of \cite{Maggi:1996}. 
-Figure 3 of the original paper could be easily reproduced by plotting the maxima of the curves of Fig.~\ref{fig:step-width}, i.e., $\Delta i_n$ vs. $\alpha_\mathrm{rf}$, for the four different cases considered here.
-Note that the large vertical steps on the rightmost curves of Fig.~\ref{fig:pulsed-ivs} era the first rf-induced steps, that can be nearly as large as the critical current $I_C$ without rf bias visible in the first plot on the left.
+To reproduce the first and second figure of Ref.~\cite{Maggi:1996} I made the only concession to modernity. Instead of trying to recreate them with the plotting program used originally, probably \href{https://www.originlab.com}{Origin 2.0}, I decided to write a couple of small R scripts that could automate the task.
+The results are shown in Fig.~\ref{fig:pulsed-ivs} and Fig.~\ref{fig:step-width} and, as expected, are identical to those reported in the first two figures of Ref.~\cite{Maggi:1996}. 
+The large vertical steps on the rightmost curves of Fig.~\ref{fig:pulsed-ivs} era the first rf-induced current steps, that can be nearly as large as the critical current $I_C$ without rf bias visible in the first $I - V$ characteristic on the left.
+
+Figure 3 of the original paper could also be easily reproduced by plotting the maxima of the curves of Fig.~\ref{fig:step-width}, i.e., $\Delta i_n$ vs. $\alpha_\mathrm{rf}$, for the four different cases considered here.
 
 %===============================================================================
 \begin{figure}[t]
 	\centering
 	\includegraphics[width = 0.75 \textwidth]{PULS0050-IV.pdf}
-	\caption{$I - V$ curves of a junction with $\beta = 0.01$ for several values of the rf bias. The junction is  irradiated by a train of rf pulses of repetition frequency $\Omega = 0.45$ and pulse duration $\rho = 0.05$. Each curve has been offset horizontally by $4 \Omega$. The vertical dotted lines mark the position of the zero-voltage axis for the $I - V$ curve located immediately to the right.}
+	\caption{$I - V$ curves of a junction with $\beta = 0.01$ for several values of the rf bias. The junction is  irradiated by a train of rf pulses of repetition frequency $\Omega = 0.45$ and pulse duration $\rho = 0.05$. Each curve has been offset horizontally by $4 \Omega$. The vertical dotted lines mark the position of the zero-voltage axis (i.e., the critical current $I_C$) for the $I - V$ curve located immediately to the right.}
 	\label{fig:pulsed-ivs}
 \end{figure}
 %===============================================================================
@@ -780,30 +781,32 @@ Note that the large vertical steps on the rightmost curves of Fig.~\ref{fig:puls
 \end{figure}
 %===============================================================================
 
-Similar considerations can be made for the reproduction of Figure 4 of the original paper, which considers a slightly hysteretic junction with $\beta = 1.0$. In the spirit of this challenge I have chosen to show instead [++ the $I - V$ curves of the simulated junction with $\beta = 1.0$ and ++] the related $\Delta i_n$ vs. $\alpha_\mathrm{rf}$ curves for the two most significant cases of rf bias, i.e., the sinusoidal drive and the pulsed drive with $\rho = 0.050$ (Fig.~\ref{fig:step-width-beta1}).
+
+Similar considerations can be made for the reproduction of Figure 4 of the original paper, which considers a slightly hysteretic junction with $\beta = 1.0$. For simplicity, I have chosen to show instead the $\Delta i_n$ vs. $\alpha_\mathrm{rf}$ curves for the two most significant cases of microwave signal, i.e., the sinusoidal drive and the pulsed drive with $\rho = 0.050$ (Fig.~\ref{fig:step-width-beta1}), from which the plots of Figure 4 could be easily replicated.
 
 
 
 \section{Discussion}
 
-The main problem with this reproduction work was the accidental loss of all my handwritten notes about the project, that compelled me to recover all information from the source and data files only. 
-Keeping good and updated documentation about any research project is paramount, but equally important is to store all documentation in a safe location, where it can be easily retrieved.
-Today most documents are in electronic form, making them even more prone to data loss whenever a disaster strikes.
+The main problem with this reproduction work was the accidental loss of all my handwritten notes about the project, that compelled me to recover all information needed from the source and data files. 
+Keeping good and updated documentation about any research project is paramount but equally important is to store all documentation in a safe location, where it can be easily retrieved.
 
-Implementing a good and reliable backup strategy on different forms of storage media should be a mandatory requirement of any research project today, and this strategy should always combine local backups with backups on secondary storage locations physically well separated from the original data source. 
+Today most documents are in electronic form, making them even more prone to data loss whenever a disaster strikes.
+Implementing a good and reliable backup strategy on different forms of storage media should be a mandatory requirement of any research project, and this strategy should always combine local backups with backups on secondary storage locations, physically well separated from the original data source. 
 
 Starting the project today from scratch I would make very different choices about the programming languages to use for the simulation and data analysis steps.
 
-Fortran, despite its venerable age, is still an excellent language for scientific programming, but today my language of choice for numerical computations is Python, because of its flexibility, ease of use, and  availability of excellent numerical libraries, such as NumPy and SciPy.
+Fortran, despite its venerable age, is still an excellent language for scientific programming, but today I would surely prefer Python, because of its flexibility, ease of use, and  availability of excellent numerical libraries, such as NumPy and SciPy.
 
-The main problems with Python are related to the tumultuous development of the language itself and of the thousands of available modules, which can cause incompatibilities even with code developed a few years ago. This problem can be, at least temporarily, be solved by using virtual environments, but a better standardized solution is strongly needed.
+The main problem with Python is related to the tumultuous development of the language itself and of the thousands of available modules, which can cause incompatibilities even with code developed a few years ago. This problem can be, at least temporarily, be solved by using virtual environments, but a better standardized solution is strongly needed.
+
 Another problem is related to its nature of interpreted language. However, the presence of well-documented Fortran and C bindings, can enhance performance of time-critical sections of code.
 
-Today I would also avoid using a new language, as was Visual Basic 1.0 at the time (or as is Apple's Swift today) for a scientific project. 
-It is true that in 1993-94 it would have been very hard to foresee the rapid demise of Microsoft's Visual Basic, nevertheless using a programming language only when at least it main core is stable, runs on a wide array of operating systems and is accepted by a wide community of developers is surely a safer bet.
+Starting today I would also avoid using a new language, as was Visual Basic 1.0 at the time for a scientific project. 
+It is true that in 1993-94 it would have been very hard to foresee the rapid demise of Microsoft's Visual Basic, nevertheless using a programming language only when its main core is stable, runs on a wide array of operating systems and is accepted by a wide community of developers is surely a safer bet.
 %Data analysis today is usually made with R or Python (or to a much lesser extent, Julia or Scala), both open source tools running on all major operation systems, that predictably will be still available in the next 10 or even 20 years.
 
-Not every software project can afford to be as stable as \TeX, the scientific typesetting system invented by the prominent mathematician and computer scientist Donald E. Knuth, that has reached a state where ``it is unwise to make further \emph{improvements} to the system [..] which should give the same results 100 years from now that they produce today'' \cite{Knuth:1990}.
+Not every software project can afford to be as stable as \TeX, the scientific typesetting system invented by the prominent mathematician and computer scientist Donald E. Knuth, that has reached a state where ``it is unwise to make further improvements to the system [..] which should give the same results 100 years from now that they produce today'' \cite{Knuth:1990}.
 But on the other hand, a development environment that changes too much and too often or that is subjected to the whims of a single software company creates more problems than it solves. 
 
 
@@ -813,7 +816,7 @@ But on the other hand, a development environment that changes too much and too o
 Going back to my old paper has been an exceptionally interesting and instructive experience and I thank the organizers of this challenge for the opportunity offered.
 
 However this is not only a nostalgic attitude. The reproducibility crisis is a serious issue today \cite{Miyakawa:2020}, that undermines scientific credibility and impacts the public's trust in science, paving the way to all sorts of fake and unscientific beliefs.
-Being able to go back and reproduce what has been done in the past could ease the retraction of published papers containing fabricated, falsified, or modified data or results and could contribute to an easier identification of future frauds.
+Being able to go back and reproduce what has been done in the past could ease the retraction of published papers containing fabricated, falsified, or modified data or results and could contribute to simplify the identification of future frauds.
 
 This of course requires to share and make freely available the original data and the tools used to analyze them. A few years ago this requirement was impossible to fulfill in practice. The digital world in which we live makes it almost inevitable.
 
