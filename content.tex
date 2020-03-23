@@ -24,7 +24,7 @@ Besides its practical applications, the Josephson junction is important from a p
 
 %% The Josephson voltage standard at the $1$ and $10$~V levels that were the state-of-the-art implementation at the time and were deployed only in very few labs wordwide, required a very careful engineering of the microwave distribution lines within the many arms in which the Josephson arrays were divided. 
 
-An important research topic at the beginning of the '90s was related to finding ways to increase the amplitude of the current steps induced by the microwave radiation (rf-induced current steps). In fact, the stability of the lock between the phase of the junction and the applied microwave radiation -- and therefore its insensitivity to noise events which might switch the junction from one quantized voltage to another, a crucial problem for voltage standard applications -- is strongly dependent on the amplitude of the steps \cite{Kautz:1987}.
+An important research topic at the beginning of the '90s was related to finding ways to increase the amplitude of the current steps induced by the microwave radiation (rf-induced steps). In fact, the stability of the lock between the phase of the junction and the applied microwave radiation -- and therefore its insensitivity to noise events which might switch the junction from one quantized voltage to another, a crucial problem for voltage standard applications -- is strongly dependent on the amplitude of the steps \cite{Kautz:1987}.
 
 To increase the amplitude of the current steps, a non-sinusoidal microwave radiation may be used.
 %when two phased microwaves of frequencies $f$ and $2 f$ are added together, the rf-induced current steps can have normalized amplitudes larger than those predicted for a standard sinusoidal radiation 
@@ -328,10 +328,10 @@ Modern Fortran compilers do not support this  non-standard edit descriptor and r
 Microsoft Fortran 5.1 had two separate intrinsic subroutines to return the current date and time.
 In particular, \texttt{CALL GETDAT(iyr, imon, iday)}, saved the date in the two-byte integer variables \texttt{iyr}, \texttt{imon} and \texttt{iday}, while \texttt{CALL GETTIM(ihr, imin, imin, i100th)} did the same for the current time, saving the return values in the integer variables \texttt{ihr}, \texttt{imin}, \texttt{imin} and \texttt{i100th}. The meaning of each returned variable should be self-explanatory.
 
-Modern Fortran supports the single subroutine \texttt{CALL DATE_AND_TIME(DATE, TIME, ZONE, VALUES)}, where all arguments are optional and can be specified by their dummy names (i.e., how Fortran calls the keyword arguments of a function call). 
+Modern Fortran supports the single subroutine \texttt{CALL DATE\_AND\_TIME(DATE, TIME, ZONE, VALUES)}, where all arguments are optional and can be specified by their dummy names (i.e., how Fortran calls the keyword arguments of a function call). 
 In particular, \texttt{DATE}, \texttt{TIME} and \texttt{ZONE} are character variables, while \texttt{VALUES} is a one-dimensional array of 8 integers, where \texttt{VALUES(1:3)} corresponds to the year, month and day of the month, \texttt{VALUES(4)} is the time difference (in minutes) with UTC, and \texttt{VALUES(5:8)} are the hour, minute, second and milliseconds, respectively.
 
-To minimize changes to the original source code, the calls to the \texttt{GETDAT} and \texttt{GETTIM} subroutines, were translated to a single call to \texttt{DATE_AND_TIME}, assigning the elements of the returned array of \texttt{VALUES} to integer variables named as in the original code (Fig.~\ref{fig:date-time}).
+To minimize changes to the original source code, the calls to the \texttt{GETDAT} and \texttt{GETTIM} subroutines, were translated to a single call to \texttt{DATE\_AND\_TIME}, assigning the elements of the returned array of \texttt{VALUES} to integer variables named as in the original code (Fig.~\ref{fig:date-time}).
 
 
 %%===============================================================================
@@ -375,7 +375,7 @@ As noted above, \texttt{mcp-work.for} calculates the $I - V$ characteristics of 
 
 %===============================================================================
 \lstset{
-    language = Fortran,
+    language = [77]Fortran,
     tabsize = 6,
     frame = none,
     framesep = 2em,
@@ -383,7 +383,7 @@ As noted above, \texttt{mcp-work.for} calculates the $I - V$ characteristics of 
     backgroundcolor = \color{ultralightgray},
 	keywordstyle = \color{darkred}\bfseries,
 	morekeywords = {},
-	deletekeywords = {file name}
+	deletekeywords = {FILE, NAME}
 }
 %===============================================================================
 \begin{lstlisting}
@@ -819,6 +819,7 @@ However this is not only a nostalgic attitude. The reproducibility crisis is a s
 Being able to go back and reproduce what has been done in the past could ease the retraction of published papers containing fabricated, falsified, or modified data or results and could contribute to simplify the identification of future frauds.
 
 This of course requires to share and make freely available the original data and the tools used to analyze them. A few years ago this requirement was impossible to fulfill in practice. The digital world in which we live makes it almost inevitable.
+
 
 
 

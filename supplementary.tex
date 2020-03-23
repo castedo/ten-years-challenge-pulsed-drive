@@ -8,16 +8,16 @@
 %===============================================================================
 \begin{figure}[h]
     \centering
-    \includegraphics[width = 0.75 \textwidth]{meld-comparison.png}
+    \includegraphics[width = \textwidth]{meld-comparison.png}
     \caption{Comparison with Meld of the main calculation loop of (left) \textsf{mcphase.for} and (right) \textsf{mcp-work.for}.}
     \label{fig:meld-comparison}
 \end{figure}
 %===============================================================================
 
 %===============================================================================
-\begin{figure}[h]
+\begin{figure}[t]
     \centering
-    \includegraphics[width = 0.75 \textwidth]{batch-file.png}
+    \includegraphics[width = \textwidth]{batch-file.png}
     \caption{DOS batch file used by \textsf{mcphase.for} to run multiple simulations with different values of the amplitude of the microwave signal $\alpha_\mathrm{rf}$.}
     \label{fig:batch-file}
 \end{figure}
@@ -31,21 +31,22 @@
 %===============================================================================
 \lstset{
     language = C,
-    basicstyle = \tiny\bfseries\ttfamily,
+    basicstyle = \bfseries\ttfamily,
     tabsize = 4,
     frame = lines,
     framesep = 1em,
     framexleftmargin = 1em,
     backgroundcolor = \color{ultralightgray},
     keywordstyle = \color{darkred}\bfseries,
-    morekeywords = {$DEFINE, $if, $endif, defined},
+    morekeywords = {DEFINE, defined, if, endif},
+    alsoother = {$, \#},
     deletekeywords = {for}
 }
 %===============================================================================
-\begin{figure}[h]
+\begin{figure}[t]
 \centering
 
-\begin{minipage}{0.6\textwidth}
+\begin{minipage}{\textwidth}
 \textbf{(a)}
 \begin{lstlisting}
       $DEFINE textout			! DEFINEd for text output
@@ -76,7 +77,7 @@
 %
 \hfill
 %
-\begin{minipage}{0.6\textwidth}
+\begin{minipage}{\textwidth}
 \textbf{(b)}
 \begin{lstlisting}
       CC $DEFINE textout		! DEFINEd for text output
@@ -118,7 +119,7 @@
 %===============================================================================
 \lstset{
     language = Fortran,
-    basicstyle = \tiny\bfseries\ttfamily,
+    basicstyle = \bfseries\ttfamily,
     tabsize = 6,
     frame = lines,
     framesep = 2em,
@@ -129,10 +130,10 @@
     deletekeywords = {}
 }
 %===============================================================================
-\begin{figure}[h]
+\begin{figure}[t]
 \centering
 
-\begin{minipage}{0.6\textwidth}
+\begin{minipage}{\textwidth}
 \textbf{(a)}
 
 \begin{lstlisting}
@@ -150,7 +151,7 @@
 %
 \hfill
 %
-\begin{minipage}{0.6\textwidth}
+\begin{minipage}{\textwidth}
 \textbf{(b)}
 \begin{lstlisting}
       ...
@@ -183,9 +184,9 @@
 %\subsection{Running the programs}
 
 %===============================================================================
-\begin{figure}[tbh]
+\begin{figure}[t]
 	\centering
-	\includegraphics[width = 0.75 \textwidth]{stepampl.png}
+	\includegraphics[width = \textwidth]{stepampl.png}
 	\caption{Windows 3.11 desktop with the running Visual Basic program \textsf{stepampl}.}
 	\label{fig:stepampl}
 \end{figure}
