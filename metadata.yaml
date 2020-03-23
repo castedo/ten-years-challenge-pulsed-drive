@@ -72,10 +72,10 @@ replication:
  - doi:  # Regular digital object identifier
 
 # Don't forget to surround abstract with double quotes
-abstract: "When I read about the Ten Years Challenge, it was a matter of seconds to take the plunge and decide to partecipate with the replication of a work on the numerical simulation of a Josephson junction driven by a train of microwave pulses.
-The experience has been exceptionally interesting and all considered much easier than I initially thought.
+abstract: "When I read about the Ten Years Challenge, it was a matter of seconds to decide to participate in the contest with the replication of a work on the numerical simulation of a Josephson junction driven by a train of microwave pulses.
+The experience has been exceptionally instructive and all considered much easier than I initially thought.
 The paper describes the tools and tricks used for the replication and the lessons learned from this work.
-Among them, keeping good and updated documentation is paramount. Likewise, the use of tools and languages that do not fall into oblivion after one or two iterations."
+Among them, keeping good and detailed documentation and using of tools and languages that do not fall into oblivion after one or two releases."
 
 # Bibliography file (yours)
 bibliography: bibliography.bib
