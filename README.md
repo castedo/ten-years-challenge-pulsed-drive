@@ -9,10 +9,10 @@ Contribution to the ["Ten Years Reproducibility Challenge"](https://github.com/R
 
 ## Contents of this repository
 
-The directory [`article`](./article) contains the LaTeX sources and the figures of the article submitted to ReScience, together with the generated pdf file.
+The directory [`article`](https://github.com/sabinomaggi/ten-years-challenge-pulsed-drive/tree/submission/article) contains the LaTeX sources and the figures of the article submitted to ReScience, together with the generated pdf file.
 
-The directory [`code`](./code) contains all the source and data files mentioned in the article. 
-In particular, the Fortran source files are in [`code/mccumber`](./code/mccumber), together with the corresponding binaries for macOS compiled with `gfortran`, the Visual Basic 1.0 project is in [`code/vbprogs`](./code/vbprogs) and the configuration and output data files are in [`code/2020runs`](./code/2020runs).
+The directory [`code`](https://github.com/sabinomaggi/ten-years-challenge-pulsed-drive/tree/submission/code) contains all the source and data files mentioned in the article. 
+In particular, the Fortran source files are in [`code/mccumber`](https://github.com/sabinomaggi/ten-years-challenge-pulsed-drive/tree/submission/code/mccumber), together with the corresponding binaries for macOS compiled with `gfortran`, the Visual Basic 1.0 project is in [`code/vbprogs`](https://github.com/sabinomaggi/ten-years-challenge-pulsed-drive/tree/submission/code/vbprogs) and the configuration and output data files are in [`code/2020runs`](https://github.com/sabinomaggi/ten-years-challenge-pulsed-drive/tree/submission/code/2020runs).
 
 All instructions to compile and run the source code are available in the submitted paper.
 
