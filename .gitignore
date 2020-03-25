@@ -4,14 +4,14 @@
 #-----------------------------------------------------#
 # Author:        Sabino Maggi                         #
 # File Created:  10-02-2020                           #
-# Last revision: 05-03-2020                           #
+# Last revision: 25-03-2020                           #
 #-----------------------------------------------------#
 
 
 ### files to ignore: ###
 
 #--- pdf and backup files
-*.pdf
+##*.pdf
 *.bak
 *~
 
@@ -28,7 +28,7 @@
 *.run.xml
 
 #--- macOS junk
-.DS_Store
+##.DS_Store
 
 #--- Python stuff
 __pycache__/
