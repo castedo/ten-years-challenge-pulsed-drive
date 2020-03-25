@@ -1,0 +1,25 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1584616912490.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "1505816581",
+    "id" : "3E38BFD6",
+    "lastKnownWriteTime" : 1584616953,
+    "last_content_update" : 1584616953113,
+    "path" : "/Volumes/Data HD/Research/Reproducibility Challenge/pulsedjj/1993-94/2020runs/stepsize.R",
+    "project_path" : "stepsize.R",
+    "properties" : {
+        "cursorPosition" : "120,56",
+        "scrollLine" : "0"
+    },
+    "read_only" : false,
+    "read_only_alternatives" : [
+    ],
+    "relative_order" : 1,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}
