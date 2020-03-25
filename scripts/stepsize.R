@@ -1,1 +1,0 @@
-/Users/maggi/Research/Reproducibility Challenge/pulsedjj/1993-94/2020runs/stepsize.R
