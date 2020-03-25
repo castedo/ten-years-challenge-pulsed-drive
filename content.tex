@@ -58,7 +58,7 @@ I then decided to develop a Fortran program to solve numerically the nonlinear s
 The idea was to calculate the $I-V$ characteristics of the junction as a function of the amplitude of the microwave signal, $\alpha_\mathrm{rf}$, for a given set of parameters characterizing the junction and the microwave, considering the three different cases of standard sinusoidal drive, biharmonic drive and pulsed drive.
 
 To ease comparison of the results, normalized units were used throughout the calculations. The normalized junction voltage was $\eta$ and the normalized current $\alpha_\mathrm{dc}$.
-The main parameters of the simulation were: hysteresis parameter $\beta$, microwave frequency $\Omega$, amplitude of the microwave signal $\alpha_\mathrm{rf}$, width of the pulsed signal $\rho$, integration time $\tau$. 
+The main parameters of the simulation were: hysteresis parameter $\beta$, microwave frequency $\Omega$, amplitude of the microwave signal $\alpha_\mathrm{rf}$, pulse width $\rho$, integration time $\tau$. 
 For a given set of junction parameters, usually $100$ different $I-V$ characteristics for increasing or decreasing values of $\alpha_\mathrm{rf}$ were calculated.
 
 The first versions of the Fortran program were compiled under DOS 6.22 with \href{https://winworldpc.com/product/microsoft-fortran/5x}{Microsoft Fortran 5.1} and run on what was then a state-of-the-art PC, probably a Compaq Deskpro 486 with a math coprocessor, shared among several users of the lab.
@@ -118,7 +118,7 @@ This multiplication of files might seem senseless today, when comfortable graphi
 %===============================================================================
 \begin{figure}[tb]
 	\centering
-	\includegraphics[width=0.75\textwidth]{source-header.png}
+	\includegraphics[width = 0.75 \textwidth]{source-header.png}
 	\caption{Header of one of the Fortran source files. The left sidebar shows the directory structure of the project.}
 	\label{fig:source-header}
 \end{figure}
@@ -456,7 +456,7 @@ But, as I used the virtual environment almost exclusively to run the Visual Basi
 %===============================================================================
 \begin{figure}[t]
 	\centering
-	\includegraphics[width=0.75\textwidth]{windows-311.png}
+	\includegraphics[width = 0.75 \textwidth]{windows-311.png}
 	\caption{The Windows 3.11 desktop as shown in the Parallels emulator.}
 	\label{fig:windows-311}
 \end{figure}
@@ -629,11 +629,11 @@ Without microwave radiation ($\alpha_\mathrm{rf} = 0$), the simulation produces 
 \begin{figure}[tb]
 {
 	\fboxsep=0pt
-	\mbox{\includegraphics[width=0.325\textwidth]{iv-single-alpharf0.png}}
+	\mbox{\includegraphics[width = 0.325 \textwidth]{iv-single-alpharf0.png}}
 	\hfill
-	\mbox{\includegraphics[width=0.325\textwidth]{iv-single-alpharf1.png}}
+	\mbox{\includegraphics[width = 0.325 \textwidth]{iv-single-alpharf1.png}}
 	\hfill
-	\mbox{\includegraphics[width=0.325\textwidth]{iv-single-alpharf2.png}}
+	\mbox{\includegraphics[width = 0.325 \textwidth]{iv-single-alpharf2.png}}
 }
 	\caption{$I - V$ characteristics of a junction with $\beta_c = 0.01$, driven by a sinusoidal microwave signal of frequency $\Omega = 0.45$ and (a) $\alpha_\mathrm{rf} = 0.0$, (b) $\alpha_\mathrm{rf} = 1.0$ and (c) $\alpha_\mathrm{rf} = 2.0$. The rf-induced current steps are clearly visible when $\alpha_\mathrm{rf} > 0$. Here \texttt{eta} and \texttt{alpha} are the normalized voltage $\eta$ and normalized current $\alpha$, respectively.}
 	\label{fig:iv-single}
@@ -647,11 +647,11 @@ For a pulsed drive, the $I - V$ characteristic without microwave radiation is id
 \begin{figure}[tb]
 {
 	\fboxsep=0pt
-	\mbox{\includegraphics[width=0.325\textwidth]{iv-pulsed-alpharf0.png}}
+	\mbox{\includegraphics[width = 0.325 \textwidth]{iv-pulsed-alpharf0.png}}
 	\hfill
-	\mbox{\includegraphics[width=0.325\textwidth]{iv-pulsed-alpharf5.png}}
+	\mbox{\includegraphics[width = 0.325 \textwidth]{iv-pulsed-alpharf5.png}}
 	\hfill
-	\mbox{\includegraphics[width=0.325\textwidth]{iv-pulsed-alpharf10.png}}
+	\mbox{\includegraphics[width = 0.325 \textwidth]{iv-pulsed-alpharf10.png}}
 }
 	\caption{$I - V$ characteristics of a junction with $\beta_c = 0.01$, driven by a pulsed microwave signal of frequency $\Omega = 0.45$ for: (a) $\alpha_\mathrm{rf} = 0.0$, (b) $\alpha_\mathrm{rf} = 5.0$ and (c) $\alpha_\mathrm{rf} = 10.0$. For $\alpha_\mathrm{rf} > 0$ the rf-induced current steps are much larger than with the standard sinusoidal drive. Here \texttt{eta} and \texttt{alpha} are the normalized voltage $\eta$ and normalized current $\alpha$, respectively.}
 	\label{fig:iv-pulsed}
@@ -734,8 +734,8 @@ Figure 3 of the original paper could also be easily reproduced by plotting the m
 %===============================================================================
 \begin{figure}[t]
 	\centering
-	\includegraphics[width = 0.75 \textwidth]{PULS0050-IV.pdf}
-	\caption{$I - V$ curves of a junction with $\beta = 0.01$ for several values of the rf bias. The junction is  irradiated by a train of rf pulses of repetition frequency $\Omega = 0.45$ and pulse duration $\rho = 0.05$. Each curve has been offset horizontally by $4 \Omega$. The vertical dotted lines mark the position of the zero-voltage axis (i.e., the critical current $I_C$) for the $I - V$ curve located immediately to the right.}
+	\includegraphics[width = 0.7 \textwidth]{PULS0050-IV.pdf}
+	\caption{$I - V$ characteristics of a junction with $\beta = 0.01$ for several values of $\alpha_\mathrm{rf}$. The junction is  irradiated by a train of pulses of repetition frequency $\Omega = 0.45$ and width $\rho = 0.05$. Each curve is offset horizontally by $4 \Omega$ and is labelled after the value of $\alpha_\mathrm{rf}$. The vertical dotted lines mark the position of the zero-voltage axis (i.e., the critical current $I_C$) for the $I - V$ curve located immediately to the right.}
 	\label{fig:pulsed-ivs}
 \end{figure}
 %===============================================================================
@@ -762,11 +762,11 @@ Figure 3 of the original paper could also be easily reproduced by plotting the m
 %===============================================================================
 \begin{figure}[!p]
 	\centering
-	\includegraphics[width=0.45\textwidth]{SINGLE2.pdf}
-	\includegraphics[width=0.45\textwidth]{PULS0250.pdf}
-	\includegraphics[width=0.45\textwidth]{PULS0125.pdf}
-	\includegraphics[width=0.45\textwidth]{PULS0050.pdf}
-	\caption{Dependence of the step size $\Delta i_n$ on the amplitude of  $\alpha_\mathrm{rf}$, for $n = 0. . . 4$. The $n = 0$ step is the normalized total critical current $\Delta i_0$ of the junction. The junction parameters are $\beta = 0. 01$ and $\Omega = 0. 45$; (a) sinusoidal drive, (b) pulsed drive with $\rho = 0. 250$, (c) pulsed drive with $\rho = 0. 125$, (d) pulsed drive with $\rho = 0. 050$.}
+	\includegraphics[width = 0.45 \textwidth]{SINGLE2.pdf}
+	\includegraphics[width = 0.45 \textwidth]{PULS0250.pdf}
+	\includegraphics[width = 0.45 \textwidth]{PULS0125.pdf}
+	\includegraphics[width = 0.45 \textwidth]{PULS0050.pdf}
+	\caption{Dependence of the step size $\Delta i_n$ on the amplitude of $\alpha_\mathrm{rf}$, for $n = 0. . . 4$. The $n = 0$ step is the normalized total critical current $\Delta i_0$ of the junction. The junction parameters are $\beta = 0. 01$ and $\Omega = 0. 45$; (a) sinusoidal drive, (b) pulsed drive with $\rho = 0. 250$, (c) pulsed drive with $\rho = 0. 125$, (d) pulsed drive with $\rho = 0. 050$.}
 	\label{fig:step-width}
 \end{figure}
 %===============================================================================
@@ -774,8 +774,8 @@ Figure 3 of the original paper could also be easily reproduced by plotting the m
 %===============================================================================
 \begin{figure}[t]
 	\centering
-	\includegraphics[width=0.45\textwidth]{SINGLE-BETA1.pdf}
-	\includegraphics[width=0.45\textwidth]{PULS0050-BETA1.pdf}
+	\includegraphics[width = 0.45 \textwidth]{SINGLE-BETA1.pdf}
+	\includegraphics[width = 0.45 \textwidth]{PULS0050-BETA1.pdf}
 	\caption{Dependence of the step size $\Delta i_n$ on the amplitude of  $\alpha_\mathrm{rf}$, for $n = 0. . . 4$. The $n = 0$ step is the normalized total critical current $\Delta i_0$ of the junction. The junction parameters are $\beta = 1.0$ and $\Omega = 0. 45$; (a) sinusoidal drive, (b) pulsed drive with $\rho = 0. 050$.}
 	\label{fig:step-width-beta1}
 \end{figure}
