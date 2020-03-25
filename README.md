@@ -4,7 +4,7 @@ Contribution to the ["Ten Years Reproducibility Challenge"](https://github.com/R
 
 **Reference:** S. Maggi, _Step width enhancement in a pulse-driven Josephson junction_, Journal of Applied Physics vol. 79, no. 10, pp. 7860--7863 (1996), doi: [10.1063/1.362395](https://aip.scitation.org/doi/10.1063/1.362395).
 
-**Freely-available self-archived version:** [PDF file](https://www.researchgate.net/publication/224485645_Step_width_enhancement_in_a_pulse-driven_Josephson_junction) on ResearchGate.
+**Freely-available self-archived version:** [PDF URL](https://www.researchgate.net/publication/224485645_Step_width_enhancement_in_a_pulse-driven_Josephson_junction) on ResearchGate.
 
 
 ## Contents of this repository
