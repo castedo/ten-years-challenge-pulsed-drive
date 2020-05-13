@@ -23,4 +23,5 @@ Unfortunately, it is not possible to add the image of the virtual machine used t
 [<img src="https://i.creativecommons.org/l/by/4.0/88x31.png">](http://creativecommons.org/licenses/by/4.0/)  
 This article is licensed under a [Creative Commons Attribution 4.0 International License](http://creativecommons.org/licenses/by/4.0/).
 
-All accompanying code files, contained in the directories `code` and `original_code`, are licensed under the GPL version 3 or later, at your choosing, by Sabino Maggi, 2020. See the file COPYING for details of the GPL-3 licence.
+[<img src="https://www.gnu.org/graphics/gplv3-88x31.png">](https://www.gnu.org/licenses/gpl-3.0.html)  
+All accompanying code files contained in the directories `code` and `original_code` are licensed under the GPL version 3 (or later) by Sabino Maggi, 2020. See the file LICENSE for more information about the GPL version 3.
