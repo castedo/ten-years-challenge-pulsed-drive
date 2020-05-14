@@ -18,6 +18,8 @@ The directory [`original_code`](https://github.com/sabinomaggi/ten-years-challen
 
 Unfortunately, it is not possible to add the image of the virtual machine used to run the Visual Basic project since it contains proprietary software. However, the virtual machine can be easily rebuild by following the information contained in the article.
 
+[![SWH](https://archive.softwareheritage.org/badge/swh:1:dir:176f6aba6c73a6513dcfa11672686889a66585d4/)](https://archive.softwareheritage.org/swh:1:dir:176f6aba6c73a6513dcfa11672686889a66585d4;origin=https://github.com/sabinomaggi/ten-years-challenge-pulsed-drive;visit=swh:1:snp:f729d705cd6263adab81a91bf5d0c3b2d0ad5587;anchor=swh:1:rev:111122d17be7beda98b28de2a552706a1fc7be72;path=//)
+
 ---
 
 [<img src="https://i.creativecommons.org/l/by/4.0/88x31.png">](http://creativecommons.org/licenses/by/4.0/)  
