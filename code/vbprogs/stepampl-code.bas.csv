@@ -1,0 +1,462 @@
+'--- Global constants
+Global Const TRUE = -1
+Global Const FALSE = 0
+Global Const NOSTEP = -32768
+' - Warning!
+' - MAX_ELEMENTS must be <= 16.000
+' - MAX_STEP*MAX_FILE must be <= 16.000
+Global Const MAX_ELEMENTS = 10000
+Global Const MAX_STEP = 50
+Global Const MAX_FILE = 100
+' - format strings
+Global Const F3_0$ = "000"
+Global Const F6_4$ = "0.0000"
+'--- Global variables
+Global CANCEL As Integer
+Global BOTHDIR As Integer
+Global NLIST As Integer
+Global ALPHA_DC_MIN As Single
+Global ALPHA_DC_MAX As Single
+Global OMEGA_C As Single
+Global EPS As Single
+Global STEP_HEIGHT() As Single
+Global FILES() As String
+Global CRLF$
+Global T$
+
+Sub Form_Load ()
+Drive.Drive = "c:\"
+Directory.Path = "c:\fortran\programs\data"
+TextDirectory.Text = Directory.Path
+File.Path = Directory.Path
+File.Pattern = "*.out"
+TextFilename.Text = File.Pattern
+End Sub
+Sub Drive_Change ()
+Directory.Path = Drive.Drive
+End Sub
+Sub Directory_Change ()
+File.Path = Directory.Path
+TextDirectory.Text = Directory.Path
+CommandRemoveAll_Click
+End Sub
+Sub TextFilename_Change ()
+File.Pattern = TextFilename.Text
+End Sub
+Sub CommandCancel_Click ()
+Beep
+CANCEL = TRUE
+Loadfile.Hide
+StepAmpl.SetFocus
+End Sub
+Sub CommandAdd_Click ()
+Dim exists As Integer
+Dim i As Integer
+Dim ntemp As Integer
+ntemp = ListFiles.ListCount - 1
+'-- check wheter file has already been inserted into list
+For i = 0 To ntemp
+If ListFiles.List(i) = File.Filename Then
+exists = TRUE
+End If
+Next i
+'-- add file to list
+If exists <> TRUE And File.Filename <> "" Then
+ListFiles.AddItem File.Filename
+End If
+End Sub
+Sub File_DblClick ()
+CommandAdd_Click
+End Sub
+Sub CommandRemove_Click ()
+If ListFiles.ListIndex <> -1 Then
+ListFiles.RemoveItem ListFiles.ListIndex
+End If
+End Sub
+Sub ListFiles_DblClick ()
+CommandRemove_Click
+End Sub
+Sub CommandRemoveAll_Click ()
+Dim i As Integer
+Dim ntemp As Integer
+ntemp = ListFiles.ListCount - 1
+If ntemp <> -1 Then
+ListFiles.ListIndex = 0 'select first element of list
+For i = 0 To ntemp
+ListFiles.RemoveItem 0
+
+Next i
+End If
+End Sub
+Sub CommandOk_Click ()
+NLIST = ListFiles.ListCount - 1
+If NLIST = -1 Then Exit Sub
+If NLIST > 100 Then
+MsgBox "Too many files." + CRLF$ + "Allowed: " + Str$(MAX_FILE) + " files max.", 0 + 48
+, "Error"
+Exit Sub
+End If
+ReDim FILES(NLIST) As String
+For i = 0 To NLIST
+FILES(i) = Directory.Path + "\" + ListFiles.List(i)
+Next i
+Loadfile.Hide
+CANCEL = FALSE
+End Sub
+Sub CommandAddAll_Click ()
+Dim nfile As Integer
+Dim ntemp As Integer
+Dim i As Integer
+Dim k As Integer
+nfile = File.ListCount - 1
+ntemp = ListFiles.ListCount - 1
+For k = 0 To nfile
+exists = FALSE
+'------ check wheter file has already been inserted into list
+For i = 0 To ntemp
+If ListFiles.List(i) = File.List(k) Then
+exists = TRUE
+End If
+Next i
+'------ add file to list
+If exists <> TRUE And File.List(k) <> "" Then
+ListFiles.AddItem File.List(k)
+End If
+Next k
+End Sub
+Sub CommandHelp_Click ()
+MsgBox "Da definire", 0 + 64, "Help"
+End Sub
+
+Sub MenuFileExit_Click ()
+End
+End Sub
+Sub MenuFileLoad_Click ()
+Loadfile.Show
+End Sub
+Sub Form_Load ()
+CRLF$ = Chr$(13) + Chr$(10)
+cancel = TRUE
+MenuFileSave.Enabled = FALSE
+LabelFile.Enabled = FALSE
+TextFile.Enabled = FALSE
+TextFile.Text = ""
+LabelResults.Enabled = FALSE
+TextResults.Enabled = FALSE
+TextResults.Text = ""
+End Sub
+Sub Form_GotFocus ()
+If cancel = TRUE Then
+MenuFileSave.Enabled = FALSE
+MenuComputeDo.Enabled = FALSE
+Else
+MenuComputeDo.Enabled = TRUE
+End If
+cancel = FALSE
+End Sub
+Sub MenuComputeDo_Click ()
+Dim k As Integer
+Dim nstep As Integer
+Dim n_tot As Integer
+Dim n_fold As Integer
+Dim filename As String
+ReDim eta_tmp(1 To MAX_ELEMENTS) As Single
+ReDim alpha_tmp(1 To MAX_ELEMENTS) As Single
+ReDim alpha(1 To MAX_ELEMENTS) As Single
+ReDim eta1(1 To MAX_ELEMENTS) As Single
+ReDim eta2(1 To MAX_ELEMENTS) As Single
+ReDim step_yn(1 To MAX_ELEMENTS, 1 To 2) As Integer
+ReDim STEP_HEIGHT(-MAX_STEP To MAX_STEP, 0 To MAX_FILE - 1) As Single
+StepAmpl.Cls
+LabelFile.Enabled = TRUE
+LabelResults.Enabled = TRUE
+TextResults.Enabled = TRUE
+T$ = ""
+For k = 0 To NLIST
+filename = FILES(k)
+Call StripFilename(filename)
+Call ReadFile(filename, n_tot, eta_tmp(), alpha_tmp())
+'------ check error
+nstep = Int(Abs(ALPHA_DC_MAX - ALPHA_DC_MIN) / OMEGA_C + 1)
+If nstep > MAX_STEP Then
+MsgBox "Too many steps." + CRLF$ + "Allowed: " + Str$(MAX_STEP) + " steps max.", 0
++ 16, "Error"
+Exit Sub
+End If
+
+Call FoldAlpha(n_tot, eta_tmp(), alpha_tmp(), n_fold, alpha(), eta1(), eta2())
+Call FindStep(n_fold, alpha(), eta1(), eta2(), step_yn())
+Call StepHeight(n_fold, alpha(), eta1(), step_yn(), k, STEP_HEIGHT())
+T$ = T$ + CRLF$
+TextResults.Text = T$
+Next k
+MenuFileSave.Enabled = TRUE
+End Sub
+Sub MenuFileSave_Click ()
+SaveFile.Show
+SaveFile.SetFocus
+End Sub
+Sub MenuHelpAbout_Click ()
+MsgBox "Program StepAmpl" + CRLF$ + "version 1.0.5, 26 October 1994" + CRLF$ + CRLF$ +
+"by S. Maggi, IEN-GF" + CRLF$ + CRLF$ + "uses: eps = 0.025 omega_c", 0 + 64, "About StepAmpl"
+End Sub
+Sub Form_Resize ()
+TextResults.Height = StepAmpl.Height - 1650
+TextResults.Width = StepAmpl.Width - 570
+End Sub
+
+Sub ReadFile (FILE$, ndata%, x_tmp(), y_tmp())
+Dim i As Integer
+Dim param As String
+Dim tmp As String
+Dim find As String
+'-- check whether simulation was made by stepping alpha_dc in both directions
+find$ = "simulate"
+lenght = 1
+Call FindParam(FILE$, find$, lenght, param$)
+If param$ = "t" Then
+BOTHDIR = TRUE
+ElseIf param$ = "f" Then
+BOTHDIR = FALSE
+End If
+'-- find alpha_dc_min and alpha_dc_max
+find$ = "normalized dc current range:"
+lenght = 25
+Call FindParam(FILE$, find$, lenght, param$)
+ALPHA_DC_MIN = Val(Left$(param$, 12))
+ALPHA_DC_MAX = Val(Right$(param$, 12))
+'-- find Omega_c value
+find$ = "normalized rf frequency"
+lenght = 12
+Call FindParam(FILE$, find$, lenght, param$)
+OMEGA_C = Val(param$)
+eps = .025 * OMEGA_C
+'-- read simulation results
+Open FILE$ For Input Lock Read Write As #1
+'------ skip lines until start of useful data
+Do
+Line Input #1, tmp$
+Loop Until Left$(LTrim$(tmp$), 3) = "eta"
+'------ skip one more line
+Line Input #1, tmp$
+'------ read data
+i = 0
+Do Until EOF(1)
+i = i + 1
+Input #1, x_tmp(i), y_tmp(i)
+Loop
+ndata = i
+Close #1
+End Sub
+Sub FindParam (FILE$, find$, length, param$)
+Dim lfind As Integer
+Dim tmp As String
+Dim t_tmp As String
+Open FILE$ For Input Lock Read Write As #1
+'-- skip lines until string find$ is found
+lfind = Len(find$)
+find$ = LCase$(find$)
+Do
+Line Input #1, tmp$
+t_tmp$ = LCase$(Left$(LTrim$(tmp$), lfind))
+Loop Until t_tmp$ = find$
+'-- read parameter string, with lenght 'lenght'
+param$ = LCase$(Right$(RTrim$(tmp$), length))
+Close #1
+End Sub
+Sub FoldAlpha (n_max%, eta_tmp(), alpha_tmp(), n_fold%, alpha(), eta1(), eta2())
+
+Dim i1 As Integer
+Dim i2 As Integer
+If BOTHDIR = FALSE Then
+For i = 1 To n_max
+alpha(i) = alpha_tmp(i)
+eta1(i) = eta_tmp(i)
+eta2(i) = 0#
+Next i
+n_fold = n_max
+Else 'BOTHDIR is true
+i1 = 0
+Do
+i1 = i1 + 1
+alpha(i1) = alpha_tmp(i1)
+eta1(i1) = eta_tmp(i1)
+Loop Until alpha_tmp(i1 + 1) <= alpha_tmp(i1)
+'------ no. of different alpha values
+n_fold = i1
+If alpha_tmp(i1 + 1) = alpha_tmp(i1) Then
+i2 = i1 + 1
+Else
+i2 = i1
+End If
+Do
+i1 = i1 + 1
+i2 = i2 - 1
+eta2(i2) = eta_tmp(i1)
+Loop Until i1 = n_max
+End If
+End Sub
+Sub StripFilename (fname$)
+Dim j As Integer
+j = 0
+strip$ = fname$
+Do
+strip$ = Right$(strip$, Len(strip$) - j)
+j = InStr(strip$, "\")
+Loop Until j = 0
+StepAmpl.TextFile.text = strip$
+t$ = t$ + strip$ + CRLF$
+t$ = t$ + "--------------------------" + CRLF$
+End Sub
+Sub FindStep (ndata%, alpha(), eta1(), eta2(), step_yn() As Integer)
+Dim i As Integer
+'-- clear array
+For i = 1 To MAX_ELEMENTS
+step_yn(i, 1) = NOSTEP
+step_yn(i, 2) = NOSTEP
+Next i
+For i = 2 To ndata
+If TestStep(eta1(i), eta1(i - 1)) = TRUE Then
+step_yn(i, 1) = CInt(eta1(i) / OMEGA_C)
+End If
+If TestStep(eta2(i), eta2(i - 1)) = TRUE Then
+step_yn(i, 2) = CInt(eta2(i) / OMEGA_C)
+End If
+Next i
+End Sub
+Sub StepHeight (ndata%, alpha(), eta1(), step_yn() As Integer, col%, STEP_HEIGHT())
+Dim i As Integer
+Dim j As Integer
+Dim order As Integer
+Dim order_min As Integer
+
+Dim order_max As Integer
+Dim height As Single
+'-- initialize variables
+order_min = CInt(ALPHA_DC_MIN / OMEGA_C)
+order_max = CInt(ALPHA_DC_MAX / OMEGA_C)
+For order = order_min To order_max
+For i = 2 To ndata
+If step_yn(i, 1) = order Or step_yn(i, 2) = order Then
+j = i
+Do
+j = j + 1
+Loop Until (step_yn(j, 1) <> order And step_yn(j, 2) <> order)
+height = alpha(j - 1) - alpha(i - 1)
+STEP_HEIGHT(order, col) = height
+t$ = t$ + "step: " + Format$(order, F3_0$) + " height: " + Format$(height, F
+6_4$) + CRLF$
+Exit For
+End If
+Next i
+Next order
+End Sub
+Sub WriteFile (FILE$, STEP_HEIGHT())
+Dim i As Integer
+Dim row As Integer
+Dim ord As Integer
+Dim nstep_min As Integer
+Dim nstep_max As Integer
+Open FILE$ For Output Access Write As #2
+Print #2, "Program: StepAmpl v.1.0.5"
+Print #2, "Automatic analysis of step height"
+Print #2, "--------------------------------------------------"
+text$ = Format$(Now, "dddd dd mmmm yyyy")
+Print #2, "Date: "; text$
+text$ = Format$(Now, "hh:mm:ss")
+Print #2, "Time: "; text$
+Print #2,
+text$ = Str$(eps)
+Print #2, "Recognized step interval, eps:"; text$
+Print #2,
+Print #2, "Processed files:"
+Print #2,
+For i = 0 To NLIST
+text$ = Format$(i + 1, "000")
+Print #2, text$; ": "; FILES(i)
+Next i
+Print #2, "--------------------------------------------------"
+Print #2, "Results:"
+Print #2,
+Print #2, "File:"; ","; Spc(3); "Step: -->"
+Print #2, Spc(5);
+nstep_min = Int(ALPHA_DC_MIN / OMEGA_C - 1)
+nstep_max = Int(ALPHA_DC_MAX / OMEGA_C + 1)
+For ord = nstep_min To nstep_max
+text$ = Format$(ord, F3_0$)
+Print #2, ","; Spc(5); text$;
+Next ord
+Print #2,
+For row = 0 To NLIST
+text$ = " " + Format$(row + 1, F3_0$)
+Print #2, text$;
+For ord = nstep_min To nstep_max
+text$ = Format$(STEP_HEIGHT(ord, row), F6_4$)
+Print #2, ","; Spc(2); text$;
+
+Next ord
+Print #2,
+Next row
+Close #2
+End Sub
+Function TestStep (r, r_old)
+Dim rn As Single
+TestStep = FALSE
+'-- test whether r values are on step
+If Abs(r - r_old) <= eps Then
+'------ test whether it is an integer step
+rn = CInt(r / OMEGA_C) * OMEGA_C
+If (r <= rn) And (r + eps) >= rn Then
+TestStep = TRUE
+ElseIf (r > rn) And (r - eps) <= rn Then
+TestStep = TRUE
+End If
+End If
+End Function
+
+Sub CommandCancel_Click ()
+Beep
+File.Pattern = "*.stp"
+TextFilename.Text = File.Pattern
+SaveFile.Hide
+End Sub
+Sub Form_Load ()
+Drive.Drive = Loadfile.Drive.Drive
+Directory.Path = Loadfile.Directory.Path
+TextDirectory.Text = Loadfile.TextDirectory.Text
+File.Path = Directory.Path
+File.Pattern = "*.stp"
+TextFilename.Text = File.Pattern
+End Sub
+Sub Drive_Change ()
+Directory.Path = Drive.Drive
+End Sub
+Sub Directory_Change ()
+File.Path = Directory.Path
+TextDirectory.Text = Directory.Path
+End Sub
+Sub CommandOk_Click ()
+If File.Listcount <> 0 Then
+r = MsgBox("File already exists!" + CRLF$ + "Overwrite?", 4 + 32 + 256, "Save file")
+If r = 7 Then
+File.Pattern = "*.stp"
+TextFilename.Text = File.Pattern
+Exit Sub
+End If
+End If
+file_to_save$ = Directory.Path + "\" + TextFilename.Text
+Call WriteFile(file_to_save$, STEP_HEIGHT())
+File.Pattern = "*.stp"
+TextFilename.Text = File.Pattern
+SaveFile.Hide
+StepAmpl.SetFocus
+End Sub
+Sub TextFilename_Change ()
+File.Pattern = TextFilename.Text
+End Sub
+Sub File_Click ()
+TextFilename.Text = File.Filename
+End Sub
+Sub File_DblClick ()
+TextFilename.Text = File.Filename
+End Sub
