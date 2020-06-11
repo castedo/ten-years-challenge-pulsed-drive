@@ -4,7 +4,7 @@
 #-----------------------------------------------------#
 # Author:        Sabino Maggi                         #
 # File Created:  10-02-2020                           #
-# Last revision: 25-03-2020                           #
+# Last revision: 10-06-2020                           #
 #-----------------------------------------------------#
 
 
@@ -26,6 +26,8 @@
 *.fls
 *.fdb_latexmk
 *.run.xml
+*.loc
+*.soc
 
 #--- macOS junk
 ##.DS_Store
