@@ -5,7 +5,7 @@
 #  - For a successful replication, it shoudl be prefixed with "[Re]"
 #  - For a failed replication, it should be prefixed with "[¬Re]"
 #  - For other article types, no instruction (but please, not too long)
-title: "[Re] Reproduction of Step width enhancement in a pulse-driven Josephson junction"
+title: "[Rp] Reproduction of Step width enhancement in a pulse-driven Josephson junction"
 
 # List of authors with name, orcid number, email and affiliation
 # Affiliation "*" means contact author
@@ -15,10 +15,6 @@ authors:
     email: sabino.maggi@cnr.it
     affiliations: 1,*
     
-  # - name: Nicolas P. Rougier
-  #   orcid: 0000-0002-6972-589X
-  #   email: Nicolas.Rougier@inria.fr
-  #   affiliations: 3,4,5,*      # * is for contact author
 
 # List of affiliations with code (corresponding to author affiliations), name
 # and address. You can also use these affiliations to add text such as "Equal
@@ -66,10 +62,10 @@ data:
 
 # Information about the original article that has been replicated
 replication:
- - cite: # Full textual citation
- - bib:  # Bibtex key (if any) in your bibliography file
- - url:  # URL to the PDF, try to link to a non-paywall version
- - doi:  # Regular digital object identifier
+ - cite: S. Maggi, Step width enhancement in a pulse-driven Josephson junction, Journal of Applied Physics vol. 79, no. 10, pp. 7860--7863 (1996.
+ - bib:  Maggi:1996
+ - url:  https://www.researchgate.net/publication/224485645_Step_width_enhancement_in_a_pulse-driven_Josephson_junction
+ - doi:  10.1063/1.362395
 
 # Don't forget to surround abstract with double quotes
 abstract: "When I read about the Ten Years Challenge, it was a matter of seconds to decide to participate in the contest with the replication of a work on the numerical simulation of a Josephson junction driven by a train of microwave pulses.
@@ -100,7 +96,7 @@ language: Fortran
 
 # For example, the URL of the GitHub issue where review actually occured
 review: 
-  - url: 
+  - url: https://github.com/ReScience/submissions/issues/23
 
 contributors:
   - name:

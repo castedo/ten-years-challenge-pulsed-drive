@@ -4,8 +4,8 @@
 %--- SM additions ---
 %ONLY FOR DRAFT VERSION!
 %\renewcommand{\baselinestretch}{2.0}
-\usepackage{changes}
-\definechangesauthor[name={Sabino Maggi}, color=orange]{SM}
+%\usepackage{changes}
+%\definechangesauthor[name={Sabino Maggi}, color=orange]{SM}
 
 
 \graphicspath{{./figures/}}
@@ -15,16 +15,6 @@
 %%\usepackage{multicol}
 
 \definecolor{ultralightgray}{gray}{0.98}
-
-% \newcommand{\beginsupplement}{
-%     \setcounter{section}{99}
-%     \renewcommand{\thesection}{FF\arabic{section}}
-%     %%\renewcommand{\thesection}{S}
-%     \renewcommand{\thesubsection}{S.\arabic{subsection}}
-%     \setcounter{table}{0}
-%     \renewcommand{\thetable}{S\arabic{table}}
-%     \setcounter{figure}{0}
-%     \renewcommand{\thefigure}{S\arabic{figure}}
 
 \newenvironment{supplement}{
     \setcounter{section}{0}
@@ -36,7 +26,8 @@
     \renewcommand{\thefigure}{S\arabic{figure}}
 }
 %--- End SM additions ---
- 
+
+
 \begin{document}
 \input{header.tex}
 \input{content.tex}

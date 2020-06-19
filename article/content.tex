@@ -3,7 +3,6 @@
 
 A Josephson junction is a quantum mechanical device composed of two superconducting electrodes separated by a weak link \cite{Barone:1982}.
 For currents lower than a critical value $I_C$, coupled electrons (Cooper pairs) can cross the weak link without a potential difference (dc Josephson effect).
-%the device behaves as an uninterrupted superconductor and coupled electrons (Cooper pairs) can cross the weak link without any voltage drop.
 When the current is increased above $I_C$, single electrons originated by the breakup of Cooper pairs begin to traverse the weak link. The potential difference $V$ between the two superconducting films becomes $\neq 0$ and a state is reached where the junction behaves as a resistance.
 
 In modern Josephson junctions the weak link is usually a thin insulating tunnel barrier (SIS junction) \cite{Gurvitch:1983}, a normal metal film (SNS junction) \cite{Benz:1995} or a physical nanoconstriction (ScS junction) \cite{Cybart:2015, DeLeo:2016}. Josephson junctions have found wide usage in several research fields, for example as building blocks for RSFQ digital electronics  or quantum computers \cite{Likharev:1991}, or as radiation detectors and very sensitive magnetometers (SQUIDs) \cite{Maggi:2006b, Troeman:2007, Granata:2015}.
@@ -16,23 +15,15 @@ A microwave radiation of frequency $f$ can phase lock the junction oscillations,
 \end{equation}
 
 where $h$ and $e$ are the Plank constant and electron charge, respectively. The ac Josephson effect is at the basis of the current quantum voltage standard.
-%that from 1987 replaced the previous voltage standard based on Weston cells.
 
 Besides its practical applications, the Josephson junction is important from a physical point of view because it has been the first device showing a quantum mechanical effect on a macroscopic scale.
-
-%% However, only in the second half of the 80’s, the development of the reliable Nb/Al-AlO,/Nb fabrication process made it possible to reach quantized voltages of $1$ and $10$~V, suitable for direct dc voltage calibration. These devices were based on large series arrays of thousands of SIS Josephson junctions (here SIS stands for superconductor-insulator-superconductor, where Nb is the superconducting film and the Al0, layer is the insulating tunneling barrier of the junction).
-
-%% The Josephson voltage standard at the $1$ and $10$~V levels that were the state-of-the-art implementation at the time and were deployed only in very few labs wordwide, required a very careful engineering of the microwave distribution lines within the many arms in which the Josephson arrays were divided. 
 
 An important research topic at the beginning of the '90s was related to finding ways to increase the amplitude of the current steps induced by the microwave radiation (rf-induced steps). In fact, the stability of the lock between the phase of the junction and the applied microwave radiation -- and therefore its insensitivity to noise events which might switch the junction from one quantized voltage to another, a crucial problem for voltage standard applications -- is strongly dependent on the amplitude of the steps \cite{Kautz:1987}.
 
 To increase the amplitude of the current steps, a non-sinusoidal microwave radiation may be used.
-%when two phased microwaves of frequencies $f$ and $2 f$ are added together, the rf-induced current steps can have normalized amplitudes larger than those predicted for a standard sinusoidal radiation 
 In 1990 Monaco showed that, in the limit of a voltage-biased Josephson junction, adding together two phased microwaves of frequency $f$ and $2 f$ produces rf-induced current steps whose amplitudes are larger than those observed with a sinusoidal radiation \cite{Monaco:1990}.
 
 Experiments on the so-called ``biharmonic drive'' readily confirmed these conclusions, albeit with some limitations due to the fact that the junctions could not realistically be considered as voltage biased \cite{Andreone:1991, Andreone:1992}.
-
-%Experiments on the so-called ``biharmonic drive'' readily confirmed, at least in part, these conclusions. The differences were due to the fact that the junctions could not realistically be considered as voltage biased \cite{Andreone:1991, Andreone:1992}.
 
 Extending further the idea, Monaco showed that, still in the limit of voltage bias, if the microwave radiation is composed of a train of delta functions, the rf-induced current steps could become as large as the critical current $I_C$.
 
@@ -48,10 +39,8 @@ The reproduction of this investigation is the object of the present work.
 
 A first attempt to solve this problem was made using an electronic analog simulator of a Josephson junction \cite {Henry:1981}, that could compute the relation between the applied current and the voltage ($I-V$ characteristic) of a current-biased junction, in the framework of the Stewart-McCumber RSJ junction model \cite{McCumber:1968, Stewart:1974}.
 The analog simulator was fast and simple to use, and could produce in just a few minutes on a \href{http://www.hpmuseum.net/display_item.php?hw=74}{Hewlett Packard 7475A}2 pen plotter beautiful plots of the $I-V$ characteristics of the junction as a function of the simulated microwave signal.
-%\footnote{A brief description of the \href{http://www.hpmuseum.net/display_item.php?hw=74}{HP 7475A pen plotter} can be found on the HP Computer Museum.}
 \footnote{Unfortunately, after 25 years and two relocations, I could not manage to find photographs of the simulator nor the original HP 7475A plots.} 
 
-%The real problem with this approach was that, 
 However, even if the electronic simulation was extremely fast, the analysis of the results required to measure by hand the amplitude of the rf-induced current steps visible on each $I-V$ characteristic, a tedious and error-prone task.
 
 I then decided to develop a Fortran program to solve numerically the nonlinear second-order differential equation that models the Josephson junction \cite{McCumber:1968, Stewart:1974}. 
@@ -71,10 +60,8 @@ After a few weeks of these mostly unsuccessful attempts, a colleague of another 
 The machines were heavily used by his group during working hours, but sat mostly idle overnight. 
 If I could manage to finish my runs before the start of the new work day, I was allowed to use this idle time for my own simulations.
 The colleague gave me a quick crash course on Unix and I was ready to go.
-%\footnote{I should still have my notes somewhere.}
 
 Porting my Fortran program from Microsoft Fortran 5.1 to ULTRIX was a breeze, and I quickly learnt how to use FTP to transfer the input configuration files and the output data files containing the results of the simulations back and forth from the DEC workstations to my Compaq 386 notebook, that was also my desktop computer.
-%\footnote{I was one of the \emph{happy few} to have a personal computer sitting on my own desk.}
 
 Now each day I had four different sets of data files coming from the DEC workstations. Three of them were obtained by irradiating the junction with a pulsed drive with decreasing values of $\rho$, while keeping constant $\beta$ and $\Omega$.
 The fourth simulation was made by irradiating the junction with a sinusoidal drive, while keeping everything else equal. This last simulation was used as a reference, to compare the results obtained with a standard sinusoidal radiation with those obtained with progressively shorter pulses.
@@ -83,9 +70,6 @@ Each night I changed the values of $\beta$ or $\Omega$, to study the effect of t
 
 Again, the real problem was how to analyze all this data. A manual analysis like that needed with the electronic simulator was out of consideration. 
 I decided to try the recently released Microsoft Visual Basic 1.0 for Windows, writing another program that calculated the size of the rf-induced current steps visible on the $I-V$ characteristics of the nightly simulations, as a function of $\alpha_\mathrm{rf}$.
-%Everything worked flawlessly.
-%Now I could transfer by FTP the files containing the nightly results from the DEC workstations to my desktop computer and 
-%Running the Visual Basic program on each set of data files produced a summary file that contained the size of the calculated current steps.
 
 The results of months of calculations were summarized in a paper published in the Journal of Applied Physics \cite{Maggi:1996}.
 
@@ -93,27 +77,20 @@ The results of months of calculations were summarized in a paper published in th
 
 \section{Digging into code} \label{sec:digging-into-code}
 
-%Finding the original sources of this project was easy and complex at the same time.
 I like organisation, and I try keep all my past projects on my main workstation. 
 Thus, finding the original source and data files of this project was only a question of locating the directory where the project was stored.
 Problems started to arise when I looked at the different files. The whole project was scattered into several directories, each containing many files with widely different names and dates. At first, trying to find an order in that chaos seemed impossible.
 
 Normally I would have found all information needed in many notebooks full of detailed handwritten notes.
-% Normally it would have been only a question of recovering all needed information from my handwritten notebooks for this project
 Unfortunately, a couple of years ago most of my work notebooks were damaged by a water leak in the basement, and could not be recovered. The only option left was to check the files one by one. 
-%It is a great luck that modern operating system greatly ease the burden of dealing with data files; macOS in particular offers Quick Look, an exceptional tool to quickly browse through hundreds of files at the touch of the spacebar.
-
-%%some with  misleading names such as \texttt{old} or \texttt{obsolete}, which one was older? (turns out that \texttt{obsolete} is \emph{older} that \texttt{old}).
 
 After a thorough inspection of the whole project I recalled that:
 (1) my first attempts with the numerical simulations tried to use the more accurate McDonald-Johnson junction model \cite{McDonald:1976}, I later switched to the simplified Stewart-McCumber RSJ model because it was much faster and efficient in calculating the junction behavior \cite{McCumber:1968, Stewart:1974};
 (2) file names attempted to reflect what the programs actually did, at least within the limits of DOS 8+3 naming scheme: in the same directory I could have a file ending with a ``'' that provided a textual output and another file ending with a ``g'' that gave a graphical output, and they differed only for a couple of \texttt{DEFINES}s that controlled the conditional compilation of the proper sections of the source code.
-%instructed the compiler to select the proper sections of code.
 
 This multiplication of files might seem senseless today, when comfortable graphical interfaces, ultra-fast text editors with support of regular expressions and version control tools allow to change a large set of files in just a few seconds, but at that time it was probably the fastest, albeit very inefficient, way of working with source code;
 (3) the header of all source files contained detailed notes about the type of program, the compiler, the type of output and the dates of first and last revision of the source file, considerably easing the analysis of the different versions of the Fortran programs (Fig.~\ref{fig:source-header}); 
 (4) the initial versions of the Fortran programs were monolithic, a single source file contained the whole code, that consisted in about 1.000 lines of Fortran. Only at a later time, better computing practices taught me to divide the monolithic code into multiple source files, compiled and linked together with a \texttt{Makefile}.
-%(I will not delve into it here, as it a different paper).
 
 %===============================================================================
 \begin{figure}[tb]
@@ -128,31 +105,11 @@ This multiplication of files might seem senseless today, when comfortable graphi
 Another invaluable tool to analyze the different versions of the source files was \href{http://meldmerge.org/}{Meld}, an open source application available for all major operating systems that can perform a two- and even a three-way comparison of files and directories.
 Using Meld I quickly realized that the two most interesting source files were \texttt{mcphase.for} and \texttt{mcp-work.for}, both located in the \texttt{mccumber/} directory  (Fig.~\ref{fig:meld-comparison}).
 
-%%===============================================================================
-%\begin{figure}[bt]
-%	\centering
-%	\includegraphics[width = 0.75 \textwidth]{meld-comparison.png}
-%	\caption{Comparison with Meld of the main calculation loop of \texttt{mcphase.for} and \texttt{mcp-work.for}.}
-%	\label{fig:meld-comparison}
-%\end{figure}
-%%===============================================================================
-
-
 The first program, \texttt{mcphase.for}, simulated the behavior of the junction for a single value of $\alpha_\mathrm{rf}$ read from the input configuration file \texttt{mc-iv.dat}, and saved the $I - V$ characteristic of the junction and its phase portrait (i.e., the relation between the phase and its time derivative, the latter being proportional to the junction voltage $V$) in the output file \texttt{mc-iv.out}.
 
 Multiple calculations with several different value of $\alpha_\mathrm{rf}$ were performed by using a  DOS batch file that basically choose one by one the configuration files containing the desired values of $\alpha_\mathrm{rf}$, renamed them to \texttt{iv.dat}, run the compiled executable \texttt{mcphase.exe} and at the end renamed the file containing the results, \texttt{mc-iv.out}, using a consistent naming scheme.
 %for each value of $\alpha_\mathrm{rf}$, copied a \texttt{.dat} input file containing the proper set of simulation parameters into a file with a standard name, \texttt{iv.dat}, run the simulation and at the end renamed the output file containing the results of the simulation, \texttt{mc-iv.out} so that it has the same basename of the original \texttt{.dat} input file.
 I don't recall why I choose this approach, but it was clearly very inefficient, as it required to prepare each day a long series of configuration files that differed only by the value of $\alpha_\mathrm{rf}$, and to update accordingly the DOS batch file that controlled the night calculations (Fig.~\ref{fig:batch-file}).
-
-%%===============================================================================
-%\begin{figure}[tbh]
-%	\centering
-%	\includegraphics[width = 0.75 \textwidth]{batch-file.png}
-%	\caption{DOS batch file used by \texttt{mcphase.for} to perform multiple simulations with different values of $\alpha_\mathrm{rf}$.}
-%	\label{fig:batch-file}
-%\end{figure}
-%%===============================================================================
-
 
 The second program, \texttt{mcp-work.for} was an improved version that could cycle across a  set of several values of $\alpha_\mathrm{rf}$, producing a different output file for each value of $\alpha_\mathrm{rf}$. To simplify the later automatic analysis, it left out the phase portrait.
 
@@ -179,82 +136,6 @@ To support \texttt{cpp}, all was needed was to comment out all the \texttt{\$DEF
 
 The right directives are chosen now at compile-time. For example, the following command
 \footnote{The \texttt{\$} symbol prepended to this and to all following terminal commands represents the prompt of the command interpreter and is not part of the command.}
-
-%
-% %===============================================================================
-% \lstset{
-%     language = C,
-%     basicstyle = \tiny\bfseries\ttfamily,
-%     tabsize = 4,
-%     frame = lines,
-%     framesep = 1em,
-%     framexleftmargin = 1em,
-%     backgroundcolor = \color{ultralightgray},
-%     keywordstyle = \color{darkred}\bfseries,
-%     morekeywords = {$DEFINE, $if, $endif, defined},
-%     deletekeywords = {for}
-% }
-% %===============================================================================
-% \begin{figure}[b]
-% \centering
-%
-% \begin{minipage}{0.48\textwidth}
-% \textbf{(a)}
-% \begin{lstlisting}
-% $DEFINE textout            ! DEFINEd for text output
-% c $DEFINE graphout        ! DEFINEd for graphical output
-%
-% c $DEFINE single        ! DEFINED for single rf drive
-% c $DEFINE biharmonic    ! DEFINED for biharmonic drive
-% $DEFINE pulsed            ! DEFINED for pulsed drive
-%
-% $if defined (graphout)
-%     ...
-% $endif
-% ...
-% ...
-% $if defined (textout)
-%     ...
-% $endif
-% ...
-% $if defined (pulsed)
-%     ...
-% $endif
-% \end{lstlisting}
-% \end{minipage}
-% %
-% \hfill
-% %
-% \begin{minipage}{0.48\textwidth}
-% \textbf{(b)}
-% \begin{lstlisting}
-% CC $DEFINE textout        ! DEFINEd for text output
-% c $DEFINE graphout        ! DEFINEd for graphical output
-%
-% c $DEFINE single        ! DEFINED for single rf drive
-% c $DEFINE biharmonic    ! DEFINED for biharmonic drive
-% CC $DEFINE pulsed        ! DEFINED for pulsed drive
-%
-% #if graphout
-%     ...
-% #endif
-% ...
-% ...
-% #if textout
-%     ...
-% #endif
-% ...
-% #if pulsed
-%     ...
-% #endif
-% \end{lstlisting}
-% \end{minipage}
-%
-% \caption{Preprocessor directives in (a) Microsoft Fortran 5.1, (b) modern \texttt{cpp} preprocessor.}
-% \label{fig:preprocessor}
-% \end{figure}
-% %===============================================================================
-%
 
 
 %===============================================================================
@@ -285,22 +166,6 @@ runs the \texttt{cpp} preprocessor before the gfortran compiler, selecting only 
 Compilers based on Fortran 77, such as Microsoft Fortran 5.1, did not support dynamic memory allocation at runtime and required programmers to use fixed-length arrays and strings. Strings were used rather sparingly in Fortran code, so that was not a big deal. With an exception. 
 My code defined the basename of all files as the 50-byte long character variable \texttt{filename}, attaching a proper extension to the input configuration file that contained the simulation parameters and to the output data files with the results of the calculations.
 
-%%===============================================================================
-%\lstset{
-%    language = Fortran,
-%    tabsize = 6,
-%    frame = none,
-%    framesep = 2em,
-%    framexleftmargin = 1em,
-%    backgroundcolor = \color{ultralightgray},
-%}
-%%===============================================================================
-%\begin{lstlisting}
-%	CHARACTER*50   filename
-%\end{lstlisting}
-%%===============================================================================
-
-
 Under DOS that was not a problem, as DOS truncates file names to only 8 characters plus 3 characters for the extension, and excess characters were simply ignored. But under Unix file names have no practical limitations,\footnote{Unix allows 255 characters for the filename and 4096 characters for the path.} and having all these 50 character-long filenames, mostly composed by blank characters, was ugly and complicated file management, in particular when using the command line interface.
 The solution was simple, as Fortran now has the \texttt{TRIM} function, that removes all trailing blanks from a string. 
 Whenever a file is opened for reading or for writing, \texttt{TRIM()} is applied on-the-fly to the \texttt{filename} variable,
@@ -318,7 +183,6 @@ thus removing all extra blanks from the name of the file.
 \subsection{Edit descriptors}
 
 Microsoft Fortran 5.1 used the backslash (\texttt{\textbackslash{}}) edit descriptor to prevent the addition of a line break at the end of a \texttt{WRITE} instruction.
-%\footnote{http://userweb.eng.gla.ac.uk/peter.smart/com/981124.htm}
 Modern Fortran compilers do not support this  non-standard edit descriptor and return an error. This problem is avoided by removing the backslash from all \texttt{WRITE} instructions that include it.
 
 
@@ -334,42 +198,9 @@ In particular, \texttt{DATE}, \texttt{TIME} and \texttt{ZONE} are character vari
 To minimize changes to the original source code, the calls to the \texttt{GETDAT} and \texttt{GETTIM} subroutines, were translated to a single call to \texttt{DATE\_AND\_TIME}, assigning the elements of the returned array of \texttt{VALUES} to integer variables named as in the original code (Fig.~\ref{fig:date-time}).
 
 
-%%===============================================================================
-%\begin{lstlisting}
-%	INTEGER*2      iyr, imon, iday
-%	INTEGER*2      ihr, imin, isec, dummy
-%	...
-%	CALL GETDAT(iyr, imon, iday)
-%	CALL GETTIM(ihr, imin, isec, dummy)
-%\end{lstlisting}
-%%===============================================================================
-
-
-%%===============================================================================
-%\begin{lstlisting}
-%	character*8    date
-%	character*10   time
-%	character*5    zone
-%	integer        values(8)
-%	...
-%	call date_and_time(date, time, zone, values)
-%
-%	iyr  = values(1)
-%	imon = values(2)
-%	iday = values(3)
-%	ihr  = values(5)
-%	imin = values(6)
-%	isec = values(7)
-%\end{lstlisting}
-%%===============================================================================
-
-
 
 \subsection{Compilation with gfortran}
 \label{compilation-with-gfortran}
-
-%All these fixes were enough to compile correctly \texttt{mcphase.for} with gfortran.
-%As for \texttt{mcp-work.for}, basically it required the same corrections, with one rather strange addition.
 
 As noted above, \texttt{mcp-work.for} calculates the $I - V$ characteristics of the simulated junction for several different values of $\alpha_\mathrm{rf}$, producing one output file for each $I - V$ curve. The section of the code that defined the names of the output files was quite convoluted,
 
@@ -410,7 +241,7 @@ I have no idea why I decided to build the name the output files in such a comple
 In any case, it did not work under gfortran and prevented proper compilation of the code. 
 
 After some inspection it was apparent that the number \texttt{47} added to integer variables in the three \texttt{CHAR} function calls was the source of the error, and that it should be replaced by \texttt{48}. 
-The line defining the \texttt{filewrite} variable thus becomes, %\lstinline[columns=fixed]{filewrite='PU'//CHAR(il2+48)//char(il1+48)//char(il0+48)}.
+The line defining the \texttt{filewrite} variable thus becomes,
 
 %===============================================================================
 \begin{lstlisting}
@@ -427,40 +258,38 @@ c ------ define output file name(s)
 
 With this change \texttt{mcp-work.for} could compile flawlessly under gfortran.
 What is still puzzling is how the original line could work in Microsoft Fortran 5.1.
-%Microsoft Fortran required to add a \texttt{47} instead of \texttt{48} to convert a integer to the correct \texttt{ASCII} character.
 
 
 
 \section{Visual Basic code}
 \label{visual-basic-code}
 
-\added{No attempt was made to try to run the original Visual Basic 1.0 program on a modern computer.} Visual Basic is a dead language and long since has been replaced by Visual Basic .NET, which shares only the name with its forefather.
+No attempt was made to try to run the original Visual Basic 1.0 program on a modern computer. Visual Basic is a dead language and long since has been replaced by Visual Basic .NET, which shares only the name with its forefather.
  
-From the beginning, the only viable option to run a Visual Basic 1.0 application today was to rebuild the original development environment \added{based on DOS 6.22 and Windows 3.11} in an emulator.
-\added{The other possible alternative, try to setup an ancient PC still capable to run DOS and Windows 3.11, albeit in principle interesting to ensure a replication of the original paper at the hardware level, would have posed more problems than it solved, adding little to the accuracy of the reproduction itself.}
+From the beginning, the only viable option to run a Visual Basic 1.0 application today was to rebuild the original development environment based on DOS 6.22 and Windows 3.11 in an emulator.
+The other possible alternative, try to setup an ancient PC still capable to run DOS and Windows 3.11, albeit in principle interesting to ensure a replication of the original paper at the hardware level, would have posed more problems than it solved, adding little to the accuracy of the reproduction itself.
 
-I preferred to use the \href{https://www.parallels.com/}{Parallels Desktop} emulator for macOS, but \added{popular alternatives such as \href{https://www.vmware.com/products/workstation-player.html}{VMware Workstation} for Windows or the \href{https://www.virtualbox.org/}{VirtualBox} open source multi-platform emulator} should work equally well.
+I preferred to use the \href{https://www.parallels.com/}{Parallels Desktop} emulator for macOS, but popular alternatives such as \href{https://www.vmware.com/products/workstation-player.html}{VMware Workstation} for Windows or the \href{https://www.virtualbox.org/}{VirtualBox} open source multi-platform emulator should work equally well.
 
 I created a new empty virtual machine with minimal hardware requirements and installed in sequence DOS 6.22, Windows 3.11 and Visual Basic 1.0 (Fig.~\ref{fig:windows-311}).
 While I was at it, and although I had already reproduced the Fortran part of the project, I also decided to install Microsoft Fortran 5.1 for DOS, to try to recreate as much as possible the original work environment.
 
 All software packages were downloaded from the \href{https://winworldpc.com}{WinWorld web site}, an invaluable resource for recovering old software packages. 
 Even after so many years, the legitimacy of installing proprietary software in an emulator, might be questionable. But at the time I had regular licenses for all the above mentioned software and I guess to be at least morally authorized to continue to use those packages.
-\added{Unfortunately, this also means that it is not possible to share the image of the virtual machine used to run the Visual Basic program on the paper's \href{https://github.com/sabinomaggi/ten-years-challenge-pulsed-drive}{GitHub repository}, since it contains proprietary software}.
+Unfortunately, this also means that it is not possible to share the image of the virtual machine used to run the Visual Basic program on the paper's \href{https://github.com/sabinomaggi/ten-years-challenge-pulsed-drive}{GitHub repository}, since it contains proprietary software.
 
 The packages were originally distributed on several floppy disks, which had to be swapped whenever the installer required a new disk. 
 The installation of these software packages in an emulator is close to how it was done back then.
 The only difference is that today the floppy disks are replaced by virtual file images and \emph{swapping} disks is not done mechanically but requires to select a menu option in the emulator.
 
 At the end of the installation process, the Windows 3.11 appeared as in Fig.~\ref{fig:windows-311}.
-%, in all its full $640 \times 480$ pixels glory.
 The default $640 \times 480$ pixel screen resolution of Windows 3.11 was woefully meager by today's standards but, as I used the virtual environment almost exclusively to run the Visual Basic program, I didn't bother to install the video drivers that could increase the screen resolution to a more comfortable $800 \times 600$ or $1024 \times 768$ pixel resolution.
 
 %===============================================================================
 \begin{figure}[t]
 	\centering
 	\includegraphics[width = 0.75 \textwidth]{windows-311.png}
-	\caption{The Windows 3.11 desktop as shown in the Parallels emulator. \added{The File Manager window shows the files generated by the Fortran \texttt{mcp-work} program, before being processed by the Visual Basic program.}}
+	\caption{The Windows 3.11 desktop as shown in the Parallels emulator. The File Manager window shows the files generated by the Fortran \texttt{mcp-work} program, before being processed by the Visual Basic program.}
 	\label{fig:windows-311}
 \end{figure}
 %===============================================================================
@@ -468,7 +297,6 @@ The default $640 \times 480$ pixel screen resolution of Windows 3.11 was woefull
 
 Using the emulator required to transfer the source and binary Visual Basic files to the emulated DOS/Windows system.
 It is surely possible to make the emulated Windows 3.11 communicate with the host operating system through the network. But I found much easier to use again a virtual floppy disk to transfer all needed files from macOS to Windows 3.11 (and viceversa).
-%, mounted alternatively (end exclusively) on macOS or on Windows 3.11, 
 
 A new empty virtual floppy disk \texttt{data.img} can be easily created with the command-line utility \texttt{dd} available on macOS or Linux
 
@@ -495,90 +323,12 @@ dd if=/dev/zero of=data.img bs=1440k count=1
 
 After creation, the virtual floppy disk must be mounted in the emulator and formatted under DOS or Windows 3.11 in the original MS-DOS FAT file system.
 
-%[++ The same virtual floppy disk was used to copy the source code of \texttt{mcphase.for} and \texttt{mcp-work.for} and the \texttt{mc-iv.dat} configuration file to the virtual machine. ++]
-%[++, transferring them to the Microsoft Fortran 5.1 standard project directories.++]
-
-%[++ how did I find where these dirs were located??? ++]
-%
-%[++ The same was done for the Visual Basic project and the precompiled binary, creating a new directory in the virtual machine to host these files. ++]
-
 This step completed the preparation of the development environment, now it was time to test how all this behaved.
 
 
 
 \section{Running the programs}
 
-%Running \texttt{mcphase.for} is easy. In summary, all I had to do was to compile \texttt{mcphase.for} with the right directives, switch to the \texttt{2020runs/} directory and run the \texttt{mcphase} executable from there, as summarized below,
-%
-%%===============================================================================
-%\lstset{
-%    language = bash,
-%    basicstyle = \small\bfseries\ttfamily,
-%    tabsize = 4,
-%    frame = none,
-%    framesep = 2em,
-%    framexleftmargin = 1em,
-%    backgroundcolor = \color{ultralightgray},
-%    keywordstyle = \color{darkred}\bfseries,
-%    alsoletter=-,
-%    morekeywords = {gfortran},
-%    deletekeywords = {for}
-%}
-%%===============================================================================
-%\begin{lstlisting}
-%$ gfortran -cpp -Dtextout -Dsingle -o mcphase mcphase.for
-%$ cd ../2020runs/
-%$ ../mccumber/mcp-work
-%\end{lstlisting}
-%%===============================================================================
-%
-%obtaining a file \texttt{mc-iv.out} that contains the $I - V$ characteristic and the phase portrait (the relation between the phase and its time derivative, the latter being proportional to the junction voltage $V$) of the junction for the set of parameters defined in \texttt{mc-iv.dat}. 
-%The calculation takes only a couple of seconds to complete on a recent computer, and without microwave radiation ($\alpha_\mathrm{rf} = 0$), produces the well-known non-hysteretic $I - V$ characteristic of the RSJ model (Fig.~\ref{fig:iv-single}a), while for non-zero values of $\alpha_\mathrm{rf}$ the staircase-like structure of the rf-induced current steps appear on the $I - V$ curves (Fig.~\ref{fig:iv-single}b and Fig.~\ref{fig:iv-single}c).
-%
-%%===============================================================================
-%\begin{figure}[bh]
-%{
-%	\fboxsep=0pt
-%	\mbox{\includegraphics[width=0.325\textwidth]{iv-single-alpharf0.png}}
-%	\hfill
-%	\mbox{\includegraphics[width=0.325\textwidth]{iv-single-alpharf1.png}}
-%	\hfill
-%	\mbox{\includegraphics[width=0.325\textwidth]{iv-single-alpharf2.png}}
-%}
-%	\caption{$I - V$ characteristics of a junction with $\beta_c = 0.01$, driven by a sinusoidal rf bias of frequency $\Omega = 0.45$ and (a) $\alpha_\mathrm{rf} = 0.0$, (b) $\alpha_\mathrm{rf} = 1.0$ and (c) $\alpha_\mathrm{rf} = 2.0$. The rf-induced current steps are clearly visible when $\alpha_\mathrm{rf} > 0$. Here $\eta$ and $\alpha$ are the junction normalized voltage and current, respectively.}
-%	\label{fig:iv-single}
-%\end{figure}
-%%===============================================================================
-%
-%
-%To simulate a pulsed rf bias, it is sufficient to compile \texttt{mcphase.for} with the \texttt{-Dpulsed} directive and rerun the simulation (Fig.~\ref{fig:iv-pulsed}). 
-%The $I - V$ characteristic without the rf bias is identical to that calculated with the sinusoidal signal (Fig.~\ref{fig:iv-pulsed}a), while the current steps induced by the pulsed drive are fewer and nearly as wide as the critical current for $\alpha_\mathrm{rf} = 0.0$ (compare Figs.~\ref{fig:iv-pulsed}a and \ref{fig:iv-pulsed}c).
-%
-%%%===============================================================================
-%%\begin{lstlisting}
-%%$ gfortran -cpp -Dtextout Dpulsed -o mcphase mcphase.for
-%%$ cd ../2020runs/
-%%$ ../mccumber/mcphase
-%%\end{lstlisting}
-%%%===============================================================================
-%
-%%===============================================================================
-%\begin{figure}[bh]
-%{
-%	\fboxsep=0pt
-%	\mbox{\includegraphics[width=0.325\textwidth]{iv-pulsed-alpharf0.png}}
-%	\hfill
-%	\mbox{\includegraphics[width=0.325\textwidth]{iv-pulsed-alpharf5.png}}
-%	\hfill
-%	\mbox{\includegraphics[width=0.325\textwidth]{iv-pulsed-alpharf10.png}}
-%}
-%	\caption{$I - V$ characteristics of a junction with $\beta_c = 0.01$, driven by a pulsed rf bias of frequency $\Omega = 0.45$ for: (a) $\alpha_\mathrm{rf} = 0.0$, (b) $\alpha_\mathrm{rf} = 5.0$ and (c) $\alpha_\mathrm{rf} = 10.0$. For $\alpha_\mathrm{rf} > 0$ the rf-induced steps are much larger than with the standard sinusoidal rf-drive. Here $\eta$ and $\alpha$ are the junction normalized voltage and current, respectively.}
-%	\label{fig:iv-pulsed}
-%\end{figure}
-%%===============================================================================
-
-
-%The second Fortran program, \texttt{mcp-work.for}, is much more interesting. While \texttt{mcphase.for} can calculate the $I - V$ characteristic of the junction only for a single value of $\alpha_\mathrm{rf}$ and for increasing or decreasing values of the normalized current $\alpha_\mathrm{dc}$, 
 As already noted, \texttt{mcp-work.for} calculates the $I - V$ characteristics for a range of values of $\alpha_\mathrm{rf}$, saving each curve in a separate output file. 
 The lower and upper limits and the step size of $\alpha_\mathrm{rf}$ are hardcoded in the Fortran source code ad every change requires a recompilation of \texttt{mcp-work.for} (a minor hassle, as the compilation takes just a couple of seconds on a modern machine).
 
@@ -687,11 +437,9 @@ $ for f in $(ls *.out); do sed -i .bak s/$/$'\r'/ $f ; done
 that changes the line terminators of the \texttt{.out} output files from the Unix format containing only a line-feed (LF) to the carriage return followed by a line-feed (CR-LF) format used by all versions of Microsoft Windows.\footnote{Slightly different versions of the command can be found on the internet; the format used above is POSIX-compliant and should run on any Unix flavour}.
 The \texttt{-i} switch allows in-place conversion of each file. The original files are kept adding a \texttt{.bak} extension.
 
-The output files in the proper Windows compatible format can now be transferred onto the virtual floppy disk image. %virtual floppy disk image can be mounted on the Desktop of the host operating system by double-clicking on its icon and the output files in the proper Windows format can be transferred onto the virtual floppy disk. 
+The output files in the proper Windows compatible format can now be transferred onto the virtual floppy disk image. 
 When the transfer is done, the floppy disk image is unmounted from the host operating system and mounted  in the virtual machine, making it visible to Windows 3.11. 
 The output files are copied to an empty directory of Windows 3.11 and the Visual Basic application is started, either by running the precompiled \texttt{stepampl.exe} executable or by opening the Visual Basic project and running the program from there (Fig.~\ref{fig:stepampl}), saving the results in another text file with extension \texttt{.STP} (for steps) that could be transferred back to the host operating system via the virtual floppy disk image.
-
-%[++ TOGLIERE? The original Visual Basic code had a hard coded limit set to a maximum number of $100$ processed files. This limit was probably related to memory problems or simply to the fact that it was impossible to run an overnight simulation with more than $100$ different $\alpha_\mathrm{rf}$ values. ++]
 
 I also briefly tried to run the original Fortran code using the Microsoft Fortran 5.1 installed in the emulator. Compilation was fine but the resulting DOS program was extremely slow, taking about $30 - 35$ seconds for each $\alpha_\mathrm{rf}$ cycle and about $60$ minutes in total for the sinusoidal drive, more than a tenfold increase with respect to the native macOS version compiled with gfortran.
 Even considering the overhead of the emulator, the difference is too large not to be attributed to the low quality of the binary code generated by the Microsoft Fortran 5.1 compiler.
@@ -700,22 +448,11 @@ Even considering the overhead of the emulator, the difference is too large not t
 
 \section{Results}
 
-%%===============================================================================
-%\begin{figure}[tbh]
-%	\centering
-%	\includegraphics[width=0.75\textwidth]{windows-311.png}
-%	\caption{Windows 3.11 desktop showing the program \texttt{stepampl} that has just finished to process the data files.}
-%	\label{fig:stepampl}
-%\end{figure}
-%%===============================================================================
-
-
 At the time of writing the original paper the whole process had to be repeated each night for a different set of input parameters  and for a different kind of microwave signal (single, biharmonic or pulsed).
 
 Each night I used three of the available DEC workstations to simulate the junction behavior with the pulsed drive, using three different values of the (normalized) width of the pulse signal, $\rho$, while keeping constant all the other parameters, such $\beta$ and $\Omega$.
 The only other difference in these simulation was the range of variation of $\alpha_\mathrm{rf}$, which depended on the value of $\rho$ (shorter pulses require a much larger intensity of the rf-signal to have the same effect on the junction).
 The fourth workstation simulated the junction behavior with the standard sinusoidal drive, using exactly the same set of junction parameters.
-%Each night a different set of junction parameters was used.
 
 The original paper  contained all the information needed to reproduce the results shown in the figures, without having to repeat the whole analysis from scratch. 
 The parameters used in all runs were: hysteresis parameter $\beta = 0.01$, frequency of the sinusoidal or pulsed  rf signal $\Omega = 0.45$, current bias between $\alpha_\mathrm{dc} = -5.0$ and $\alpha_\mathrm{dc} = 5.0$, integration time $\tau = 500$, time step $\Delta \tau = 0.01$. 
@@ -743,25 +480,6 @@ Figure 3 of the original paper could also be easily reproduced by plotting the m
 \end{figure}
 %===============================================================================
 
-
-%%===============================================================================
-%\begin{figure}[h]
-%{
-%	\fboxsep=0pt
-%	\mbox{\includegraphics[width=0.45\textwidth]{SINGLE.pdf}}
-%	\hfill
-%	\mbox{\includegraphics[width=0.45\textwidth]PULS0250.pdf}}
-%}
-%%{
-%%	\fboxsep=0pt
-%%	\mbox{\includegraphics[width=0.45\textwidth]PULS0250.pdf}}
-%%	\hfill
-%%	\mbox{\includegraphics[width=0.45\textwidth]PULS0050.pdf}}
-%%}
-%	\caption{.}
-%	\label{fig:step-width}
-%\end{figure}
-%%===============================================================================
 %===============================================================================
 \begin{figure}[!p]
 	\centering
@@ -798,7 +516,6 @@ First of all, it can be run only by rebuilding an exact replica of the original 
 Second, the source code of a Visual basic program is a mix of Basic source files (having the usual \texttt{.bas} extension) and of Forms objects that compose the graphical interface of the program (with extension \texttt{.frm}), stored in some binary format and tied together in a container, known as a Visual Basic project (extension \texttt{.mak}), as shown in Fig.~\ref{fig:vb-project}).
 Making things worse, a Visual Basic project cannot be exported, the idea of code sharing or reuse across different applications was almost unknown at the time, at least in the commercial world.
 
-%Sharing a Visual Basic project on GitHub means nothing since there is no possibility to inspect or run the code without reproducing the original Visual Basic 1.0 environment. 
 The obvious consequence is that the reproduction described here would fail to comply, at least in part, with one of the basic requirements of the Ten Years Challenge, i.e. the availability of all the source code used for the reproduction.
 
 But even if Visual Basic code seems locked for eternity in its proprietary binary format, there is a simple, albeit partial, solution to this problem, printing to a file. 
@@ -827,7 +544,6 @@ Another problem is related to its nature of interpreted language. However, the p
 
 Starting today I would also avoid using a new language, as was Visual Basic 1.0 at the time for a scientific project. 
 It is true that in 1993-94 it would have been very hard to foresee the rapid demise of Microsoft's Visual Basic, nevertheless using a programming language only when its main core is stable, runs on a wide array of operating systems and is accepted by a wide community of developers is surely a safer bet.
-%Data analysis today is usually made with R or Python (or to a much lesser extent, Julia or Scala), both open source tools running on all major operation systems, that predictably will be still available in the next 10 or even 20 years.
 
 Not every software project can afford to be as stable as \TeX, the scientific typesetting system invented by the prominent mathematician and computer scientist Donald E. Knuth, that has reached a state where ``it is unwise to make further improvements to the system [..] which should give the same results 100 years from now that they produce today'' \cite{Knuth:1990}.
 But on the other hand, a development environment that changes too much and too often or that is subjected to the whims of a single software company creates more problems than it solves. 
@@ -842,139 +558,3 @@ However this is not only a nostalgic attitude. The reproducibility crisis is a s
 Being able to go back and reproduce what has been done in the past could ease the retraction of published papers containing fabricated, falsified, or modified data or results and could contribute to simplify the identification of future frauds.
 
 This of course requires to share and make freely available the original data and the tools used to analyze them. A few years ago this requirement was impossible to fulfill in practice. The digital world in which we live makes it almost inevitable.
-
-
-
-
-%===============================================================================
-%Among the things that might be interesting is:
-%
-%How did you conserve the sources
-%Did you take care of registering RNG seed (if you use it)
-%Did you save command line options (if you need some options)
-%Did you need to adapt your sources ?
-%Did you need to adapt your libraries ?
-%What guided your choice of fortran among other languages at that time
-%etc.
-%
-%@khinsen writes:
-%I'd like to emphasize the utility of communicating the choices (and the motivations behind them) made at the time of publication, even if they risk being distorted by hindsight. That's something we can only get out of authors doing reproductions of their own work. For example, I realized that I never preserved or published code for reproducibility, but only to make it available for reuse by others. As a consequence, I am always missing the last small steps: command-line arguments, that five-line script that ties computations together, etc.
-
-
-%    Location of the original source code (online, physical support, what kind, etc)
-%    Presence of a license for the code
-%    Presence of a README
-%    Programming langage
-%    Operating System (if relevant)
-%    Specific hardware (if relevant)
-
-
-%% Step 2 You have to try to make your old code run on your current machine, documenting in the process what is necessary to make it work. For example, you may have to downgrade your system or some libraries, to modify your original code because some library is nowhere to be found, to reinstall a specific compiler or interpreter, etc. In the end, there may be large number of different situations: you are unable to run or compile the code, you are able to run the code but it does not give you the expected results (or no result at all), the program crashed regularly (before getting results), you do not remember how to run your program, etc.
-
-%% Step 3 You have to write a reproducibility report for ReScience (any number of pages) and submit it. You’ll have to indicate that this submission is for the ten years special issue.
-
-
-
-% Three years, we launched ReScience, a new scientific journal aimed at publishing the
-% replication of existing computational research. Since ReScience published its first
-% article\supercite{Topalidou:2015}, things have been
-% going steadily. We are still alive, independent and without a budget. In the
-% meantime, we have published around 24 articles (mostly in computational
-% neuroscience \& computational ecology) and the initial
-% \href{https://rescience-c.github.io/board/}{editorial board} has grown from
-% around 10 to roughly 100 members (editors and reviewers), we have advertised
-% ReScience at several conferences worldwide, gave some
-% interviews\supercite{Science:2018}, and published an article introducing
-% ReScience in PeerJ~CS\supercite{Rougier:2017}. Based on our
-% experience\supercite{Rougier:2018} at managing the journal during these three
-% years, we think that time is ripe for some changes.
-%
-% \subsubsection{ReScience C \& ReScience X}
-%
-% The biggest and most visible change we would like to propose is to change the
-% name of the journal ``ReScience'' in favor of ``ReScience C'' where the C
-% stands for (c)omputational. This change would be necessary to have consistent
-% naming with the upcoming creation of the ``ReScience X'' journal that will be
-% dedicated to e(x)perimental replications and co-directed by E.Roesch
-% (University of Reading) and N.Rougier (University of Bordeaux). The name
-% ``ReScience'' would then be used for the name of a non-profit organization
-% (that is yet to be created) for the two journals as well as future journals
-% (such as the utopian CoScience\supercite{Rougier:2017} or a future and
-% tentative ``ReScience T'' for theoretical science).
-%
-%
-% \subsubsection{A new submission process}
-%
-% The current submission process requires authors to fork, clone and branch the
-% submission repository in order to write their article and to place code and
-% data at the relevant places in the forked repository. Once done, authors have
-% to push their changes and to make a pull request that is considered as a
-% submission. This process is cumbersome for authors and has induced many
-% troubles for editors as well once the article is accepted and ready to be
-% published, mostly because of the complexity of the editing procedure. In order
-% to make life easier for everyone, we greatly simplified the submission process
-% for ReScience C and X. Authors are now responsible for getting a DOI for their
-% code \& data and only have to submit a PDF and a metadata file in a GitHub
-% issue.
-% We also provide Python programs that largely automate the subsequent editing
-% process. We will still archive the submission on Zenodo but this archive will
-% be made for the final PDF only. However, both the PDF and the Zenodo entry will
-% contain all associated DOIs (data and code).
-%
-%
-% \subsubsection{A simplified publishing process}
-%
-% In ReScience, we have have been using a combination of
-% \href{https://daringfireball.net/projects/markdown/syntax}{markdown} and
-% \href{http://pandoc.org/}{pandoc} for producing both the draft and the final
-% version of all the published articles. This had worked reasonably well until it
-% started to cause all kind of problems for both authors and editors, especially
-% with the reference and citation plugins. Consequently, articles will be now
-% submitted directly in PDF with accompanying metadata in a separate file using
-% the \href{https://en.wikipedia.org/wiki/YAML}{YAML} format (they were
-% previously embedded in the markdown file). Once an article has been accepted,
-% authors will be responsible for updating the metadata and for rebuilding the PDF if
-% necessary. We could also consider using the
-% \href{https://github.com/openjournals/whedon}{Whedon} API that helps with automating
-% most of the editorial tasks for \href{http://joss.theoj.org/}{JOSS} and
-% \href{http://jose.theoj.org/}{JOSE}. This will most probably require some
-% tweaking because our publishing pipeline is a bit different.
-%
-%
-% \subsubsection{A new design}
-%
-% The combination of markdown and pandoc has also severely limited the layout and
-% style possibilities for the article template and since we are switching to
-% \LaTeX, this is the opportunity to propose a new design based on a more elegant
-% style, using a new font stack\supercite{SourceSerifPro:2014, Roboto:2011,
-%   SourceCodePro:2012} (you are currently reading it). The goal is to have a
-% subtle but strong identity with enhanced readability. Considering that articles
-% will be mostly read on screen (as opposed to printed), we can benefit from a
-% more ethereal style. Once this design will have stabilized, an
-% \href{https://www.overleaf.com/}{overleaf} template will be made available for
-% those without a \TeX~installation. If a \TeX~expert is ready to help review
-% the template (and possibly rewrite it as a class), their help would be much
-% welcome and appreciated. The same holds for LibreOffice, Word or Pages, any
-% template is welcome, just contact us beforehand such that we can coordinate
-% efforts.
-%
-%
-% \subsubsection{Editorials, letters and special issues}
-%
-% ReScience C remains dedicated to the publication of computational replications
-% but we (i.e., the editorial team) would like to have the opportunity to
-% publish \emph{editorials} when deemed necessary and to give anyone the
-% opportunity to write \emph{letters} to the community on a specific topic
-% related to reproducibility. Both editorials and letters are expected to be 1 or
-% 2 pages long (but no hard limit will be enforced), will be (quickly) peer reviewed,
-% and will be assigned a DOI. Furthermore, with the advent of reproducibility
-% hackatons worldwide, we will host {\em special issues} with guest editors (such
-% as, for example, the organizers of a hackaton) in order to publish the results
-% and to enhance their discoverability. Each entry will have to go through the
-% regular open peer-reviewed pipeline.\\
-%
-%
-% We hope that most readers will agree on the proposed changes such that we can
-% commit to them in the next few weeks. The review for this editorial is open (as
-% usual) and anyone can comment on and/or oppose any of the proposed changes. New
-% ideas are also welcome.
