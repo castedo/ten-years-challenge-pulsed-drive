@@ -4,7 +4,7 @@
 #-----------------------------------------------------#
 # Author:        Sabino Maggi                         #
 # File Created:  10-02-2020                           #
-# Last revision: 10-06-2020                           #
+# Last revision: 19-06-2020                           #
 #-----------------------------------------------------#
 
 
@@ -30,7 +30,7 @@
 *.soc
 
 #--- macOS junk
-##.DS_Store
+.DS_Store
 
 #--- Python stuff
 __pycache__/
