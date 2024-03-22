@@ -141,22 +141,9 @@ The right directives are chosen now at compile-time. For example, the following 
 
 
 %===============================================================================
-\lstset{
-    language = bash,
-    basicstyle = \small\bfseries\ttfamily,
-    tabsize = 4,
-    frame = none,
-    framesep = 2em,
-    framexleftmargin = 1em,
-    backgroundcolor = \color{ultralightgray},
-    keywordstyle = \color{darkred}\bfseries,
-    morekeywords = {gfortran},
-    deletekeywords = {for}
-}
-%===============================================================================
-\begin{lstlisting}
+\begin{verbatim}
 $ gfortran -cpp -Dtextout -Dsingle -o mcp-work mcp-work.for
-\end{lstlisting}
+\end{verbatim}
 %===============================================================================
 
 runs the \texttt{cpp} preprocessor before the gfortran compiler, selecting only the sections of code that produce a textual output (\texttt{-Dtextout}) and simulate the junction behavior with the sinusoidal drive (\texttt{-Dsingle}).
@@ -173,9 +160,9 @@ The solution was simple, as Fortran now has the \texttt{TRIM} function, that rem
 Whenever a file is opened for reading or for writing, \texttt{TRIM()} is applied on-the-fly to the \texttt{filename} variable,
 
 %===============================================================================
-\begin{lstlisting}
+\begin{verbatim}
 	OPEN (UNIT = 10, FILE = TRIM(filename)//'.dat', STATUS = 'OLD')
-\end{lstlisting}
+\end{verbatim}
 %===============================================================================
 
 thus removing all extra blanks from the name of the file.
@@ -207,19 +194,7 @@ To minimize changes to the original source code, the calls to the \texttt{GETDAT
 As noted above, \texttt{mcp-work.for} calculates the $I - V$ characteristics of the simulated junction for several different values of $\alpha_\mathrm{rf}$, producing one output file for each $I - V$ curve. The section of the code that defined the names of the output files was quite convoluted,
 
 %===============================================================================
-\lstset{
-    language = [77]Fortran,
-    tabsize = 6,
-    frame = none,
-    framesep = 2em,
-    framexleftmargin = 1em,
-    backgroundcolor = \color{ultralightgray},
-	keywordstyle = \color{darkred}\bfseries,
-	morekeywords = {},
-	deletekeywords = {FILE, NAME}
-}
-%===============================================================================
-\begin{lstlisting}
+\begin{verbatim}
       il=0
       DO alpha_rf=0.0, 50.0, 0.5
       ...
@@ -232,7 +207,7 @@ c ------ define output file name(s)
       ...
       END DO        ! repeat alpha_rf DO cycle
 
-\end{lstlisting}
+\end{verbatim}
 %===============================================================================
 
 and used the integer variable \texttt{il} to count the cycle number, while the three integers \texttt{il2}, \texttt{il1} and \texttt{il0} contained the hundreds, tens and units digits of \texttt{il}, respectively. 
@@ -246,7 +221,7 @@ After some inspection it was apparent that the number \texttt{47} added to integ
 The line defining the \texttt{filewrite} variable thus becomes,
 
 %===============================================================================
-\begin{lstlisting}
+\begin{verbatim}
       ...
       DO alpha_rf=0.0, 50.0, 0.5
       ...
@@ -255,7 +230,7 @@ c ------ define output file name(s)
          filewrite='PU'//CHAR(il2+48)//CHAR(il1+48)//CHAR(il0+48)
       ...
       END DO        ! repeat alpha_rf DO cycle
-\end{lstlisting}
+\end{verbatim}
 %===============================================================================
 
 With this change \texttt{mcp-work.for} could compile flawlessly under gfortran.
@@ -303,24 +278,9 @@ It is surely possible to make the emulated Windows 3.11 communicate with the hos
 A new empty virtual floppy disk \texttt{data.img} can be easily created with the command-line utility \texttt{dd} available on macOS or Linux
 
 %===============================================================================
-\lstset{
-    language = bash,
-    basicstyle = \small\bfseries\ttfamily,
-    tabsize = 4,
-    frame = none,
-    framesep = 2em,
-    framexleftmargin = 1em,
-    backgroundcolor = \color{ultralightgray},
-    keywordstyle = \color{darkred}\bfseries,
-%    morekeywords = {dd, if, of, bs, count},
-    morekeywords = {dd},
-    deletekeywords = {for}
-}
-%===============================================================================
-\begin{lstlisting}
+\begin{verbatim}
 dd if=/dev/zero of=data.img bs=1440k count=1
-\end{lstlisting}
-%===============================================================================
+\end{verbatim}
 
 
 After creation, the virtual floppy disk must be mounted in the emulator and formatted under DOS or Windows 3.11 in the original MS-DOS FAT file system.
@@ -341,36 +301,22 @@ To avoid cluttering the \texttt{mccumber/} directory that contains the Fortran s
 Running \texttt{mcp-work.for} requires three steps: compile \texttt{mcp-work.for} with the proper directives, switch to the \texttt{2020runs/} directory and run the \texttt{mcp-work} executable from there. The whole process is summarized below for the sinusoidal drive
 
 %===============================================================================
-\lstset{
-    language = bash,
-    basicstyle = \small\bfseries\ttfamily,
-    tabsize = 4,
-    frame = none,
-    framesep = 2em,
-    framexleftmargin = 1em,
-    backgroundcolor = \color{ultralightgray},
-    keywordstyle = \color{darkred}\bfseries,
-    alsoletter=-,
-    morekeywords = {gfortran},
-    deletekeywords = {for}
-}
-%===============================================================================
-\begin{lstlisting}
+\begin{verbatim}
 $ gfortran -cpp -Dtextout -Dsingle -o mcp-work mcp-work.for
 $ cd ../2020runs/
 $ ../mccumber/mcp-work
-\end{lstlisting}
+\end{verbatim}
 %===============================================================================
 
 
 The only modification needed to perform calculations using the pulsed drive is to change the \texttt{-Dsingle} directive to \texttt{-Dpulsed}
 
 %===============================================================================
-\begin{lstlisting}
+\begin{verbatim}
 $ gfortran -cpp -Dtextout -Dpulsed -o mcp-work mcp-work.for
 $ cd ../2020runs/
 $ ../mccumber/mcp-work
-\end{lstlisting}
+\end{verbatim}
 %===============================================================================
 
 
@@ -418,22 +364,9 @@ At the end of each run, the output files should be transferred to the Windows 3.
 The conversion can be easily done in the macOS Terminal by issuing the following command,
 
 %===============================================================================
-\lstset{
-    language = bash,
-    basicstyle = \small\bfseries\ttfamily,
-    tabsize = 4,
-    frame = none,
-    framesep = 2em,
-    framexleftmargin = 1em,
-    backgroundcolor = \color{ultralightgray},
-    keywordstyle = \color{darkred}\bfseries,
-    alsoletter=;,
-    morekeywords = {;},
-}
-%===============================================================================
-\begin{lstlisting}
+\begin{verbatim}
 $ for f in $(ls *.out); do sed -i .bak s/$/$'\r'/ $f ; done
-\end{lstlisting}
+\end{verbatim}
 %===============================================================================
 
 that changes the line terminators of the \texttt{.out} output files from the Unix format containing only a line-feed (LF) to the carriage return followed by a line-feed (CR-LF) format used by all versions of Microsoft Windows.\footnote{Slightly different versions of the command can be found on the internet; the format used above is POSIX-compliant and should run on any Unix flavour}.

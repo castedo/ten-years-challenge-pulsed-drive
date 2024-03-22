@@ -7,10 +7,6 @@
 
 \LoadClass[a4paper, oneside, 10pt]{article}
 
-% ---- Encoding ---------------------------------------------------------------
-% \RequirePackage[utf8]{inputenc}
-
-
 % --- Langage -----------------------------------------------------------------
 \RequirePackage[american]{babel}
 
@@ -20,7 +16,6 @@
 \RequirePackage{tabularx}
 \RequirePackage{tikz}
 \RequirePackage{marginnote}
-\RequirePackage{csquotes}
 
 
 % --- Mathematics -------------------------------------------------------------
@@ -116,33 +111,3 @@
             linkbordercolor=white]{hyperref}
 \hypersetup{linkcolor=black,urlcolor=darkgray}
 \urlstyle{sf}
-
-
-% --- Listings ----------------------------------------------------------------
-\RequirePackage{listings}
-\lstset{%
-  basicstyle=\ttfamily\small,
-  keywordstyle=\color{black},
-  commentstyle=\color{gray},
-  stringstyle=\color{black},
-  backgroundcolor=\color{white},
-  numbers=none,
-  numberstyle=\ttfamily,
-  stepnumber=2,
-  showspaces=false,
-  showstringspaces=false,
-  showtabs=false,
-  frame=none,
-  framerule=0.5pt,
-  tabsize=2,
-  rulesep=5em,
-  captionpos=b,
-  breaklines=true,
-  breakatwhitespace=false,
-  framexleftmargin=0em,
-  xleftmargin=0em,
-  framexrightmargin=0em,
-  xrightmargin=0em,
-  aboveskip=0.5em,
-  belowskip=0.5em,
-}

@@ -35,17 +35,9 @@ article.pdf: article.tex content.tex bibliography.bib metadata.tex rescience.cls
 
 latexml-baseprint: _output/latexml/baseprint/article.xml
 
-_output/latexml/baseprint/article.xml: _output/latexml/latexml.xml _output/latexml/bibliography.bib.xml
+_output/latexml/baseprint/article.xml: article-latexml.tex content.tex bibliography.bib
 	mkdir -p $(dir $@)
-	latexmlpost --format jats --nodefaultresources --destination=$@ $<
-
-_output/latexml/latexml.xml: article-latexml.tex content.tex
-	mkdir -p $(dir $@)
-	latexml --destination=$@ $<
-
-_output/latexml/bibliography.bib.xml: bibliography.bib
-	mkdir -p $(dir $@)
-	latexml --destination=$@ $<
+	latexmlc $< --format jats --nodefaultresources --dest=$@
 
 clean:
 	@latexmk -CA
