@@ -28,3 +28,33 @@ After acceptance, you'll need to complete [metadata.yaml](./metadata.yaml) with 
 $ make
 ```
 
+### Generate a Baseprint snapshot and HTML preview
+
+To generated a Baseprint snapshot and HTML preview into `_output`,
+
+using LaTeXML:
+
+```
+podman/latexml-baseprint.sh
+```
+
+or using Pandoc:
+
+```
+podman/pandoc-baseprint.sh
+```
+
+#### Live preview
+
+Optionally, you can run the following to live reload the HTML
+preview whenever it changes.
+
+```
+podman/live-server.sh _output/latexml/preview/
+```
+
+or
+
+```
+podman/live-server.sh _output/pandoc/preview/
+```

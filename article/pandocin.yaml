@@ -1,0 +1,23 @@
+# This file is used by pandoc as a default settings option (e.g. "pandoc --defaults pandocin.yaml")
+# and provides all the data and references to post a public edition of this document.
+
+input-file: ${.}/article-pandoc.tex
+resource-path:
+- ${.}
+metadata:
+  title: "[Rp] Reproduction of Step width enhancement in a pulse-driven Josephson junction"
+  date: 2020-06-29
+  author:
+  - surname: Maggi
+    given-names: Sabino
+    email: sabino.maggi@cnr.it
+    orcid: https://orcid.org/0000-0002-1523-6484
+  copyright:
+    year: "2020"
+    statement: "Copyright © 2020 S. Maggi"
+    holder: S. Maggi
+  license:
+    type: open-access
+    link: "https://creativecommons.org/licenses/by/4.0/"
+    text: >-
+      Released under a Creative Commons Attribution 4.0 International license.

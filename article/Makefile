@@ -3,7 +3,7 @@
 # You want latexmk to *always* run, because make does not have all the info.
 # Also, include non-file targets in .PHONY so they are run regardless of any
 # file of the given name existing.
-.PHONY: clean
+.PHONY: clean latexml-baseprint
 
 # The first rule in a Makefile is the one executed by default ("make"). It
 # should always be the "all" rule, so that "make" and "make all" are identical.
@@ -29,7 +29,26 @@ metadata.tex: metadata.yaml
 article.pdf: article.tex content.tex bibliography.bib metadata.tex rescience.cls supplementary.tex
 	latexmk -pdf -pdflatex="xelatex -interaction=nonstopmode" -use-make article.tex
 
+
+# BASEPRINTING RULES
+# -----------------------------------------------------------------------------
+
+latexml-baseprint: _output/latexml/baseprint/article.xml
+
+_output/latexml/baseprint/article.xml: _output/latexml/latexml.xml _output/latexml/bibliography.bib.xml
+	mkdir -p $(dir $@)
+	latexmlpost --format jats --nodefaultresources --destination=$@ $<
+
+_output/latexml/latexml.xml: article-latexml.tex content.tex
+	mkdir -p $(dir $@)
+	latexml --destination=$@ $<
+
+_output/latexml/bibliography.bib.xml: bibliography.bib
+	mkdir -p $(dir $@)
+	latexml --destination=$@ $<
+
 clean:
 	@latexmk -CA
 	@rm -f *.bbl
 	@rm -f *.run.xml
+	@rm -f _output
