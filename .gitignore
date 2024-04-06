@@ -11,6 +11,7 @@
 ### files to ignore: ###
 
 _output
+.quarto
 
 #--- pdf and backup files
 ##*.pdf

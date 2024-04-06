@@ -1,0 +1,24 @@
+project:
+  type: manuscript
+  output-dir: _output/quarto/baseprint
+
+output-file: article.xml
+from: latex
+
+manuscript:
+  article: article-quarto.qmd
+  meca-bundle: false
+
+format:
+  html: default
+  jats: default
+
+reference-section-title: "References"
+bibliography: bibliography.bib
+
+title: "[Rp] Reproduction of Step width enhancement in a pulse-driven Josephson junction"
+#date: does not seem to work
+author:
+  - name: Sabino Maggi
+    email: sabino.maggi@cnr.it
+    orcid: https://orcid.org/0000-0002-1523-6484
