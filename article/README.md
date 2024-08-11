@@ -32,13 +32,7 @@ $ make
 
 To generated a Baseprint snapshot and HTML preview into `_output`,
 
-using LaTeXML:
-
-```
-podman/latexml-baseprint.sh
-```
-
-or using Pandoc:
+using Pandoc:
 
 ```
 podman/pandoc-baseprint.sh
@@ -48,12 +42,6 @@ podman/pandoc-baseprint.sh
 
 Optionally, you can run the following to live reload the HTML
 preview whenever it changes.
-
-```
-podman/live-server.sh _output/latexml/preview/
-```
-
-or
 
 ```
 podman/live-server.sh _output/pandoc/preview/

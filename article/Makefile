@@ -3,7 +3,7 @@
 # You want latexmk to *always* run, because make does not have all the info.
 # Also, include non-file targets in .PHONY so they are run regardless of any
 # file of the given name existing.
-.PHONY: clean latexml-baseprint
+.PHONY: clean baseprint baseprint-preview
 
 # The first rule in a Makefile is the one executed by default ("make"). It
 # should always be the "all" rule, so that "make" and "make all" are identical.
@@ -33,11 +33,15 @@ article.pdf: article.tex content.tex bibliography.bib metadata.tex rescience.cls
 # BASEPRINTING RULES
 # -----------------------------------------------------------------------------
 
-latexml-baseprint: _output/latexml/baseprint/article.xml
+baseprint: _output/baseprint/article.xml
 
-_output/latexml/baseprint/article.xml: article-latexml.tex content.tex bibliography.bib
-	mkdir -p $(dir $@)
-	latexmlc $< --format jats --nodefaultresources --dest=$@
+_output/baseprint/article.xml: pandocin.yaml article-pandoc.tex content.tex bibliography.bib
+	python3 -m baseprinter -d pandocin.yaml -c images/ -b _output/baseprint/
+
+baseprint-preview: _output/preview/index.html
+
+_output/preview/index.html: pandocin.yaml article-pandoc.tex content.tex bibliography.bib
+	python3 -m baseprinter -d pandocin.yaml -c images/ -b _output/baseprint/ -o _output/preview/
 
 clean:
 	@latexmk -CA
