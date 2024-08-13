@@ -30,6 +30,27 @@ $ make
 
 ### Generate a Baseprint snapshot and HTML preview
 
+[Baseprinter](https://try.perm.pub/baseprinter/) can be used to generate a Baseprint document snapshot and HTML preview.
+It can be run locally or via an OCI (Docker) container.
+
+#### Running Baseprinter locally
+
+Make sure Baseprinter and its dependencies are installed: [How to Install Baseprinter](https://try.perm.pub/baseprinter/howto/install/).
+
+To generate only a Baseprint document snapshot, run:
+
+```bash
+$ make baseprint
+```
+
+To also generate an HTML/PDF preview, run:
+
+```bash
+$ make baseprint-preview
+```
+
+#### Running Baseprinter via OCI (Docker) container
+
 To generated a Baseprint snapshot and HTML preview into `_output`,
 
 using Pandoc:
