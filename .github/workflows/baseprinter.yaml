@@ -17,20 +17,17 @@ permissions:
 jobs:
   build:
     runs-on: ubuntu-24.04
-    using: 'composite'
+    container: registry.gitlab.com/perm.pub/dock/baseprinter:20240813
     steps:
       - name: "Checkout source"
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
       - name: "Generate HTML/PDF previews of Baseprint document snapshot"
-        uses: docker://registry.gitlab.com/perm.pub/dock/baseprinter:20240813
-        with:
-          args: >-
-            baseprinter
-            --defaults pandocin.yaml -C article -c images
-            --baseprint ../baseprint
-            --outdir ../_site
+        run: |
+            pwd
+            ls -la
+            baseprinter -d pandocin.yaml -C article -c images --baseprint ../baseprint --outdir ../_site
       - name: "Upload Pages artifact"
         uses: actions/upload-pages-artifact@v3
         with:
