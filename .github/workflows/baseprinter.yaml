@@ -2,7 +2,7 @@ name: Deploy baseprint preview to GitHub Pages
 
 on:
   push:
-    branches: [main]
+    branches: [baseprint]
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
