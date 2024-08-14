@@ -16,6 +16,7 @@ permissions:
 
 jobs:
   build:
+    runs-on: ubuntu-24.04
     using: 'composite'
     steps:
       - name: "Checkout source"
