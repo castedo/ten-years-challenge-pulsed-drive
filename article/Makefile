@@ -3,7 +3,7 @@
 # You want latexmk to *always* run, because make does not have all the info.
 # Also, include non-file targets in .PHONY so they are run regardless of any
 # file of the given name existing.
-.PHONY: clean baseprint baseprint-preview
+.PHONY: clean baseprint baseprint-preview baseprint-live
 
 # The first rule in a Makefile is the one executed by default ("make"). It
 # should always be the "all" rule, so that "make" and "make all" are identical.
@@ -33,18 +33,28 @@ article.pdf: article.tex content.tex bibliography.bib metadata.tex rescience.cls
 # BASEPRINTING RULES
 # -----------------------------------------------------------------------------
 
+BASEPRINT_SRC = pandocin.yaml article-pandoc.tex content.tex bibliography.bib
+CORE_OPTS = -d pandocin.yaml --copy images/ --baseprint _output/baseprint/
+
 baseprint: _output/baseprint/article.xml
 
-_output/baseprint/article.xml: pandocin.yaml article-pandoc.tex content.tex bibliography.bib
-	python3 -m baseprinter -d pandocin.yaml -c images/ -b _output/baseprint/
+_output/baseprint/article.xml: $(BASEPRINT_SRC)
+	baseprinter $(CORE_OPTS)
 
 baseprint-preview: _output/preview/index.html
 
-_output/preview/index.html: pandocin.yaml article-pandoc.tex content.tex bibliography.bib
-	python3 -m baseprinter -d pandocin.yaml -c images/ -b _output/baseprint/ -o _output/preview/
+_output/preview/index.html: $(BASEPRINT_SRC)
+	baseprinter $(CORE_OPTS) -o _output/preview/
+
+baseprint-live:
+	baseprinter  $(CORE_OPTS) -o _output/preview/ \
+		--skip-pdf \
+		--monitor pandocin.yaml --monitor content.tex \
+        &
+	live-server --no-css-inject _output/preview/
 
 clean:
+	@rm -fr _output
 	@latexmk -CA
 	@rm -f *.bbl
 	@rm -f *.run.xml
-	@rm -fr _output

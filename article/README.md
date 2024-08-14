@@ -1,3 +1,4 @@
+<!-- copybreak off -->
 ### [ReScience C](https://rescience.github.io/) article template
 
 This repository contains the Latex (optional) template for writing a ReScience
@@ -33,9 +34,26 @@ $ make
 [Baseprinter](https://try.perm.pub/baseprinter/) can be used to generate a Baseprint document snapshot and HTML preview.
 It can be run locally or via an OCI (Docker) container.
 
+
+<!-- copybreak on -->
+#### Running Baseprinter via OCI (Docker) container
+
+Until a Debian package is available, running via a container will likely be easier.
+You can do this with the `with-podman.sh` script located in this directory, followed by one of
+the commands you would run locally, as described in the next section. For example:
+
+```
+./with-podman.sh make baseprint-preview
+```
+or
+
+```
+./with-podman.sh make baseprint-live
+```
+
 #### Running Baseprinter locally
 
-Make sure Baseprinter and its dependencies are installed: [How to Install Baseprinter](https://try.perm.pub/baseprinter/howto/install/).
+Ensure that Baseprinter and its dependencies are installed: [How to Install Baseprinter](https://try.perm.pub/baseprinter/howto/install/).
 
 To generate only a Baseprint document snapshot, run:
 
@@ -49,21 +67,8 @@ To also generate an HTML/PDF preview, run:
 $ make baseprint-preview
 ```
 
-#### Running Baseprinter via OCI (Docker) container
+To generate and reload an HTML preview each time the source changes:
 
-To generated a Baseprint snapshot and HTML preview into `_output`,
-
-using Pandoc:
-
-```
-podman/pandoc-baseprint.sh
-```
-
-#### Live preview
-
-Optionally, you can run the following to live reload the HTML
-preview whenever it changes.
-
-```
-podman/live-server.sh _output/pandoc/preview/
+```bash
+$ make baseprint-live
 ```
