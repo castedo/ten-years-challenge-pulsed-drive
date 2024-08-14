@@ -16,21 +16,24 @@ permissions:
 
 jobs:
   build:
-    runs-on: ubuntu-24.04
+    using: 'composite'
     steps:
-      - name: "Hack to get baseprinter outputs where GitHub action wants it"
-        shell: bash
-        run: |
-          mkdir baseprint
-          mkdir _site
-          mkdir article
-          cd article
-          ln -s ../baseprint
-          ln -s ../_site
-      - name: "Hack call Baseprinter action"
-        uses: castedo/baseprinter-action@main
+      - name: "Checkout source"
+        uses: actions/checkout@v4
         with:
-          defaults-file: "pandocin.yaml -C article -c images"
+          fetch-depth: 0
+      - name: "Generate HTML/PDF previews of Baseprint document snapshot"
+        uses: docker://registry.gitlab.com/perm.pub/dock/baseprinter:20240813
+        with:
+          args: >-
+            baseprinter
+            --defaults pandocin.yaml -C article -c images
+            --baseprint ../baseprint
+            --outdir ../_site
+      - name: "Upload Pages artifact"
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: "_site/"
   deploy:
     needs: build
     runs-on: ubuntu-24.04
