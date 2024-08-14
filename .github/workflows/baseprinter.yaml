@@ -23,6 +23,7 @@ jobs:
         run: |
           mkdir baseprint
           mkdir _site
+          mkdir article
           cd article
           ln -s ../baseprint
           ln -s ../_site
