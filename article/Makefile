@@ -47,7 +47,7 @@ _output/preview/index.html: $(BASEPRINT_SRC)
 	baseprinter $(CORE_OPTS) -o _output/preview/
 
 baseprint-live:
-	baseprinter  $(CORE_OPTS) -o _output/preview/ \
+	baseprinter $(CORE_OPTS) -o _output/preview/ \
 		--skip-pdf \
 		--monitor pandocin.yaml --monitor content.tex \
         &

@@ -18,9 +18,15 @@ jobs:
   build:
     runs-on: ubuntu-24.04
     steps:
-      - uses: castedo/baseprinter-action@main
+      - name: "Hack call Baseprinter action"
+        uses: castedo/baseprinter-action@main
         with:
           defaults-file: "pandocin.yaml -C article -c images"
+      - name: "Hack to move outputs"
+        shell: bash
+        run: |
+          mv article/baseprint .
+          mv article/_site .
   deploy:
     needs: build
     runs-on: ubuntu-24.04
