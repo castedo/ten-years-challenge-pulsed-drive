@@ -17,21 +17,11 @@ permissions:
 jobs:
   build:
     runs-on: ubuntu-24.04
-    container: registry.gitlab.com/perm.pub/dock/baseprinter:20240813
     steps:
-      - name: "Checkout source"
-        uses: actions/checkout@v4
+      - uses: castedo/baseprinter-action@test
         with:
-          fetch-depth: 0
-      - name: "Generate HTML/PDF previews of Baseprint document snapshot"
-        run: |
-            pwd
-            ls -la
-            baseprinter -d pandocin.yaml -C article -c images --baseprint ../baseprint --outdir ../_site
-      - name: "Upload Pages artifact"
-        uses: actions/upload-pages-artifact@v3
-        with:
-          path: "_site/"
+          sourece-args: "-C article -c images"
+          defaults-file: "pandocin.yaml"
   deploy:
     needs: build
     runs-on: ubuntu-24.04
