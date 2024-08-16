@@ -18,7 +18,7 @@ jobs:
   build:
     runs-on: ubuntu-24.04
     steps:
-      - uses: castedo/baseprinter-action@xargs
+      - uses: castedo/baseprinter-action@v7
       - uses: actions/upload-pages-artifact@v3
   deploy:
     needs: build
