@@ -18,10 +18,8 @@ jobs:
   build:
     runs-on: ubuntu-24.04
     steps:
-      - uses: castedo/baseprinter-action@test
-        with:
-          sourece-args: "-C article -c images"
-          defaults-file: "pandocin.yaml"
+      - uses: castedo/baseprinter-action@xargs
+      - uses: actions/upload-pages-artifact@v3
   deploy:
     needs: build
     runs-on: ubuntu-24.04

@@ -1,0 +1,5 @@
+--directory article
+--defaults pandocin.yaml
+--copy images
+--baseprint ../baseprint
+--outdir ../_site
