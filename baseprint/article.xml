@@ -1,0 +1,1082 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE article PUBLIC "-//NLM//DTD JATS (Z39.96) Journal Archiving and Interchange DTD v1.2 20190208//EN"
+                  "JATS-archivearticle1.dtd">
+<article xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink" dtd-version="1.2" article-type="other">
+<front>
+<journal-meta>
+<journal-id></journal-id>
+<journal-title-group>
+</journal-title-group>
+<issn></issn>
+<publisher>
+<publisher-name></publisher-name>
+</publisher>
+</journal-meta>
+<article-meta>
+<title-group>
+<article-title>[Rp] Reproduction of Step width enhancement in a pulse-driven Josephson junction</article-title>
+</title-group>
+<contrib-group>
+<contrib contrib-type="author">
+<contrib-id contrib-id-type="orcid">https://orcid.org/0000-0002-1523-6484</contrib-id>
+<name>
+<surname>Maggi</surname>
+<given-names>Sabino</given-names>
+</name>
+<email>sabino.maggi@cnr.it</email>
+</contrib>
+</contrib-group>
+<pub-date date-type="pub" publication-format="electronic" iso-8601-date="2020-06-29">
+<day>29</day>
+<month>6</month>
+<year>2020</year>
+</pub-date>
+<permissions>
+<copyright-statement>Copyright © 2020 S. Maggi</copyright-statement>
+<copyright-year>2020</copyright-year>
+<copyright-holder>S. Maggi</copyright-holder>
+<license license-type="open-access">
+<ali:license_ref xmlns:ali="http://www.niso.org/schemas/ali/1.0/">https://creativecommons.org/licenses/by/4.0/</ali:license_ref>
+<license-p>Released under a Creative Commons Attribution 4.0 International license.</license-p>
+</license>
+</permissions>
+</article-meta>
+</front>
+<body>
+<sec id="introduction">
+  <title>Introduction</title>
+  <p>A Josephson junction is a quantum mechanical device composed of two superconducting electrodes separated by a weak link <xref alt="1" rid="ref-BaroneU003A1982" ref-type="bibr">1</xref>.
+  For currents lower than a critical value <inline-formula><alternatives>
+  <tex-math><![CDATA[I_C]]></tex-math>
+  <mml:math display="inline" xmlns:mml="http://www.w3.org/1998/Math/MathML"><mml:msub><mml:mi>I</mml:mi><mml:mi>C</mml:mi></mml:msub></mml:math></alternatives></inline-formula>, coupled electrons (Cooper pairs) can cross the weak link without a potential difference (dc Josephson effect).
+  When the current is increased above <inline-formula><alternatives>
+  <tex-math><![CDATA[I_C]]></tex-math>
+  <mml:math display="inline" xmlns:mml="http://www.w3.org/1998/Math/MathML"><mml:msub><mml:mi>I</mml:mi><mml:mi>C</mml:mi></mml:msub></mml:math></alternatives></inline-formula>, single electrons originated by the breakup of Cooper pairs begin to traverse the weak link. The potential difference <inline-formula><alternatives>
+  <tex-math><![CDATA[V]]></tex-math>
+  <mml:math display="inline" xmlns:mml="http://www.w3.org/1998/Math/MathML"><mml:mi>V</mml:mi></mml:math></alternatives></inline-formula> between the two superconducting films becomes <inline-formula><alternatives>
+  <tex-math><![CDATA[\neq 0]]></tex-math>
+  <mml:math display="inline" xmlns:mml="http://www.w3.org/1998/Math/MathML"><mml:mrow><mml:mo>≠</mml:mo><mml:mn>0</mml:mn></mml:mrow></mml:math></alternatives></inline-formula> and a state is reached where the junction behaves as a resistance.</p>
+  <p>In modern Josephson junctions the weak link is usually a thin insulating tunnel barrier (SIS junction) <xref alt="2" rid="ref-GurvitchU003A1983" ref-type="bibr">2</xref>, a normal metal film (SNS junction) <xref alt="3" rid="ref-BenzU003A1995" ref-type="bibr">3</xref> or a physical nanoconstriction (ScS junction) <xref alt="4" rid="ref-CybartU003A2015" ref-type="bibr">4</xref>, <xref alt="5" rid="ref-DeLeoU003A2016" ref-type="bibr">5</xref>. Josephson junctions have found wide usage in several research fields, for example as building blocks for RSFQ digital electronics or quantum computers <xref alt="6" rid="ref-LikharevU003A1991" ref-type="bibr">6</xref>, or as radiation detectors and very sensitive magnetometers (SQUIDs) <xref alt="7" rid="ref-MaggiU003A2006b" ref-type="bibr">7</xref>, <xref alt="8" rid="ref-TroemanU003A2007" ref-type="bibr">8</xref>, <xref alt="9" rid="ref-GranataU003A2015" ref-type="bibr">9</xref>.
+  But the most successful application of Josephson junctions is surely in voltage metrology.
+  A microwave radiation of frequency <inline-formula><alternatives>
+  <tex-math><![CDATA[f]]></tex-math>
+  <mml:math display="inline" xmlns:mml="http://www.w3.org/1998/Math/MathML"><mml:mi>f</mml:mi></mml:math></alternatives></inline-formula> can phase lock the junction oscillations, producing the so-called Shapiro-steps, i.e., current steps at the quantized voltages <inline-formula><alternatives>
+  <tex-math><![CDATA[V_n]]></tex-math>
+  <mml:math display="inline" xmlns:mml="http://www.w3.org/1998/Math/MathML"><mml:msub><mml:mi>V</mml:mi><mml:mi>n</mml:mi></mml:msub></mml:math></alternatives></inline-formula>,</p>
+  <p><disp-formula><alternatives>
+  <tex-math><![CDATA[V_n = n \frac{h}{2 e} f, \quad n = 1, 2, ...
+  %% \label{eq:voltage_steps}
+  %% \label inside equation not working due to
+  %% https://gitlab.com/perm.pub/baseprinter/-/issues/9]]></tex-math>
+  <mml:math display="block" xmlns:mml="http://www.w3.org/1998/Math/MathML"><mml:mrow><mml:msub><mml:mi>V</mml:mi><mml:mi>n</mml:mi></mml:msub><mml:mo>=</mml:mo><mml:mi>n</mml:mi><mml:mfrac><mml:mi>h</mml:mi><mml:mrow><mml:mn>2</mml:mn><mml:mi>e</mml:mi></mml:mrow></mml:mfrac><mml:mi>f</mml:mi><mml:mo>,</mml:mo><mml:mspace width="1.0em"></mml:mspace><mml:mi>n</mml:mi><mml:mo>=</mml:mo><mml:mn>1</mml:mn><mml:mo>,</mml:mo><mml:mn>2</mml:mn><mml:mo>,</mml:mo><mml:mi>.</mml:mi><mml:mi>.</mml:mi><mml:mi>.</mml:mi></mml:mrow></mml:math></alternatives></disp-formula></p>
+  <p>where <inline-formula><alternatives>
+  <tex-math><![CDATA[h]]></tex-math>
+  <mml:math display="inline" xmlns:mml="http://www.w3.org/1998/Math/MathML"><mml:mi>h</mml:mi></mml:math></alternatives></inline-formula> and <inline-formula><alternatives>
+  <tex-math><![CDATA[e]]></tex-math>
+  <mml:math display="inline" xmlns:mml="http://www.w3.org/1998/Math/MathML"><mml:mi>e</mml:mi></mml:math></alternatives></inline-formula> are the Plank constant and electron charge, respectively. The ac Josephson effect is at the basis of the current quantum voltage standard.</p>
+  <p>Besides its practical applications, the Josephson junction is important from a physical point of view because it has been the first device showing a quantum mechanical effect on a macroscopic scale.</p>
+  <p>An important research topic at the beginning of the ’90s was related to finding ways to increase the amplitude of the current steps induced by the microwave radiation (rf-induced steps). In fact, the stability of the lock between the phase of the junction and the applied microwave radiation – and therefore its insensitivity to noise events which might switch the junction from one quantized voltage to another, a crucial problem for voltage standard applications – is strongly dependent on the amplitude of the steps <xref alt="10" rid="ref-KautzU003A1987" ref-type="bibr">10</xref>.</p>
+  <p>To increase the amplitude of the current steps, a non-sinusoidal microwave radiation may be used.
+  In 1990 Monaco showed that, in the limit of a voltage-biased Josephson junction, adding together two phased microwaves of frequency <inline-formula><alternatives>
+  <tex-math><![CDATA[f]]></tex-math>
+  <mml:math display="inline" xmlns:mml="http://www.w3.org/1998/Math/MathML"><mml:mi>f</mml:mi></mml:math></alternatives></inline-formula> and <inline-formula><alternatives>
+  <tex-math><![CDATA[2 f]]></tex-math>
+  <mml:math display="inline" xmlns:mml="http://www.w3.org/1998/Math/MathML"><mml:mrow><mml:mn>2</mml:mn><mml:mi>f</mml:mi></mml:mrow></mml:math></alternatives></inline-formula> produces rf-induced current steps whose amplitudes are larger than those observed with a sinusoidal radiation <xref alt="11" rid="ref-MonacoU003A1990" ref-type="bibr">11</xref>.</p>
+  <p>Experiments on the so-called “biharmonic drive” readily confirmed these conclusions, albeit with some limitations due to the fact that the junctions could not realistically be considered as voltage biased <xref alt="12" rid="ref-AndreoneU003A1991" ref-type="bibr">12</xref>, <xref alt="13" rid="ref-AndreoneU003A1992" ref-type="bibr">13</xref>.</p>
+  <p>Extending further the idea, Monaco showed that, still in the limit of voltage bias, if the microwave radiation is composed of a train of delta functions, the rf-induced current steps could become as large as the critical current <inline-formula><alternatives>
+  <tex-math><![CDATA[I_C]]></tex-math>
+  <mml:math display="inline" xmlns:mml="http://www.w3.org/1998/Math/MathML"><mml:msub><mml:mi>I</mml:mi><mml:mi>C</mml:mi></mml:msub></mml:math></alternatives></inline-formula>.</p>
+  <p>However, a voltage bias configuration does not properly model a real Josephson junction, which should usually be considered as current biased.
+  Also, a pulse train composed of delta functions is only a theoretical approximation and cannot be reproduced in actual experiments.
+  This led to the idea to investigate what happened to a current-biased Josephson junction irradiated by a more realistic pulsed microwave signal <xref alt="14" rid="ref-MaggiU003A1996" ref-type="bibr">14</xref>, <xref alt="15" rid="ref-MaggiU003A1997" ref-type="bibr">15</xref>.
+  The reproduction of this investigation is the object of the present work.</p>
+</sec>
+<sec id="computational-context">
+  <title>Computational context</title>
+  <p>A first attempt to solve this problem was made using an electronic analog simulator of a Josephson junction <xref alt="16" rid="ref-HenryU003A1981" ref-type="bibr">16</xref>, that could compute the relation between the applied current and the voltage (<inline-formula><alternatives>
+  <tex-math><![CDATA[I-V]]></tex-math>
+  <mml:math display="inline" xmlns:mml="http://www.w3.org/1998/Math/MathML"><mml:mrow><mml:mi>I</mml:mi><mml:mo>−</mml:mo><mml:mi>V</mml:mi></mml:mrow></mml:math></alternatives></inline-formula> characteristic) of a current-biased junction, in the framework of the Stewart-McCumber RSJ junction model <xref alt="17" rid="ref-McCumberU003A1968" ref-type="bibr">17</xref>, <xref alt="18" rid="ref-StewartU003A1974" ref-type="bibr">18</xref>.
+  The analog simulator was fast and simple to use, and could produce in just a few minutes on a <ext-link ext-link-type="uri" xlink:href="http://www.hpmuseum.net/display_item.php?hw=74">Hewlett Packard 7475A</ext-link>2 pen plotter beautiful plots of the <inline-formula><alternatives>
+  <tex-math><![CDATA[I-V]]></tex-math>
+  <mml:math display="inline" xmlns:mml="http://www.w3.org/1998/Math/MathML"><mml:mrow><mml:mi>I</mml:mi><mml:mo>−</mml:mo><mml:mi>V</mml:mi></mml:mrow></mml:math></alternatives></inline-formula> characteristics of the junction as a function of the simulated microwave signal.
+  <xref ref-type="fn" rid="fn1">1</xref></p>
+  <p>However, even if the electronic simulation was extremely fast, the analysis of the results required to measure by hand the amplitude of the rf-induced current steps visible on each <inline-formula><alternatives>
+  <tex-math><![CDATA[I-V]]></tex-math>
+  <mml:math display="inline" xmlns:mml="http://www.w3.org/1998/Math/MathML"><mml:mrow><mml:mi>I</mml:mi><mml:mo>−</mml:mo><mml:mi>V</mml:mi></mml:mrow></mml:math></alternatives></inline-formula> characteristic, a tedious and error-prone task.</p>
+  <p>I then decided to develop a Fortran program to solve numerically the nonlinear second-order differential equation that models the Josephson junction <xref alt="17" rid="ref-McCumberU003A1968" ref-type="bibr">17</xref>, <xref alt="18" rid="ref-StewartU003A1974" ref-type="bibr">18</xref>.
+  The idea was to calculate the <inline-formula><alternatives>
+  <tex-math><![CDATA[I-V]]></tex-math>
+  <mml:math display="inline" xmlns:mml="http://www.w3.org/1998/Math/MathML"><mml:mrow><mml:mi>I</mml:mi><mml:mo>−</mml:mo><mml:mi>V</mml:mi></mml:mrow></mml:math></alternatives></inline-formula> characteristics of the junction as a function of the amplitude of the microwave signal, <inline-formula><alternatives>
+  <tex-math><![CDATA[\alpha_\mathrm{rf}]]></tex-math>
+  <mml:math display="inline" xmlns:mml="http://www.w3.org/1998/Math/MathML"><mml:msub><mml:mi>α</mml:mi><mml:mrow><mml:mi mathvariant="normal">r</mml:mi><mml:mi mathvariant="normal">f</mml:mi></mml:mrow></mml:msub></mml:math></alternatives></inline-formula>, for a given set of parameters characterizing the junction and the microwave, considering the three different cases of standard sinusoidal drive, biharmonic drive and pulsed drive.</p>
+  <p>To ease comparison of the results, normalized units were used throughout the calculations. The normalized junction voltage was <inline-formula><alternatives>
+  <tex-math><![CDATA[\eta]]></tex-math>
+  <mml:math display="inline" xmlns:mml="http://www.w3.org/1998/Math/MathML"><mml:mi>η</mml:mi></mml:math></alternatives></inline-formula> and the normalized current <inline-formula><alternatives>
+  <tex-math><![CDATA[\alpha_\mathrm{dc}]]></tex-math>
+  <mml:math display="inline" xmlns:mml="http://www.w3.org/1998/Math/MathML"><mml:msub><mml:mi>α</mml:mi><mml:mrow><mml:mi mathvariant="normal">d</mml:mi><mml:mi mathvariant="normal">c</mml:mi></mml:mrow></mml:msub></mml:math></alternatives></inline-formula>.
+  The main parameters of the simulation were: hysteresis parameter <inline-formula><alternatives>
+  <tex-math><![CDATA[\beta]]></tex-math>
+  <mml:math display="inline" xmlns:mml="http://www.w3.org/1998/Math/MathML"><mml:mi>β</mml:mi></mml:math></alternatives></inline-formula>, microwave frequency <inline-formula><alternatives>
+  <tex-math><![CDATA[\Omega]]></tex-math>
+  <mml:math display="inline" xmlns:mml="http://www.w3.org/1998/Math/MathML"><mml:mi>Ω</mml:mi></mml:math></alternatives></inline-formula>, amplitude of the microwave signal <inline-formula><alternatives>
+  <tex-math><![CDATA[\alpha_\mathrm{rf}]]></tex-math>
+  <mml:math display="inline" xmlns:mml="http://www.w3.org/1998/Math/MathML"><mml:msub><mml:mi>α</mml:mi><mml:mrow><mml:mi mathvariant="normal">r</mml:mi><mml:mi mathvariant="normal">f</mml:mi></mml:mrow></mml:msub></mml:math></alternatives></inline-formula>, pulse width <inline-formula><alternatives>
+  <tex-math><![CDATA[\rho]]></tex-math>
+  <mml:math display="inline" xmlns:mml="http://www.w3.org/1998/Math/MathML"><mml:mi>ρ</mml:mi></mml:math></alternatives></inline-formula>, integration time <inline-formula><alternatives>
+  <tex-math><![CDATA[\tau]]></tex-math>
+  <mml:math display="inline" xmlns:mml="http://www.w3.org/1998/Math/MathML"><mml:mi>τ</mml:mi></mml:math></alternatives></inline-formula>.
+  For a given set of junction parameters, usually <inline-formula><alternatives>
+  <tex-math><![CDATA[100]]></tex-math>
+  <mml:math display="inline" xmlns:mml="http://www.w3.org/1998/Math/MathML"><mml:mn>100</mml:mn></mml:math></alternatives></inline-formula> different <inline-formula><alternatives>
+  <tex-math><![CDATA[I-V]]></tex-math>
+  <mml:math display="inline" xmlns:mml="http://www.w3.org/1998/Math/MathML"><mml:mrow><mml:mi>I</mml:mi><mml:mo>−</mml:mo><mml:mi>V</mml:mi></mml:mrow></mml:math></alternatives></inline-formula> characteristics for increasing or decreasing values of <inline-formula><alternatives>
+  <tex-math><![CDATA[\alpha_\mathrm{rf}]]></tex-math>
+  <mml:math display="inline" xmlns:mml="http://www.w3.org/1998/Math/MathML"><mml:msub><mml:mi>α</mml:mi><mml:mrow><mml:mi mathvariant="normal">r</mml:mi><mml:mi mathvariant="normal">f</mml:mi></mml:mrow></mml:msub></mml:math></alternatives></inline-formula> were calculated.</p>
+  <p>The first versions of the Fortran program were compiled under DOS 6.22 with <ext-link ext-link-type="uri" xlink:href="https://winworldpc.com/product/microsoft-fortran/5x">Microsoft Fortran 5.1</ext-link> and run on what was then a state-of-the-art PC, probably a Compaq Deskpro 486 with a math coprocessor, shared among several users of the lab.</p>
+  <p>The limitations of a PC for such a task soon become evident.
+  A new simulation started automatically each evening and took the entire night to complete. People still using the PC late in the evening often inadvertently stopped the background process or simply shut the machine down without checking if there was another job running.
+  At the end, I could run a full simulation only every two or three days.</p>
+  <p>After a few weeks of these mostly unsuccessful attempts, a colleague of another research group proposed me to use four DEC workstations running ULTRIX for my own simulations.<xref ref-type="fn" rid="fn2">2</xref>
+  The machines were heavily used by his group during working hours, but sat mostly idle overnight.
+  If I could manage to finish my runs before the start of the new work day, I was allowed to use this idle time for my own simulations.
+  The colleague gave me a quick crash course on Unix and I was ready to go.</p>
+  <p>Porting my Fortran program from Microsoft Fortran 5.1 to ULTRIX was a breeze, and I quickly learnt how to use FTP to transfer the input configuration files and the output data files containing the results of the simulations back and forth from the DEC workstations to my Compaq 386 notebook, that was also my desktop computer.</p>
+  <p>Now each day I had four different sets of data files coming from the DEC workstations. Three of them were obtained by irradiating the junction with a pulsed drive with decreasing values of <inline-formula><alternatives>
+  <tex-math><![CDATA[\rho]]></tex-math>
+  <mml:math display="inline" xmlns:mml="http://www.w3.org/1998/Math/MathML"><mml:mi>ρ</mml:mi></mml:math></alternatives></inline-formula>, while keeping constant <inline-formula><alternatives>
+  <tex-math><![CDATA[\beta]]></tex-math>
+  <mml:math display="inline" xmlns:mml="http://www.w3.org/1998/Math/MathML"><mml:mi>β</mml:mi></mml:math></alternatives></inline-formula> and <inline-formula><alternatives>
+  <tex-math><![CDATA[\Omega]]></tex-math>
+  <mml:math display="inline" xmlns:mml="http://www.w3.org/1998/Math/MathML"><mml:mi>Ω</mml:mi></mml:math></alternatives></inline-formula>.
+  The fourth simulation was made by irradiating the junction with a sinusoidal drive, while keeping everything else equal. This last simulation was used as a reference, to compare the results obtained with a standard sinusoidal radiation with those obtained with progressively shorter pulses.</p>
+  <p>Each night I changed the values of <inline-formula><alternatives>
+  <tex-math><![CDATA[\beta]]></tex-math>
+  <mml:math display="inline" xmlns:mml="http://www.w3.org/1998/Math/MathML"><mml:mi>β</mml:mi></mml:math></alternatives></inline-formula> or <inline-formula><alternatives>
+  <tex-math><![CDATA[\Omega]]></tex-math>
+  <mml:math display="inline" xmlns:mml="http://www.w3.org/1998/Math/MathML"><mml:mi>Ω</mml:mi></mml:math></alternatives></inline-formula>, to study the effect of these parameters on the behavior of the junction.</p>
+  <p>Again, the real problem was how to analyze all this data. A manual analysis like that needed with the electronic simulator was out of consideration.
+  I decided to try the recently released Microsoft Visual Basic 1.0 for Windows, writing another program that calculated the size of the rf-induced current steps visible on the <inline-formula><alternatives>
+  <tex-math><![CDATA[I-V]]></tex-math>
+  <mml:math display="inline" xmlns:mml="http://www.w3.org/1998/Math/MathML"><mml:mrow><mml:mi>I</mml:mi><mml:mo>−</mml:mo><mml:mi>V</mml:mi></mml:mrow></mml:math></alternatives></inline-formula> characteristics of the nightly simulations, as a function of <inline-formula><alternatives>
+  <tex-math><![CDATA[\alpha_\mathrm{rf}]]></tex-math>
+  <mml:math display="inline" xmlns:mml="http://www.w3.org/1998/Math/MathML"><mml:msub><mml:mi>α</mml:mi><mml:mrow><mml:mi mathvariant="normal">r</mml:mi><mml:mi mathvariant="normal">f</mml:mi></mml:mrow></mml:msub></mml:math></alternatives></inline-formula>.</p>
+  <p>The results of months of calculations were summarized in a paper published in the Journal of Applied Physics <xref alt="14" rid="ref-MaggiU003A1996" ref-type="bibr">14</xref>.</p>
+</sec>
+<sec id="secU003Adigging-into-code">
+  <title>Digging into code</title>
+  <p>I like organisation, and I try keep all my past projects on my main workstation.
+  Thus, finding the original source and data files of this project was only a question of locating the directory where the project was stored.
+  Problems started to arise when I looked at the different files. The whole project was scattered into several directories, each containing many files with widely different names and dates. At first, trying to find an order in that chaos seemed impossible.</p>
+  <p>Normally I would have found all information needed in many notebooks full of detailed handwritten notes.
+  Unfortunately, a couple of years ago most of my work notebooks were damaged by a water leak in the basement, and could not be recovered. The only option left was to check the files one by one.</p>
+  <p>After a thorough inspection of the whole project I recalled that:
+  (1) my first attempts with the numerical simulations tried to use the more accurate McDonald-Johnson junction model <xref alt="19" rid="ref-McDonaldU003A1976" ref-type="bibr">19</xref>, I later switched to the simplified Stewart-McCumber RSJ model because it was much faster and efficient in calculating the junction behavior <xref alt="17" rid="ref-McCumberU003A1968" ref-type="bibr">17</xref>, <xref alt="18" rid="ref-StewartU003A1974" ref-type="bibr">18</xref>;
+  (2) file names attempted to reflect what the programs actually did, at least within the limits of DOS 8+3 naming scheme: in the same directory I could have a file ending with a “” that provided a textual output and another file ending with a “g” that gave a graphical output, and they differed only for a couple of <monospace>DEFINES</monospace>s that controlled the conditional compilation of the proper sections of the source code.</p>
+  <p>This multiplication of files might seem senseless today, when comfortable graphical interfaces, ultra-fast text editors with support of regular expressions and version control tools allow to change a large set of files in just a few seconds, but at that time it was probably the fastest, albeit very inefficient, way of working with source code;
+  (3) the header of all source files contained detailed notes about the type of program, the compiler, the type of output and the dates of first and last revision of the source file, considerably easing the analysis of the different versions of the Fortran programs (Fig. <xref alt="1" rid="figU003Asource-header">1</xref>);
+  (4) the initial versions of the Fortran programs were monolithic, a single source file contained the whole code, that consisted in about 1.000 lines of Fortran. Only at a later time, better computing practices taught me to divide the monolithic code into multiple source files, compiled and linked together with a <monospace>Makefile</monospace>.</p>
+  <fig id="figU003Asource-header">
+    <caption><p>Header of one of the Fortran source files. The left sidebar shows the directory structure of the project.</p></caption>
+    <graphic mimetype="image" mime-subtype="png" xlink:href="images/source-header.png" />
+  </fig>
+  <p>Another invaluable tool to analyze the different versions of the source files was <ext-link ext-link-type="uri" xlink:href="http://meldmerge.org/">Meld</ext-link>, an open source application available for all major operating systems that can perform a two- and even a three-way comparison of files and directories.
+  Using Meld I quickly realized that the two most interesting source files were <monospace>mcphase.for</monospace> and <monospace>mcp-work.for</monospace>, both located in the <monospace>mccumber/</monospace> directory (Fig. <xref alt="[fig:meld-comparison]" rid="figU003Ameld-comparison">[fig:meld-comparison]</xref>).</p>
+  <p>The first program, <monospace>mcphase.for</monospace>, simulated the behavior of the junction for a single value of <inline-formula><alternatives>
+  <tex-math><![CDATA[\alpha_\mathrm{rf}]]></tex-math>
+  <mml:math display="inline" xmlns:mml="http://www.w3.org/1998/Math/MathML"><mml:msub><mml:mi>α</mml:mi><mml:mrow><mml:mi mathvariant="normal">r</mml:mi><mml:mi mathvariant="normal">f</mml:mi></mml:mrow></mml:msub></mml:math></alternatives></inline-formula> read from the input configuration file <monospace>mc-iv.dat</monospace>, and saved the <inline-formula><alternatives>
+  <tex-math><![CDATA[I - V]]></tex-math>
+  <mml:math display="inline" xmlns:mml="http://www.w3.org/1998/Math/MathML"><mml:mrow><mml:mi>I</mml:mi><mml:mo>−</mml:mo><mml:mi>V</mml:mi></mml:mrow></mml:math></alternatives></inline-formula> characteristic of the junction and its phase portrait (i.e., the relation between the phase and its time derivative, the latter being proportional to the junction voltage <inline-formula><alternatives>
+  <tex-math><![CDATA[V]]></tex-math>
+  <mml:math display="inline" xmlns:mml="http://www.w3.org/1998/Math/MathML"><mml:mi>V</mml:mi></mml:math></alternatives></inline-formula>) in the output file <monospace>mc-iv.out</monospace>.</p>
+  <p>Multiple calculations with several different value of <inline-formula><alternatives>
+  <tex-math><![CDATA[\alpha_\mathrm{rf}]]></tex-math>
+  <mml:math display="inline" xmlns:mml="http://www.w3.org/1998/Math/MathML"><mml:msub><mml:mi>α</mml:mi><mml:mrow><mml:mi mathvariant="normal">r</mml:mi><mml:mi mathvariant="normal">f</mml:mi></mml:mrow></mml:msub></mml:math></alternatives></inline-formula> were performed by using a DOS batch file that basically choose one by one the configuration files containing the desired values of <inline-formula><alternatives>
+  <tex-math><![CDATA[\alpha_\mathrm{rf}]]></tex-math>
+  <mml:math display="inline" xmlns:mml="http://www.w3.org/1998/Math/MathML"><mml:msub><mml:mi>α</mml:mi><mml:mrow><mml:mi mathvariant="normal">r</mml:mi><mml:mi mathvariant="normal">f</mml:mi></mml:mrow></mml:msub></mml:math></alternatives></inline-formula>, renamed them to <monospace>iv.dat</monospace>, run the compiled executable <monospace>mcphase.exe</monospace> and at the end renamed the file containing the results, <monospace>mc-iv.out</monospace>, using a consistent naming scheme.
+  I don’t recall why I choose this approach, but it was clearly very inefficient, as it required to prepare each day a long series of configuration files that differed only by the value of <inline-formula><alternatives>
+  <tex-math><![CDATA[\alpha_\mathrm{rf}]]></tex-math>
+  <mml:math display="inline" xmlns:mml="http://www.w3.org/1998/Math/MathML"><mml:msub><mml:mi>α</mml:mi><mml:mrow><mml:mi mathvariant="normal">r</mml:mi><mml:mi mathvariant="normal">f</mml:mi></mml:mrow></mml:msub></mml:math></alternatives></inline-formula>, and to update accordingly the DOS batch file that controlled the night calculations (Fig. <xref alt="[fig:batch-file]" rid="figU003Abatch-file">[fig:batch-file]</xref>).</p>
+  <p>The second program, <monospace>mcp-work.for</monospace> was an improved version that could cycle across a set of several values of <inline-formula><alternatives>
+  <tex-math><![CDATA[\alpha_\mathrm{rf}]]></tex-math>
+  <mml:math display="inline" xmlns:mml="http://www.w3.org/1998/Math/MathML"><mml:msub><mml:mi>α</mml:mi><mml:mrow><mml:mi mathvariant="normal">r</mml:mi><mml:mi mathvariant="normal">f</mml:mi></mml:mrow></mml:msub></mml:math></alternatives></inline-formula>, producing a different output file for each value of <inline-formula><alternatives>
+  <tex-math><![CDATA[\alpha_\mathrm{rf}]]></tex-math>
+  <mml:math display="inline" xmlns:mml="http://www.w3.org/1998/Math/MathML"><mml:msub><mml:mi>α</mml:mi><mml:mrow><mml:mi mathvariant="normal">r</mml:mi><mml:mi mathvariant="normal">f</mml:mi></mml:mrow></mml:msub></mml:math></alternatives></inline-formula>. To simplify the later automatic analysis, it left out the phase portrait.</p>
+  <p>Clearly this was the program ported to the DEC workstations.
+  Unfortunately, I could not find the actual source file used on these machines, perhaps because I worked directly on the workstations and never thought to copy back these files to my PCs.
+  But Fortran is a very stable language and making <monospace>mcp-work.for</monospace> work on a modern machine was very easy.</p>
+  <p>As for the Microsoft Visual Basic 1.0 code, I found only two versions of the programs and the differences between them were minimal. Since both programs gave exactly the same results, I decided to stick with the version that had a still working precompiled binary file.</p>
+</sec>
+<sec id="porting-microsoft-fortran-to-modern-unix">
+  <title>Porting Microsoft Fortran to modern Unix</title>
+  <p>Porting <monospace>mcp-work.for</monospace> to the XXI century so that it could be compiled with the modern open source and multiplatform <monospace>gfortran</monospace> Fortran compiler was very easy, thanks to the stability of the language across different versions and platforms. Only a few minor tweaks to the source code were needed.</p>
+  <p>All work has been done on macOS, which is essentially BSD Unix with a more appealing graphical interface, but it can be easily repeated on any modern Unix-like operating system such as Linux, and probably even on Windows, with the support of either the <ext-link ext-link-type="uri" xlink:href="https://docs.microsoft.com/en-us/windows/wsl/">Windows Subsystem for Linux</ext-link> (for Windows 10) or of <ext-link ext-link-type="uri" xlink:href="http://www.cygwin.org/">Cygwin</ext-link> (for earlier versions of the operating system).</p>
+  <sec id="preprocessor-directives">
+    <title>Preprocessor directives</title>
+    <p>For reasons that go beyond my understanding Microsoft Fortran 5.1 did not use standard preprocessor directives, such as those supported by <monospace>cpp</monospace> or <monospace>fpp</monospace>, <xref alt="20" rid="ref-BoyanskiU003A1992" ref-type="bibr">20</xref> but used a a slightly different proprietary syntax (Fig. <xref alt="[fig:preprocessor]" rid="figU003Apreprocessor">[fig:preprocessor]</xref>).
+    To support <monospace>cpp</monospace>, all was needed was to comment out all the <monospace>$DEFINE</monospace> directives in the header section of <monospace>mcp-work.for</monospace> and to replace the Microsoft Fortran 5.1 <monospace>DEFINE</monospace> blocks with standard <monospace>cpp</monospace> blocks throughout the code (Fig. <xref alt="[fig:preprocessor]" rid="figU003Apreprocessor">[fig:preprocessor]</xref>).</p>
+    <p>The right directives are chosen now at compile-time. For example, the following command
+    <xref ref-type="fn" rid="fn3">3</xref></p>
+    <preformat>$ gfortran -cpp -Dtextout -Dsingle -o mcp-work mcp-work.for</preformat>
+    <p>runs the <monospace>cpp</monospace> preprocessor before the gfortran compiler, selecting only the sections of code that produce a textual output (<monospace>-Dtextout</monospace>) and simulate the junction behavior with the sinusoidal drive (<monospace>-Dsingle</monospace>).</p>
+  </sec>
+  <sec id="filenames">
+    <title>Filenames</title>
+    <p>Compilers based on Fortran 77, such as Microsoft Fortran 5.1, did not support dynamic memory allocation at runtime and required programmers to use fixed-length arrays and strings. Strings were used rather sparingly in Fortran code, so that was not a big deal. With an exception.
+    My code defined the basename of all files as the 50-byte long character variable <monospace>filename</monospace>, attaching a proper extension to the input configuration file that contained the simulation parameters and to the output data files with the results of the calculations.</p>
+    <p>Under DOS that was not a problem, as DOS truncates file names to only 8 characters plus 3 characters for the extension, and excess characters were simply ignored. But under Unix file names have no practical limitations,<xref ref-type="fn" rid="fn4">4</xref> and having all these 50 character-long filenames, mostly composed by blank characters, was ugly and complicated file management, in particular when using the command line interface.
+    The solution was simple, as Fortran now has the <monospace>TRIM</monospace> function, that removes all trailing blanks from a string.
+    Whenever a file is opened for reading or for writing, <monospace>TRIM()</monospace> is applied on-the-fly to the <monospace>filename</monospace> variable,</p>
+    <preformat>	OPEN (UNIT = 10, FILE = TRIM(filename)//'.dat', STATUS = 'OLD')</preformat>
+    <p>thus removing all extra blanks from the name of the file.</p>
+  </sec>
+  <sec id="edit-descriptors">
+    <title>Edit descriptors</title>
+    <p>Microsoft Fortran 5.1 used the backslash (<monospace>\</monospace>) edit descriptor to prevent the addition of a line break at the end of a <monospace>WRITE</monospace> instruction.
+    Modern Fortran compilers do not support this non-standard edit descriptor and return an error. This problem is avoided by removing the backslash from all <monospace>WRITE</monospace> instructions that include it.</p>
+  </sec>
+  <sec id="date-and-time">
+    <title>Date and time</title>
+    <p>Microsoft Fortran 5.1 had two separate intrinsic subroutines to return the current date and time.
+    In particular, <monospace>CALL GETDAT(iyr, imon, iday)</monospace>, saved the date in the two-byte integer variables <monospace>iyr</monospace>, <monospace>imon</monospace> and <monospace>iday</monospace>, while <monospace>CALL GETTIM(ihr, imin, imin, i100th)</monospace> did the same for the current time, saving the return values in the integer variables <monospace>ihr</monospace>, <monospace>imin</monospace>, <monospace>imin</monospace> and <monospace>i100th</monospace>. The meaning of each returned variable should be self-explanatory.</p>
+    <p>Modern Fortran supports the single subroutine <monospace>CALL DATE_AND_TIME(DATE, TIME, ZONE, VALUES)</monospace>, where all arguments are optional and can be specified by their dummy names (i.e., how Fortran calls the keyword arguments of a function call).
+    In particular, <monospace>DATE</monospace>, <monospace>TIME</monospace> and <monospace>ZONE</monospace> are character variables, while <monospace>VALUES</monospace> is a one-dimensional array of 8 integers, where <monospace>VALUES(1:3)</monospace> corresponds to the year, month and day of the month, <monospace>VALUES(4)</monospace> is the time difference (in minutes) with UTC, and <monospace>VALUES(5:8)</monospace> are the hour, minute, second and milliseconds, respectively.</p>
+    <p>To minimize changes to the original source code, the calls to the <monospace>GETDAT</monospace> and <monospace>GETTIM</monospace> subroutines, were translated to a single call to <monospace>DATE_AND_TIME</monospace>, assigning the elements of the returned array of <monospace>VALUES</monospace> to integer variables named as in the original code (Fig. <xref alt="[fig:date-time]" rid="figU003Adate-time">[fig:date-time]</xref>).</p>
+  </sec>
+  <sec id="compilation-with-gfortran">
+    <title>Compilation with gfortran</title>
+    <p>As noted above, <monospace>mcp-work.for</monospace> calculates the <inline-formula><alternatives>
+    <tex-math><![CDATA[I - V]]></tex-math>
+    <mml:math display="inline" xmlns:mml="http://www.w3.org/1998/Math/MathML"><mml:mrow><mml:mi>I</mml:mi><mml:mo>−</mml:mo><mml:mi>V</mml:mi></mml:mrow></mml:math></alternatives></inline-formula> characteristics of the simulated junction for several different values of <inline-formula><alternatives>
+    <tex-math><![CDATA[\alpha_\mathrm{rf}]]></tex-math>
+    <mml:math display="inline" xmlns:mml="http://www.w3.org/1998/Math/MathML"><mml:msub><mml:mi>α</mml:mi><mml:mrow><mml:mi mathvariant="normal">r</mml:mi><mml:mi mathvariant="normal">f</mml:mi></mml:mrow></mml:msub></mml:math></alternatives></inline-formula>, producing one output file for each <inline-formula><alternatives>
+    <tex-math><![CDATA[I - V]]></tex-math>
+    <mml:math display="inline" xmlns:mml="http://www.w3.org/1998/Math/MathML"><mml:mrow><mml:mi>I</mml:mi><mml:mo>−</mml:mo><mml:mi>V</mml:mi></mml:mrow></mml:math></alternatives></inline-formula> curve. The section of the code that defined the names of the output files was quite convoluted,</p>
+    <preformat>      il=0
+      DO alpha_rf=0.0, 50.0, 0.5
+      ...
+c ------ define output file name(s)
+         il=il+1
+         il2=INT(il/100)
+         il1=INT(il/10)-il2*10
+         il0=il-il1*10-il2*100
+         filewrite='PU'//CHAR(il2+47)//CHAR(il1+47)//CHAR(il0+47)
+      ...
+      END DO        ! repeat alpha_rf DO cycle
+    </preformat>
+    <p>and used the integer variable <monospace>il</monospace> to count the cycle number, while the three integers <monospace>il2</monospace>, <monospace>il1</monospace> and <monospace>il0</monospace> contained the hundreds, tens and units digits of <monospace>il</monospace>, respectively.
+    The <monospace>CHAR</monospace> function converts these integers to the corresponding <monospace>ASCII</monospace> characters, where <monospace>ASCII</monospace> code 48 corresponds to the <monospace>0</monospace> symbol and <monospace>ASCII</monospace> code 57 corresponds to <monospace>9</monospace>.
+    The name of the output file defined in the variable <monospace>filewrite</monospace> was built by concatenating a trailing constant string (<monospace>’PU’</monospace> in the example above) to the three <monospace>ASCII</monospace> characters, using the double forward slash (<monospace>//</monospace>) operator.</p>
+    <p>I have no idea why I decided to build the name the output files in such a complex way, while it would have been much simpler to use the value of <inline-formula><alternatives>
+    <tex-math><![CDATA[\alpha_\mathrm{rf}]]></tex-math>
+    <mml:math display="inline" xmlns:mml="http://www.w3.org/1998/Math/MathML"><mml:msub><mml:mi>α</mml:mi><mml:mrow><mml:mi mathvariant="normal">r</mml:mi><mml:mi mathvariant="normal">f</mml:mi></mml:mrow></mml:msub></mml:math></alternatives></inline-formula>.
+    In any case, it did not work under gfortran and prevented proper compilation of the code.</p>
+    <p>After some inspection it was apparent that the number <monospace>47</monospace> added to integer variables in the three <monospace>CHAR</monospace> function calls was the source of the error, and that it should be replaced by <monospace>48</monospace>.
+    The line defining the <monospace>filewrite</monospace> variable thus becomes,</p>
+    <preformat>      ...
+      DO alpha_rf=0.0, 50.0, 0.5
+      ...
+c ------ define output file name(s)
+         ...
+         filewrite='PU'//CHAR(il2+48)//CHAR(il1+48)//CHAR(il0+48)
+      ...
+      END DO        ! repeat alpha_rf DO cycle</preformat>
+    <p>With this change <monospace>mcp-work.for</monospace> could compile flawlessly under gfortran.
+    What is still puzzling is how the original line could work in Microsoft Fortran 5.1.</p>
+  </sec>
+</sec>
+<sec id="visual-basic-code">
+  <title>Visual Basic code</title>
+  <p>No attempt was made to try to run the original Visual Basic 1.0 program on a modern computer. Visual Basic is a dead language and long since has been replaced by Visual Basic .NET, which shares only the name with its forefather.</p>
+  <p>From the beginning, the only viable option to run a Visual Basic 1.0 application today was to rebuild the original development environment based on DOS 6.22 and Windows 3.11 in an emulator.
+  The other possible alternative, try to setup an ancient PC still capable to run DOS and Windows 3.11, albeit in principle interesting to ensure a replication of the original paper at the hardware level, would have posed more problems than it solved, adding little to the accuracy of the reproduction itself.</p>
+  <p>I preferred to use the <ext-link ext-link-type="uri" xlink:href="https://www.parallels.com/">Parallels Desktop</ext-link> emulator for macOS, but popular alternatives such as <ext-link ext-link-type="uri" xlink:href="https://www.vmware.com/products/workstation-player.html">VMware Workstation</ext-link> for Windows or the <ext-link ext-link-type="uri" xlink:href="https://www.virtualbox.org/">VirtualBox</ext-link> open source multi-platform emulator should work equally well.</p>
+  <p>I created a new empty virtual machine with minimal hardware requirements and installed in sequence DOS 6.22, Windows 3.11 and Visual Basic 1.0 (Fig. <xref alt="2" rid="figU003Awindows-311">2</xref>).
+  While I was at it, and although I had already reproduced the Fortran part of the project, I also decided to install Microsoft Fortran 5.1 for DOS, to try to recreate as much as possible the original work environment.</p>
+  <p>All software packages were downloaded from the <ext-link ext-link-type="uri" xlink:href="https://winworldpc.com">WinWorld web site</ext-link>, an invaluable resource for recovering old software packages.
+  Even after so many years, the legitimacy of installing proprietary software in an emulator, might be questionable. But at the time I had regular licenses for all the above mentioned software and I guess to be at least morally authorized to continue to use those packages.
+  Unfortunately, this also means that it is not possible to share the image of the virtual machine used to run the Visual Basic program on the paper’s <ext-link ext-link-type="uri" xlink:href="https://github.com/sabinomaggi/ten-years-challenge-pulsed-drive">GitHub repository</ext-link>, since it contains proprietary software.</p>
+  <p>The packages were originally distributed on several floppy disks, which had to be swapped whenever the installer required a new disk.
+  The installation of these software packages in an emulator is close to how it was done back then.
+  The only difference is that today the floppy disks are replaced by virtual file images and <italic>swapping</italic> disks is not done mechanically but requires to select a menu option in the emulator.</p>
+  <p>At the end of the installation process, the Windows 3.11 appeared as in Fig. <xref alt="2" rid="figU003Awindows-311">2</xref>.
+  The default <inline-formula><alternatives>
+  <tex-math><![CDATA[640 \times 480]]></tex-math>
+  <mml:math display="inline" xmlns:mml="http://www.w3.org/1998/Math/MathML"><mml:mrow><mml:mn>640</mml:mn><mml:mo>×</mml:mo><mml:mn>480</mml:mn></mml:mrow></mml:math></alternatives></inline-formula> pixel screen resolution of Windows 3.11 was woefully meager by today’s standards but, as I used the virtual environment almost exclusively to run the Visual Basic program, I didn’t bother to install the video drivers that could increase the screen resolution to a more comfortable <inline-formula><alternatives>
+  <tex-math><![CDATA[800 \times 600]]></tex-math>
+  <mml:math display="inline" xmlns:mml="http://www.w3.org/1998/Math/MathML"><mml:mrow><mml:mn>800</mml:mn><mml:mo>×</mml:mo><mml:mn>600</mml:mn></mml:mrow></mml:math></alternatives></inline-formula> or <inline-formula><alternatives>
+  <tex-math><![CDATA[1024 \times 768]]></tex-math>
+  <mml:math display="inline" xmlns:mml="http://www.w3.org/1998/Math/MathML"><mml:mrow><mml:mn>1024</mml:mn><mml:mo>×</mml:mo><mml:mn>768</mml:mn></mml:mrow></mml:math></alternatives></inline-formula> pixel resolution.</p>
+  <fig id="figU003Awindows-311">
+    <caption><p>The Windows 3.11 desktop as shown in the Parallels emulator. The File Manager window shows the files generated by the Fortran <monospace>mcp-work</monospace> program, before being processed by the Visual Basic program.</p></caption>
+    <graphic mimetype="image" mime-subtype="png" xlink:href="images/windows-311.png" />
+  </fig>
+  <p>Using the emulator required to transfer the source and binary Visual Basic files to the emulated DOS/Windows system.
+  It is surely possible to make the emulated Windows 3.11 communicate with the host operating system through the network. But I found much easier to use again a virtual floppy disk to transfer all needed files from macOS to Windows 3.11 (and viceversa).</p>
+  <p>A new empty virtual floppy disk <monospace>data.img</monospace> can be easily created with the command-line utility <monospace>dd</monospace> available on macOS or Linux</p>
+  <preformat>dd if=/dev/zero of=data.img bs=1440k count=1</preformat>
+  <p>After creation, the virtual floppy disk must be mounted in the emulator and formatted under DOS or Windows 3.11 in the original MS-DOS FAT file system.</p>
+  <p>This step completed the preparation of the development environment, now it was time to test how all this behaved.</p>
+</sec>
+<sec id="running-the-programs">
+  <title>Running the programs</title>
+  <p>As already noted, <monospace>mcp-work.for</monospace> calculates the <inline-formula><alternatives>
+  <tex-math><![CDATA[I - V]]></tex-math>
+  <mml:math display="inline" xmlns:mml="http://www.w3.org/1998/Math/MathML"><mml:mrow><mml:mi>I</mml:mi><mml:mo>−</mml:mo><mml:mi>V</mml:mi></mml:mrow></mml:math></alternatives></inline-formula> characteristics for a range of values of <inline-formula><alternatives>
+  <tex-math><![CDATA[\alpha_\mathrm{rf}]]></tex-math>
+  <mml:math display="inline" xmlns:mml="http://www.w3.org/1998/Math/MathML"><mml:msub><mml:mi>α</mml:mi><mml:mrow><mml:mi mathvariant="normal">r</mml:mi><mml:mi mathvariant="normal">f</mml:mi></mml:mrow></mml:msub></mml:math></alternatives></inline-formula>, saving each curve in a separate output file.
+  The lower and upper limits and the step size of <inline-formula><alternatives>
+  <tex-math><![CDATA[\alpha_\mathrm{rf}]]></tex-math>
+  <mml:math display="inline" xmlns:mml="http://www.w3.org/1998/Math/MathML"><mml:msub><mml:mi>α</mml:mi><mml:mrow><mml:mi mathvariant="normal">r</mml:mi><mml:mi mathvariant="normal">f</mml:mi></mml:mrow></mml:msub></mml:math></alternatives></inline-formula> are hardcoded in the Fortran source code ad every change requires a recompilation of <monospace>mcp-work.for</monospace> (a minor hassle, as the compilation takes just a couple of seconds on a modern machine).</p>
+  <p>Also the names of the output data files are hard-coded in <monospace>mcp-work.for</monospace> in the <monospace>filewrite</monospace> variable and are conventionally composed by a two-letter prefix (“SI” for the single drive, “BI” for the biharmonic drive and “PU” for the pulsed drive) followed by a three-digit integer that represents the cycle number (Section <xref alt="4.5" rid="compilation-with-gfortran">4.5</xref>).</p>
+  <p>To avoid cluttering the <monospace>mccumber/</monospace> directory that contains the Fortran source files with the output data files produced by the simulations, I created a new directory in the main project folder, <monospace>2020runs/</monospace>, where I copied the <monospace>mc-iv.dat</monospace> configuration file needed to start the simulation (Fig. <xref alt="1" rid="figU003Asource-header">1</xref>).</p>
+  <p>Running <monospace>mcp-work.for</monospace> requires three steps: compile <monospace>mcp-work.for</monospace> with the proper directives, switch to the <monospace>2020runs/</monospace> directory and run the <monospace>mcp-work</monospace> executable from there. The whole process is summarized below for the sinusoidal drive</p>
+  <preformat>$ gfortran -cpp -Dtextout -Dsingle -o mcp-work mcp-work.for
+$ cd ../2020runs/
+$ ../mccumber/mcp-work</preformat>
+  <p>The only modification needed to perform calculations using the pulsed drive is to change the <monospace>-Dsingle</monospace> directive to <monospace>-Dpulsed</monospace></p>
+  <preformat>$ gfortran -cpp -Dtextout -Dpulsed -o mcp-work mcp-work.for
+$ cd ../2020runs/
+$ ../mccumber/mcp-work</preformat>
+  <p>On a recent (but not state-of-the art) machine the whole simulation with <inline-formula><alternatives>
+  <tex-math><![CDATA[100~\alpha_\mathrm{rf}]]></tex-math>
+  <mml:math display="inline" xmlns:mml="http://www.w3.org/1998/Math/MathML"><mml:mrow><mml:mn>100</mml:mn><mml:mspace width="0.222em"></mml:mspace><mml:msub><mml:mi>α</mml:mi><mml:mrow><mml:mi mathvariant="normal">r</mml:mi><mml:mi mathvariant="normal">f</mml:mi></mml:mrow></mml:msub></mml:mrow></mml:math></alternatives></inline-formula> steps takes around <inline-formula><alternatives>
+  <tex-math><![CDATA[5]]></tex-math>
+  <mml:math display="inline" xmlns:mml="http://www.w3.org/1998/Math/MathML"><mml:mn>5</mml:mn></mml:math></alternatives></inline-formula> minutes for the single drive and <inline-formula><alternatives>
+  <tex-math><![CDATA[7]]></tex-math>
+  <mml:math display="inline" xmlns:mml="http://www.w3.org/1998/Math/MathML"><mml:mn>7</mml:mn></mml:math></alternatives></inline-formula> minutes for the pulsed drive, and most of the time is spent printing on the terminal the calculated <inline-formula><alternatives>
+  <tex-math><![CDATA[I - V]]></tex-math>
+  <mml:math display="inline" xmlns:mml="http://www.w3.org/1998/Math/MathML"><mml:mrow><mml:mi>I</mml:mi><mml:mo>−</mml:mo><mml:mi>V</mml:mi></mml:mrow></mml:math></alternatives></inline-formula> characteristics for each value of <inline-formula><alternatives>
+  <tex-math><![CDATA[\alpha_\mathrm{rf}]]></tex-math>
+  <mml:math display="inline" xmlns:mml="http://www.w3.org/1998/Math/MathML"><mml:msub><mml:mi>α</mml:mi><mml:mrow><mml:mi mathvariant="normal">r</mml:mi><mml:mi mathvariant="normal">f</mml:mi></mml:mrow></mml:msub></mml:math></alternatives></inline-formula>. Such feedback was useful at the time of the original calculation, as every new calculated point of the <inline-formula><alternatives>
+  <tex-math><![CDATA[I - V]]></tex-math>
+  <mml:math display="inline" xmlns:mml="http://www.w3.org/1998/Math/MathML"><mml:mrow><mml:mi>I</mml:mi><mml:mo>−</mml:mo><mml:mi>V</mml:mi></mml:mrow></mml:math></alternatives></inline-formula> characteristics appeared on the screen after several tens of seconds, now the results scroll on the screen at a speed that makes them almost illegible.
+  However, to keep as faithful as possible to the original project, I decided to continue to print the data points on the computer screen.</p>
+  <p>The <inline-formula><alternatives>
+  <tex-math><![CDATA[I - V]]></tex-math>
+  <mml:math display="inline" xmlns:mml="http://www.w3.org/1998/Math/MathML"><mml:mrow><mml:mi>I</mml:mi><mml:mo>−</mml:mo><mml:mi>V</mml:mi></mml:mrow></mml:math></alternatives></inline-formula> characteristics calculated with the sinusoidal drive are shown in Fig. <xref alt="3" rid="figU003Aiv-single">3</xref> for different values of <inline-formula><alternatives>
+  <tex-math><![CDATA[\alpha_\mathrm{rf}]]></tex-math>
+  <mml:math display="inline" xmlns:mml="http://www.w3.org/1998/Math/MathML"><mml:msub><mml:mi>α</mml:mi><mml:mrow><mml:mi mathvariant="normal">r</mml:mi><mml:mi mathvariant="normal">f</mml:mi></mml:mrow></mml:msub></mml:math></alternatives></inline-formula>.
+  Without microwave radiation (<inline-formula><alternatives>
+  <tex-math><![CDATA[\alpha_\mathrm{rf} = 0]]></tex-math>
+  <mml:math display="inline" xmlns:mml="http://www.w3.org/1998/Math/MathML"><mml:mrow><mml:msub><mml:mi>α</mml:mi><mml:mrow><mml:mi mathvariant="normal">r</mml:mi><mml:mi mathvariant="normal">f</mml:mi></mml:mrow></mml:msub><mml:mo>=</mml:mo><mml:mn>0</mml:mn></mml:mrow></mml:math></alternatives></inline-formula>), the simulation produces the well-known <inline-formula><alternatives>
+  <tex-math><![CDATA[I - V]]></tex-math>
+  <mml:math display="inline" xmlns:mml="http://www.w3.org/1998/Math/MathML"><mml:mrow><mml:mi>I</mml:mi><mml:mo>−</mml:mo><mml:mi>V</mml:mi></mml:mrow></mml:math></alternatives></inline-formula> characteristic of an overdamped Josephson junction (Fig. <xref alt="3" rid="figU003Aiv-single">3</xref>a), while for non-zero values of <inline-formula><alternatives>
+  <tex-math><![CDATA[\alpha_\mathrm{rf}]]></tex-math>
+  <mml:math display="inline" xmlns:mml="http://www.w3.org/1998/Math/MathML"><mml:msub><mml:mi>α</mml:mi><mml:mrow><mml:mi mathvariant="normal">r</mml:mi><mml:mi mathvariant="normal">f</mml:mi></mml:mrow></mml:msub></mml:math></alternatives></inline-formula> the staircase-like structure of the rf-induced current steps appears on the <inline-formula><alternatives>
+  <tex-math><![CDATA[I - V]]></tex-math>
+  <mml:math display="inline" xmlns:mml="http://www.w3.org/1998/Math/MathML"><mml:mrow><mml:mi>I</mml:mi><mml:mo>−</mml:mo><mml:mi>V</mml:mi></mml:mrow></mml:math></alternatives></inline-formula> curves (Fig. <xref alt="3" rid="figU003Aiv-single">3</xref>b and Fig. <xref alt="3" rid="figU003Aiv-single">3</xref>c).</p>
+  <fig id="figU003Aiv-single">
+    <caption><p><inline-formula><alternatives>
+    <tex-math><![CDATA[I - V]]></tex-math>
+    <mml:math display="inline" xmlns:mml="http://www.w3.org/1998/Math/MathML"><mml:mrow><mml:mi>I</mml:mi><mml:mo>−</mml:mo><mml:mi>V</mml:mi></mml:mrow></mml:math></alternatives></inline-formula> characteristics of a junction with <inline-formula><alternatives>
+    <tex-math><![CDATA[\beta_c = 0.01]]></tex-math>
+    <mml:math display="inline" xmlns:mml="http://www.w3.org/1998/Math/MathML"><mml:mrow><mml:msub><mml:mi>β</mml:mi><mml:mi>c</mml:mi></mml:msub><mml:mo>=</mml:mo><mml:mn>0.01</mml:mn></mml:mrow></mml:math></alternatives></inline-formula>, driven by a sinusoidal microwave signal of frequency <inline-formula><alternatives>
+    <tex-math><![CDATA[\Omega = 0.45]]></tex-math>
+    <mml:math display="inline" xmlns:mml="http://www.w3.org/1998/Math/MathML"><mml:mrow><mml:mi>Ω</mml:mi><mml:mo>=</mml:mo><mml:mn>0.45</mml:mn></mml:mrow></mml:math></alternatives></inline-formula> and (a) <inline-formula><alternatives>
+    <tex-math><![CDATA[\alpha_\mathrm{rf} = 0.0]]></tex-math>
+    <mml:math display="inline" xmlns:mml="http://www.w3.org/1998/Math/MathML"><mml:mrow><mml:msub><mml:mi>α</mml:mi><mml:mrow><mml:mi mathvariant="normal">r</mml:mi><mml:mi mathvariant="normal">f</mml:mi></mml:mrow></mml:msub><mml:mo>=</mml:mo><mml:mn>0.0</mml:mn></mml:mrow></mml:math></alternatives></inline-formula>, (b) <inline-formula><alternatives>
+    <tex-math><![CDATA[\alpha_\mathrm{rf} = 1.0]]></tex-math>
+    <mml:math display="inline" xmlns:mml="http://www.w3.org/1998/Math/MathML"><mml:mrow><mml:msub><mml:mi>α</mml:mi><mml:mrow><mml:mi mathvariant="normal">r</mml:mi><mml:mi mathvariant="normal">f</mml:mi></mml:mrow></mml:msub><mml:mo>=</mml:mo><mml:mn>1.0</mml:mn></mml:mrow></mml:math></alternatives></inline-formula> and (c) <inline-formula><alternatives>
+    <tex-math><![CDATA[\alpha_\mathrm{rf} = 2.0]]></tex-math>
+    <mml:math display="inline" xmlns:mml="http://www.w3.org/1998/Math/MathML"><mml:mrow><mml:msub><mml:mi>α</mml:mi><mml:mrow><mml:mi mathvariant="normal">r</mml:mi><mml:mi mathvariant="normal">f</mml:mi></mml:mrow></mml:msub><mml:mo>=</mml:mo><mml:mn>2.0</mml:mn></mml:mrow></mml:math></alternatives></inline-formula>. The rf-induced current steps are clearly visible when <inline-formula><alternatives>
+    <tex-math><![CDATA[\alpha_\mathrm{rf} > 0]]></tex-math>
+    <mml:math display="inline" xmlns:mml="http://www.w3.org/1998/Math/MathML"><mml:mrow><mml:msub><mml:mi>α</mml:mi><mml:mrow><mml:mi mathvariant="normal">r</mml:mi><mml:mi mathvariant="normal">f</mml:mi></mml:mrow></mml:msub><mml:mo>&gt;</mml:mo><mml:mn>0</mml:mn></mml:mrow></mml:math></alternatives></inline-formula>. Here <monospace>eta</monospace> and <monospace>alpha</monospace> are the normalized voltage <inline-formula><alternatives>
+    <tex-math><![CDATA[\eta]]></tex-math>
+    <mml:math display="inline" xmlns:mml="http://www.w3.org/1998/Math/MathML"><mml:mi>η</mml:mi></mml:math></alternatives></inline-formula> and normalized current <inline-formula><alternatives>
+    <tex-math><![CDATA[\alpha]]></tex-math>
+    <mml:math display="inline" xmlns:mml="http://www.w3.org/1998/Math/MathML"><mml:mi>α</mml:mi></mml:math></alternatives></inline-formula>, respectively.</p></caption>
+    <p>
+    <inline-graphic mimetype="image" mime-subtype="png" xlink:href="images/iv-single-alpharf0.png">
+      <alt-text>image</alt-text>
+    </inline-graphic>
+    <inline-graphic mimetype="image" mime-subtype="png" xlink:href="images/iv-single-alpharf1.png">
+      <alt-text>image</alt-text>
+    </inline-graphic>
+    <inline-graphic mimetype="image" mime-subtype="png" xlink:href="images/iv-single-alpharf2.png">
+      <alt-text>image</alt-text>
+    </inline-graphic>
+    </p>
+  </fig>
+  <p>For a pulsed drive, the <inline-formula><alternatives>
+  <tex-math><![CDATA[I - V]]></tex-math>
+  <mml:math display="inline" xmlns:mml="http://www.w3.org/1998/Math/MathML"><mml:mrow><mml:mi>I</mml:mi><mml:mo>−</mml:mo><mml:mi>V</mml:mi></mml:mrow></mml:math></alternatives></inline-formula> characteristic without microwave radiation is identical to that calculated with the sinusoidal signal (Fig. <xref alt="4" rid="figU003Aiv-pulsed">4</xref>a), while for <inline-formula><alternatives>
+  <tex-math><![CDATA[\alpha_\mathrm{rf} > 0.0]]></tex-math>
+  <mml:math display="inline" xmlns:mml="http://www.w3.org/1998/Math/MathML"><mml:mrow><mml:msub><mml:mi>α</mml:mi><mml:mrow><mml:mi mathvariant="normal">r</mml:mi><mml:mi mathvariant="normal">f</mml:mi></mml:mrow></mml:msub><mml:mo>&gt;</mml:mo><mml:mn>0.0</mml:mn></mml:mrow></mml:math></alternatives></inline-formula> the current steps induced by the pulsed drive are fewer than with the sinusoidal drive and can be nearly as wide as the critical current (compare Figs. <xref alt="4" rid="figU003Aiv-pulsed">4</xref>a and <xref alt="4" rid="figU003Aiv-pulsed">4</xref>c).</p>
+  <fig id="figU003Aiv-pulsed">
+    <caption><p><inline-formula><alternatives>
+    <tex-math><![CDATA[I - V]]></tex-math>
+    <mml:math display="inline" xmlns:mml="http://www.w3.org/1998/Math/MathML"><mml:mrow><mml:mi>I</mml:mi><mml:mo>−</mml:mo><mml:mi>V</mml:mi></mml:mrow></mml:math></alternatives></inline-formula> characteristics of a junction with <inline-formula><alternatives>
+    <tex-math><![CDATA[\beta_c = 0.01]]></tex-math>
+    <mml:math display="inline" xmlns:mml="http://www.w3.org/1998/Math/MathML"><mml:mrow><mml:msub><mml:mi>β</mml:mi><mml:mi>c</mml:mi></mml:msub><mml:mo>=</mml:mo><mml:mn>0.01</mml:mn></mml:mrow></mml:math></alternatives></inline-formula>, driven by a pulsed microwave signal of frequency <inline-formula><alternatives>
+    <tex-math><![CDATA[\Omega = 0.45]]></tex-math>
+    <mml:math display="inline" xmlns:mml="http://www.w3.org/1998/Math/MathML"><mml:mrow><mml:mi>Ω</mml:mi><mml:mo>=</mml:mo><mml:mn>0.45</mml:mn></mml:mrow></mml:math></alternatives></inline-formula> for: (a) <inline-formula><alternatives>
+    <tex-math><![CDATA[\alpha_\mathrm{rf} = 0.0]]></tex-math>
+    <mml:math display="inline" xmlns:mml="http://www.w3.org/1998/Math/MathML"><mml:mrow><mml:msub><mml:mi>α</mml:mi><mml:mrow><mml:mi mathvariant="normal">r</mml:mi><mml:mi mathvariant="normal">f</mml:mi></mml:mrow></mml:msub><mml:mo>=</mml:mo><mml:mn>0.0</mml:mn></mml:mrow></mml:math></alternatives></inline-formula>, (b) <inline-formula><alternatives>
+    <tex-math><![CDATA[\alpha_\mathrm{rf} = 5.0]]></tex-math>
+    <mml:math display="inline" xmlns:mml="http://www.w3.org/1998/Math/MathML"><mml:mrow><mml:msub><mml:mi>α</mml:mi><mml:mrow><mml:mi mathvariant="normal">r</mml:mi><mml:mi mathvariant="normal">f</mml:mi></mml:mrow></mml:msub><mml:mo>=</mml:mo><mml:mn>5.0</mml:mn></mml:mrow></mml:math></alternatives></inline-formula> and (c) <inline-formula><alternatives>
+    <tex-math><![CDATA[\alpha_\mathrm{rf} = 10.0]]></tex-math>
+    <mml:math display="inline" xmlns:mml="http://www.w3.org/1998/Math/MathML"><mml:mrow><mml:msub><mml:mi>α</mml:mi><mml:mrow><mml:mi mathvariant="normal">r</mml:mi><mml:mi mathvariant="normal">f</mml:mi></mml:mrow></mml:msub><mml:mo>=</mml:mo><mml:mn>10.0</mml:mn></mml:mrow></mml:math></alternatives></inline-formula>. For <inline-formula><alternatives>
+    <tex-math><![CDATA[\alpha_\mathrm{rf} > 0]]></tex-math>
+    <mml:math display="inline" xmlns:mml="http://www.w3.org/1998/Math/MathML"><mml:mrow><mml:msub><mml:mi>α</mml:mi><mml:mrow><mml:mi mathvariant="normal">r</mml:mi><mml:mi mathvariant="normal">f</mml:mi></mml:mrow></mml:msub><mml:mo>&gt;</mml:mo><mml:mn>0</mml:mn></mml:mrow></mml:math></alternatives></inline-formula> the rf-induced current steps are much larger than with the standard sinusoidal drive. Here <monospace>eta</monospace> and <monospace>alpha</monospace> are the normalized voltage <inline-formula><alternatives>
+    <tex-math><![CDATA[\eta]]></tex-math>
+    <mml:math display="inline" xmlns:mml="http://www.w3.org/1998/Math/MathML"><mml:mi>η</mml:mi></mml:math></alternatives></inline-formula> and normalized current <inline-formula><alternatives>
+    <tex-math><![CDATA[\alpha]]></tex-math>
+    <mml:math display="inline" xmlns:mml="http://www.w3.org/1998/Math/MathML"><mml:mi>α</mml:mi></mml:math></alternatives></inline-formula>, respectively.</p></caption>
+    <p>
+    <inline-graphic mimetype="image" mime-subtype="png" xlink:href="images/iv-pulsed-alpharf0.png">
+      <alt-text>image</alt-text>
+    </inline-graphic>
+    <inline-graphic mimetype="image" mime-subtype="png" xlink:href="images/iv-pulsed-alpharf5.png">
+      <alt-text>image</alt-text>
+    </inline-graphic>
+    <inline-graphic mimetype="image" mime-subtype="png" xlink:href="images/iv-pulsed-alpharf10.png">
+      <alt-text>image</alt-text>
+    </inline-graphic>
+    </p>
+  </fig>
+  <p>At the end of each run, the output files should be transferred to the Windows 3.11 virtual machine to be processed by <monospace>stepampl</monospace>, the Visual Basic application described in Section <xref alt="5" rid="visual-basic-code">5</xref>. However Windows 3.11 does not <italic>understand</italic> Unix line terminators and cannot read the output files without a preliminary conversion.
+  The conversion can be easily done in the macOS Terminal by issuing the following command,</p>
+  <preformat>$ for f in $(ls *.out); do sed -i .bak s/$/$'\r'/ $f ; done</preformat>
+  <p>that changes the line terminators of the <monospace>.out</monospace> output files from the Unix format containing only a line-feed (LF) to the carriage return followed by a line-feed (CR-LF) format used by all versions of Microsoft Windows.<xref ref-type="fn" rid="fn5">5</xref>.
+  The <monospace>-i</monospace> switch allows in-place conversion of each file. The original files are kept adding a <monospace>.bak</monospace> extension.</p>
+  <p>The output files in the proper Windows compatible format can now be transferred onto the virtual floppy disk image.
+  When the transfer is done, the floppy disk image is unmounted from the host operating system and mounted in the virtual machine, making it visible to Windows 3.11.
+  The output files are copied to an empty directory of Windows 3.11 and the Visual Basic application is started, either by running the precompiled <monospace>stepampl.exe</monospace> executable or by opening the Visual Basic project and running the program from there (Fig. <xref alt="[fig:stepampl]" rid="figU003Astepampl">[fig:stepampl]</xref>), saving the results in another text file with extension <monospace>.STP</monospace> (for steps) that could be transferred back to the host operating system via the virtual floppy disk image.</p>
+  <p>I also briefly tried to run the original Fortran code using the Microsoft Fortran 5.1 installed in the emulator. Compilation was fine but the resulting DOS program was extremely slow, taking about <inline-formula><alternatives>
+  <tex-math><![CDATA[30 - 35]]></tex-math>
+  <mml:math display="inline" xmlns:mml="http://www.w3.org/1998/Math/MathML"><mml:mrow><mml:mn>30</mml:mn><mml:mo>−</mml:mo><mml:mn>35</mml:mn></mml:mrow></mml:math></alternatives></inline-formula> seconds for each <inline-formula><alternatives>
+  <tex-math><![CDATA[\alpha_\mathrm{rf}]]></tex-math>
+  <mml:math display="inline" xmlns:mml="http://www.w3.org/1998/Math/MathML"><mml:msub><mml:mi>α</mml:mi><mml:mrow><mml:mi mathvariant="normal">r</mml:mi><mml:mi mathvariant="normal">f</mml:mi></mml:mrow></mml:msub></mml:math></alternatives></inline-formula> cycle and about <inline-formula><alternatives>
+  <tex-math><![CDATA[60]]></tex-math>
+  <mml:math display="inline" xmlns:mml="http://www.w3.org/1998/Math/MathML"><mml:mn>60</mml:mn></mml:math></alternatives></inline-formula> minutes in total for the sinusoidal drive, more than a tenfold increase with respect to the native macOS version compiled with gfortran.
+  Even considering the overhead of the emulator, the difference is too large not to be attributed to the low quality of the binary code generated by the Microsoft Fortran 5.1 compiler.</p>
+</sec>
+<sec id="results">
+  <title>Results</title>
+  <p>At the time of writing the original paper the whole process had to be repeated each night for a different set of input parameters and for a different kind of microwave signal (single, biharmonic or pulsed).</p>
+  <p>Each night I used three of the available DEC workstations to simulate the junction behavior with the pulsed drive, using three different values of the (normalized) width of the pulse signal, <inline-formula><alternatives>
+  <tex-math><![CDATA[\rho]]></tex-math>
+  <mml:math display="inline" xmlns:mml="http://www.w3.org/1998/Math/MathML"><mml:mi>ρ</mml:mi></mml:math></alternatives></inline-formula>, while keeping constant all the other parameters, such <inline-formula><alternatives>
+  <tex-math><![CDATA[\beta]]></tex-math>
+  <mml:math display="inline" xmlns:mml="http://www.w3.org/1998/Math/MathML"><mml:mi>β</mml:mi></mml:math></alternatives></inline-formula> and <inline-formula><alternatives>
+  <tex-math><![CDATA[\Omega]]></tex-math>
+  <mml:math display="inline" xmlns:mml="http://www.w3.org/1998/Math/MathML"><mml:mi>Ω</mml:mi></mml:math></alternatives></inline-formula>.
+  The only other difference in these simulation was the range of variation of <inline-formula><alternatives>
+  <tex-math><![CDATA[\alpha_\mathrm{rf}]]></tex-math>
+  <mml:math display="inline" xmlns:mml="http://www.w3.org/1998/Math/MathML"><mml:msub><mml:mi>α</mml:mi><mml:mrow><mml:mi mathvariant="normal">r</mml:mi><mml:mi mathvariant="normal">f</mml:mi></mml:mrow></mml:msub></mml:math></alternatives></inline-formula>, which depended on the value of <inline-formula><alternatives>
+  <tex-math><![CDATA[\rho]]></tex-math>
+  <mml:math display="inline" xmlns:mml="http://www.w3.org/1998/Math/MathML"><mml:mi>ρ</mml:mi></mml:math></alternatives></inline-formula> (shorter pulses require a much larger intensity of the rf-signal to have the same effect on the junction).
+  The fourth workstation simulated the junction behavior with the standard sinusoidal drive, using exactly the same set of junction parameters.</p>
+  <p>The original paper contained all the information needed to reproduce the results shown in the figures, without having to repeat the whole analysis from scratch.
+  The parameters used in all runs were: hysteresis parameter <inline-formula><alternatives>
+  <tex-math><![CDATA[\beta = 0.01]]></tex-math>
+  <mml:math display="inline" xmlns:mml="http://www.w3.org/1998/Math/MathML"><mml:mrow><mml:mi>β</mml:mi><mml:mo>=</mml:mo><mml:mn>0.01</mml:mn></mml:mrow></mml:math></alternatives></inline-formula>, frequency of the sinusoidal or pulsed rf signal <inline-formula><alternatives>
+  <tex-math><![CDATA[\Omega = 0.45]]></tex-math>
+  <mml:math display="inline" xmlns:mml="http://www.w3.org/1998/Math/MathML"><mml:mrow><mml:mi>Ω</mml:mi><mml:mo>=</mml:mo><mml:mn>0.45</mml:mn></mml:mrow></mml:math></alternatives></inline-formula>, current bias between <inline-formula><alternatives>
+  <tex-math><![CDATA[\alpha_\mathrm{dc} = -5.0]]></tex-math>
+  <mml:math display="inline" xmlns:mml="http://www.w3.org/1998/Math/MathML"><mml:mrow><mml:msub><mml:mi>α</mml:mi><mml:mrow><mml:mi mathvariant="normal">d</mml:mi><mml:mi mathvariant="normal">c</mml:mi></mml:mrow></mml:msub><mml:mo>=</mml:mo><mml:mi>−</mml:mi><mml:mn>5.0</mml:mn></mml:mrow></mml:math></alternatives></inline-formula> and <inline-formula><alternatives>
+  <tex-math><![CDATA[\alpha_\mathrm{dc} = 5.0]]></tex-math>
+  <mml:math display="inline" xmlns:mml="http://www.w3.org/1998/Math/MathML"><mml:mrow><mml:msub><mml:mi>α</mml:mi><mml:mrow><mml:mi mathvariant="normal">d</mml:mi><mml:mi mathvariant="normal">c</mml:mi></mml:mrow></mml:msub><mml:mo>=</mml:mo><mml:mn>5.0</mml:mn></mml:mrow></mml:math></alternatives></inline-formula>, integration time <inline-formula><alternatives>
+  <tex-math><![CDATA[\tau = 500]]></tex-math>
+  <mml:math display="inline" xmlns:mml="http://www.w3.org/1998/Math/MathML"><mml:mrow><mml:mi>τ</mml:mi><mml:mo>=</mml:mo><mml:mn>500</mml:mn></mml:mrow></mml:math></alternatives></inline-formula>, time step <inline-formula><alternatives>
+  <tex-math><![CDATA[\Delta \tau = 0.01]]></tex-math>
+  <mml:math display="inline" xmlns:mml="http://www.w3.org/1998/Math/MathML"><mml:mrow><mml:mi>Δ</mml:mi><mml:mi>τ</mml:mi><mml:mo>=</mml:mo><mml:mn>0.01</mml:mn></mml:mrow></mml:math></alternatives></inline-formula>.</p>
+  <p>The simulation with the sinusoidal drive was performed by varying the amplitude of the microwave signal <inline-formula><alternatives>
+  <tex-math><![CDATA[\alpha_\mathrm{rf}]]></tex-math>
+  <mml:math display="inline" xmlns:mml="http://www.w3.org/1998/Math/MathML"><mml:msub><mml:mi>α</mml:mi><mml:mrow><mml:mi mathvariant="normal">r</mml:mi><mml:mi mathvariant="normal">f</mml:mi></mml:mrow></mml:msub></mml:math></alternatives></inline-formula> between <inline-formula><alternatives>
+  <tex-math><![CDATA[0.0]]></tex-math>
+  <mml:math display="inline" xmlns:mml="http://www.w3.org/1998/Math/MathML"><mml:mn>0.0</mml:mn></mml:math></alternatives></inline-formula> and <inline-formula><alternatives>
+  <tex-math><![CDATA[5.0]]></tex-math>
+  <mml:math display="inline" xmlns:mml="http://www.w3.org/1998/Math/MathML"><mml:mn>5.0</mml:mn></mml:math></alternatives></inline-formula>, with a step <inline-formula><alternatives>
+  <tex-math><![CDATA[\Delta \alpha_\mathrm{rf} = 0.05]]></tex-math>
+  <mml:math display="inline" xmlns:mml="http://www.w3.org/1998/Math/MathML"><mml:mrow><mml:mi>Δ</mml:mi><mml:msub><mml:mi>α</mml:mi><mml:mrow><mml:mi mathvariant="normal">r</mml:mi><mml:mi mathvariant="normal">f</mml:mi></mml:mrow></mml:msub><mml:mo>=</mml:mo><mml:mn>0.05</mml:mn></mml:mrow></mml:math></alternatives></inline-formula>.
+  The three simulations with the pulsed drive were done using:
+  (1) pulse width <inline-formula><alternatives>
+  <tex-math><![CDATA[\rho = 0.250]]></tex-math>
+  <mml:math display="inline" xmlns:mml="http://www.w3.org/1998/Math/MathML"><mml:mrow><mml:mi>ρ</mml:mi><mml:mo>=</mml:mo><mml:mn>0.250</mml:mn></mml:mrow></mml:math></alternatives></inline-formula>, <inline-formula><alternatives>
+  <tex-math><![CDATA[\alpha_\mathrm{rf} = 0.0 - 10.0]]></tex-math>
+  <mml:math display="inline" xmlns:mml="http://www.w3.org/1998/Math/MathML"><mml:mrow><mml:msub><mml:mi>α</mml:mi><mml:mrow><mml:mi mathvariant="normal">r</mml:mi><mml:mi mathvariant="normal">f</mml:mi></mml:mrow></mml:msub><mml:mo>=</mml:mo><mml:mn>0.0</mml:mn><mml:mo>−</mml:mo><mml:mn>10.0</mml:mn></mml:mrow></mml:math></alternatives></inline-formula>, <inline-formula><alternatives>
+  <tex-math><![CDATA[\Delta \alpha_\mathrm{rf} = 0.1]]></tex-math>
+  <mml:math display="inline" xmlns:mml="http://www.w3.org/1998/Math/MathML"><mml:mrow><mml:mi>Δ</mml:mi><mml:msub><mml:mi>α</mml:mi><mml:mrow><mml:mi mathvariant="normal">r</mml:mi><mml:mi mathvariant="normal">f</mml:mi></mml:mrow></mml:msub><mml:mo>=</mml:mo><mml:mn>0.1</mml:mn></mml:mrow></mml:math></alternatives></inline-formula>;
+  (2) pulse width <inline-formula><alternatives>
+  <tex-math><![CDATA[\rho = 0.125]]></tex-math>
+  <mml:math display="inline" xmlns:mml="http://www.w3.org/1998/Math/MathML"><mml:mrow><mml:mi>ρ</mml:mi><mml:mo>=</mml:mo><mml:mn>0.125</mml:mn></mml:mrow></mml:math></alternatives></inline-formula>, <inline-formula><alternatives>
+  <tex-math><![CDATA[\alpha_\mathrm{rf} = 0.0 - 20.0]]></tex-math>
+  <mml:math display="inline" xmlns:mml="http://www.w3.org/1998/Math/MathML"><mml:mrow><mml:msub><mml:mi>α</mml:mi><mml:mrow><mml:mi mathvariant="normal">r</mml:mi><mml:mi mathvariant="normal">f</mml:mi></mml:mrow></mml:msub><mml:mo>=</mml:mo><mml:mn>0.0</mml:mn><mml:mo>−</mml:mo><mml:mn>20.0</mml:mn></mml:mrow></mml:math></alternatives></inline-formula>, <inline-formula><alternatives>
+  <tex-math><![CDATA[\Delta \alpha_\mathrm{rf} = 0.2]]></tex-math>
+  <mml:math display="inline" xmlns:mml="http://www.w3.org/1998/Math/MathML"><mml:mrow><mml:mi>Δ</mml:mi><mml:msub><mml:mi>α</mml:mi><mml:mrow><mml:mi mathvariant="normal">r</mml:mi><mml:mi mathvariant="normal">f</mml:mi></mml:mrow></mml:msub><mml:mo>=</mml:mo><mml:mn>0.2</mml:mn></mml:mrow></mml:math></alternatives></inline-formula>;
+  (3) pulse width <inline-formula><alternatives>
+  <tex-math><![CDATA[\rho = 0.050]]></tex-math>
+  <mml:math display="inline" xmlns:mml="http://www.w3.org/1998/Math/MathML"><mml:mrow><mml:mi>ρ</mml:mi><mml:mo>=</mml:mo><mml:mn>0.050</mml:mn></mml:mrow></mml:math></alternatives></inline-formula>, <inline-formula><alternatives>
+  <tex-math><![CDATA[\alpha_\mathrm{rf} = 0.0 - 50.0]]></tex-math>
+  <mml:math display="inline" xmlns:mml="http://www.w3.org/1998/Math/MathML"><mml:mrow><mml:msub><mml:mi>α</mml:mi><mml:mrow><mml:mi mathvariant="normal">r</mml:mi><mml:mi mathvariant="normal">f</mml:mi></mml:mrow></mml:msub><mml:mo>=</mml:mo><mml:mn>0.0</mml:mn><mml:mo>−</mml:mo><mml:mn>50.0</mml:mn></mml:mrow></mml:math></alternatives></inline-formula>, <inline-formula><alternatives>
+  <tex-math><![CDATA[\Delta \alpha_\mathrm{rf} = 0.5]]></tex-math>
+  <mml:math display="inline" xmlns:mml="http://www.w3.org/1998/Math/MathML"><mml:mrow><mml:mi>Δ</mml:mi><mml:msub><mml:mi>α</mml:mi><mml:mrow><mml:mi mathvariant="normal">r</mml:mi><mml:mi mathvariant="normal">f</mml:mi></mml:mrow></mml:msub><mml:mo>=</mml:mo><mml:mn>0.5</mml:mn></mml:mrow></mml:math></alternatives></inline-formula>.</p>
+  <p>The resulting output and summary files were saved in separate folders in the <monospace>2020runs/</monospace> directory, named <monospace>SINGLE/</monospace>, <monospace>PULS0250/</monospace>, <monospace>PULS125/</monospace>, <monospace>PULS0050/</monospace> after their DOS counterparts.</p>
+  <p>To reproduce the first and second figure of Ref. <xref alt="14" rid="ref-MaggiU003A1996" ref-type="bibr">14</xref> I made the only concession to modernity. Instead of trying to recreate them with the plotting program used originally, probably <ext-link ext-link-type="uri" xlink:href="https://www.originlab.com">Origin 2.0</ext-link>, I decided to write a couple of small R scripts that could automate the task.
+  The results are shown in Fig. <xref alt="5" rid="figU003Apulsed-ivs">5</xref> and Fig. <xref alt="6" rid="figU003Astep-width">6</xref> and, as expected, are identical to those reported in the first two figures of Ref. <xref alt="14" rid="ref-MaggiU003A1996" ref-type="bibr">14</xref>.
+  The large vertical steps on the rightmost curves of Fig. <xref alt="5" rid="figU003Apulsed-ivs">5</xref> era the first rf-induced current steps, that can be nearly as large as the critical current <inline-formula><alternatives>
+  <tex-math><![CDATA[I_C]]></tex-math>
+  <mml:math display="inline" xmlns:mml="http://www.w3.org/1998/Math/MathML"><mml:msub><mml:mi>I</mml:mi><mml:mi>C</mml:mi></mml:msub></mml:math></alternatives></inline-formula> without rf bias visible in the first <inline-formula><alternatives>
+  <tex-math><![CDATA[I - V]]></tex-math>
+  <mml:math display="inline" xmlns:mml="http://www.w3.org/1998/Math/MathML"><mml:mrow><mml:mi>I</mml:mi><mml:mo>−</mml:mo><mml:mi>V</mml:mi></mml:mrow></mml:math></alternatives></inline-formula> characteristic on the left.</p>
+  <p>Figure 3 of the original paper could also be easily reproduced by plotting the maxima of the curves of Fig. <xref alt="6" rid="figU003Astep-width">6</xref>, i.e., <inline-formula><alternatives>
+  <tex-math><![CDATA[\Delta i_n]]></tex-math>
+  <mml:math display="inline" xmlns:mml="http://www.w3.org/1998/Math/MathML"><mml:mrow><mml:mi>Δ</mml:mi><mml:msub><mml:mi>i</mml:mi><mml:mi>n</mml:mi></mml:msub></mml:mrow></mml:math></alternatives></inline-formula> vs. <inline-formula><alternatives>
+  <tex-math><![CDATA[\alpha_\mathrm{rf}]]></tex-math>
+  <mml:math display="inline" xmlns:mml="http://www.w3.org/1998/Math/MathML"><mml:msub><mml:mi>α</mml:mi><mml:mrow><mml:mi mathvariant="normal">r</mml:mi><mml:mi mathvariant="normal">f</mml:mi></mml:mrow></mml:msub></mml:math></alternatives></inline-formula>, for the four different cases considered here.</p>
+  <fig id="figU003Apulsed-ivs">
+    <caption><p><inline-formula><alternatives>
+    <tex-math><![CDATA[I - V]]></tex-math>
+    <mml:math display="inline" xmlns:mml="http://www.w3.org/1998/Math/MathML"><mml:mrow><mml:mi>I</mml:mi><mml:mo>−</mml:mo><mml:mi>V</mml:mi></mml:mrow></mml:math></alternatives></inline-formula> characteristics of a junction with <inline-formula><alternatives>
+    <tex-math><![CDATA[\beta = 0.01]]></tex-math>
+    <mml:math display="inline" xmlns:mml="http://www.w3.org/1998/Math/MathML"><mml:mrow><mml:mi>β</mml:mi><mml:mo>=</mml:mo><mml:mn>0.01</mml:mn></mml:mrow></mml:math></alternatives></inline-formula> for several values of <inline-formula><alternatives>
+    <tex-math><![CDATA[\alpha_\mathrm{rf}]]></tex-math>
+    <mml:math display="inline" xmlns:mml="http://www.w3.org/1998/Math/MathML"><mml:msub><mml:mi>α</mml:mi><mml:mrow><mml:mi mathvariant="normal">r</mml:mi><mml:mi mathvariant="normal">f</mml:mi></mml:mrow></mml:msub></mml:math></alternatives></inline-formula>. The junction is irradiated by a train of pulses of repetition frequency <inline-formula><alternatives>
+    <tex-math><![CDATA[\Omega = 0.45]]></tex-math>
+    <mml:math display="inline" xmlns:mml="http://www.w3.org/1998/Math/MathML"><mml:mrow><mml:mi>Ω</mml:mi><mml:mo>=</mml:mo><mml:mn>0.45</mml:mn></mml:mrow></mml:math></alternatives></inline-formula> and width <inline-formula><alternatives>
+    <tex-math><![CDATA[\rho = 0.05]]></tex-math>
+    <mml:math display="inline" xmlns:mml="http://www.w3.org/1998/Math/MathML"><mml:mrow><mml:mi>ρ</mml:mi><mml:mo>=</mml:mo><mml:mn>0.05</mml:mn></mml:mrow></mml:math></alternatives></inline-formula>. Each curve is offset horizontally by <inline-formula><alternatives>
+    <tex-math><![CDATA[4 \Omega]]></tex-math>
+    <mml:math display="inline" xmlns:mml="http://www.w3.org/1998/Math/MathML"><mml:mrow><mml:mn>4</mml:mn><mml:mi>Ω</mml:mi></mml:mrow></mml:math></alternatives></inline-formula> and is labelled after the value of <inline-formula><alternatives>
+    <tex-math><![CDATA[\alpha_\mathrm{rf}]]></tex-math>
+    <mml:math display="inline" xmlns:mml="http://www.w3.org/1998/Math/MathML"><mml:msub><mml:mi>α</mml:mi><mml:mrow><mml:mi mathvariant="normal">r</mml:mi><mml:mi mathvariant="normal">f</mml:mi></mml:mrow></mml:msub></mml:math></alternatives></inline-formula>. The vertical dotted lines mark the position of the zero-voltage axis (i.e., the critical current <inline-formula><alternatives>
+    <tex-math><![CDATA[I_C]]></tex-math>
+    <mml:math display="inline" xmlns:mml="http://www.w3.org/1998/Math/MathML"><mml:msub><mml:mi>I</mml:mi><mml:mi>C</mml:mi></mml:msub></mml:math></alternatives></inline-formula>) for the <inline-formula><alternatives>
+    <tex-math><![CDATA[I - V]]></tex-math>
+    <mml:math display="inline" xmlns:mml="http://www.w3.org/1998/Math/MathML"><mml:mrow><mml:mi>I</mml:mi><mml:mo>−</mml:mo><mml:mi>V</mml:mi></mml:mrow></mml:math></alternatives></inline-formula> curve located immediately to the right.</p></caption>
+    <graphic mimetype="image" mime-subtype="png" xlink:href="images/PULS0050-IV.png" />
+  </fig>
+  <fig>
+    <p><inline-graphic mimetype="image" mime-subtype="png" xlink:href="images/SINGLE2.png">
+      <alt-text>image</alt-text>
+    </inline-graphic>
+    <inline-graphic mimetype="image" mime-subtype="png" xlink:href="images/PULS0250.png">
+      <alt-text>image</alt-text>
+    </inline-graphic></p>
+  </fig>
+  <fig id="figU003Astep-width">
+    <caption><p>Dependence of the step size <inline-formula><alternatives>
+    <tex-math><![CDATA[\Delta i_n]]></tex-math>
+    <mml:math display="inline" xmlns:mml="http://www.w3.org/1998/Math/MathML"><mml:mrow><mml:mi>Δ</mml:mi><mml:msub><mml:mi>i</mml:mi><mml:mi>n</mml:mi></mml:msub></mml:mrow></mml:math></alternatives></inline-formula> on the amplitude of <inline-formula><alternatives>
+    <tex-math><![CDATA[\alpha_\mathrm{rf}]]></tex-math>
+    <mml:math display="inline" xmlns:mml="http://www.w3.org/1998/Math/MathML"><mml:msub><mml:mi>α</mml:mi><mml:mrow><mml:mi mathvariant="normal">r</mml:mi><mml:mi mathvariant="normal">f</mml:mi></mml:mrow></mml:msub></mml:math></alternatives></inline-formula>, for <inline-formula><alternatives>
+    <tex-math><![CDATA[n = 0. . . 4]]></tex-math>
+    <mml:math display="inline" xmlns:mml="http://www.w3.org/1998/Math/MathML"><mml:mrow><mml:mi>n</mml:mi><mml:mo>=</mml:mo><mml:mn>0</mml:mn><mml:mi>.</mml:mi><mml:mi>.</mml:mi><mml:mi>.</mml:mi><mml:mn>4</mml:mn></mml:mrow></mml:math></alternatives></inline-formula>. The <inline-formula><alternatives>
+    <tex-math><![CDATA[n = 0]]></tex-math>
+    <mml:math display="inline" xmlns:mml="http://www.w3.org/1998/Math/MathML"><mml:mrow><mml:mi>n</mml:mi><mml:mo>=</mml:mo><mml:mn>0</mml:mn></mml:mrow></mml:math></alternatives></inline-formula> step is the normalized total critical current <inline-formula><alternatives>
+    <tex-math><![CDATA[\Delta i_0]]></tex-math>
+    <mml:math display="inline" xmlns:mml="http://www.w3.org/1998/Math/MathML"><mml:mrow><mml:mi>Δ</mml:mi><mml:msub><mml:mi>i</mml:mi><mml:mn>0</mml:mn></mml:msub></mml:mrow></mml:math></alternatives></inline-formula> of the junction. The junction parameters are <inline-formula><alternatives>
+    <tex-math><![CDATA[\beta = 0. 01]]></tex-math>
+    <mml:math display="inline" xmlns:mml="http://www.w3.org/1998/Math/MathML"><mml:mrow><mml:mi>β</mml:mi><mml:mo>=</mml:mo><mml:mn>0</mml:mn><mml:mi>.</mml:mi><mml:mn>01</mml:mn></mml:mrow></mml:math></alternatives></inline-formula> and <inline-formula><alternatives>
+    <tex-math><![CDATA[\Omega = 0. 45]]></tex-math>
+    <mml:math display="inline" xmlns:mml="http://www.w3.org/1998/Math/MathML"><mml:mrow><mml:mi>Ω</mml:mi><mml:mo>=</mml:mo><mml:mn>0</mml:mn><mml:mi>.</mml:mi><mml:mn>45</mml:mn></mml:mrow></mml:math></alternatives></inline-formula>; (a) sinusoidal drive, (b) pulsed drive with <inline-formula><alternatives>
+    <tex-math><![CDATA[\rho = 0. 250]]></tex-math>
+    <mml:math display="inline" xmlns:mml="http://www.w3.org/1998/Math/MathML"><mml:mrow><mml:mi>ρ</mml:mi><mml:mo>=</mml:mo><mml:mn>0</mml:mn><mml:mi>.</mml:mi><mml:mn>250</mml:mn></mml:mrow></mml:math></alternatives></inline-formula>, (c) pulsed drive with <inline-formula><alternatives>
+    <tex-math><![CDATA[\rho = 0. 125]]></tex-math>
+    <mml:math display="inline" xmlns:mml="http://www.w3.org/1998/Math/MathML"><mml:mrow><mml:mi>ρ</mml:mi><mml:mo>=</mml:mo><mml:mn>0</mml:mn><mml:mi>.</mml:mi><mml:mn>125</mml:mn></mml:mrow></mml:math></alternatives></inline-formula>, (d) pulsed drive with <inline-formula><alternatives>
+    <tex-math><![CDATA[\rho = 0. 050]]></tex-math>
+    <mml:math display="inline" xmlns:mml="http://www.w3.org/1998/Math/MathML"><mml:mrow><mml:mi>ρ</mml:mi><mml:mo>=</mml:mo><mml:mn>0</mml:mn><mml:mi>.</mml:mi><mml:mn>050</mml:mn></mml:mrow></mml:math></alternatives></inline-formula>.</p></caption>
+    <p><inline-graphic mimetype="image" mime-subtype="png" xlink:href="images/PULS0125.png">
+      <alt-text>image</alt-text>
+    </inline-graphic>
+    <inline-graphic mimetype="image" mime-subtype="png" xlink:href="images/PULS0050.png">
+      <alt-text>image</alt-text>
+    </inline-graphic></p>
+  </fig>
+  <fig id="figU003Astep-width-beta1">
+    <caption><p>Dependence of the step size <inline-formula><alternatives>
+    <tex-math><![CDATA[\Delta i_n]]></tex-math>
+    <mml:math display="inline" xmlns:mml="http://www.w3.org/1998/Math/MathML"><mml:mrow><mml:mi>Δ</mml:mi><mml:msub><mml:mi>i</mml:mi><mml:mi>n</mml:mi></mml:msub></mml:mrow></mml:math></alternatives></inline-formula> on the amplitude of <inline-formula><alternatives>
+    <tex-math><![CDATA[\alpha_\mathrm{rf}]]></tex-math>
+    <mml:math display="inline" xmlns:mml="http://www.w3.org/1998/Math/MathML"><mml:msub><mml:mi>α</mml:mi><mml:mrow><mml:mi mathvariant="normal">r</mml:mi><mml:mi mathvariant="normal">f</mml:mi></mml:mrow></mml:msub></mml:math></alternatives></inline-formula>, for <inline-formula><alternatives>
+    <tex-math><![CDATA[n = 0. . . 4]]></tex-math>
+    <mml:math display="inline" xmlns:mml="http://www.w3.org/1998/Math/MathML"><mml:mrow><mml:mi>n</mml:mi><mml:mo>=</mml:mo><mml:mn>0</mml:mn><mml:mi>.</mml:mi><mml:mi>.</mml:mi><mml:mi>.</mml:mi><mml:mn>4</mml:mn></mml:mrow></mml:math></alternatives></inline-formula>. The <inline-formula><alternatives>
+    <tex-math><![CDATA[n = 0]]></tex-math>
+    <mml:math display="inline" xmlns:mml="http://www.w3.org/1998/Math/MathML"><mml:mrow><mml:mi>n</mml:mi><mml:mo>=</mml:mo><mml:mn>0</mml:mn></mml:mrow></mml:math></alternatives></inline-formula> step is the normalized total critical current <inline-formula><alternatives>
+    <tex-math><![CDATA[\Delta i_0]]></tex-math>
+    <mml:math display="inline" xmlns:mml="http://www.w3.org/1998/Math/MathML"><mml:mrow><mml:mi>Δ</mml:mi><mml:msub><mml:mi>i</mml:mi><mml:mn>0</mml:mn></mml:msub></mml:mrow></mml:math></alternatives></inline-formula> of the junction. The junction parameters are <inline-formula><alternatives>
+    <tex-math><![CDATA[\beta = 1.0]]></tex-math>
+    <mml:math display="inline" xmlns:mml="http://www.w3.org/1998/Math/MathML"><mml:mrow><mml:mi>β</mml:mi><mml:mo>=</mml:mo><mml:mn>1.0</mml:mn></mml:mrow></mml:math></alternatives></inline-formula> and <inline-formula><alternatives>
+    <tex-math><![CDATA[\Omega = 0. 45]]></tex-math>
+    <mml:math display="inline" xmlns:mml="http://www.w3.org/1998/Math/MathML"><mml:mrow><mml:mi>Ω</mml:mi><mml:mo>=</mml:mo><mml:mn>0</mml:mn><mml:mi>.</mml:mi><mml:mn>45</mml:mn></mml:mrow></mml:math></alternatives></inline-formula>; (a) sinusoidal drive, (b) pulsed drive with <inline-formula><alternatives>
+    <tex-math><![CDATA[\rho = 0. 050]]></tex-math>
+    <mml:math display="inline" xmlns:mml="http://www.w3.org/1998/Math/MathML"><mml:mrow><mml:mi>ρ</mml:mi><mml:mo>=</mml:mo><mml:mn>0</mml:mn><mml:mi>.</mml:mi><mml:mn>050</mml:mn></mml:mrow></mml:math></alternatives></inline-formula>.</p></caption>
+    <p><inline-graphic mimetype="image" mime-subtype="png" xlink:href="images/SINGLE-BETA1.png">
+      <alt-text>image</alt-text>
+    </inline-graphic>
+    <inline-graphic mimetype="image" mime-subtype="png" xlink:href="images/PULS0050-BETA1.png">
+      <alt-text>image</alt-text>
+    </inline-graphic></p>
+  </fig>
+  <p>Similar considerations can be made for the reproduction of Figure 4 of the original paper, which considers a slightly hysteretic junction with <inline-formula><alternatives>
+  <tex-math><![CDATA[\beta = 1.0]]></tex-math>
+  <mml:math display="inline" xmlns:mml="http://www.w3.org/1998/Math/MathML"><mml:mrow><mml:mi>β</mml:mi><mml:mo>=</mml:mo><mml:mn>1.0</mml:mn></mml:mrow></mml:math></alternatives></inline-formula>. For simplicity, I have chosen to show instead the <inline-formula><alternatives>
+  <tex-math><![CDATA[\Delta i_n]]></tex-math>
+  <mml:math display="inline" xmlns:mml="http://www.w3.org/1998/Math/MathML"><mml:mrow><mml:mi>Δ</mml:mi><mml:msub><mml:mi>i</mml:mi><mml:mi>n</mml:mi></mml:msub></mml:mrow></mml:math></alternatives></inline-formula> vs. <inline-formula><alternatives>
+  <tex-math><![CDATA[\alpha_\mathrm{rf}]]></tex-math>
+  <mml:math display="inline" xmlns:mml="http://www.w3.org/1998/Math/MathML"><mml:msub><mml:mi>α</mml:mi><mml:mrow><mml:mi mathvariant="normal">r</mml:mi><mml:mi mathvariant="normal">f</mml:mi></mml:mrow></mml:msub></mml:math></alternatives></inline-formula> curves for the two most significant cases of microwave signal, i.e., the sinusoidal drive and the pulsed drive with <inline-formula><alternatives>
+  <tex-math><![CDATA[\rho = 0.050]]></tex-math>
+  <mml:math display="inline" xmlns:mml="http://www.w3.org/1998/Math/MathML"><mml:mrow><mml:mi>ρ</mml:mi><mml:mo>=</mml:mo><mml:mn>0.050</mml:mn></mml:mrow></mml:math></alternatives></inline-formula> (Fig. <xref alt="7" rid="figU003Astep-width-beta1">7</xref>), from which the plots of Figure 4 could be easily replicated.</p>
+</sec>
+<sec id="code-availability">
+  <title>Code availability</title>
+  <p>All code used for this replication is available in the project’s <ext-link ext-link-type="uri" xlink:href="https://github.com/sabinomaggi/ten-years-challenge-pulsed-drive">GitHub repository</ext-link>.
+  However, the term &quot;all&quot; should be taken with a grain of salt. While the Fortran is truly available to everyone and can be used as-is by compiling it with gfortran or with any other compatible modern Fortran compiler, the Visual Basic 1.0 code poses a completely different set of problems.</p>
+  <p>First of all, it can be run only by rebuilding an exact replica of the original development environment, as noted in Section <xref alt="5" rid="visual-basic-code">5</xref>. A task that without proper documentation can require a lot of trial-and error, as the author of the present paper discovered during the course of this work, when he found that the original code could not be imported in any later versions of Visual Basic for Windows and even in Visual Basic 1.0 for MS-DOS, released by Microsoft in parallel with the initial Windows version.</p>
+  <p>Second, the source code of a Visual basic program is a mix of Basic source files (having the usual <monospace>.bas</monospace> extension) and of Forms objects that compose the graphical interface of the program (with extension <monospace>.frm</monospace>), stored in some binary format and tied together in a container, known as a Visual Basic project (extension <monospace>.mak</monospace>), as shown in Fig. <xref alt="[fig:vb-project]" rid="figU003Avb-project">[fig:vb-project]</xref>).
+  Making things worse, a Visual Basic project cannot be exported, the idea of code sharing or reuse across different applications was almost unknown at the time, at least in the commercial world.</p>
+  <p>The obvious consequence is that the reproduction described here would fail to comply, at least in part, with one of the basic requirements of the Ten Years Challenge, i.e. the availability of all the source code used for the reproduction.</p>
+  <p>But even if Visual Basic code seems locked for eternity in its proprietary binary format, there is a simple, albeit partial, solution to this problem, printing to a file.
+  Printing was a true necessity back then to inspect or debug code. Computer screens were small and editors were primitive, the best way to have an overall view of a program during development was to print it on paper. Visual Basic 1.0 is no exception and can easily print both the Basic source code and the layout of each form composing the graphical interface.
+  Once realized that, it is easy to set up a PostScript Printer in Windows 3.11 and to print the Basic sources and the forms to two separate PostScript files on the Windows 3.11 virtual disk.
+  Transfer of these files to macOS is done again using the virtual floppy disk image and, once in macOS, it is a questions of seconds to convert the PostScript files to the more popular PDF format using the Preview application available in every version of macOS.
+  The finishing touch is to use an R script (already developed for another project) to extract the text from the PDF file containing the Basic code, saving it to a true text source file, so that it can be easily inspected by everyone interested in this project.</p>
+</sec>
+<sec id="discussion">
+  <title>Discussion</title>
+  <p>The main problem with this reproduction was the accidental loss of all my handwritten notes about the project, that compelled me to recover all information needed from the source and data files.
+  Keeping good and updated documentation about any research project is paramount but equally important is to store all documentation in a safe location, where it can be easily retrieved.</p>
+  <p>Today most documents are in electronic form, making them even more prone to data loss whenever a disaster strikes.
+  Implementing a good and reliable backup strategy on different forms of storage media should be a mandatory requirement of any research project, and this strategy should always combine local backups with backups on secondary storage locations, physically well separated from the original data source.</p>
+  <p>Starting the project today from scratch I would make very different choices about the programming languages to use for the simulation and data analysis steps.</p>
+  <p>Fortran, despite its venerable age, is still an excellent language for scientific programming, but today I would surely prefer Python, because of its flexibility, ease of use, and availability of excellent numerical libraries, such as NumPy and SciPy.</p>
+  <p>The main problem with Python is related to the tumultuous development of the language itself and of the thousands of available modules, which can cause incompatibilities even with code developed a few years ago. This problem can be, at least temporarily, be solved by using virtual environments, but a better standardized solution is strongly needed.</p>
+  <p>Another problem is related to its nature of interpreted language. However, the presence of well-documented Fortran and C bindings, can enhance performance of time-critical sections of code.</p>
+  <p>Starting today I would also avoid using a new language, as was Visual Basic 1.0 at the time for a scientific project.
+  It is true that in 1993-94 it would have been very hard to foresee the rapid demise of Microsoft’s Visual Basic, nevertheless using a programming language only when its main core is stable, runs on a wide array of operating systems and is accepted by a wide community of developers is surely a safer bet.</p>
+  <p>Not every software project can afford to be as stable as TeX, the scientific typesetting system invented by the prominent mathematician and computer scientist Donald E. Knuth, that has reached a state where “it is unwise to make further improvements to the system [..] which should give the same results 100 years from now that they produce today” <xref alt="21" rid="ref-KnuthU003A1990" ref-type="bibr">21</xref>.
+  But on the other hand, a development environment that changes too much and too often or that is subjected to the whims of a single software company creates more problems than it solves.</p>
+</sec>
+<sec id="conclusions">
+  <title>Conclusions</title>
+  <p>Going back to my old paper has been an exceptionally interesting and instructive experience and I thank the organizers of this challenge for the opportunity offered.</p>
+  <p>However this is not only a nostalgic attitude. The reproducibility crisis is a serious issue today <xref alt="22" rid="ref-MiyakawaU003A2020" ref-type="bibr">22</xref>, that undermines scientific credibility and impacts the public’s trust in science, paving the way to all sorts of fake and unscientific beliefs.
+  Being able to go back and reproduce what has been done in the past could ease the retraction of published papers containing fabricated, falsified, or modified data or results and could contribute to simplify the identification of future frauds.</p>
+  <p>This of course requires to share and make freely available the original data and the tools used to analyze them. A few years ago this requirement was impossible to fulfill in practice. The digital world in which we live makes it almost inevitable.</p>
+</sec>
+</body>
+<back>
+<ref-list>
+  <title>References</title>
+  <ref id="ref-BaroneU003A1982">
+    <element-citation publication-type="book">
+      <person-group person-group-type="author">
+        <name><surname>Barone</surname><given-names>Antonio</given-names></name>
+        <name><surname>Paternò</surname><given-names>Gianfranco</given-names></name>
+      </person-group>
+      <source>Physics and Applications of the Josephson Effect</source>
+      <publisher-name>Wiley</publisher-name>
+      <year iso-8601-date="1982-07">1982</year><month>07</month>
+      <isbn>9780471014690</isbn>
+      <uri>https://onlinelibrary.wiley.com/doi/book/10.1002/352760278X</uri>
+      <pub-id pub-id-type="doi">10.1002/352760278X</pub-id>
+    </element-citation>
+  </ref>
+  <ref id="ref-McCumberU003A1968">
+    <element-citation publication-type="article-journal">
+      <person-group person-group-type="author">
+        <name><surname>McCumber</surname><given-names>D. E.</given-names></name>
+      </person-group>
+      <article-title>Effect of ac Impedance on dc Voltage‐Current Characteristics of Superconductor Weak‐Link Junctions</article-title>
+      <source>Journal of Applied Physics</source>
+      <year iso-8601-date="1968-06">1968</year><month>06</month>
+      <volume>39</volume>
+      <issue>7</issue>
+      <issn>0021-8979</issn>
+      <uri>http://aip.scitation.org/doi/10.1063/1.1656743</uri>
+      <pub-id pub-id-type="doi">10.1063/1.1656743</pub-id>
+      <fpage>3113</fpage>
+      <lpage>3118</lpage>
+    </element-citation>
+  </ref>
+  <ref id="ref-StewartU003A1974">
+    <element-citation publication-type="article-journal">
+      <person-group person-group-type="author">
+        <name><surname>Stewart</surname><given-names>W. C.</given-names></name>
+      </person-group>
+      <article-title>Current‐voltage characteristics of superconducting tunnel junctions</article-title>
+      <source>Journal of Applied Physics</source>
+      <year iso-8601-date="1974-01">1974</year><month>01</month>
+      <volume>45</volume>
+      <issue>1</issue>
+      <issn>0021-8979</issn>
+      <uri>http://aip.scitation.org/doi/10.1063/1.1663001</uri>
+      <pub-id pub-id-type="doi">10.1063/1.1663001</pub-id>
+      <fpage>452</fpage>
+      <lpage>456</lpage>
+    </element-citation>
+  </ref>
+  <ref id="ref-McDonaldU003A1976">
+    <element-citation publication-type="article-journal">
+      <person-group person-group-type="author">
+        <name><surname>McDonald</surname><given-names>D. G.</given-names></name>
+        <name><surname>Johnson</surname><given-names>E. G.</given-names></name>
+        <name><surname>Harris</surname><given-names>R. E.</given-names></name>
+      </person-group>
+      <article-title>Modeling Josephson junctions</article-title>
+      <source>Physical Review B</source>
+      <year iso-8601-date="1976-02">1976</year><month>02</month>
+      <volume>13</volume>
+      <issue>3</issue>
+      <issn>0556-2805</issn>
+      <uri>https://link.aps.org/doi/10.1103/PhysRevB.13.1028</uri>
+      <pub-id pub-id-type="doi">10.1103/PhysRevB.13.1028</pub-id>
+      <fpage>1028</fpage>
+      <lpage>1031</lpage>
+    </element-citation>
+  </ref>
+  <ref id="ref-HenryU003A1981">
+    <element-citation publication-type="article-journal">
+      <person-group person-group-type="author">
+        <name><surname>Henry</surname><given-names>Richard W</given-names></name>
+        <name><surname>Prober</surname><given-names>Daniel E</given-names></name>
+      </person-group>
+      <article-title>Electronic analogs of double‐junction and single‐junction SQUIDs</article-title>
+      <source>Review of Scientific Instruments</source>
+      <year iso-8601-date="1981-06">1981</year><month>06</month>
+      <volume>52</volume>
+      <issue>6</issue>
+      <issn>0034-6748</issn>
+      <uri>https://doi.org/10.1063/1.1136689 http://aip.scitation.org/doi/10.1063/1.1136689</uri>
+      <pub-id pub-id-type="doi">10.1063/1.1136689</pub-id>
+      <fpage>902</fpage>
+      <lpage>914</lpage>
+    </element-citation>
+  </ref>
+  <ref id="ref-GurvitchU003A1983">
+    <element-citation publication-type="article-journal">
+      <person-group person-group-type="author">
+        <name><surname>Gurvitch</surname><given-names>M</given-names></name>
+        <name><surname>Washington</surname><given-names>M A</given-names></name>
+        <name><surname>Huggins</surname><given-names>H A</given-names></name>
+      </person-group>
+      <article-title>High quality refractory Josephson tunnel junctions utilizing thin aluminum layers</article-title>
+      <source>Applied Physics Letters</source>
+      <year iso-8601-date="1983-03">1983</year><month>03</month>
+      <volume>42</volume>
+      <issue>5</issue>
+      <issn>0003-6951</issn>
+      <uri>https://doi.org/10.1063/1.93974 http://aip.scitation.org/doi/10.1063/1.93974</uri>
+      <pub-id pub-id-type="doi">10.1063/1.93974</pub-id>
+      <fpage>472</fpage>
+      <lpage>474</lpage>
+    </element-citation>
+  </ref>
+  <ref id="ref-KautzU003A1987">
+    <element-citation publication-type="article-journal">
+      <person-group person-group-type="author">
+        <name><surname>Kautz</surname><given-names>R</given-names></name>
+        <name><surname>Hamilton</surname><given-names>C</given-names></name>
+        <name><surname>Lloyd</surname><given-names>F</given-names></name>
+      </person-group>
+      <article-title>Series-array Josephson voltage standards</article-title>
+      <source>IEEE Transactions on Magnetics</source>
+      <year iso-8601-date="1987-03">1987</year><month>03</month>
+      <volume>23</volume>
+      <issue>2</issue>
+      <issn>0018-9464</issn>
+      <uri>http://ieeexplore.ieee.org/document/1064949/</uri>
+      <pub-id pub-id-type="doi">10.1109/TMAG.1987.1064949</pub-id>
+      <fpage>883</fpage>
+      <lpage>890</lpage>
+    </element-citation>
+  </ref>
+  <ref id="ref-MonacoU003A1990">
+    <element-citation publication-type="article-journal">
+      <person-group person-group-type="author">
+        <name><surname>Monaco</surname><given-names>R</given-names></name>
+      </person-group>
+      <article-title>Enhanced ac Josephson effect</article-title>
+      <source>Journal of Applied Physics</source>
+      <year iso-8601-date="1990-07">1990</year><month>07</month>
+      <volume>68</volume>
+      <issue>2</issue>
+      <issn>0021-8979</issn>
+      <uri>https://doi.org/10.1063/1.346798 http://aip.scitation.org/doi/10.1063/1.346798</uri>
+      <pub-id pub-id-type="doi">10.1063/1.346798</pub-id>
+      <fpage>679</fpage>
+      <lpage>687</lpage>
+    </element-citation>
+  </ref>
+  <ref id="ref-KnuthU003A1990">
+    <element-citation publication-type="article-journal">
+      <person-group person-group-type="author">
+        <name><surname>Knuth</surname><given-names>Donald E.</given-names></name>
+      </person-group>
+      <article-title>The Future of Tex and METAFONT</article-title>
+      <source>TUGboat</source>
+      <year iso-8601-date="1990-12">1990</year><month>12</month>
+      <volume>11</volume>
+      <issue>4</issue>
+      <uri>https://www.tug.org/TUGboat/tb11-4/</uri>
+      <fpage>489</fpage>
+      <lpage></lpage>
+    </element-citation>
+  </ref>
+  <ref id="ref-LikharevU003A1991">
+    <element-citation publication-type="article-journal">
+      <person-group person-group-type="author">
+        <name><surname>Likharev</surname><given-names>K. K.</given-names></name>
+        <name><surname>Semenov</surname><given-names>V. K.</given-names></name>
+      </person-group>
+      <article-title>RSFQ logic/memory family: a new Josephson-junction technology for sub-terahertz-clock-frequency digital systems</article-title>
+      <source>IEEE Transactions on Appiled Superconductivity</source>
+      <year iso-8601-date="1991-03">1991</year><month>03</month>
+      <volume>1</volume>
+      <issue>1</issue>
+      <issn>10518223</issn>
+      <uri>http://ieeexplore.ieee.org/xpls/abs{\_}all.jsp?arnumber=80745 http://ieeexplore.ieee.org/document/80745/</uri>
+      <pub-id pub-id-type="doi">10.1109/77.80745</pub-id>
+      <fpage>3</fpage>
+      <lpage>28</lpage>
+    </element-citation>
+  </ref>
+  <ref id="ref-BoyanskiU003A1992">
+    <element-citation publication-type="report">
+      <person-group person-group-type="author">
+        <name><surname>Boyanski</surname><given-names>Adam</given-names></name>
+      </person-group>
+      <article-title>FPP - A Fortran Preprocessor</article-title>
+      <publisher-name>Department of Energy</publisher-name>
+      <year iso-8601-date="1992">1992</year>
+      <fpage>1</fpage>
+      <lpage>7</lpage>
+    </element-citation>
+  </ref>
+  <ref id="ref-BenzU003A1995">
+    <element-citation publication-type="article-journal">
+      <person-group person-group-type="author">
+        <name><surname>Benz</surname><given-names>S P</given-names></name>
+      </person-group>
+      <article-title>Superconductor‐normal‐superconductor junctions for programmable voltage standards</article-title>
+      <source>Applied Physics Letters</source>
+      <year iso-8601-date="1995-10">1995</year><month>10</month>
+      <volume>67</volume>
+      <issue>18</issue>
+      <issn>0003-6951</issn>
+      <uri>https://doi.org/10.1063/1.114302 http://aip.scitation.org/doi/10.1063/1.114302</uri>
+      <pub-id pub-id-type="doi">10.1063/1.114302</pub-id>
+      <fpage>2714</fpage>
+      <lpage>2716</lpage>
+    </element-citation>
+  </ref>
+  <ref id="ref-TroemanU003A2007">
+    <element-citation publication-type="article-journal">
+      <person-group person-group-type="author">
+        <name><surname>Troeman</surname><given-names>Aico G. P.</given-names></name>
+        <name><surname>Derking</surname><given-names>Hendrie</given-names></name>
+        <name><surname>Borger</surname><given-names>Bert</given-names></name>
+        <name><surname>Pleikies</surname><given-names>Johannes</given-names></name>
+        <name><surname>Veldhuis</surname><given-names>Dick</given-names></name>
+        <name><surname>Hilgenkamp</surname><given-names>Hans</given-names></name>
+      </person-group>
+      <article-title>NanoSQUIDs based on niobium constrictions</article-title>
+      <source>Nano Letters</source>
+      <year iso-8601-date="2007">2007</year>
+      <volume>7</volume>
+      <issue>7</issue>
+      <uri>https://doi.org/10.1021/nl070870f</uri>
+      <pub-id pub-id-type="doi">10.1021/nl070870f</pub-id>
+      <fpage>2152</fpage>
+      <lpage>2156</lpage>
+    </element-citation>
+  </ref>
+  <ref id="ref-CybartU003A2015">
+    <element-citation publication-type="article-journal">
+      <person-group person-group-type="author">
+        <name><surname>Cybart</surname><given-names>Shane A</given-names></name>
+        <name><surname>Cho</surname><given-names>E Y</given-names></name>
+        <name><surname>Wong</surname><given-names>T J</given-names></name>
+        <name><surname>Wehlin</surname><given-names>Björn H</given-names></name>
+        <name><surname>Ma</surname><given-names>Meng K</given-names></name>
+        <name><surname>Huynh</surname><given-names>Chuong</given-names></name>
+        <name><surname>Dynes</surname><given-names>R C</given-names></name>
+      </person-group>
+      <article-title>Nano Josephson superconducting tunnel junctions in YBa2Cu3O7–\delta directly patterned with a focused helium ion beam</article-title>
+      <source>Nature Nanotechnology</source>
+      <publisher-name>Nature Publishing Group</publisher-name>
+      <year iso-8601-date="2015-07">2015</year><month>07</month>
+      <volume>10</volume>
+      <issue>7</issue>
+      <uri>http://dx.doi.org/10.1038/nnano.2015.76</uri>
+      <pub-id pub-id-type="doi">10.1038/nnano.2015.76</pub-id>
+      <fpage>598</fpage>
+      <lpage>602</lpage>
+    </element-citation>
+  </ref>
+  <ref id="ref-GranataU003A2015">
+    <element-citation publication-type="article-journal">
+      <person-group person-group-type="author">
+        <name><surname>Granata</surname><given-names>Carmine</given-names></name>
+        <name><surname>Vettoliere</surname><given-names>Antonio</given-names></name>
+        <name><surname>Russo</surname><given-names>Roberto</given-names></name>
+        <name><surname>Fretto</surname><given-names>Matteo</given-names></name>
+        <name><surname>Leo</surname><given-names>Natascia De</given-names></name>
+        <name><surname>Enrico</surname><given-names>Emanuele</given-names></name>
+        <name><surname>Lacquaniti</surname><given-names>Vincenzo</given-names></name>
+      </person-group>
+      <article-title>Ultra High Sensitive Niobium NanoSQUID by Focused Ion Beam Sculpting</article-title>
+      <source>Journal of Superconductivity and Novel Magnetism</source>
+      <year iso-8601-date="2015-02">2015</year><month>02</month>
+      <volume>28</volume>
+      <issue>2</issue>
+      <issn>1557-1939</issn>
+      <uri>http://link.springer.com/10.1007/s10948-014-2693-y</uri>
+      <pub-id pub-id-type="doi">10.1007/s10948-014-2693-y</pub-id>
+      <fpage>585</fpage>
+      <lpage>589</lpage>
+    </element-citation>
+  </ref>
+  <ref id="ref-MiyakawaU003A2020">
+    <element-citation publication-type="article-journal">
+      <person-group person-group-type="author">
+        <name><surname>Miyakawa</surname><given-names>Tsuyoshi</given-names></name>
+      </person-group>
+      <article-title>No raw data, no science: Another possible source of the reproducibility crisis</article-title>
+      <source>Molecular Brain</source>
+      <year iso-8601-date="2020-02">2020</year><month>02</month>
+      <volume>13</volume>
+      <issue>1</issue>
+      <issn>1756-6606</issn>
+      <uri>https://molecularbrain.biomedcentral.com/articles/10.1186/s13041-020-0552-2</uri>
+      <pub-id pub-id-type="doi">10.1186/s13041-020-0552-2</pub-id>
+      <fpage>1</fpage>
+      <lpage>6</lpage>
+    </element-citation>
+  </ref>
+  <ref id="ref-AndreoneU003A1991">
+    <element-citation publication-type="chapter">
+      <person-group person-group-type="author">
+        <name><surname>Andreone</surname><given-names>D</given-names></name>
+        <name><surname>Lacquaniti</surname><given-names>V</given-names></name>
+        <name><surname>Maggi</surname><given-names>S</given-names></name>
+      </person-group>
+      <article-title>Experiments on Josephson Junctions Driven by a Bi-Harmonic RF Source</article-title>
+      <source>Nonlinear superconductive electronics and josephson devices</source>
+      <publisher-name>Springer US</publisher-name>
+      <publisher-loc>Boston, MA</publisher-loc>
+      <year iso-8601-date="1991">1991</year>
+      <isbn>0-306-44100-4</isbn>
+      <uri>http://link.springer.com/10.1007/978-1-4615-3852-3{\_}3</uri>
+      <pub-id pub-id-type="doi">10.1007/978-1-4615-3852-3_3</pub-id>
+      <fpage>37</fpage>
+      <lpage>43</lpage>
+    </element-citation>
+  </ref>
+  <ref id="ref-AndreoneU003A1992">
+    <element-citation publication-type="chapter">
+      <person-group person-group-type="author">
+        <name><surname>Andreone</surname><given-names>D</given-names></name>
+        <name><surname>Lacquaniti</surname><given-names>V</given-names></name>
+        <name><surname>Maggi</surname><given-names>S</given-names></name>
+      </person-group>
+      <article-title>Numerical and Experimental Results on Josephson Junctions Irradiated by a Biharmonic Drive</article-title>
+      <source>Superconducting devices and their applications</source>
+      <year iso-8601-date="1992">1992</year>
+      <isbn>3-540-55396-7</isbn>
+      <uri>http://www.springerlink.com/index/10.1007/978-3-642-77457-7{\_}71</uri>
+      <pub-id pub-id-type="doi">10.1007/978-3-642-77457-7_71</pub-id>
+      <fpage>399</fpage>
+      <lpage>402</lpage>
+    </element-citation>
+  </ref>
+  <ref id="ref-MaggiU003A1996">
+    <element-citation publication-type="article-journal">
+      <person-group person-group-type="author">
+        <name><surname>Maggi</surname><given-names>Sabino</given-names></name>
+      </person-group>
+      <article-title>Step width enhancement in a pulse‐driven Josephson junction</article-title>
+      <source>Journal of Applied Physics</source>
+      <year iso-8601-date="1996-05">1996</year><month>05</month>
+      <volume>79</volume>
+      <issue>10</issue>
+      <issn>0021-8979</issn>
+      <uri>https://aip.scitation.org/doi/10.1063/1.362395</uri>
+      <pub-id pub-id-type="doi">10.1063/1.362395</pub-id>
+      <fpage>7860</fpage>
+      <lpage>7863</lpage>
+    </element-citation>
+  </ref>
+  <ref id="ref-MaggiU003A1997">
+    <element-citation publication-type="article-journal">
+      <person-group person-group-type="author">
+        <name><surname>Maggi</surname><given-names>Sabino</given-names></name>
+      </person-group>
+      <article-title>Enhanced phase locking in a Josephson junction driven by current pulses</article-title>
+      <source>Journal of Low Temperature Physics</source>
+      <year iso-8601-date="1997-02">1997</year><month>02</month>
+      <volume>106</volume>
+      <issue>3-4</issue>
+      <issn>0022-2291</issn>
+      <uri>http://www.scopus.com/inward/record.url?eid=2-s2.0-0031076964{\&amp;}partnerID=MN8TOARS http://link.springer.com/10.1007/BF02399645</uri>
+      <pub-id pub-id-type="doi">10.1007/BF02399645</pub-id>
+      <fpage>399</fpage>
+      <lpage>404</lpage>
+    </element-citation>
+  </ref>
+  <ref id="ref-MaggiU003A2006b">
+    <element-citation publication-type="article-journal">
+      <person-group person-group-type="author">
+        <name><surname>Maggi</surname><given-names>S</given-names></name>
+        <name><surname>De Leo</surname><given-names>N</given-names></name>
+        <name><surname>Lacquaniti</surname><given-names>V</given-names></name>
+        <name><surname>Agostino</surname><given-names>A</given-names></name>
+        <name><surname>Gonnelli</surname><given-names>R</given-names></name>
+        <name><surname>Verhoeve</surname><given-names>P</given-names></name>
+      </person-group>
+      <article-title>Nb/Al STJ detectors with sub-nA subgap current</article-title>
+      <source>Physica C: Superconductivity and its Applications</source>
+      <year iso-8601-date="2006-03">2006</year><month>03</month>
+      <volume>435</volume>
+      <issue>1-2</issue>
+      <issn>09214534</issn>
+      <uri>http://www.scopus.com/inward/record.url?eid=2-s2.0-33645019072{\&amp;}partnerID=MN8TOARS https://linkinghub.elsevier.com/retrieve/pii/S0921453406000359</uri>
+      <pub-id pub-id-type="doi">10.1016/j.physc.2006.01.024</pub-id>
+      <fpage>103</fpage>
+      <lpage>106</lpage>
+    </element-citation>
+  </ref>
+  <ref id="ref-DeLeoU003A2016">
+    <element-citation publication-type="article-journal">
+      <person-group person-group-type="author">
+        <name><surname>De Leo</surname><given-names>Natascia</given-names></name>
+        <name><surname>Fretto</surname><given-names>Matteo</given-names></name>
+        <name><surname>Lacquaniti</surname><given-names>Vincenzo</given-names></name>
+        <name><surname>Cassiago</surname><given-names>Cristina</given-names></name>
+        <name><surname>D’Ortenzi</surname><given-names>Luca</given-names></name>
+        <name><surname>Boarino</surname><given-names>Luca</given-names></name>
+        <name><surname>Maggi</surname><given-names>Sabino</given-names></name>
+      </person-group>
+      <article-title>Thickness Modulated Niobium Nanoconstrictions by Focused Ion Beam and Anodization</article-title>
+      <source>IEEE Transactions on Applied Superconductivity</source>
+      <year iso-8601-date="2016-04">2016</year><month>04</month>
+      <volume>26</volume>
+      <issue>3</issue>
+      <issn>1051-8223</issn>
+      <uri>http://gateway.webofknowledge.com/gateway/Gateway.cgi?GWVersion=2{\&amp;}SrcAuth=ORCID{\&amp;}SrcApp=OrcidOrg{\&amp;}DestLinkType=FullRecord{\&amp;}DestApp=WOS{\_}CPL{\&amp;}KeyUT=WOS:000374879800001{\&amp;}KeyUID=WOS:000374879800001 http://ieeexplore.ieee.org/document/7433951/</uri>
+      <pub-id pub-id-type="doi">10.1109/TASC.2016.2542286</pub-id>
+      <fpage>1</fpage>
+      <lpage>5</lpage>
+    </element-citation>
+  </ref>
+</ref-list>
+<fn-group>
+  <fn id="fn1">
+    <label>1</label><p>Unfortunately, after 25 years and two relocations, I could not manage to find photographs of the simulator nor the original HP 7475A plots.</p>
+  </fn>
+  <fn id="fn2">
+    <label>2</label><p>The now defunct <ext-link ext-link-type="uri" xlink:href="https://en.wikipedia.org/wiki/Digital_Equipment_Corporation">Digital Equipment Corporation</ext-link> (DEC) was one of the leading computer companies of the time and ULTRIX is the name of its Unix operating system.</p>
+  </fn>
+  <fn id="fn3">
+    <label>3</label><p>The <monospace>$</monospace> symbol prepended to this and to all following terminal commands represents the prompt of the command interpreter and is not part of the command.</p>
+  </fn>
+  <fn id="fn4">
+    <label>4</label><p>Unix allows 255 characters for the filename and 4096 characters for the path.</p>
+  </fn>
+  <fn id="fn5">
+    <label>5</label><p>Slightly different versions of the command can be found on the internet; the format used above is POSIX-compliant and should run on any Unix flavour</p>
+  </fn>
+</fn-group>
+</back>
+</article>
