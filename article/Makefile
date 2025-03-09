@@ -39,12 +39,12 @@ CORE_OPTS = -d pandocin.yaml --copy images/ --baseprint _output/baseprint/
 baseprint: _output/baseprint/article.xml
 
 _output/baseprint/article.xml: $(BASEPRINT_SRC)
-	baseprinter $(CORE_OPTS)
+	EPIJATS_NO_RESTYLE=1 baseprinter $(CORE_OPTS)
 
 baseprint-preview: _output/preview/index.html
 
 _output/preview/index.html: $(BASEPRINT_SRC)
-	baseprinter $(CORE_OPTS) -o _output/preview/
+	EPIJATS_NO_RESTYLE=1 baseprinter $(CORE_OPTS) -o _output/preview/
 
 baseprint-live:
 	baseprinter $(CORE_OPTS) -o _output/preview/ \

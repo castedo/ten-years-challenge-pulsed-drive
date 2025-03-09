@@ -17,9 +17,15 @@ permissions:
 jobs:
   build:
     runs-on: ubuntu-24.04
+    container:
+      image: registry.gitlab.com/perm.pub/dock/baseprinter:25103-53f
     steps:
-      - uses: castedo/baseprinter-action@v7
+      - uses: actions/checkout@v4
+      - name: "Make baseprint preview"
+        run: make -C article baseprint-preview
       - uses: actions/upload-pages-artifact@v3
+        with:
+          path: article/_output/preview
   deploy:
     needs: build
     runs-on: ubuntu-24.04
